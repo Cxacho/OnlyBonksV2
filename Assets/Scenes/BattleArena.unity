@@ -434,6 +434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: If HP <= 0, YOU DIE
   header: HP
+  Tooltip: {fileID: 101691474}
 --- !u!61 &62772628
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -636,9 +637,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 150.67264, y: 645.73987}
+  m_AnchoredPosition: {x: -960, y: 388}
   m_SizeDelta: {x: 500, y: 93.69}
-  m_Pivot: {x: 0.57847536, y: 1.5980861}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &101691476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -808,6 +809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: 
   header: Settings
+  Tooltip: {fileID: 101691474}
 --- !u!114 &147024519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1405,8 +1407,8 @@ RectTransform:
   m_Children:
   - {fileID: 719880904}
   - {fileID: 62772625}
-  - {fileID: 1881951420}
   - {fileID: 1436942727}
+  - {fileID: 1881951420}
   - {fileID: 1846959154}
   - {fileID: 1091676185}
   - {fileID: 147024517}
@@ -1717,6 +1719,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: View the Discard Deck
   header: Discard Deck
+  Tooltip: {fileID: 101691474}
 --- !u!1 &511278272
 GameObject:
   m_ObjectHideFlags: 0
@@ -2322,6 +2325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: Shows how much gold you have. You may spend it on shopping spree
   header: Gold
+  Tooltip: {fileID: 101691474}
 --- !u!61 &719880907
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2383,7 +2387,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 119
 --- !u!114 &719975770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3782,6 +3786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: View the Draw Deck
   header: Draw Deck
+  Tooltip: {fileID: 101691474}
 --- !u!222 &939817795
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4370,6 +4375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: View the run map
   header: Map
+  Tooltip: {fileID: 101691474}
 --- !u!1 &1109854773
 GameObject:
   m_ObjectHideFlags: 0
@@ -5332,7 +5338,7 @@ Transform:
   m_Children:
   - {fileID: 2026469091}
   m_Father: {fileID: 340481520}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1436942728
 SpriteRenderer:
@@ -5399,6 +5405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: Current room value
   header: Room count
+  Tooltip: {fileID: 101691474}
 --- !u!61 &1436942730
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5790,8 +5797,8 @@ Canvas:
   m_GameObject: {fileID: 1517087632}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 963194227}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -5847,7 +5854,7 @@ GameObject:
   - component: {fileID: 1533790607}
   - component: {fileID: 1533790606}
   m_Layer: 5
-  m_Name: Mana
+  m_Name: Mana_icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5887,6 +5894,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: Your current mana value
   header: Mana
+  Tooltip: {fileID: 101691474}
 --- !u!61 &1533790607
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6729,6 +6737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: View the cards in your deck
   header: Deck
+  Tooltip: {fileID: 101691474}
 --- !u!1 &1881951419
 GameObject:
   m_ObjectHideFlags: 0
@@ -6762,7 +6771,7 @@ RectTransform:
   - {fileID: 1052451245}
   - {fileID: 1941692120}
   m_Father: {fileID: 340481520}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.45100003, y: 0.16745436}
   m_AnchorMax: {x: 0.563, y: 0.83400005}
@@ -6839,6 +6848,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: End your turn
   header: End Turn
+  Tooltip: {fileID: 101691474}
 --- !u!222 &1881951423
 CanvasRenderer:
   m_ObjectHideFlags: 0
