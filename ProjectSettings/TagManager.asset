@@ -22,8 +22,8 @@ TagManager:
   - buildings
   - dog
   - 
-  - 
-  - 
+  - VictoryScreen
+  - VScreenShadow
   - 
   - 
   - 
@@ -46,6 +46,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: VScreenBackground
+    uniqueID: 2194450361
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Vscreen
+    uniqueID: 4066470771
     locked: 0

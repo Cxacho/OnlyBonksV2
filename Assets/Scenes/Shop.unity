@@ -1158,7 +1158,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
@@ -2623,7 +2622,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.032414872, y: 0.4093213}
   m_AnchorMax: {x: 0.96161, y: 0.81175095}
-  m_AnchoredPosition: {x: -80, y: 59.7165}
+  m_AnchoredPosition: {x: -79.99994, y: 59.716507}
   m_SizeDelta: {x: -195.6502, y: 9.7688}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1529755670
@@ -3177,7 +3176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8bcd59d6f54d7cf41a1d08233b93ebcd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 32a27439f4da8ad46aca0f9ed10ae168, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
