@@ -19,7 +19,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject discardPile;
     public GameObject playerHandObject;
     public Player player;
-    public Enemy enemy;
+    public EnemyONE enemy;
     public GameObject panelWin;
     public GameObject cardHolder;
     public GameObject battleUI;
@@ -126,9 +126,9 @@ public class GameplayManager : MonoBehaviour
     }
     IEnumerator OnEnemiesTurn()
     {
-        
-        
-        player.TakeDamage(enemy.damage);
+
+
+        enemy.Attack(player);
         
             
         yield return new WaitForSeconds(2f);
