@@ -36,7 +36,7 @@ public class Enemies : MonoBehaviour
 
     public void SpawnEnemy(Enemy enemy)
     {
-        Instantiate(enemy.EnemyPrefab, enemy.SpawnPos, Quaternion.identity);
-        enemy.Init();
+        //Instantiate(enemy.EnemyPrefab, enemy.SpawnPos, Quaternion.identity);
+        
     }
 }

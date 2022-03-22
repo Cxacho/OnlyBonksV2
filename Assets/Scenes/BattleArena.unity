@@ -295,16 +295,7 @@ MonoBehaviour:
   discardPile: {fileID: 2021987949}
   playerHandObject: {fileID: 1961781022}
   player: {fileID: 228611245}
-  enemy:
-    maxHealth: 70
-    armor: 0
-    damage: 10
-    sdh: {fileID: 0}
-    gm: {fileID: 0}
-    healthTxt: {fileID: 0}
-    EnemyPrefab: {fileID: 0}
-    SpawnPos: {x: 0, y: 0, z: 0}
-    EnemyType: 0
+  enemy: {fileID: 2105014874}
   panelWin: {fileID: 2014898107}
   cardHolder: {fileID: 709109347}
   battleUI: {fileID: 737091773}
@@ -4237,69 +4228,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1061465089}
   m_CullTransparentMesh: 1
---- !u!1 &1069293179
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1069293181}
-  - component: {fileID: 1069293180}
-  m_Layer: 0
-  m_Name: EnemyManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1069293180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1069293179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac62b8c3a301b546bc5f4ca110252a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AllEnemies:
-  - maxHealth: 0
-    armor: 0
-    damage: 10
-    sdh: {fileID: 0}
-    gm: {fileID: 0}
-    healthTxt: {fileID: 0}
-    EnemyPrefab: {fileID: 8057601062645456930, guid: 89b87a776ee0fcb4ebfdb88f1b80ff74, type: 3}
-    SpawnPos: {x: 0, y: 0, z: 0}
-    EnemyType: 0
-  - maxHealth: 0
-    armor: 0
-    damage: 0
-    sdh: {fileID: 0}
-    gm: {fileID: 0}
-    healthTxt: {fileID: 0}
-    EnemyPrefab: {fileID: 0}
-    SpawnPos: {x: 0, y: 0, z: 0}
-    EnemyType: 0
-  NumberOfEnemies: 1
---- !u!4 &1069293181
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1069293179}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.426326, y: -2.1441674, z: -8.670501}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1091676184
 GameObject:
   m_ObjectHideFlags: 0
@@ -4965,7 +4893,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 70
-  m_WholeNumbers: 1
+  m_WholeNumbers: 0
   m_Value: 70
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5373,7 +5301,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 70
-  m_WholeNumbers: 1
+  m_WholeNumbers: 0
   m_Value: 70
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8190,6 +8118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2105014873}
   - component: {fileID: 2105014876}
+  - component: {fileID: 2105014874}
   m_Layer: 5
   m_Name: Enemy
   m_TagString: Untagged
@@ -8218,6 +8147,25 @@ RectTransform:
   m_AnchoredPosition: {x: 4.5, y: -104}
   m_SizeDelta: {x: -16.897, y: -257.893}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2105014874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105014872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f208ad312d938a040b585d9a2f2090b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 70
+  armor: 0
+  damage: 5
+  sdh: {fileID: 1431431156}
+  gm: {fileID: 43265154}
+  healthTxt: {fileID: 2045532709}
+  EnemyType: 0
 --- !u!222 &2105014876
 CanvasRenderer:
   m_ObjectHideFlags: 0

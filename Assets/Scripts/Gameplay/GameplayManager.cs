@@ -19,7 +19,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject discardPile;
     public GameObject playerHandObject;
     public Player player;
-    public EnemyONE enemy;
+    public Enemy enemy;
     public GameObject panelWin;
     public GameObject cardHolder;
     public GameObject battleUI;

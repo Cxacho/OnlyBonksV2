@@ -137,6 +137,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointe
         trail = this.GetComponent<TrailRenderer>();
         animator = this.GetComponent<Animator>();
         pl = GameObject.Find("Player").GetComponent<Player>();
+        enemy = GameObject.Find("Enemy").GetComponent<Enemy>();
         canvasAttach = GameObject.Find("Canvas");
         canvas = canvasAttach.GetComponent<Canvas>();
         gmAttach = GameObject.Find("GameplayManager");

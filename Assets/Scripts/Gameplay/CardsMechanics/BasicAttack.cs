@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class BasicAttack : Draggable
 {
-    private int attack = 3;
+    private float attack = 3;
     private int cost = 1;
     public GameObject bonk;
 
