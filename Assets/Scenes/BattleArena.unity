@@ -661,10 +661,10 @@ RectTransform:
   m_Father: {fileID: 231938023}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 433}
-  m_SizeDelta: {x: 907.574, y: 50}
+  m_AnchorMin: {x: 0.264, y: 0.9174751}
+  m_AnchorMax: {x: 0.73600006, y: 0.9687126}
+  m_AnchoredPosition: {x: 0, y: 1}
+  m_SizeDelta: {x: -0.4260254, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &142055155
 MonoBehaviour:
@@ -1273,7 +1273,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 231938022}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
   m_Name: 
@@ -2283,10 +2283,10 @@ RectTransform:
   m_Father: {fileID: 145445265}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 433}
-  m_SizeDelta: {x: 907.574, y: 50}
+  m_AnchorMin: {x: 0.23200001, y: 0.9185015}
+  m_AnchorMax: {x: 0.7685206, y: 0.96800005}
+  m_AnchoredPosition: {x: -0.5, y: 1}
+  m_SizeDelta: {x: -2.6159668, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &513124822
 MonoBehaviour:
@@ -2308,7 +2308,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Here are shown currently discarded cards
+  m_text: Here are cards which will be drawn to your deck
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -2511,7 +2511,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.28036365}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -210.00002}
+  m_AnchoredPosition: {x: 0, y: -210.00003}
   m_SizeDelta: {x: -360, y: 20.00003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &709109349
@@ -7769,10 +7769,10 @@ RectTransform:
   m_Father: {fileID: 308635892}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 433}
-  m_SizeDelta: {x: 907.574, y: 50}
+  m_AnchorMin: {x: 0.264, y: 0.91439587}
+  m_AnchorMax: {x: 0.73576796, y: 0.96900004}
+  m_AnchoredPosition: {x: 0.5, y: 2}
+  m_SizeDelta: {x: 0.5739746, y: -4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1960431972
 MonoBehaviour:
@@ -7906,7 +7906,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.095000006}
-  m_AnchoredPosition: {x: 2, y: 0.5169678}
+  m_AnchoredPosition: {x: 2, y: 0.5168457}
   m_SizeDelta: {x: 3, y: 1.0338974}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1961781025
