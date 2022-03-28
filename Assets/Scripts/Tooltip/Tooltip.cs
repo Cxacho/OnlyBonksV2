@@ -8,15 +8,10 @@ using TMPro;
 //[ExecuteInEditMode()]
 public class Tooltip : MonoBehaviour
 {
-
     public TextMeshProUGUI headerField;
-
     public TextMeshProUGUI contentField;
-
     public LayoutElement layooutElement;
-
     public int characterWrapLimit;
-
     public RectTransform rectTransform;
 
     Ray ray;

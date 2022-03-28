@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -659,6 +659,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 48081942}
+        m_TargetAssemblyTypeName: ButtonsController, Assembly-CSharp
+        m_MethodName: ResetOnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &48081944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -838,7 +850,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.044000003, y: 0.04455625}
   m_AnchorMax: {x: 0.29456252, y: 0.5692955}
-  m_AnchoredPosition: {x: -0.57141113, y: 0.5}
+  m_AnchoredPosition: {x: -0.57128906, y: 0.5}
   m_SizeDelta: {x: -246.1554, y: -284.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &123870243
@@ -1299,6 +1311,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 165396948}
+        m_TargetAssemblyTypeName: ButtonsController, Assembly-CSharp
+        m_MethodName: ResetOnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 9492603}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: NewGamePanelOpen
@@ -1544,6 +1568,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 277416780}
+        m_TargetAssemblyTypeName: ButtonsController, Assembly-CSharp
+        m_MethodName: ResetOnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &277416782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1732,7 +1768,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &350941748
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2024,7 +2060,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.044000003, y: 0.059371065}
   m_AnchorMax: {x: 0.28779167, y: 0.55262893}
-  m_AnchoredPosition: {x: 0.5665283, y: 1.5190125}
+  m_AnchoredPosition: {x: 0.56640625, y: 1.519043}
   m_SizeDelta: {x: 1.1331024, y: 5.200001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &428546083
@@ -3051,7 +3087,7 @@ GameObject:
   - component: {fileID: 614380464}
   - component: {fileID: 614380463}
   m_Layer: 5
-  m_Name: SigmaRulesColletion
+  m_Name: SigmaRulesCollection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3519,6 +3555,18 @@ MonoBehaviour:
       - m_Target: {fileID: 9492603}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: NewGamePanelClose
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 648370399}
+        m_TargetAssemblyTypeName: ButtonsController, Assembly-CSharp
+        m_MethodName: ResetOnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4462,6 +4510,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 729051783}
+        m_TargetAssemblyTypeName: ButtonsController, Assembly-CSharp
+        m_MethodName: ResetOnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 9492603}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: SettingsChoosePanelOpen
@@ -5073,9 +5133,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 825192564}
+        m_TargetAssemblyTypeName: ButtonsController, Assembly-CSharp
+        m_MethodName: ResetOnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 9492603}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: NewGamePanelOpen
+        m_MethodName: NewGamePanelClose
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5874,7 +5946,7 @@ GameObject:
   - component: {fileID: 930985454}
   - component: {fileID: 930985453}
   m_Layer: 5
-  m_Name: CardsColletion
+  m_Name: CardsCollection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6875,7 +6947,19 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 9492603}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: NewGameDialogYes
+        m_MethodName: StartNewGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1138080996}
+        m_TargetAssemblyTypeName: ButtonsController, Assembly-CSharp
+        m_MethodName: ResetOnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7153,6 +7237,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1155957998}
+        m_TargetAssemblyTypeName: ButtonsController, Assembly-CSharp
+        m_MethodName: ResetOnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 9492603}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: CollectionsChoosePanelOpen
@@ -7374,7 +7470,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1168328574}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1168328572}
+        m_TargetAssemblyTypeName: ButtonsController, Assembly-CSharp
+        m_MethodName: ResetOnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1168328574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7512,6 +7620,18 @@ MonoBehaviour:
       - m_Target: {fileID: 9492603}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: SettingsChoosePanelClose
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1197426054}
+        m_TargetAssemblyTypeName: ButtonsController, Assembly-CSharp
+        m_MethodName: ResetOnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8004,6 +8124,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1300927470}
+        m_TargetAssemblyTypeName: ButtonsController, Assembly-CSharp
+        m_MethodName: ResetOnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1300927472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8142,6 +8274,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1337193045}
+        m_TargetAssemblyTypeName: ButtonsController, Assembly-CSharp
+        m_MethodName: ResetOnClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -11563,6 +11707,30 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2118392044}
+        m_TargetAssemblyTypeName: ButtonsController, Assembly-CSharp
+        m_MethodName: ResetOnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 427835372}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &2118392046
 MonoBehaviour:

@@ -46,4 +46,13 @@ public class ButtonsController : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     }
     
+    public void ResetOnClick()
+    {
+
+        rect.anchoredPosition = new Vector2(startpozX, startpozY);
+
+        transform.GetChild(0).GetComponent<TextMeshProUGUI>().enableVertexGradient = false;
+
+    }
+
 }
