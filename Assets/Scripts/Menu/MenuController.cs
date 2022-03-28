@@ -8,10 +8,16 @@ using DG.Tweening;
 
 public class MenuController : MonoBehaviour
 {
+
+
     [SerializeField] public GameObject newGamePanel;
     [SerializeField] public GameObject settingsChoosePanel;
     [SerializeField] public GameObject buttonsGroup;
+    [SerializeField] public GameObject collectionsChoosePanel;
     [SerializeField] public TextMeshProUGUI newGameTxt;
+    [SerializeField] public TextMeshProUGUI collectionsChoosePanelBackButtonTxt;
+    [SerializeField] public TextMeshProUGUI settingsChoosePanelBackButtonTxt;
+    [SerializeField] public TextMeshProUGUI newGamePanelNoButtonTxt;
     RectTransform buttonsGroupRect;
     private float buttonsGroupStartPozX;
     private float buttonsGroupStartPozY;
@@ -55,7 +61,7 @@ public class MenuController : MonoBehaviour
         {
             buttonsGroup.SetActive(false);
             newGamePanel.SetActive(true);
-            //newGameTxt.color = new Color32(255, 255, 255, 255);
+            
             yoyo.Play();
         }
         );
@@ -67,10 +73,40 @@ public class MenuController : MonoBehaviour
     {
         yoyo.Pause();
         newGameTxt.color = new Color32(255, 255, 255, 255);
+        newGamePanelNoButtonTxt.GetComponent<RectTransform>().anchoredPosition = new Vector2(newGamePanelNoButtonTxt.GetComponent<RectTransform>().anchoredPosition.x-50f, newGamePanelNoButtonTxt.GetComponent<RectTransform>().anchoredPosition.y);
+        newGamePanelNoButtonTxt.GetComponent<TextMeshProUGUI>().enableVertexGradient = false;
         newGamePanel.SetActive(false);
         buttonsGroup.SetActive(true);
         buttonsGroupRect.DOAnchorPos(new Vector2(buttonsGroupStartPozX, buttonsGroupStartPozY), 0.5f);
             
+
+    }
+
+    public void CollectionsChoosePanelOpen()
+    {
+        Sequence collectionsChoosePanelSeq = DOTween.Sequence()
+        .Append
+         (
+            buttonsGroupRect.DOAnchorPos(new Vector2(buttonsGroupStartPozX - 570f, buttonsGroupStartPozY), 0.5f)
+         )
+        .OnComplete(() =>
+        {
+            buttonsGroup.SetActive(false);
+            collectionsChoosePanel.SetActive(true);
+
+        }
+        );
+    }
+
+    public void CollectionsChoosePanelClose()
+    {
+
+        collectionsChoosePanelBackButtonTxt.GetComponent<RectTransform>().anchoredPosition = new Vector2(collectionsChoosePanelBackButtonTxt.GetComponent<RectTransform>().anchoredPosition.x - 50f, collectionsChoosePanelBackButtonTxt.GetComponent<RectTransform>().anchoredPosition.y);
+        collectionsChoosePanelBackButtonTxt.GetComponent<TextMeshProUGUI>().enableVertexGradient = false;
+        collectionsChoosePanel.SetActive(false);
+        buttonsGroup.SetActive(true);
+        buttonsGroupRect.DOAnchorPos(new Vector2(buttonsGroupStartPozX, buttonsGroupStartPozY), 0.5f);
+
 
     }
 
@@ -92,8 +128,9 @@ public class MenuController : MonoBehaviour
 
     public void SettingsChoosePanelClose()
     {
-        
-        
+
+        settingsChoosePanelBackButtonTxt.GetComponent<RectTransform>().anchoredPosition = new Vector2(settingsChoosePanelBackButtonTxt.GetComponent<RectTransform>().anchoredPosition.x - 50f, settingsChoosePanelBackButtonTxt.GetComponent<RectTransform>().anchoredPosition.y);
+        settingsChoosePanelBackButtonTxt.GetComponent<TextMeshProUGUI>().enableVertexGradient = false;
         settingsChoosePanel.SetActive(false);
         buttonsGroup.SetActive(true);
         buttonsGroupRect.DOAnchorPos(new Vector2(buttonsGroupStartPozX, buttonsGroupStartPozY), 0.5f);

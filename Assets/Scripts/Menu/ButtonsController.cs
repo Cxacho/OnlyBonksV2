@@ -17,7 +17,7 @@ public class ButtonsController : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     public void Start()
     {
-        rect = this.gameObject.GetComponent<RectTransform>();
+        rect = transform.GetChild(0).GetComponent<RectTransform>();
         startpozX = rect.anchoredPosition.x;
         startpozY = rect.anchoredPosition.y;
 
@@ -25,7 +25,7 @@ public class ButtonsController : MonoBehaviour, IPointerEnterHandler, IPointerEx
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        this.gameObject.GetComponent<TextMeshProUGUI>().enableVertexGradient = true;
+        transform.GetChild(0).GetComponent<TextMeshProUGUI>().enableVertexGradient = true;
         
         myTwen = rect.DOAnchorPos(new Vector2(startpozX + 50f, startpozY), 0.1f);
 
@@ -36,7 +36,7 @@ public class ButtonsController : MonoBehaviour, IPointerEnterHandler, IPointerEx
     public void OnPointerExit(PointerEventData eventData)
     {
 
-        this.gameObject.GetComponent<TextMeshProUGUI>().enableVertexGradient = false;
+        transform.GetChild(0).GetComponent<TextMeshProUGUI>().enableVertexGradient = false;
         
         
         
