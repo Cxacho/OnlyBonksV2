@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DiscardDeck : MonoBehaviour
 {
-    // Start is called before the first frame update
 
     public Transform discardDeckScreen;
     public GameObject discardPanel;
