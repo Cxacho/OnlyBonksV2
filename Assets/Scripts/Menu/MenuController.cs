@@ -4,9 +4,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using DG.Tweening;
 
 public class MenuController : MonoBehaviour
 {
+
+
+    [SerializeField] public GameObject newGamePanel;
+    [SerializeField] public GameObject settingsChoosePanel;
+    [SerializeField] public GameObject buttonsGroup;
+    [SerializeField] public GameObject collectionsChoosePanel;
+    [SerializeField] public TextMeshProUGUI newGameTxt;
+    RectTransform buttonsGroupRect;
+    private float buttonsGroupStartPozX;
+    private float buttonsGroupStartPozY;
+    Tweener yoyo;
+
     [Header("Volume Settings")]
 
     [SerializeField] private TMP_Text volumeTextValue = null;
@@ -34,8 +47,92 @@ public class MenuController : MonoBehaviour
     [SerializeField] private TMP_Dropdown qualityDropdown;
     [SerializeField] private Toggle fullScreenToggle;
 
+    public void NewGamePanelOpen()
+    {
+        Sequence newGamePanelSeq = DOTween.Sequence()
+        .Append
+         (
+            buttonsGroupRect.DOAnchorPos(new Vector2(buttonsGroupStartPozX - 570f, buttonsGroupStartPozY), 0.5f)
+         )
+        .OnComplete(() =>
+        {
+            buttonsGroup.SetActive(false);
+            newGamePanel.SetActive(true);
+            
+            yoyo.Play();
+        }
+        );
+
+        
+    }
+
+    public void NewGamePanelClose()
+    {
+        yoyo.Pause();
+        newGameTxt.color = new Color32(255, 255, 255, 255);       
+        newGamePanel.SetActive(false);
+        buttonsGroup.SetActive(true);
+        buttonsGroupRect.DOAnchorPos(new Vector2(buttonsGroupStartPozX, buttonsGroupStartPozY), 0.5f);
+            
+
+    }
+
+    public void CollectionsChoosePanelOpen()
+    {
+        Sequence collectionsChoosePanelSeq = DOTween.Sequence()
+        .Append
+         (
+            buttonsGroupRect.DOAnchorPos(new Vector2(buttonsGroupStartPozX - 570f, buttonsGroupStartPozY), 0.5f)
+         )
+        .OnComplete(() =>
+        {
+            buttonsGroup.SetActive(false);
+            collectionsChoosePanel.SetActive(true);
+        }
+        );
+    }
+
+    public void CollectionsChoosePanelClose()
+    {
+        collectionsChoosePanel.SetActive(false);
+        buttonsGroup.SetActive(true);
+        buttonsGroupRect.DOAnchorPos(new Vector2(buttonsGroupStartPozX, buttonsGroupStartPozY), 0.5f);
+    }
+
+    public void SettingsChoosePanelOpen()
+    {
+        Sequence optionsChoosePanelSeq = DOTween.Sequence()
+        .Append
+         (
+            buttonsGroupRect.DOAnchorPos(new Vector2(buttonsGroupStartPozX - 570f, buttonsGroupStartPozY), 0.5f)
+         )
+        .OnComplete(() =>
+        {
+            buttonsGroup.SetActive(false);
+            settingsChoosePanel.SetActive(true);
+            
+        }
+        );
+    }
+
+    public void SettingsChoosePanelClose()
+    {
+
+        settingsChoosePanel.SetActive(false);
+        buttonsGroup.SetActive(true);
+        buttonsGroupRect.DOAnchorPos(new Vector2(buttonsGroupStartPozX, buttonsGroupStartPozY), 0.5f);
+
+    }
+
     private void Start()
     {
+
+        buttonsGroupRect = buttonsGroup.GetComponent<RectTransform>();
+        buttonsGroupStartPozX = buttonsGroupRect.anchoredPosition.x;
+        buttonsGroupStartPozY = buttonsGroupRect.anchoredPosition.y;
+
+        yoyo = newGameTxt.DOFade(0f, 2f).SetLoops(-1, LoopType.Yoyo);
+
         resultions = Screen.resolutions;
         resoultionDropdown.ClearOptions();
 
@@ -73,7 +170,7 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    public void NewGameDialogYes()
+    public void StartNewGame()
     {
         SceneManager.LoadScene(_newGameLevel);
     }

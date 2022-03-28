@@ -21,7 +21,7 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         delay = LeanTween.delayedCall(0.8f, () =>
         {
-            //Debug.Log(this.gameObject.name);
+            
             switch (this.gameObject.name)
             {
                 case "Shop_icon" :
