@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class BasicAttack : Draggable
 {
-    private float attack = 3;
+    public float attack = 3;
     private int cost = 1;
     public GameObject bonk;
 
@@ -25,7 +25,7 @@ public class BasicAttack : Draggable
         yield return new WaitForSeconds(time);
 
 
-        enemy.ReceiveDamage(attack);
+        enemy.ReceiveDamage(attack * pl.strenght);
 
 
        /* else

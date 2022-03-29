@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     public SliderHealth sdh;
     public GameplayManager gm;
     public TMP_Text healthTxt;
-    private float _currentHealth;
+    public float _currentHealth;
     public EnemyType EnemyType;
 
 
@@ -67,11 +67,22 @@ public class Enemy : MonoBehaviour
                 }
                 i++;
                 break;
+            case 3:
+                player.Charmed();
+                i++;
+                break;
+            case 4:
+                player.TakeDamage(damage);
+                i++;
+                break;
             default:
                 break;
         }
     }
-
+    public void Phase2(Player player)
+    {
+        // dwoch ziomkow
+    }
 
     private void crippled()
     {

@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public TMP_Text healthText;
     public TMP_Text armorText;
     public SliderHealth sdh;
+    public float strenght = 1;
     private void Awake()
     {
         currentHealth = maxHealth;
@@ -76,6 +77,10 @@ public class Player : MonoBehaviour
             setHP();
         }
             
+    }
+    public void Charmed()
+    {
+        strenght = strenght / 2;
     }
     public void setHP()
     {
