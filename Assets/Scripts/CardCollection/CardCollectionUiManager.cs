@@ -1,9 +1,11 @@
-using System;
+ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
+
 public class CardCollectionUiManager : MonoBehaviour
 {
 
@@ -21,15 +23,20 @@ public class CardCollectionUiManager : MonoBehaviour
     [SerializeField] private bool isSearchByClass;
     [SerializeField] private string currentSearchClass;
 
+    [SerializeField] private string searchName;
+    public TMP_InputField searchInput;
+    [SerializeField] private bool isSearchByInput;
+    private int ilosc = 0;
+
     private void Start()
     {
         DisplayCards();
-        
+        UpdatePageUI();
     }
 
     private void Update()
     {
-        UpdatePage();
+        
 
         if (!isSearch)
             totalNumbers = 0;
@@ -39,6 +46,7 @@ public class CardCollectionUiManager : MonoBehaviour
     {
         isSearchByMana = true;
         isSearchByClass = false;
+        isSearchByInput = false;
 
         isSearch = true;
         totalNumbers = 0;
@@ -47,57 +55,15 @@ public class CardCollectionUiManager : MonoBehaviour
         _ = new List<CardCollection>();
         List<CardCollection> cards = ReturnCard(_mana);
 
-        for (int i=0; i < cardSlots.Length; i++)
-        {
-            cardSlots[i].gameObject.SetActive(false);
-        }
-        for(int i=0; i < cards.Count; i++)
-        {
-            if(i >= page * 18 && i < (page + 1) * 18)
-            {
-                totalNumbers++;
-
-                cardSlots[i].gameObject.SetActive(true);
-                cardSlots[i].gameObject.GetComponent<Image>().sprite = cards[i].cardSprite;
-                cardSlots[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = cards[i].cardType;
-                cardSlots[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = cards[i].cardMana.ToString();
-                cardSlots[i].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = cards[i].cardName;
-                cardSlots[i].transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = cards[i].cardAction;
-                cardSlots[i].transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = cards[i].cardDesc;
-            }
-            else
-            {
-                cardSlots[i].gameObject.SetActive(false);
-            }
-        }
+        DisplayCardWhenPressButton(cards);
+        UpdatePageUI();
     }
-
-    private List<CardCollection> ReturnCard(int _mana)
-    {
-        List<CardCollection> cards = new List<CardCollection>();
-
-        for(int i=0; i< cardCollectionManager.cards.Count; i++)
-        {
-            CardCollection card;
-
-            if(_mana < 5)
-            {
-                if(cardCollectionManager.cards[i].cardMana == _mana)
-                {
-                    card = cardCollectionManager.cards[i];
-                    cards.Add(card);
-                }
-            }
-           
-        }
-        Debug.Log("Cards with that mana : " + cards.Count);
-        return cards;
-    }
-
+   
     public void SearchByClass(string _cardClass)
     {
         isSearchByMana = false;
         isSearchByClass = true;
+        isSearchByInput = false;
 
         isSearch = true;
         totalNumbers = 0;
@@ -106,58 +72,24 @@ public class CardCollectionUiManager : MonoBehaviour
         _ = new List<CardCollection>();
         List<CardCollection> cards = ReturnCard(_cardClass);
 
-        for (int i = 0; i < cardSlots.Length; i++)
-        {
-            cardSlots[i].gameObject.SetActive(false);
-        }
-        for (int i = 0; i < cards.Count; i++)
-        {
-            if (i >= page * 18 && i < (page + 1) * 18)
-            {
-                totalNumbers++;
-
-                cardSlots[i].gameObject.SetActive(true);
-                cardSlots[i].gameObject.GetComponent<Image>().sprite = cards[i].cardSprite;
-                cardSlots[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = cards[i].cardType;
-                cardSlots[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = cards[i].cardMana.ToString();
-                cardSlots[i].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = cards[i].cardName;
-                cardSlots[i].transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = cards[i].cardAction;
-                cardSlots[i].transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = cards[i].cardDesc;
-            }
-            else
-            {
-                cardSlots[i].gameObject.SetActive(false);
-            }
-        }
+        DisplayCardWhenPressButton(cards);
+        UpdatePageUI();
     }
-
-    private List<CardCollection> ReturnCard(string _cardClass)
-    {
-        List<CardCollection> cards = new List<CardCollection>();
-
-        for (int i = 0; i < cardCollectionManager.cards.Count; i++)
-        {
-            CardCollection card;
-           
-            if (cardCollectionManager.cards[i].cardType.ToString() == _cardClass)
-                {
-                    card = cardCollectionManager.cards[i];
-                    cards.Add(card);
-                }
-
-        }
-        Debug.Log("Cards with that mana : " + cards.Count);
-        return cards;
-    }
-
+    
     public void InitialCardsTab()
     {
         page = 0;
         isSearch = false;
         DisplayCards();
+
+        isSearchByMana = false;
+        isSearchByClass = false;
+        isSearchByInput = false;
+
+        UpdatePageUI();
     }
 
-    private void UpdatePage()
+    private void UpdatePageUI()
     {
         if (!isSearch)
         {
@@ -172,7 +104,7 @@ public class CardCollectionUiManager : MonoBehaviour
 
     public void NextPage()
     {
-        UpdatePage();
+        UpdatePageUI();
         if (!isSearch)
         {
             if (page >= Mathf.FloorToInt((cardCollectionManager.cards.Count - 1) / 18))
@@ -185,6 +117,7 @@ public class CardCollectionUiManager : MonoBehaviour
             }
 
             DisplayCards();
+            UpdatePageUI();
         }
         else
         {
@@ -199,6 +132,7 @@ public class CardCollectionUiManager : MonoBehaviour
                     page++;
                 }
                 DisplayBySearchMana();
+                UpdatePageUI();
             }
             if (isSearchByClass)
             {
@@ -211,6 +145,7 @@ public class CardCollectionUiManager : MonoBehaviour
                     page++;
                 }
                 DisplayBySearchClass();
+                UpdatePageUI();
             }
         }
         
@@ -219,7 +154,7 @@ public class CardCollectionUiManager : MonoBehaviour
 
     public void PreviousPage()
     {
-        UpdatePage();
+        UpdatePageUI();
         if (!isSearch)
         {
             if (page <= 0)
@@ -232,6 +167,7 @@ public class CardCollectionUiManager : MonoBehaviour
             }
             
             DisplayCards();
+            UpdatePageUI();
         }
         else
         {
@@ -246,6 +182,7 @@ public class CardCollectionUiManager : MonoBehaviour
                     page--;
                 }
                 DisplayBySearchMana();
+                UpdatePageUI();
             }
             if (isSearchByClass)
             {
@@ -258,6 +195,7 @@ public class CardCollectionUiManager : MonoBehaviour
                     page--;
                 }
                 DisplayBySearchClass();
+                UpdatePageUI();
             }
         }
 
@@ -293,27 +231,29 @@ public class CardCollectionUiManager : MonoBehaviour
         cardSlots[i].transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = cardCollectionManager.cards[i].cardDesc;
     }
     
-    private void DisplayBySearchMana()
+    private void DisplayCardWhenPressButton(List<CardCollection> _cards)
     {
-        List<CardCollection> cards = new List<CardCollection>();
-        cards = ReturnCard(currentSearchMana);
 
-        for(int i=0; i < cardSlots.Length; i++)
+        for (int i = 0; i < cardSlots.Length; i++)
         {
             cardSlots[i].gameObject.SetActive(false);
         }
-        for (int i = 0; i < cards.Count; i++)
-        {
-            if(i >= page * 18 && i < (page + 1) * 18)
-            {
-                cardSlots[i].gameObject.SetActive(true);
 
-                cardSlots[i].gameObject.GetComponent<Image>().sprite = cards[i].cardSprite;
-                cardSlots[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = cards[i].cardType;
-                cardSlots[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = cards[i].cardMana.ToString();
-                cardSlots[i].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = cards[i].cardName;
-                cardSlots[i].transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = cards[i].cardAction;
-                cardSlots[i].transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = cards[i].cardDesc;
+        for (int i = 0; i < _cards.Count; i++)
+        {
+            if (i >= page * 18 && i < (page + 1) * 18)
+            {
+                totalNumbers++;
+
+                cardSlots[i].gameObject.SetActive(true);
+                cardSlots[i].gameObject.GetComponent<Image>().sprite = _cards[i].cardSprite;
+                cardSlots[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _cards[i].cardType;
+                cardSlots[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = _cards[i].cardMana.ToString();
+                cardSlots[i].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = _cards[i].cardName;
+                cardSlots[i].transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = _cards[i].cardAction;
+                cardSlots[i].transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = _cards[i].cardDesc;
+
+
             }
             else
             {
@@ -321,32 +261,127 @@ public class CardCollectionUiManager : MonoBehaviour
             }
         }
     }
+
+    private List<CardCollection> ReturnCard(int _mana)
+    {
+        List<CardCollection> cards = new List<CardCollection>();
+
+        for (int i = 0; i < cardCollectionManager.cards.Count; i++)
+        {
+            CardCollection card;
+
+            if (_mana < 5)
+            {
+                if (cardCollectionManager.cards[i].cardMana == _mana)
+                {
+                    card = cardCollectionManager.cards[i];
+                    cards.Add(card);
+                }
+            }
+
+        }
+        return cards;
+    }
+
+    private List<CardCollection> ReturnCard(string _cardClass)
+    {
+        List<CardCollection> cards = new List<CardCollection>();
+
+        for (int i = 0; i < cardCollectionManager.cards.Count; i++)
+        {
+            CardCollection card;
+
+            if (cardCollectionManager.cards[i].cardType.ToString() == _cardClass)
+            {
+                card = cardCollectionManager.cards[i];
+                cards.Add(card);
+            }
+
+        }
+        return cards;
+    }
+
+    private void DisplayBySearchMana()
+    {
+        List<CardCollection> cards = new List<CardCollection>();
+        cards = ReturnCard(currentSearchMana);
+
+        DisplayCardBySearch(cards);
+        UpdatePageUI();
+    }
     private void DisplayBySearchClass()
     {
         List<CardCollection> cards = new List<CardCollection>();
         cards = ReturnCard(currentSearchClass);
 
+        DisplayCardBySearch(cards);
+        UpdatePageUI();
+    }
+
+    private void DisplayCardBySearch(List <CardCollection> _cards)
+    {
+
         for (int i = 0; i < cardSlots.Length; i++)
         {
             cardSlots[i].gameObject.SetActive(false);
         }
-        for (int i = 0; i < cards.Count; i++)
+        for (int i = 0; i < _cards.Count; i++)
         {
+            
             if (i >= page * 18 && i < (page + 1) * 18)
             {
                 cardSlots[i].gameObject.SetActive(true);
 
-                cardSlots[i].gameObject.GetComponent<Image>().sprite = cards[i].cardSprite;
-                cardSlots[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = cards[i].cardType;
-                cardSlots[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = cards[i].cardMana.ToString();
-                cardSlots[i].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = cards[i].cardName;
-                cardSlots[i].transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = cards[i].cardAction;
-                cardSlots[i].transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = cards[i].cardDesc;
+                cardSlots[i].gameObject.GetComponent<Image>().sprite = _cards[i].cardSprite;
+                cardSlots[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _cards[i].cardType;
+                cardSlots[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = _cards[i].cardMana.ToString();
+                cardSlots[i].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = _cards[i].cardName;
+                cardSlots[i].transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = _cards[i].cardAction;
+                cardSlots[i].transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = _cards[i].cardDesc;
             }
             else
             {
                 cardSlots[i].gameObject.SetActive(false);
             }
         }
+
+    }
+
+    public void SearchByInput()
+    {
+        isSearchByInput = true;
+        isSearchByMana = false;
+        isSearchByClass = false;
+
+        searchName = searchInput.text;
+        if(searchName == "")
+        {
+            InitialCardsTab();
+        }
+        else { 
+        for(int i = 0; i < cardSlots.Length; i++)
+        {
+            cardSlots[i].gameObject.SetActive(false);
+        }
+            
+        for(int i = 0; i < cardCollectionManager.cards.Count; i++)
+        {
+            if(searchName.ToUpper() == cardCollectionManager.cards[i].cardName.ToUpper())
+            {
+                                 
+                    cardSlots[i].gameObject.SetActive(true);
+
+                    cardSlots[i].gameObject.GetComponent<Image>().sprite = cardCollectionManager.cards[i].cardSprite;
+                    cardSlots[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = cardCollectionManager.cards[i].cardType;
+                    cardSlots[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = cardCollectionManager.cards[i].cardMana.ToString();
+                    cardSlots[i].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = cardCollectionManager.cards[i].cardName;
+                    cardSlots[i].transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = cardCollectionManager.cards[i].cardAction;
+                    cardSlots[i].transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = cardCollectionManager.cards[i].cardDesc;
+                   
+            }
+        }
+            Debug.Log(ilosc);
+        pageText.text = "1/1";
+    }
     }
 }
