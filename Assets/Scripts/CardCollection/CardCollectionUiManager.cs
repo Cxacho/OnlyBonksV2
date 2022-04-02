@@ -22,6 +22,7 @@ public class CardCollectionUiManager : MonoBehaviour
     [SerializeField] private bool isSearchByMana;
     [SerializeField] private bool isSearchByClass;
     [SerializeField] private string currentSearchClass;
+    [SerializeField] private string currentSearchName;
 
     [SerializeField] private string searchName;
     public TMP_InputField searchInput;
@@ -75,7 +76,65 @@ public class CardCollectionUiManager : MonoBehaviour
         DisplayCardWhenPressButton(cards);
         UpdatePageUI();
     }
-    
+
+    public void SearchByInput(string _cardName)
+    {
+        isSearchByInput = true;
+        isSearchByMana = false;
+        isSearchByClass = false;
+
+        isSearch = true;
+        totalNumbers = 0;
+        page = 0;
+        currentSearchName = _cardName;
+        _ = new List<CardCollection>();
+        List<CardCollection> cards = ReturnCards(_cardName);
+        if (searchInput.text == "")
+        {
+            InitialCardsTab();
+        }
+        else
+        {
+            DisplayCardWhenPressButton(cards);
+        }
+        
+        UpdatePageUI();
+        //searchName = searchInput.text;
+
+
+        /*if (searchName == "")
+        {
+            InitialCardsTab();
+        }
+        else
+        {
+            for (int i = 0; i < cardSlots.Length; i++)
+            {
+                cardSlots[i].gameObject.SetActive(false);
+            }
+
+            for (int i = 0; i < cardCollectionManager.cards.Count; i++)
+            {
+                if (searchName.ToUpper() == cardCollectionManager.cards[i].cardName.ToUpper())
+                {
+
+
+                    cardSlots[i].gameObject.SetActive(true);
+
+                    cardSlots[i].gameObject.GetComponent<Image>().sprite = cardCollectionManager.cards[i].cardSprite;
+                    cardSlots[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = cardCollectionManager.cards[i].cardType;
+                    cardSlots[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = cardCollectionManager.cards[i].cardMana.ToString();
+                    cardSlots[i].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = cardCollectionManager.cards[i].cardName;
+                    cardSlots[i].transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = cardCollectionManager.cards[i].cardAction;
+                    cardSlots[i].transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = cardCollectionManager.cards[i].cardDesc;
+
+                }
+            }
+
+            pageText.text = "1/1";
+        }*/
+    }
+
     public void InitialCardsTab()
     {
         page = 0;
@@ -147,6 +206,19 @@ public class CardCollectionUiManager : MonoBehaviour
                 DisplayBySearchClass();
                 UpdatePageUI();
             }
+            if (isSearchByInput)
+            {
+                if (page >= (Mathf.FloorToInt(totalNumbers / 18)))
+                {
+                    page = 0;
+                }
+                else
+                {
+                    page++;
+                }
+                DisplayBySearchInput();
+                UpdatePageUI();
+            }
         }
         
 
@@ -195,6 +267,19 @@ public class CardCollectionUiManager : MonoBehaviour
                     page--;
                 }
                 DisplayBySearchClass();
+                UpdatePageUI();
+            }
+            if (isSearchByInput)
+            {
+                if (page <= 0)
+                {
+                    page = (Mathf.FloorToInt(totalNumbers / 18));
+                }
+                else
+                {
+                    page--;
+                }
+                DisplayBySearchInput();
                 UpdatePageUI();
             }
         }
@@ -285,6 +370,7 @@ public class CardCollectionUiManager : MonoBehaviour
 
     private List<CardCollection> ReturnCard(string _cardClass)
     {
+        
         List<CardCollection> cards = new List<CardCollection>();
 
         for (int i = 0; i < cardCollectionManager.cards.Count; i++)
@@ -301,11 +387,29 @@ public class CardCollectionUiManager : MonoBehaviour
         return cards;
     }
 
+    private List<CardCollection> ReturnCards(string _cardName)
+    {
+        List<CardCollection> cards = new List<CardCollection>();
+
+        
+
+        for (int i = 0; i < cardCollectionManager.cards.Count; i++)
+        {
+            CardCollection card;
+            if(cardCollectionManager.cards[i].cardName.ToUpper() == searchInput.text.ToUpper())
+            {
+                card = cardCollectionManager.cards[i];
+                cards.Add(card);
+            }
+        }
+
+            return cards;
+    }
+
     private void DisplayBySearchMana()
     {
         List<CardCollection> cards = new List<CardCollection>();
         cards = ReturnCard(currentSearchMana);
-
         DisplayCardBySearch(cards);
         UpdatePageUI();
     }
@@ -313,11 +417,18 @@ public class CardCollectionUiManager : MonoBehaviour
     {
         List<CardCollection> cards = new List<CardCollection>();
         cards = ReturnCard(currentSearchClass);
-
+        
         DisplayCardBySearch(cards);
         UpdatePageUI();
     }
 
+    private void DisplayBySearchInput()
+    {
+        List<CardCollection> cards = new List<CardCollection>();
+        cards = ReturnCards(searchInput.text);
+        DisplayCardBySearch(cards);
+        UpdatePageUI();
+    }
     private void DisplayCardBySearch(List <CardCollection> _cards)
     {
 
@@ -347,41 +458,5 @@ public class CardCollectionUiManager : MonoBehaviour
 
     }
 
-    public void SearchByInput()
-    {
-        isSearchByInput = true;
-        isSearchByMana = false;
-        isSearchByClass = false;
-
-        searchName = searchInput.text;
-        if(searchName == "")
-        {
-            InitialCardsTab();
-        }
-        else { 
-        for(int i = 0; i < cardSlots.Length; i++)
-        {
-            cardSlots[i].gameObject.SetActive(false);
-        }
-            
-        for(int i = 0; i < cardCollectionManager.cards.Count; i++)
-        {
-            if(searchName.ToUpper() == cardCollectionManager.cards[i].cardName.ToUpper())
-            {
-                                 
-                    cardSlots[i].gameObject.SetActive(true);
-
-                    cardSlots[i].gameObject.GetComponent<Image>().sprite = cardCollectionManager.cards[i].cardSprite;
-                    cardSlots[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = cardCollectionManager.cards[i].cardType;
-                    cardSlots[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = cardCollectionManager.cards[i].cardMana.ToString();
-                    cardSlots[i].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = cardCollectionManager.cards[i].cardName;
-                    cardSlots[i].transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = cardCollectionManager.cards[i].cardAction;
-                    cardSlots[i].transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = cardCollectionManager.cards[i].cardDesc;
-                   
-            }
-        }
-            Debug.Log(ilosc);
-        pageText.text = "1/1";
-    }
-    }
+    
 }
