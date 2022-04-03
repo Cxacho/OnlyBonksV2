@@ -1,5 +1,6 @@
  using System;
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -365,6 +366,7 @@ public class CardCollectionUiManager : MonoBehaviour
             }
 
         }
+        cards = cards.OrderBy(card => card.cardName).ToList();
         return cards;
     }
 
@@ -384,6 +386,7 @@ public class CardCollectionUiManager : MonoBehaviour
             }
 
         }
+        cards = cards.OrderBy(card => card.cardName).ToList();
         return cards;
     }
 
@@ -396,13 +399,14 @@ public class CardCollectionUiManager : MonoBehaviour
         for (int i = 0; i < cardCollectionManager.cards.Count; i++)
         {
             CardCollection card;
-            if(cardCollectionManager.cards[i].cardName.ToUpper() == searchInput.text.ToUpper())
+            if(cardCollectionManager.cards[i].cardName.ToUpper().Contains(searchInput.text.ToUpper()))
             {
                 card = cardCollectionManager.cards[i];
                 cards.Add(card);
+                
             }
         }
-
+        cards = cards.OrderBy(card => card.cardName).ToList();
             return cards;
     }
 
