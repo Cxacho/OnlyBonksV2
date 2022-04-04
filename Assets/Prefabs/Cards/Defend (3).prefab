@@ -283,6 +283,7 @@ GameObject:
   - component: {fileID: 3758784950136197345}
   - component: {fileID: 823729523631161570}
   - component: {fileID: -159461269330598212}
+  - component: {fileID: -3767643323095387568}
   m_Layer: 7
   m_Name: Defend (3)
   m_TagString: Card
@@ -394,9 +395,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CARDFOLLOW, Assembly-CSharp
-        m_MethodName: Onclick
+      - m_Target: {fileID: -3767643323095387568}
+        m_TargetAssemblyTypeName: Card, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -413,7 +414,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1647444320490200695}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 798d741f7b30b9345b4ffddef62ad094, type: 3}
   m_Name: 
@@ -431,7 +432,6 @@ MonoBehaviour:
   pl: {fileID: 0}
   enemy: {fileID: 0}
   animator: {fileID: 0}
-  CardAnimationBlock: {fileID: 0}
   discarddeck: {fileID: 0}
   trail: {fileID: 0}
   moveRight: 0
@@ -538,6 +538,24 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &-3767643323095387568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647444320490200695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 089ce3fa7c5628947849dd6834f2442f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCardState: 0
+  mousePos: {x: 0, y: 0, z: 0}
+  posInHand: {x: 0, y: 0, z: 0}
+  discDek: {x: 0, y: 0, z: 0}
+  fm: {fileID: 0}
+  trail: {fileID: 0}
 --- !u!1 &4683282890287541551
 GameObject:
   m_ObjectHideFlags: 0

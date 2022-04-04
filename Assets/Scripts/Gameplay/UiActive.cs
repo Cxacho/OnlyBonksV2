@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class UiActive : MonoBehaviour
 {
     public GameObject deckScreen;
@@ -12,14 +13,10 @@ public class UiActive : MonoBehaviour
     public GameplayManager gm;
     [SerializeField] GameObject mapScreen;
     [SerializeField] GameObject settings;
-    [SerializeField] RectTransform dkScreen;
-    [SerializeField] RectTransform disScreen;
+    //public Vector3 mousePosition,secPos;
+    //RaycastHit hit;
 
 
-    void Start()
-    {
-
-    }
     // Update is called once per frame
 
     public void ClosePanel()
@@ -89,7 +86,10 @@ public class UiActive : MonoBehaviour
     void Update()
     {
         Check();
-
+        //secPos = Input.mousePosition;
+        //secPos.z = Camera.main.nearClipPlane;
+        //mousePosition = Camera.main.ScreenToWorldPoint(secPos);
+        
     }
     void Check()
     {
