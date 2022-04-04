@@ -28,7 +28,7 @@ public class CardCollectionUiManager : MonoBehaviour
     [SerializeField] private string searchName;
     public TMP_InputField searchInput;
     [SerializeField] private bool isSearchByInput;
-    private int ilosc = 0;
+    public GameObject clickedCardPanel;
 
     private void Start()
     {
@@ -459,6 +459,14 @@ public class CardCollectionUiManager : MonoBehaviour
                 cardSlots[i].gameObject.SetActive(false);
             }
         }
+
+    }
+
+    public void CloseClickedCard()
+    {
+
+        GameObject.Destroy(clickedCardPanel.transform.GetChild(0).gameObject);
+        clickedCardPanel.SetActive(false);
 
     }
 
