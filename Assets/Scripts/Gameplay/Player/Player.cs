@@ -8,16 +8,17 @@ public class Player : MonoBehaviour
     public GameObject fillArmor;
     public GameObject textHealth;
     public GameObject textArmor;
-    public int maxHealth = 70;
-    public int currentHealth;
-    public int armor;
-    public int armorAndHp;
-    public int mana;
+    public float maxHealth = 70;
+    public float currentHealth;
+    public float armor;
+    public float armorAndHp;
+    public float mana;
     public GameObject armorImage;
     public TMP_Text manaText;
     public TMP_Text healthText;
     public TMP_Text armorText;
     public SliderHealth sdh;
+    public float strenght = 1;
     private void Awake()
     {
         currentHealth = maxHealth;
@@ -50,7 +51,7 @@ public class Player : MonoBehaviour
         textArmor.SetActive(false);
         armorText.text = armor.ToString();
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         Debug.Log(damage);
         if (armor > 0)
@@ -76,6 +77,10 @@ public class Player : MonoBehaviour
             setHP();
         }
             
+    }
+    public void Charmed()
+    {
+        strenght = strenght / 2;
     }
     public void setHP()
     {

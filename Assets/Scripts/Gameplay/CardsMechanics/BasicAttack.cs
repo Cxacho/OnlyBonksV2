@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class BasicAttack : Draggable
 {
-    private int attack = 3;
+    public float attack = 3;
     private int cost = 1;
     public GameObject bonk;
 
@@ -24,18 +24,17 @@ public class BasicAttack : Draggable
     {
         yield return new WaitForSeconds(time);
 
-        if (enemy.currentHealth > attack)
 
-            enemy.currentHealth -= attack;
+        enemy.ReceiveDamage(attack * pl.strenght);
 
 
-        else
+       /* else
         {
-            enemy.currentHealth = 0;
+            // enemy.currentHealth = 0;
             gm.state = BattleState.WON;
             StartCoroutine(gm.OnBattleWin());
-
-        }
+            
+        }*/
         
             pl.mana -= cost;
 

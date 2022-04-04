@@ -126,9 +126,11 @@ public class GameplayManager : MonoBehaviour
     }
     IEnumerator OnEnemiesTurn()
     {
-        
-        
-        player.TakeDamage(enemy.damage);
+
+        if (enemy._currentHealth <= enemy._currentHealth / 2)
+            enemy.Phase2(player);
+        else
+            enemy.Attack(player);
         
             
         yield return new WaitForSeconds(2f);
