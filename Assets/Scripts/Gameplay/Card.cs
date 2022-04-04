@@ -179,7 +179,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                             this.transform.rotation = newRot;
                             foreach(Enemy misery in enemies)
                                 if(misery.targeted == true)
-                            misery.currentHealth = misery.currentHealth - 7;
+                            misery._currentHealth = misery._currentHealth - 7;
 
                             Destroy(this.gameObject);
                         }

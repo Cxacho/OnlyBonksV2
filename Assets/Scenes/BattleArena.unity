@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1207,6 +1207,7 @@ MonoBehaviour:
   healthText: {fileID: 808451661}
   armorText: {fileID: 1492877956}
   sdh: {fileID: 1372704002}
+  strenght: 1
 --- !u!222 &228611247
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4052,9 +4053,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 15
-  currentHealth: 0
   armor: 0
   damage: 5
+  _currentHealth: 0
   sdh: {fileID: 715617330}
   rect: {fileID: 0}
   corners: []
@@ -4062,6 +4063,7 @@ MonoBehaviour:
   healthTxt: {fileID: 2036409128}
   targeted: 0
   border: {fileID: 507029142}
+  EnemyType: 0
 --- !u!222 &845683430
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4338,7 +4340,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.001, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.49917603, y: -0.000091552734}
+  m_AnchoredPosition: {x: -0.4991455, y: -0.000091552734}
   m_SizeDelta: {x: 1, y: -0.519989}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &915823233
@@ -5304,9 +5306,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 15
-  currentHealth: 0
   armor: 0
   damage: 5
+  _currentHealth: 0
   sdh: {fileID: 2103877668}
   rect: {fileID: 0}
   corners: []
@@ -5314,6 +5316,7 @@ MonoBehaviour:
   healthTxt: {fileID: 682053867}
   targeted: 0
   border: {fileID: 190394541}
+  EnemyType: 0
 --- !u!222 &1099828459
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8414,7 +8417,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.095000006}
-  m_AnchoredPosition: {x: 2, y: 0.5169678}
+  m_AnchoredPosition: {x: 2, y: 0.5168457}
   m_SizeDelta: {x: 3, y: 1.0338974}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1961781024
@@ -8675,7 +8678,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7834789, y: 0.238}
   m_AnchorMax: {x: 0.97212666, y: 0.841}
-  m_AnchoredPosition: {x: -3.5, y: -2.783966}
+  m_AnchoredPosition: {x: -3.5, y: -2.7839966}
   m_SizeDelta: {x: -0.7999878, y: 6.9609985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2011637000
@@ -9751,9 +9754,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 15
-  currentHealth: 0
   armor: 0
   damage: 5
+  _currentHealth: 0
   sdh: {fileID: 1431431156}
   rect: {fileID: 0}
   corners: []
@@ -9761,6 +9764,7 @@ MonoBehaviour:
   healthTxt: {fileID: 2045532709}
   targeted: 0
   border: {fileID: 152477580}
+  EnemyType: 0
 --- !u!222 &2105014876
 CanvasRenderer:
   m_ObjectHideFlags: 0
