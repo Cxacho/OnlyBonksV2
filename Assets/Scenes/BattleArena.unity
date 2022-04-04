@@ -968,6 +968,7 @@ MonoBehaviour:
   healthText: {fileID: 808451661}
   armorText: {fileID: 1492877956}
   sdh: {fileID: 1372704002}
+  strenght: 1
 --- !u!222 &228611247
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8161,10 +8162,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 70
   armor: 0
-  damage: 5
+  damage: 10
   sdh: {fileID: 1431431156}
   gm: {fileID: 43265154}
   healthTxt: {fileID: 2045532709}
+  _currentHealth: 0
   EnemyType: 0
 --- !u!222 &2105014876
 CanvasRenderer:

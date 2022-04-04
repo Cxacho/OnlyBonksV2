@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
                 break;
             case 4:
                 player.TakeDamage(damage);
-                i++;
+                i = 0;
                 break;
             default:
                 break;
