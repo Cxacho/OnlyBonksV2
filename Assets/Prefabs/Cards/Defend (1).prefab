@@ -497,6 +497,7 @@ GameObject:
   - component: {fileID: 7220748797016296509}
   - component: {fileID: -546442659872375320}
   - component: {fileID: -608406298700833388}
+  - component: {fileID: -5623299514631983353}
   m_Layer: 7
   m_Name: Defend (1)
   m_TagString: Card
@@ -608,9 +609,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CARDFOLLOW, Assembly-CSharp
-        m_MethodName: Onclick
+      - m_Target: {fileID: -5623299514631983353}
+        m_TargetAssemblyTypeName: Card, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -627,7 +628,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5098153774971749035}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 798d741f7b30b9345b4ffddef62ad094, type: 3}
   m_Name: 
@@ -751,6 +752,24 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &-5623299514631983353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5098153774971749035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 089ce3fa7c5628947849dd6834f2442f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCardState: 0
+  mousePos: {x: 0, y: 0, z: 0}
+  posInHand: {x: 0, y: 0, z: 0}
+  discDek: {x: 0, y: 0, z: 0}
+  fm: {fileID: 0}
+  trail: {fileID: 0}
 --- !u!1 &6114710356719033752
 GameObject:
   m_ObjectHideFlags: 0

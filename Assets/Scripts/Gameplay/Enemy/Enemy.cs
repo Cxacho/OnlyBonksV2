@@ -3,90 +3,58 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
-
 public class Enemy : MonoBehaviour
 {
 
-    public float maxHealth = 70;
-    public float armor;
-    public float damage;
+    public int maxHealth = 70;
+    public int currentHealth;
+    public int armor;
+    public int damage;
+    FollowMouse fm;
+    Vector3 mousePos;
     public SliderHealth sdh;
+    public RectTransform rect;
+    public Vector3[] corners;
     public GameplayManager gm;
     public TMP_Text healthTxt;
-    public float _currentHealth;
-    public EnemyType EnemyType;
-
-
-    int i = 0;
-    public void Start()
-    {
-        Debug.Log("inicjalizacja");
-        _currentHealth = maxHealth;
-       healthTxt.text = _currentHealth + "/" + maxHealth;
-       armor = 0;
-       sdh.SetMaxHealth(maxHealth);
-    }
-    public void UpdateHealth(float newHealthValue)
-    {
-        _currentHealth = newHealthValue;
-        Debug.Log(_currentHealth);
-    }
-
-    public void ReceiveDamage(float damage)
-    {
-        float updatedHealth = _currentHealth - damage;
-        UpdateHealth(updatedHealth > 0 ? updatedHealth : 0);
-        healthTxt.text = updatedHealth + "/" + maxHealth;
-        sdh.SetHealth(updatedHealth);
-    }
-
+    public bool targeted;
+    [SerializeField] GameObject border;
     
-    public void Attack(Player player)
+    private void Awake()
     {
+        fm = GameObject.Find("Cursor").GetComponent<FollowMouse>();
         
-        switch (i)
+        corners = new Vector3[4];
+        rect = GetComponent<RectTransform>();
+        rect.GetLocalCorners(corners);
+        currentHealth = maxHealth;
+        armor = 0;
+    }
+    
+    void Start()
+    {
+        sdh.SetMaxHealth(maxHealth);
+    }
+    private void Update()
+    {
+        if(targeted == true)
         {
-            case 0:
-                player.TakeDamage(damage);
-                i++;
-                break;
-            case 1:
-                armor = 10;
-                i++;
-                break;
-            case 2:
-                
-                if(armor>0)
-                {
-                    player.TakeDamage(damage * 3);
-                }
-                else
-                {
-                    crippled();
-                }
-                i++;
-                break;
-            case 3:
-                player.Charmed();
-                i++;
-                break;
-            case 4:
-                player.TakeDamage(damage);
-                i = 0;
-                break;
-            default:
-                break;
+            border.SetActive(true);
         }
-    }
-    public void Phase2(Player player)
-    {
-        // dwoch ziomkow
+        else
+        {
+            border.SetActive(false);
+        }
+        mousePos = fm.rectPos.anchoredPosition;
+        sdh.SetHealth(currentHealth);
+        healthTxt.text = currentHealth + "/" + maxHealth;
+        if (mousePos.x> rect.anchoredPosition.x + corners[0].x  && mousePos.x< rect.anchoredPosition.x +corners[3].x)
+        {
+            //podpisac event na wejscie i wyjscie z lokacji czy cos
+            fm.en = GetComponent<Enemy>();
+        }
+
+
     }
 
-    private void crippled()
-    {
-
-        damage = (float)(damage * 0.7);
-    }
 }

@@ -78,7 +78,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointe
 
     void moveCard()
     {
-        
+        /*
         if (moveLeft == true)
         {
             if (ph.children[thisOne].position.x > ph.positions[thisOne].x - 2.5f)
@@ -100,7 +100,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointe
             if (ph.children[thisOne].position.x < ph.positions[thisOne].x + 2.5f)
                 ph.children[thisOne].position += new Vector3(singleStep * 1.5f, 0f, 0f);
             }
-            */
+            
             if (ph.children[thisOne].position.x < ph.positions[thisOne].x + 2.5f)
             {
                 //Debug.Log(ph.positions[thisOne].x);
@@ -126,6 +126,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointe
                 ph.children[thisOne].position += new Vector3(-singleStep * 1.5f, 0, 0);
 
         }
+        */
     }
 
 
