@@ -12,6 +12,8 @@ TagManager:
   - DiscardDeck
   - cardHolder
   - CardImage
+  - SpawnPoint
+  - Rooms
   layers:
   - Default
   - TransparentFX

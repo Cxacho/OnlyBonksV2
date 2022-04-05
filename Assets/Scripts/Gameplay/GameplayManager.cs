@@ -31,7 +31,15 @@ public class GameplayManager : MonoBehaviour
     //lista kart ktore mozemy dobrac do reki
     public List<GameObject> drawDeck;
 
+    [System.Serializable]
+    public struct Enemiesss
+    {
+        public GameObject name;
+        public Enemy kurwa;
+    }
+    public Enemiesss[] enemiesss;
 
+   
     //Player Hand
     public List<GameObject> playerHand = new List<GameObject>();
 
