@@ -31,14 +31,6 @@ public class GameplayManager : MonoBehaviour
     //lista kart ktore mozemy dobrac do reki
     public List<GameObject> drawDeck;
 
-    [System.Serializable]
-    public struct Enemiesss
-    {
-        public GameObject name;
-        public Enemy kurwa;
-    }
-    public Enemiesss[] enemiesss;
-
    
     //Player Hand
     public List<GameObject> playerHand = new List<GameObject>();
@@ -49,6 +41,9 @@ public class GameplayManager : MonoBehaviour
 
     //lista kart dostêpnych
     public List<GameObject> cards = new List<GameObject>();
+
+    //lista przeciwnikow na scenie
+    public GameObject[] enemies;
     //Player Stats
 
     public int playerDrawAmount;
@@ -66,6 +61,8 @@ public class GameplayManager : MonoBehaviour
     }
     void Start()
     {
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
 
         state = BattleState.START;
         StartCoroutine(SetupBattle());
@@ -134,13 +131,15 @@ public class GameplayManager : MonoBehaviour
     }
     IEnumerator OnEnemiesTurn()
     {
-
-        if (enemy._currentHealth <= enemy._currentHealth / 2)
-            enemy.Phase2(player);
-        else
-            enemy.Attack(player);
+        foreach (var enemy in enemies)
+        {
+            ITakeTurn takeTurn = enemy.GetComponent<ITakeTurn>();
+            takeTurn.takeTurn(player);
+        }
         
-            
+
+
+
         yield return new WaitForSeconds(2f);
         
         player.armor = 0;

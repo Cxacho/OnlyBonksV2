@@ -295,7 +295,7 @@ MonoBehaviour:
   discardPile: {fileID: 2021987949}
   playerHandObject: {fileID: 1961781022}
   player: {fileID: 228611245}
-  enemy: {fileID: 2105014874}
+  enemy: {fileID: 0}
   panelWin: {fileID: 2014898107}
   cardHolder: {fileID: 709109347}
   battleUI: {fileID: 737091773}
@@ -312,16 +312,12 @@ MonoBehaviour:
   - {fileID: 8375890335322642537, guid: d0e0311802861924b9ae71e6d10dd032, type: 3}
   - {fileID: 2858555165568228111, guid: 2f9a5ea12e7b61a4999d1b1938e6572a, type: 3}
   drawDeck: []
-  enemiesss:
-  - name: {fileID: 8057601062645456930, guid: 89b87a776ee0fcb4ebfdb88f1b80ff74, type: 3}
-    kurwa: {fileID: 2105014874}
-  - name: {fileID: 0}
-    kurwa: {fileID: 0}
   playerHand: []
   discardDeck: []
   cards:
   - {fileID: 2858555165568228111, guid: b99a3e91ca181024daf86cbe8fec7cab, type: 3}
   - {fileID: 2858555165568228111, guid: cfcff1f83ae779d489c16fc6f5a49bec, type: 3}
+  enemies: []
   playerDrawAmount: 5
   maxCardDraw: 0
   canPlayCards: 1
@@ -4018,7 +4014,7 @@ GameObject:
   - component: {fileID: 845683429}
   m_Layer: 5
   m_Name: Enemy (2)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4054,21 +4050,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 845683427}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f208ad312d938a040b585d9a2f2090b6, type: 3}
+  m_Script: {fileID: 11500000, guid: e33b41339046ad543842e933316cf341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 15
+  maxHealth: 70
   armor: 0
   damage: 5
   _currentHealth: 0
   sdh: {fileID: 715617330}
-  rect: {fileID: 0}
-  corners: []
+  rect: {fileID: 715617329}
   gm: {fileID: 43265154}
   healthTxt: {fileID: 2036409128}
   targeted: 0
-  border: {fileID: 507029142}
+  border: {fileID: 0}
   EnemyType: 0
+  corners: []
 --- !u!222 &845683430
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5328,7 +5324,7 @@ GameObject:
   - component: {fileID: 1099828458}
   m_Layer: 5
   m_Name: Enemy (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5364,21 +5360,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1099828456}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f208ad312d938a040b585d9a2f2090b6, type: 3}
+  m_Script: {fileID: 11500000, guid: e33b41339046ad543842e933316cf341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 15
+  maxHealth: 70
   armor: 0
   damage: 5
   _currentHealth: 0
   sdh: {fileID: 2103877668}
-  rect: {fileID: 0}
-  corners: []
+  rect: {fileID: 2103877667}
   gm: {fileID: 43265154}
   healthTxt: {fileID: 682053867}
   targeted: 0
-  border: {fileID: 190394541}
+  border: {fileID: 0}
   EnemyType: 0
+  corners: []
 --- !u!222 &1099828459
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9873,7 +9869,7 @@ GameObject:
   - component: {fileID: 2105014874}
   m_Layer: 5
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9909,21 +9905,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 2105014872}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f208ad312d938a040b585d9a2f2090b6, type: 3}
+  m_Script: {fileID: 11500000, guid: e33b41339046ad543842e933316cf341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 15
+  maxHealth: 70
   armor: 0
   damage: 5
   _currentHealth: 0
   sdh: {fileID: 1431431156}
-  rect: {fileID: 0}
-  corners: []
+  rect: {fileID: 1431431155}
   gm: {fileID: 43265154}
   healthTxt: {fileID: 2045532709}
   targeted: 0
-  border: {fileID: 152477580}
+  border: {fileID: 0}
   EnemyType: 0
+  corners: []
 --- !u!222 &2105014876
 CanvasRenderer:
   m_ObjectHideFlags: 0
