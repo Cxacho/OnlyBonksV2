@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BabalityScript : Draggable
+public class BabalityScript : Card
 {
     
     private int cost = 2;
     private Vector3 tempora;
     private Vector2 temporaY;
+    List<Animator> anim = new List<Animator>(); 
 
+        
 
     public override void OnDrop()
     {
@@ -21,10 +23,21 @@ public class BabalityScript : Draggable
 
          enemyGO.gameObject.GetComponent<RectTransform>().anchoredPosition = temporaY;
          enemyGO.gameObject.transform.localScale = tempora; */
+        /*
+        foreach(GameObject en in gm.enemieslist)
+        {
+            en.GetComponent<Animator>().SetTrigger("BabalityTrigger");
+        }
+        */
+        foreach (Enemy en in enemies)
+            if (en.targeted == true)
+            {
+                en.damage--;
+                en.targeted = false;
+            }
+        //enemyGO.GetComponent<Animator>().SetTrigger("BabalityTrigger");
 
-        enemyGO.GetComponent<Animator>().SetTrigger("BabalityTrigger");
-
-        enemy.damage--;
+        
 
 
         pl.mana -= cost;

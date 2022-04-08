@@ -13,17 +13,22 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] FollowMouse fm;
     [SerializeField] TrailRenderer trail;
     [SerializeField] GameObject bonkAnim;
+    public Player pl;
     Quaternion oldRot, newRot = new Quaternion(0, 0, 0, 0);
-    public Enemy[] enemies = new Enemy[3];
-    GameplayManager gm;
+    public List<Enemy> enemies = new List<Enemy>();
+    Animator animator;
+    public GameplayManager gm;
     RectTransform pos;
     List<GameObject> temp = new List<GameObject>();
-    int index;
-    public int  numOfTargets;
+    int index,numOfTargets;
+    public int baseNumOfTargets;
+    float clickDelay;
+
+
     private void Start()
     {
-        numOfTargets = 2;
-        currentCardState = cardState.Elsewhere;
+        numOfTargets = baseNumOfTargets;
+           currentCardState = cardState.Elsewhere;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -45,6 +50,10 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     void Awake()
     {
+        pl = GameObject.Find("Player").GetComponent<Player>();
+        var find = GameObject.FindObjectsOfType<Enemy>();
+        foreach (Enemy en in find)
+            enemies.Add(en);
         discDek = GameObject.Find("DiscardDeckButton").transform.position;
         trail = transform.GetComponent<TrailRenderer>();
         gm = GameObject.Find("GameplayManager").GetComponent<GameplayManager>();
@@ -73,13 +82,13 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 break;
             case cardState.OnCursor:
                 Move();
-                OnDrop();
+                DropControl();
                 break;
             case cardState.Elsewhere:
                 //???
                 break;
             case cardState.Targetable:
-                OnDrop();
+                DropControl();
                 break;
         }
 
@@ -115,16 +124,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             pos.anchoredPosition = posInHand;
             this.transform.rotation = oldRot;
         }
-        /*
-        if(viewPortPosition.x <-1 || viewPortPosition.x >1 || viewPortPostion.y < -1 ||viewPortPosition >1 )
-        {
-            currentCardState = cardState.InHand;
-            this.transform.SetParent(GameObject.Find("PlayerHand").transform);
-            pos.anchoredPosition = posInHand;
-            this.transform.rotation = oldRot;
-        this.transform.SetSiblingIndex(index);
-        }
-        */
+        
+
+        
         //na wyjsciu z viewportu karta ma wracac do reki
     }
     public enum cardType
@@ -135,6 +137,37 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public virtual void OnDrop()
     {
+        currentCardState = cardState.Elsewhere;
+        //play card
+        trail.enabled = true;
+        //anim
+        var go = this.gameObject;
+        var nazwaObiektu = go.name.Remove(go.name.Length - 7);
+        for (int i = 0; i < gm.playerHand.Count; i++)
+        {
+            if (nazwaObiektu.Equals(gm.playerHand[i].name))
+            {
+                temp.Add(gm.playerHand[i]);
+                gm.discardDeck.Add(temp[0]);
+                gm.playerHand.RemoveAt(i);
+                temp.RemoveAt(0);
+            }
+        }
+        transform.DOMove(new Vector3(discDek.x, discDek.y, 0), 1.5f);
+        transform.DOScale(0.25f, 0.5f);
+        transform.DORotate(new Vector3(0, 0, -150f), 1.5f).OnComplete(() =>
+        {
+            trail.enabled = false;
+            this.transform.localScale = Vector3.one;
+            this.transform.rotation = newRot;
+            Destroy(this.gameObject);
+        }
+
+        );
+
+    }
+    public void DropControl()
+    {
         if (cType == cardType.Attack)
         {
             if (pos.anchoredPosition.y > -90)
@@ -143,53 +176,33 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 var phPos = GameObject.Find("PlayerHand").transform.position;
                 pos.anchoredPosition = new Vector3(0, -400, 0);
             }
-            if (Input.GetButton("Fire1") && fm.en.targeted == false)
+            if (fm.en != null)
             {
-                fm.en.targeted = true;
-                numOfTargets -= 1;
+                if (Input.GetButtonUp("Fire1") && fm.en.targeted == false)
+                {
+
+                    fm.en.targeted = true;
+                    numOfTargets -= 1;
+                    clickDelay = Time.time + 0.3f;
+                }
             }
 
-            if (Input.GetButtonUp("Fire1") && currentCardState == cardState.Targetable && numOfTargets == 0)
+            if (Input.GetButtonUp("Fire1") && currentCardState == cardState.Targetable && numOfTargets == 0 && Time.time >clickDelay)
             {
-
-
+                OnDrop();
                 //play card
                 //trail.enabled = true;
                 //anim
 
-                        Instantiate(bonkAnim, fm.en.rect.anchoredPosition, Quaternion.identity);
-                        var go = this.gameObject;
-                        var nazwaObiektu = go.name.Remove(go.name.Length - 7);
-                        for (int i = 0; i < gm.playerHand.Count; i++)
-                        {
-                            if (nazwaObiektu.Equals(gm.playerHand[i].name))
-                            {
-                                temp.Add(gm.playerHand[i]);
-                                gm.discardDeck.Add(temp[0]);
-                                gm.playerHand.RemoveAt(i);
-                                temp.RemoveAt(0);
-                            }
-                        }
-                        transform.DOMove(new Vector3(discDek.x, discDek.y, 0), 1.5f);
-                        transform.DOScale(0.25f, 0.5f);
-                        transform.DORotate(new Vector3(0, 0, -150f), 1.5f).OnComplete(() =>
-                        {
-                            trail.enabled = false;
-                            this.transform.localScale = Vector3.one;
-                            this.transform.rotation = newRot;
-                            foreach(Enemy misery in enemies)
-                                if(misery.targeted == true)
-                            misery._currentHealth = misery._currentHealth - 7;
-
-                            Destroy(this.gameObject);
-                        }
-
-                        );
                     }
+            //cofnienicie karty do reki reset indeksu reset targetowania
                     if (Input.GetButton("Fire2") && currentCardState == cardState.Targetable)
                     {
                         currentCardState = cardState.InHand;
                         this.transform.SetParent(GameObject.Find("PlayerHand").transform);
+                        numOfTargets = baseNumOfTargets;
+                        foreach (Enemy en in enemies)
+                            en.targeted = false;
                         pos.anchoredPosition = posInHand;
                         this.transform.rotation = oldRot;
                         this.transform.SetSiblingIndex(index);
@@ -201,39 +214,23 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         else if (cType == cardType.Power || cType == cardType.Skill)
         {
-
-            if (Input.GetButton("Fire1") && pos.anchoredPosition.y > -90)
+            if (Input.GetButtonUp("Fire1") && pos.anchoredPosition.y > -90)
             {
-                currentCardState = cardState.Elsewhere;
-                //play card
-                trail.enabled = true;
-                //anim
-                var go = this.gameObject;
-                var nazwaObiektu = go.name.Remove(go.name.Length - 7);
-                for (int i = 0; i < gm.playerHand.Count; i++)
-                {
-                    if (nazwaObiektu.Equals(gm.playerHand[i].name))
-                    {
-                        temp.Add(gm.playerHand[i]);
-                        gm.discardDeck.Add(temp[0]);
-                        gm.playerHand.RemoveAt(i);
-                        temp.RemoveAt(0);
-                    }
-                }
-                transform.DOMove(new Vector3(discDek.x, discDek.y, 0), 1.5f);
-                transform.DOScale(0.25f, 0.5f);
-                transform.DORotate(new Vector3(0, 0, -150f), 1.5f).OnComplete(() =>
-                {
-                    trail.enabled = false;
-                    this.transform.localScale = Vector3.one;
-                    this.transform.rotation = newRot;
-                    Destroy(this.gameObject);
-                }
-
-                );
-
+                OnDrop();
             }
 
+
+        }
+        if (fm.viewPortPosition.x < 0 || fm.viewPortPosition.x > 1 || fm.viewPortPosition.y < 0 || fm.viewPortPosition.y > 1)
+        {
+            currentCardState = cardState.InHand;
+            this.transform.SetParent(GameObject.Find("PlayerHand").transform);
+            pos.anchoredPosition = posInHand;
+            this.transform.rotation = oldRot;
+            this.transform.SetSiblingIndex(index);
         }
     }
-}
+
+
+    }
+

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class BasicAttack : Draggable
+public class BasicAttack : Card
 {
     public float attack = 3;
     private int cost = 1;
@@ -13,11 +13,18 @@ public class BasicAttack : Draggable
 
     public override void OnDrop()
     {
+        base.OnDrop();
 
-        Instantiate(bonk, new Vector3(0, -10, 0), Quaternion.identity, GameObject.Find("Player").transform);
-        trail.enabled = true;
-        StartCoroutine(ExecuteAfterTime(1f));
-        
+            Instantiate(bonk, new Vector3(0, -10, 0), Quaternion.identity, GameObject.Find("Player").transform);
+            StartCoroutine(ExecuteAfterTime(1f));
+            foreach (Enemy en in enemies)
+            {
+                if (en.targeted == true)
+                {
+                    en._currentHealth -= attack;
+                    en.targeted = false;
+                }
+            } 
     }
 
     IEnumerator ExecuteAfterTime(float time)
@@ -25,24 +32,23 @@ public class BasicAttack : Draggable
         yield return new WaitForSeconds(time);
 
 
-        enemy.ReceiveDamage(attack * pl.strenght);
+        //enemy.ReceiveDamage(attack * pl.strenght);
+        pl.mana -= cost;
+
+        pl.manaText.text = pl.mana.ToString();
 
 
-       /* else
-        {
-            // enemy.currentHealth = 0;
-            gm.state = BattleState.WON;
-            StartCoroutine(gm.OnBattleWin());
-            
-        }*/
-        
-            pl.mana -= cost;
+        /* else
+         {
+             // enemy.currentHealth = 0;
+             gm.state = BattleState.WON;
+             StartCoroutine(gm.OnBattleWin());
 
-            pl.manaText.text = pl.mana.ToString();
-   
-   
+         }*/
 
-        base.OnDrop();
+
+
+
 
     }
 

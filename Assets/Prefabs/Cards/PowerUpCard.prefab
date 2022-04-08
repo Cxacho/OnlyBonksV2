@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 386931171997717913}
   - component: {fileID: 9115252423795947093}
   - component: {fileID: 3532431814366106555}
-  - component: {fileID: 8820824807378656458}
   m_Layer: 5
   m_Name: PowerUpCard
   m_TagString: Card
@@ -127,7 +126,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8820824807378656458}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Card, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -244,49 +243,23 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2858555165568228111}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fa062d6a6276774da7a60084112864f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragTransform: {fileID: 4154305017897078799}
-  canvas: {fileID: 0}
-  playersHand: {fileID: 4154305017897078799}
-  canvasAttach: {fileID: 0}
-  previousCard: {fileID: 0}
-  nextCard: {fileID: 0}
-  gm: {fileID: 0}
-  gmAttach: {fileID: 0}
-  phAttach: {fileID: 0}
-  ph: {fileID: 0}
-  pl: {fileID: 0}
-  enemy: {fileID: 0}
-  animator: {fileID: 0}
-  discarddeck: {fileID: 0}
-  trail: {fileID: 0}
-  moveRight: 0
-  moveLeft: 0
-  singleStep: 0
-  enemyGO: {fileID: 0}
-  temp: []
---- !u!114 &8820824807378656458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2858555165568228111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 089ce3fa7c5628947849dd6834f2442f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  cType: 2
   currentCardState: 0
   mousePos: {x: 0, y: 0, z: 0}
   posInHand: {x: 0, y: 0, z: 0}
   discDek: {x: 0, y: 0, z: 0}
   fm: {fileID: 0}
   trail: {fileID: 0}
+  bonkAnim: {fileID: 0}
+  pl: {fileID: 0}
+  enemies: []
+  gm: {fileID: 0}
+  baseNumOfTargets: 0
 --- !u!1 &3868653325569000508
 GameObject:
   m_ObjectHideFlags: 0

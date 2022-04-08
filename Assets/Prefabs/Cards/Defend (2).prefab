@@ -497,7 +497,6 @@ GameObject:
   - component: {fileID: 5723776275619056570}
   - component: {fileID: 4814714528602506935}
   - component: {fileID: 2220253728173418957}
-  - component: {fileID: -7359794039786672792}
   m_Layer: 7
   m_Name: Defend (2)
   m_TagString: Card
@@ -609,7 +608,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -7359794039786672792}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Card, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -628,31 +627,23 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7898178142826349868}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 798d741f7b30b9345b4ffddef62ad094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragTransform: {fileID: 8329224497719070252}
-  canvas: {fileID: 0}
-  playersHand: {fileID: 8329224497719070252}
-  canvasAttach: {fileID: 0}
-  previousCard: {fileID: 0}
-  nextCard: {fileID: 0}
-  gm: {fileID: 0}
-  gmAttach: {fileID: 0}
-  phAttach: {fileID: 0}
-  ph: {fileID: 0}
-  pl: {fileID: 0}
-  enemy: {fileID: 0}
-  animator: {fileID: 0}
-  discarddeck: {fileID: 0}
+  cType: 1
+  currentCardState: 0
+  mousePos: {x: 0, y: 0, z: 0}
+  posInHand: {x: 0, y: 0, z: 0}
+  discDek: {x: 0, y: 0, z: 0}
+  fm: {fileID: 0}
   trail: {fileID: 0}
-  moveRight: 0
-  moveLeft: 0
-  singleStep: 0
-  enemyGO: {fileID: 0}
-  temp: []
+  bonkAnim: {fileID: 0}
+  pl: {fileID: 0}
+  enemies: []
+  gm: {fileID: 0}
+  baseNumOfTargets: 0
   shield: {fileID: 5418577385353009714, guid: f0c51d39f8509554490faff2970aa5a7, type: 3}
 --- !u!96 &2220253728173418957
 TrailRenderer:
@@ -752,24 +743,6 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &-7359794039786672792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7898178142826349868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 089ce3fa7c5628947849dd6834f2442f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentCardState: 0
-  mousePos: {x: 0, y: 0, z: 0}
-  posInHand: {x: 0, y: 0, z: 0}
-  discDek: {x: 0, y: 0, z: 0}
-  fm: {fileID: 0}
-  trail: {fileID: 0}
 --- !u!1 &8215761901870995987
 GameObject:
   m_ObjectHideFlags: 0

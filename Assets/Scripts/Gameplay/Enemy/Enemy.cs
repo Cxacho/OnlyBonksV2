@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour , IPointerEnterHandler, IPointerExitHandler
 {
 
     public float maxHealth = 70;
@@ -24,6 +25,15 @@ public class Enemy : MonoBehaviour
 
     int i = 0;
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        fm.en = GetComponent<Enemy>();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        fm.en = null;
+    }
     private void Awake()
     {
         fm = GameObject.Find("Cursor").GetComponent<FollowMouse>();
@@ -54,11 +64,6 @@ public class Enemy : MonoBehaviour
         }
         mousePos = fm.rectPos.anchoredPosition;
 
-        if (mousePos.x> rect.anchoredPosition.x + corners[0].x  && mousePos.x< rect.anchoredPosition.x +corners[3].x)
-        {
-            //podpisac event na wejscie i wyjscie z lokacji czy cos
-            fm.en = GetComponent<Enemy>();
-        }
 
 
     }
@@ -124,4 +129,6 @@ public class Enemy : MonoBehaviour
 
         damage = (float)(damage * 0.7);
     }
+
+
 }
