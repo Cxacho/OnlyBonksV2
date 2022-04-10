@@ -36,7 +36,7 @@ public class EnemyOne : Enemy, ITakeTurn
                 break;
             case 4:
                 player.TakeDamage(damage);
-                i++;
+                i = 0;
                 break;
             default:
                 break;

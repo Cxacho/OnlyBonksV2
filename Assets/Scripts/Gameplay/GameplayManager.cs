@@ -11,19 +11,30 @@ public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST, VictoryScreen
 public class GameplayManager : MonoBehaviour
 {
     public BattleState state;
+
     public Transform playerBattleStation;
     public Transform enemyBattleStation;
-    private int random;
-    public float tilt = 20;
+    
     public GameObject drawPile,playersHand;
     public GameObject discardPile;
     public GameObject playerHandObject;
-    public Player player;
-    public Enemy enemy;
     public GameObject panelWin;
     public GameObject cardHolder;
     public GameObject battleUI;
     public GameObject enemyGameObject;
+
+
+    public Player player;
+    public Enemy enemy;
+
+    public bool canPlayCards = true;
+    public bool firstRound = true;
+
+    public int playerDrawAmount;
+    public int maxCardDraw = 12;
+    private int random;
+    public float tilt = 20;
+
     //lista kart ktore posiada gracz na poczatku
     public List<GameObject> startingDeck = new List<GameObject>();
 
@@ -44,37 +55,12 @@ public class GameplayManager : MonoBehaviour
 
     //lista przeciwnikow na scenie
     public GameObject[] enemies;
-    //Player Stats
-
-    public int playerDrawAmount;
-    public int maxCardDraw;
-
-    public bool canPlayCards = true;
-    public bool firstRound = true;
     
-
-    public void Awake()
-    {
-        
-        
-        maxCardDraw = 12;
-    }
     void Start()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-
         state = BattleState.START;
         StartCoroutine(SetupBattle());
-        
-    }
-    private void Update()
-    {
-        if (player.mana <= 0)
-        {
-            canPlayCards = false;
-        }
-
         
     }
     IEnumerator SetupBattle()
@@ -82,6 +68,30 @@ public class GameplayManager : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
+        state = BattleState.PLAYERTURN;
+        StartCoroutine(OnPlayersTurn());
+    }
+    IEnumerator OnPlayersTurn()
+    {
+        DrawCards();
+        player.mana = 3;
+        player.manaText.text = player.mana.ToString();
+        player.ResetImg();
+        canPlayCards = true;
+        yield return new WaitForSeconds(2);
+
+    }
+    IEnumerator OnEnemiesTurn()
+    {
+        foreach (var enemy in enemies)
+        {
+            ITakeTurn takeTurn = enemy.GetComponent<ITakeTurn>();
+            takeTurn.takeTurn(player);
+        }
+
+        yield return new WaitForSeconds(2f);
+
+        player.armor = 0;
         state = BattleState.PLAYERTURN;
         StartCoroutine(OnPlayersTurn());
     }
@@ -119,33 +129,8 @@ public class GameplayManager : MonoBehaviour
         //pokaz panel statystyk
         //przenies do menu glownego
     }
-    IEnumerator OnPlayersTurn()
-    {
-        DrawCards();
-        player.mana = 3;
-        player.manaText.text = player.mana.ToString();
-        player.ResetImg();
-        canPlayCards = true;
-        yield return new WaitForSeconds(2);
-        
-    }
-    IEnumerator OnEnemiesTurn()
-    {
-        foreach (var enemy in enemies)
-        {
-            ITakeTurn takeTurn = enemy.GetComponent<ITakeTurn>();
-            takeTurn.takeTurn(player);
-        }
-        
-
-
-
-        yield return new WaitForSeconds(2f);
-        
-        player.armor = 0;
-        state = BattleState.PLAYERTURN;
-        StartCoroutine(OnPlayersTurn());
-    }
+    
+    
 
     public void OnClick()
     {
@@ -169,9 +154,6 @@ public class GameplayManager : MonoBehaviour
     }
     void DrawCards()
     {
-
-         
-
         
         for (int i = 0; i < playerDrawAmount; i++)
         {
@@ -194,6 +176,18 @@ public class GameplayManager : MonoBehaviour
         discardDeck.ForEach(item => drawDeck.Add(item));
         discardDeck.Clear();
     }
-    
+    public void checkPlayerMana(int cost)
+    {
+        if (cost > player.mana || player.mana == 0)
+        {
+            canPlayCards = false;
+        }
+        else
+        {
+            canPlayCards = true;
+            player.mana -= cost;
+        }
+    }
+
     
 }
