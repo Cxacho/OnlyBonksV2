@@ -31,9 +31,9 @@ public class BasicAttack : Card
     {
         yield return new WaitForSeconds(time);
 
-
+        gm.checkPlayerMana(cost);
         //enemy.ReceiveDamage(attack * pl.strenght);
-        pl.mana -= cost;
+        
 
         pl.manaText.text = pl.mana.ToString();
 

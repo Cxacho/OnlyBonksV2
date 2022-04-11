@@ -41,10 +41,10 @@ public class BabalityScript : Card
             }
         //enemyGO.GetComponent<Animator>().SetTrigger("BabalityTrigger");
 
-        
 
 
-        pl.mana -= cost;
+
+        gm.checkPlayerMana(cost);
 
         pl.manaText.text = pl.mana.ToString();
 
