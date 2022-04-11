@@ -27,6 +27,13 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     Vector3 mousePos;
     FollowMouse fm;
 
+    public GameObject indicator;
+    public TextMeshProUGUI indicatortxt;
+
+    public Sprite[] indicatorImages;
+    [HideInInspector]
+    public Image indicatorSpriteRenderer;
+
     public void OnPointerExit(PointerEventData eventData)
     {
         fm.en = null;
@@ -44,6 +51,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         corners = new Vector3[4];
         rect = GetComponent<RectTransform>();
         rect.GetLocalCorners(corners);
+        indicatorSpriteRenderer = indicator.GetComponent<Image>();
     }
     
     void Start()
