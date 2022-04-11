@@ -259,7 +259,7 @@ MonoBehaviour:
   pl: {fileID: 0}
   enemies: []
   gm: {fileID: 0}
-  baseNumOfTargets: 2
+  baseNumOfTargets: 1
 --- !u!1 &3868653325569000508
 GameObject:
   m_ObjectHideFlags: 0

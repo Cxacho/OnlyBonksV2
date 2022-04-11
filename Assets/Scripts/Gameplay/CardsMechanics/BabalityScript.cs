@@ -23,16 +23,20 @@ public class BabalityScript : Card
 
          enemyGO.gameObject.GetComponent<RectTransform>().anchoredPosition = temporaY;
          enemyGO.gameObject.transform.localScale = tempora; */
-        /*
-        foreach(GameObject en in gm.enemieslist)
-        {
-            en.GetComponent<Animator>().SetTrigger("BabalityTrigger");
-        }
-        */
+
         foreach (Enemy en in enemies)
             if (en.targeted == true)
             {
-                en.damage--;
+                anim.Add(en.gameObject.GetComponent<Animator>());
+                /*
+                foreach (GameObject enm in gm.enemies)
+                {
+                    anim.Add(enm.GetComponent<Animator>());
+                }
+                */
+                foreach (Animator an in anim)
+                    an.SetTrigger("BabalityTrigger");
+                    en.damage--;
                 en.targeted = false;
             }
         //enemyGO.GetComponent<Animator>().SetTrigger("BabalityTrigger");

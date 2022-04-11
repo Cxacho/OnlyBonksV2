@@ -228,6 +228,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             pos.anchoredPosition = posInHand;
             this.transform.rotation = oldRot;
             this.transform.SetSiblingIndex(index);
+            foreach (Enemy en in enemies)
+                en.targeted = false;
         }
     }
 

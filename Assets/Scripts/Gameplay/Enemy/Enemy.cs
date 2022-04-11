@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class Enemy : MonoBehaviour
+using UnityEngine.EventSystems;
+public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
 
     public float maxHealth = 70;
@@ -25,6 +26,17 @@ public class Enemy : MonoBehaviour
     public Vector3[] corners;
     Vector3 mousePos;
     FollowMouse fm;
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        fm.en = null;
+    }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        fm.en = this.gameObject.GetComponent<Enemy>();
+    }
+
+
     private void Awake()
     {
         fm = GameObject.Find("Cursor").GetComponent<FollowMouse>();
@@ -55,13 +67,6 @@ public class Enemy : MonoBehaviour
         }
         mousePos = fm.rectPos.anchoredPosition;
 
-        if (mousePos.x> rect.anchoredPosition.x + corners[0].x  && mousePos.x< rect.anchoredPosition.x +corners[3].x)
-        {
-            //podpisac event na wejscie i wyjscie z lokacji czy cos
-            fm.en = GetComponent<Enemy>();
-        }
-
-
     }
 
     public void UpdateHealth(float newHealthValue)
@@ -77,5 +82,6 @@ public class Enemy : MonoBehaviour
         healthTxt.text = updatedHealth + "/" + maxHealth;
         sdh.SetHealth(updatedHealth);
     }
-    
+
+
 }

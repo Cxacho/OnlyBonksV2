@@ -4012,6 +4012,7 @@ GameObject:
   - component: {fileID: 845683428}
   - component: {fileID: 845683430}
   - component: {fileID: 845683429}
+  - component: {fileID: 845683431}
   m_Layer: 5
   m_Name: Enemy (2)
   m_TagString: Enemy
@@ -4062,7 +4063,7 @@ MonoBehaviour:
   gm: {fileID: 43265154}
   healthTxt: {fileID: 2036409128}
   targeted: 0
-  border: {fileID: 0}
+  border: {fileID: 507029142}
   EnemyType: 0
   corners: []
 --- !u!222 &845683430
@@ -4073,6 +4074,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 845683427}
   m_CullTransparentMesh: 1
+--- !u!95 &845683431
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845683427}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 99a7984f5c9e19643a47bfe1686e4c29, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &856892859
 GameObject:
   m_ObjectHideFlags: 0
@@ -5322,6 +5342,7 @@ GameObject:
   - component: {fileID: 1099828457}
   - component: {fileID: 1099828459}
   - component: {fileID: 1099828458}
+  - component: {fileID: 1099828460}
   m_Layer: 5
   m_Name: Enemy (1)
   m_TagString: Enemy
@@ -5372,7 +5393,7 @@ MonoBehaviour:
   gm: {fileID: 43265154}
   healthTxt: {fileID: 682053867}
   targeted: 0
-  border: {fileID: 0}
+  border: {fileID: 190394541}
   EnemyType: 0
   corners: []
 --- !u!222 &1099828459
@@ -5383,6 +5404,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1099828456}
   m_CullTransparentMesh: 1
+--- !u!95 &1099828460
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099828456}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 99a7984f5c9e19643a47bfe1686e4c29, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1109854773
 GameObject:
   m_ObjectHideFlags: 0
@@ -5720,6 +5760,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mousePosition: {x: 0, y: 0, z: 0}
   worldPosition: {x: 0, y: 0, z: 0}
+  viewPortPosition: {x: 0, y: 0, z: 0}
   rectPos: {fileID: 1288809385}
   scaler: {fileID: 719975770}
   en: {fileID: 0}
@@ -6937,7 +6978,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.077391766, y: 0.23200001}
   m_AnchorMax: {x: 0.13678141, y: 0.379}
-  m_AnchoredPosition: {x: -0.5, y: -87.89999}
+  m_AnchoredPosition: {x: -0.5, y: -87.899994}
   m_SizeDelta: {x: 160.5, y: -4.322998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1533790606
@@ -8833,7 +8874,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7834789, y: 0.238}
   m_AnchorMax: {x: 0.97212666, y: 0.841}
-  m_AnchoredPosition: {x: -3.5, y: -2.7840424}
+  m_AnchoredPosition: {x: -3.5, y: -2.7840576}
   m_SizeDelta: {x: -0.7999878, y: 6.9609985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2011637000
@@ -9867,6 +9908,7 @@ GameObject:
   - component: {fileID: 2105014873}
   - component: {fileID: 2105014876}
   - component: {fileID: 2105014874}
+  - component: {fileID: 2105014875}
   m_Layer: 5
   m_Name: Enemy
   m_TagString: Enemy
@@ -9917,9 +9959,28 @@ MonoBehaviour:
   gm: {fileID: 43265154}
   healthTxt: {fileID: 2045532709}
   targeted: 0
-  border: {fileID: 0}
+  border: {fileID: 152477580}
   EnemyType: 0
   corners: []
+--- !u!95 &2105014875
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105014872}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 99a7984f5c9e19643a47bfe1686e4c29, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!222 &2105014876
 CanvasRenderer:
   m_ObjectHideFlags: 0
