@@ -21,7 +21,8 @@ public class BasicAttack : Card
             {
                 if (en.targeted == true)
                 {
-                    en._currentHealth -= attack;
+                   en.ReceiveDamage(attack);
+                    
                     en.targeted = false;
                 }
             } 

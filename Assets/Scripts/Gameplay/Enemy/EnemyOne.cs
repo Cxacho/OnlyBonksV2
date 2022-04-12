@@ -24,9 +24,9 @@ public class EnemyOne : Enemy, ITakeTurn
             case 1:
                 armor = 10;
                 i++;
-                //case2 indicator
-                indicatortxt.enabled = false;
-                indicatorSpriteRenderer.sprite = indicatorImages[3];
+                
+                indicatortxt.text = (damage * 3).ToString();
+                indicatorSpriteRenderer.sprite = indicatorImages[0];
                 break;
             case 2:
 
@@ -39,7 +39,7 @@ public class EnemyOne : Enemy, ITakeTurn
                     crippled();
                 }
                 i++;
-                
+                indicatortxt.enabled = false;
                 indicatorSpriteRenderer.sprite = indicatorImages[2];
                 break;
             case 3:

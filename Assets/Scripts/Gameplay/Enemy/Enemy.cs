@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public float armor;
     public float damage;
     public float _currentHealth;
-    
+    public string _name;
     
     public SliderHealth sdh;
     public RectTransform rect;
@@ -52,15 +52,18 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         rect = GetComponent<RectTransform>();
         rect.GetLocalCorners(corners);
         indicatorSpriteRenderer = indicator.GetComponent<Image>();
-    }
-    
-    void Start()
-    {
+
+
         Debug.Log("inicjalizacja");
         _currentHealth = maxHealth;
         healthTxt.text = _currentHealth + "/" + maxHealth;
         armor = 0;
         sdh.SetMaxHealth(maxHealth);
+    }
+    
+    void Start()
+    {
+        
     }
 
     private void Update()
@@ -80,6 +83,19 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public void UpdateHealth(float newHealthValue)
     {
         _currentHealth = newHealthValue;
+        if(_currentHealth <= 0)
+        {
+            for(int i = 0; i < gm.enemies.Count; i++)
+            {
+                if(gm.enemies[i].name == _name)
+                {
+
+                    gm.enemies.RemoveAt(i);
+                }
+            }
+            Destroy(gameObject);
+            
+        }
         Debug.Log(_currentHealth);
     }
 
@@ -91,5 +107,5 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         sdh.SetHealth(updatedHealth);
     }
 
-
+    
 }

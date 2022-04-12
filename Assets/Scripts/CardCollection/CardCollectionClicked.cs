@@ -11,7 +11,7 @@ public class CardCollectionClicked : MonoBehaviour
     private GameObject cardClicked;
     public void DisplayClickedCard()
     {
-        //gameObject.GetComponent<RectTransform>().DOScale(2f, 0f);
+        
         cardClickedPanel.SetActive(true);
         cardName = this.gameObject;
         Debug.Log(cardName);

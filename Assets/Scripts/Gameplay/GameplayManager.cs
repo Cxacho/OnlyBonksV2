@@ -54,11 +54,15 @@ public class GameplayManager : MonoBehaviour
     public List<GameObject> cards = new List<GameObject>();
 
     //lista przeciwnikow na scenie
-    public GameObject[] enemies;
-    
+    public List<GameObject> enemies = new List<GameObject>();
+
+    public List<GameObject> AllEnemies = new List<GameObject>();
+
     void Start()
     {
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+    
         state = BattleState.START;
         StartCoroutine(SetupBattle());
         

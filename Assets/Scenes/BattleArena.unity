@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0.99999946, b: 0.99999946, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -456,6 +456,7 @@ MonoBehaviour:
   - {fileID: 2858555165568228111, guid: b99a3e91ca181024daf86cbe8fec7cab, type: 3}
   - {fileID: 2858555165568228111, guid: cfcff1f83ae779d489c16fc6f5a49bec, type: 3}
   enemies: []
+  AllEnemies: []
 --- !u!4 &43265155
 Transform:
   m_ObjectHideFlags: 0
@@ -4300,7 +4301,7 @@ GameObject:
   - component: {fileID: 845683429}
   - component: {fileID: 845683431}
   m_Layer: 5
-  m_Name: Enemy (2)
+  m_Name: kurwa
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4345,6 +4346,7 @@ MonoBehaviour:
   armor: 0
   damage: 5
   _currentHealth: 0
+  _name: kurwa
   sdh: {fileID: 715617330}
   rect: {fileID: 715617329}
   gm: {fileID: 43265154}
@@ -5639,7 +5641,7 @@ GameObject:
   - component: {fileID: 1099828458}
   - component: {fileID: 1099828460}
   m_Layer: 5
-  m_Name: Enemy (1)
+  m_Name: miecz
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5684,6 +5686,7 @@ MonoBehaviour:
   armor: 0
   damage: 5
   _currentHealth: 0
+  _name: miecz
   sdh: {fileID: 2103877668}
   rect: {fileID: 2103877667}
   gm: {fileID: 43265154}
@@ -10610,7 +10613,7 @@ GameObject:
   - component: {fileID: 2105014874}
   - component: {fileID: 2105014875}
   m_Layer: 5
-  m_Name: Enemy
+  m_Name: Wlocznia
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10655,6 +10658,7 @@ MonoBehaviour:
   armor: 0
   damage: 5
   _currentHealth: 0
+  _name: Wlocznia
   sdh: {fileID: 1431431156}
   rect: {fileID: 1431431155}
   gm: {fileID: 43265154}

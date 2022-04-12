@@ -232,7 +232,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 en.targeted = false;
         }
     }
+    
 
-
-    }
+}
 
