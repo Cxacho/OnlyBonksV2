@@ -7,9 +7,10 @@ using DG.Tweening;
 public class CardAlign : MonoBehaviour
 {
     public GameplayManager gm;
-    public float cardsInHand, moveCardUp, totalTwist, twistPerCard, startTwist;
+    public float cardsInHand, moveCardUp, totalTwist, twistPerCard, startTwist,drawTime;
     public List<RectTransform> children = new List<RectTransform>();
     public List<Transform> faken = new List<Transform>();
+    [SerializeField] GameObject[] test = new GameObject[3];
     //List <RectTransform> height = new List<RectTransform>();
     //public List<Vector3> positions = new List<Vector3>();
     [SerializeField] private TMP_Text discardDeck_text, drawDeck_text;
@@ -18,15 +19,15 @@ public class CardAlign : MonoBehaviour
     [SerializeField] private AnimationCurve anCurve;
     //public Transform empty;
     private float twistFirstCard, nTyWyraz, liczbaWyrazow,dist,place;
-    public int index;
+    public int fak = 0;
 
 
     void Update()
     {
         OnHandAmountChange();
-        // Animate();
     }
-    
+
+
     void Align()
     {
         children.Clear();
@@ -149,33 +150,20 @@ public class CardAlign : MonoBehaviour
     }
     void OnHandAmountChange()
     {
+        
         if (cardsInHand != gm.playerHand.Count)
         {
             if (gm.playerHand.Count != 0)
             {
                 Invoke("Align", 0.02f);
-                //Invoke("GetValues", 0.02f);
                 Invoke("FitCards", 0.02f);
+                //Invoke("GetValues", 0.02f);
             }
             Invoke("ValueUpdate", 0.02f);
         }
         cardsInHand = gm.playerHand.Count;
     }
-    /*
-    void BedzieLepiej()
-    {
-        var n = gm.playerHand.Count;
-        for (var i = n - 1; i >= 0; i--)
-        {
-            var y = 1.5f - i;
-             
-            var x = cardParent.transform.GetChild(i).gameObject;
-            x.transform.Rotate(0f,0f,y * 10f);
-            x.transform.Translate(0,  40f, 0);
-            
-        }
-    }
-    */
+
     void ValueUpdate()
     {
         string dek = gm.drawDeck.Count.ToString();
@@ -183,12 +171,58 @@ public class CardAlign : MonoBehaviour
         discardDeck_text.SetText(dis);
         drawDeck_text.SetText(dek);
     }
-    void Animate()
+    public void Animate()
     {
 
-        if(Input.GetKey("l"))
+        
+            test[fak].transform.DOMove(children[fak].transform.position, drawTime).OnComplete(() =>
+                {
+                    gm.Invoke("DrawCards",0.02f);
+                    for (int i = 0; i < test.Length; i++)
+                    {
+                        if (test[i] != null)
+                            test[i].transform.DOMove(children[i].transform.position, drawTime).OnComplete(() =>
+                            {
+                                for (int i = 0; i < fak; i++)
+                                {
+                                    if(test[i] !=null)
+                                    test[i].transform.DORotate(children[i].transform.rotation.eulerAngles, drawTime);
+                                }
+                            });
+
+                    }
+                });
+        fak++;
+        
+        /*
+        test[0].transform.DOMove(children[0].transform.position, drawTime).OnComplete(() =>
         {
-            faken[index].transform.DOMove(this.transform.position, 0.5f);
-        }
+            test[1].transform.DOMove(children[1].transform.position, drawTime).OnComplete(() =>
+            {
+                test[2].transform.DOMove(children[2].transform.position, drawTime).OnComplete(() =>
+                {
+                    test[3].transform.DOMove(children[3].transform.position, drawTime).OnComplete(() =>
+                    {
+                        test[4].transform.DOMove(children[4].transform.position, drawTime).OnComplete(() =>
+                        {
+                        for (int i = 0;i <test.Length;i++)
+                            {
+                                test[i].transform.DORotate(children[i].transform.rotation.eulerAngles,2f);
+                            }
+                        });
+                        
+                        ;
+                    });
+                });
+            });
+        });
+        
+        */
+        //wywyolywac ta funkcje za kazdym drawem
+ 
+        
+        
+
     }
+    
 }

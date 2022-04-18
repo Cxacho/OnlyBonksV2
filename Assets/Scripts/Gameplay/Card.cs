@@ -20,7 +20,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public GameplayManager gm;
     RectTransform pos;
     List<GameObject> temp = new List<GameObject>();
-    int index,numOfTargets;
+    [SerializeField] int index,numOfTargets;
     public int baseNumOfTargets;
     float clickDelay;
 
@@ -178,16 +178,22 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             }
             if (fm.en != null)
             {
-                if (Input.GetButtonUp("Fire1") && fm.en.targeted == false)
+                if (Input.GetButtonUp("Fire1") && fm.en.targeted == false && numOfTargets > 0)
                 {
 
                     fm.en.targeted = true;
                     numOfTargets -= 1;
                     clickDelay = Time.time + 0.3f;
                 }
+                else if(Input.GetButtonUp("Fire1") && fm.en.targeted == true && numOfTargets>0)
+                {
+                    fm.en.targeted = false;
+                    numOfTargets += 1;
+                    clickDelay = Time.time + 0.3f;
+                }
             }
 
-            if (Input.GetButtonUp("Fire1") && currentCardState == cardState.Targetable && numOfTargets == 0 && Time.time >clickDelay)
+            if (Input.GetButtonUp("Fire1") && currentCardState == cardState.Targetable && numOfTargets == 0 && Time.time >clickDelay&& fm.en ==null)
             {
                 OnDrop();
                 //play card

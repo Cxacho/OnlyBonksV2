@@ -22,6 +22,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject cardHolder;
     public GameObject battleUI;
     public GameObject enemyGameObject;
+    public CardAlign cAlign;
 
 
     public Player player;
@@ -30,7 +31,7 @@ public class GameplayManager : MonoBehaviour
     public bool canPlayCards = true;
     public bool firstRound = true;
 
-    public int playerDrawAmount;
+    public int playerDrawAmount,drawAmount;
     public int maxCardDraw = 12;
     private int random;
     public float tilt = 20;
@@ -61,7 +62,7 @@ public class GameplayManager : MonoBehaviour
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         state = BattleState.START;
         StartCoroutine(SetupBattle());
-        
+        cAlign = playerHandObject.GetComponent<CardAlign>();
     }
     IEnumerator SetupBattle()
     {
@@ -152,9 +153,9 @@ public class GameplayManager : MonoBehaviour
         StartCoroutine(OnEnemiesTurn());
         
     }
-    void DrawCards()
+    public void DrawCards()
     {
-        
+        /*
         for (int i = 0; i < playerDrawAmount; i++)
         {
             if (drawDeck.Count == 0)
@@ -169,8 +170,25 @@ public class GameplayManager : MonoBehaviour
             drawDeck.RemoveAt(random);
             
         }
-        
+        */
+        drawAmount++;
+        if (playerDrawAmount>=drawAmount)
+        {
+            if (drawDeck.Count == 0)
+            {
+                shuffleDeck();
+            }
+            var random = Random.Range(0, drawDeck.Count);
+            var card = Instantiate(drawDeck[random], drawPile.transform.position, transform.rotation);
+            card.transform.SetParent(playerHandObject.transform);
+            card.transform.localScale = Vector3.one;
+            playerHand.Add(drawDeck[random]);
+            drawDeck.RemoveAt(random);
+            cAlign.Invoke("Animate",1f);
+        }
+
     }
+    
     void shuffleDeck()
     {
         discardDeck.ForEach(item => drawDeck.Add(item));
