@@ -68,6 +68,6 @@ public class EnemyOne : Enemy, ITakeTurn
     private void crippled()
     {
 
-        damage = (float)(damage * 0.7);
+        damage = damage - 3;
     }
 }

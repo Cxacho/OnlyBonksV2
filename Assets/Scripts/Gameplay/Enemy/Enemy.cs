@@ -7,10 +7,10 @@ using UnityEngine.EventSystems;
 public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
 
-    public float maxHealth = 70;
-    public float armor;
-    public float damage;
-    public float _currentHealth;
+    public int maxHealth = 70;
+    public int armor;
+    public int damage;
+    public int _currentHealth;
     public string _name;
     
     public SliderHealth sdh;
@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     }
 
-    public void UpdateHealth(float newHealthValue)
+    public void UpdateHealth(int newHealthValue)
     {
         _currentHealth = newHealthValue;
         if(_currentHealth <= 0)
@@ -99,9 +99,9 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         Debug.Log(_currentHealth);
     }
 
-    public void ReceiveDamage(float damage)
+    public void ReceiveDamage(int damage)
     {
-        float updatedHealth = _currentHealth - damage;
+        int updatedHealth = _currentHealth - damage;
         UpdateHealth(updatedHealth > 0 ? updatedHealth : 0);
         healthTxt.text = updatedHealth + "/" + maxHealth;
         sdh.SetHealth(updatedHealth);

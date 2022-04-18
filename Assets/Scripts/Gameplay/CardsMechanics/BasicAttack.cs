@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class BasicAttack : Card
 {
-    public float attack = 3;
+    public int attack = 3;
     private int cost = 1;
     public GameObject bonk;
 
@@ -24,7 +24,7 @@ public class BasicAttack : Card
             {
                 if (en.targeted == true)
                 {
-                    en.ReceiveDamage(attack);
+                    en.ReceiveDamage(attack + pl.strenght);
 
                     en.targeted = false;
                 }
