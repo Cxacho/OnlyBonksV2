@@ -102,4 +102,10 @@ public class Player : MonoBehaviour
         mana = 3;
         manaText.text = mana.ToString();
     }
+    public void OnEndTurn()
+    {
+        if(strenght>0 ) strenght--;
+        if(dexterity>0 ) dexterity--;
+        if(inteligence>0) inteligence--;
+    }
 }

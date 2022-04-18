@@ -123,6 +123,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &9448167
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9448168}
+  m_Layer: 0
+  m_Name: Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9448168
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9448167}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -168.7279, y: 6.5694785, z: -6.478847}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &15329796
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,12 +462,10 @@ MonoBehaviour:
   battleUI: {fileID: 737091773}
   enemyGameObject: {fileID: 2105014872}
   player: {fileID: 228611245}
-  enemy: {fileID: 0}
   canPlayCards: 1
   firstRound: 1
   playerDrawAmount: 5
   maxCardDraw: 0
-  tilt: 0
   startingDeck:
   - {fileID: 2858555165568228111, guid: 2d1125c2371a69541bf5264558b09929, type: 3}
   - {fileID: 2858555165568228111, guid: cfcff1f83ae779d489c16fc6f5a49bec, type: 3}
@@ -1315,7 +1343,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.117000006, y: 0.3057331}
   m_AnchorMax: {x: 0.32953155, y: 0.6061122}
-  m_AnchoredPosition: {x: 17, y: -181.99997}
+  m_AnchoredPosition: {x: 16.999878, y: -181.99995}
   m_SizeDelta: {x: -156.995, y: -101.893}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &228611245
@@ -1344,6 +1372,8 @@ MonoBehaviour:
   armorText: {fileID: 1492877956}
   sdh: {fileID: 1372704002}
   strenght: 1
+  dexterity: 0
+  inteligence: 0
 --- !u!222 &228611247
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2560,6 +2590,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 511278272}
   m_CullTransparentMesh: 1
+--- !u!1 &625476698
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 625476700}
+  - component: {fileID: 625476699}
+  m_Layer: 0
+  m_Name: LevelGen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &625476699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625476698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6626a6e366a9c48a48525cde4050d0b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Seed: 0
+  SectionContainer: {fileID: 9448168}
+  MaxLevelSize: 100
+  MaxAllowedOrder: 12
+  Sections:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  DeadEnds: []
+  InitialSectionTags: []
+  SpecialRules: []
+--- !u!4 &625476700
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625476698}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -168.7279, y: 6.5694785, z: -6.478847}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &654322039
 GameObject:
   m_ObjectHideFlags: 0
@@ -7289,7 +7374,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.077391766, y: 0.23200001}
   m_AnchorMax: {x: 0.13678141, y: 0.379}
-  m_AnchoredPosition: {x: -0.5, y: -87.89999}
+  m_AnchoredPosition: {x: -0.5, y: -87.899956}
   m_SizeDelta: {x: 160.5, y: -4.322998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1533790606
@@ -8105,6 +8190,7 @@ MonoBehaviour:
   - {fileID: 620723322558645527, guid: f8164480b2de5224e880029f5011dada, type: 3}
   - {fileID: 8494778750838476986, guid: 02690111c5ff27942826b634daaa7e9b, type: 3}
   - {fileID: 956630461993117205, guid: 92a15879417d5a841a1587e7856e3065, type: 3}
+  - {fileID: 956630461993117205, guid: 92a15879417d5a841a1587e7856e3065, type: 3}
   topRooms:
   - {fileID: 4158106748076092596, guid: d412db67066d752468911c4aab5bbb1b, type: 3}
   - {fileID: 8494778750838476986, guid: 02690111c5ff27942826b634daaa7e9b, type: 3}
@@ -8116,6 +8202,7 @@ MonoBehaviour:
   - {fileID: 8494778750838476986, guid: 02690111c5ff27942826b634daaa7e9b, type: 3}
   - {fileID: 8448606366066409944, guid: 426b54cec9ea99b49a4dd49b4b216e43, type: 3}
   - {fileID: 635621431915798104, guid: 5b0267225ceb9584f80d6bd51a64d7aa, type: 3}
+  - {fileID: 4158106748076092596, guid: d412db67066d752468911c4aab5bbb1b, type: 3}
   - {fileID: 4158106748076092596, guid: d412db67066d752468911c4aab5bbb1b, type: 3}
   leftRooms:
   - {fileID: 5916922397082079324, guid: 394ccbaba9a02be458e567ca02f55c83, type: 3}
@@ -8129,6 +8216,8 @@ MonoBehaviour:
   - {fileID: 123122364098893691, guid: 81694e588830a9c409a6b3269d815983, type: 3}
   - {fileID: 8448606366066409944, guid: 426b54cec9ea99b49a4dd49b4b216e43, type: 3}
   - {fileID: 5916922397082079324, guid: 394ccbaba9a02be458e567ca02f55c83, type: 3}
+  - {fileID: 5916922397082079324, guid: 394ccbaba9a02be458e567ca02f55c83, type: 3}
+  - {fileID: 5916922397082079324, guid: 394ccbaba9a02be458e567ca02f55c83, type: 3}
   rightRooms:
   - {fileID: 7587798665005127370, guid: 0290f5dd8f34d334cbe429d746e28c82, type: 3}
   - {fileID: 2980310953902136591, guid: e2d760550b9a2214d90d6bdd4608028f, type: 3}
@@ -8141,9 +8230,10 @@ MonoBehaviour:
   - {fileID: 123122364098893691, guid: 81694e588830a9c409a6b3269d815983, type: 3}
   - {fileID: 635621431915798104, guid: 5b0267225ceb9584f80d6bd51a64d7aa, type: 3}
   - {fileID: 7587798665005127370, guid: 0290f5dd8f34d334cbe429d746e28c82, type: 3}
+  - {fileID: 7587798665005127370, guid: 0290f5dd8f34d334cbe429d746e28c82, type: 3}
   closedRoom: {fileID: 4452485525299975977, guid: e6c360aa83e812544a4dbffd4e1c9c68, type: 3}
   rooms: []
-  waitTime: 4
+  waitTime: 7
   boss: {fileID: 1572301175561318, guid: 3a6e1cb160a414c6cbe7d27b34d381a1, type: 3}
   roomCap: 40
   pokoje: 0
@@ -9447,7 +9537,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7834789, y: 0.238}
   m_AnchorMax: {x: 0.97212666, y: 0.841}
-  m_AnchoredPosition: {x: -3.5, y: -2.7841034}
+  m_AnchoredPosition: {x: -3.5, y: -2.784027}
   m_SizeDelta: {x: -0.7999878, y: 6.9609985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2011637000

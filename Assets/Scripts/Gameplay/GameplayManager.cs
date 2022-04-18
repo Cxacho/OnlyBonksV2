@@ -108,6 +108,7 @@ public class GameplayManager : MonoBehaviour
 
         player.ResetPlayerArmor();
 
+        player.OnEndTurn();
 
         state = BattleState.PLAYERTURN;
         StartCoroutine(OnPlayersTurn());

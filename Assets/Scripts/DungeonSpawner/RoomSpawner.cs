@@ -21,7 +21,7 @@ public class RoomSpawner : MonoBehaviour
     {
         Destroy(gameObject, waitTime);
         roomManager = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomManager>();
-        Invoke("Spawn", 0.5f);
+        Invoke("Spawn", 0.1f);
     }
 
     // lewo = 4   
