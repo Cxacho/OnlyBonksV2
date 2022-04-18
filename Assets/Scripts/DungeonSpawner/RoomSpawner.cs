@@ -24,7 +24,10 @@ public class RoomSpawner : MonoBehaviour
         Invoke("Spawn", 0.5f);
     }
 
-    // lewo = 4 prawo = 3 dó³ = 2 góra = 1
+    // lewo = 4   
+    // prawo = 3
+    // dó³ = 2
+    // góra = 1
     private void Spawn()
     {
         if(spawned == false && roomManager.roomCap >= roomManager.pokoje)

@@ -10,23 +10,22 @@ public class BasicDefend : Card
 
     public override void OnDrop()
     {
-
-        if (pl.armor == 0)
+        gm.checkPlayerMana(cost);
+        if (gm.canPlayCards == true)
         {
-            Instantiate(shield, new Vector3(GameObject.Find("Player").transform.position.x, GameObject.Find("Player").transform.position.y, 0), Quaternion.identity, GameObject.Find("Player").transform);
-        }
-
-        pl.armor += armor;
-
-        
-
-        
-            pl.mana -= cost;
-
+            if (pl.armor == 0)
+            {
+                Instantiate(shield, new Vector3(GameObject.Find("Player").transform.position.x, GameObject.Find("Player").transform.position.y, 0), Quaternion.identity, GameObject.Find("Player").transform);
+            }
+            pl.armor += armor;
             pl.manaText.text = pl.mana.ToString();
-       
-
-        base.OnDrop();
+            base.OnDrop();
+        }
+        else
+        {
+            Debug.Log("fajnie dzia³a");
+        }
+        
     }
 
     

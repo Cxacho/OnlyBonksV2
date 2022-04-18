@@ -13,7 +13,10 @@ public class BasicAttack : Card
 
     public override void OnDrop()
     {
-        base.OnDrop();
+        gm.checkPlayerMana(cost);
+        if (gm.canPlayCards == true)
+        {
+            base.OnDrop();
 
             Instantiate(bonk, new Vector3(0, -10, 0), Quaternion.identity, GameObject.Find("Player").transform);
             StartCoroutine(ExecuteAfterTime(1f));
@@ -21,18 +24,23 @@ public class BasicAttack : Card
             {
                 if (en.targeted == true)
                 {
-                   en.ReceiveDamage(attack);
-                    
+                    en.ReceiveDamage(attack);
+
                     en.targeted = false;
                 }
-            } 
+            }
+        }
+        else
+        {
+            Debug.Log("fajnie dzia³a");
+        }
     }
 
     IEnumerator ExecuteAfterTime(float time)
     {
         yield return new WaitForSeconds(time);
 
-        gm.checkPlayerMana(cost);
+        
         //enemy.ReceiveDamage(attack * pl.strenght);
         
 

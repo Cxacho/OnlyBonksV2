@@ -19,7 +19,7 @@ public class RoomManager : MonoBehaviour
     public GameObject boss;
 
 
-    public int roomCap = 10;
+    public int roomCap;
     public int pokoje;
     private void Update()
     {
@@ -28,7 +28,7 @@ public class RoomManager : MonoBehaviour
             Instantiate(boss, rooms[rooms.Count - 1].transform.position, Quaternion.identity);
             spawnedBoss = true;
         }
-        else
+        else if (waitTime>=0)
         {
             waitTime -= Time.deltaTime;
         }
