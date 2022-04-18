@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
         armor = 0;
         mana = 3;
+        
     }
 
     void Start()
@@ -86,5 +87,14 @@ public class Player : MonoBehaviour
     {
         sdh.SetHealth(currentHealth);
         healthText.text = currentHealth + "/" + maxHealth;
+    }
+    public void ResetPlayerArmor()
+    {
+        armor = 0;
+    }
+    public void AssignMana()
+    {
+        mana = 3;
+        manaText.text = mana.ToString();
     }
 }

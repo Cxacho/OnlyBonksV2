@@ -12,8 +12,8 @@ public class GameplayManager : MonoBehaviour
 {
     public BattleState state;
 
-    public Transform playerBattleStation;
-    public Transform enemyBattleStation;
+    [SerializeField] private Transform playerBattleStation;
+    [SerializeField] private Transform enemyBattleStation;
     
     public GameObject drawPile,playersHand;
     public GameObject discardPile;
@@ -24,16 +24,18 @@ public class GameplayManager : MonoBehaviour
     public GameObject enemyGameObject;
 
 
-    public Player player;
-    public Enemy enemy;
+    [SerializeField] private Player player;
+    
 
     public bool canPlayCards = true;
     public bool firstRound = true;
 
     public int playerDrawAmount;
     public int maxCardDraw = 12;
+
+
     private int random;
-    public float tilt = 20;
+    
 
     //lista kart ktore posiada gracz na poczatku
     public List<GameObject> startingDeck = new List<GameObject>();
@@ -56,6 +58,7 @@ public class GameplayManager : MonoBehaviour
     //lista przeciwnikow na scenie
     public List<GameObject> enemies = new List<GameObject>();
 
+    //lista wszystkich przeciwnikow (nie zaimplementowane)
     public List<GameObject> AllEnemies = new List<GameObject>();
 
     void Start()
@@ -64,6 +67,7 @@ public class GameplayManager : MonoBehaviour
         enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
     
         state = BattleState.START;
+
         StartCoroutine(SetupBattle());
         
     }
@@ -77,11 +81,16 @@ public class GameplayManager : MonoBehaviour
     }
     IEnumerator OnPlayersTurn()
     {
+
         DrawCards();
-        player.mana = 3;
-        player.manaText.text = player.mana.ToString();
+
+        player.AssignMana();
+
         player.ResetImg();
+
         canPlayCards = true;
+
+
         yield return new WaitForSeconds(2);
 
     }
@@ -95,7 +104,11 @@ public class GameplayManager : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        player.armor = 0;
+        
+
+        player.ResetPlayerArmor();
+
+
         state = BattleState.PLAYERTURN;
         StartCoroutine(OnPlayersTurn());
     }
@@ -116,10 +129,12 @@ public class GameplayManager : MonoBehaviour
     IEnumerator VictoryScreen()
     {
         yield return new WaitForSeconds(2f);
+
         Debug.Log("Victory Screen");
-        panelWin.SetActive(true);
-        battleUI.SetActive(false);
-        enemyGameObject.SetActive(false);
+
+        Panels();
+
+        
         for (int i = 0; i < 2; i++)
         {
             random = Random.Range(0, cards.Count);
@@ -192,6 +207,10 @@ public class GameplayManager : MonoBehaviour
             player.mana -= cost;
         }
     }
-
+    private void Panels()
+    {
+        panelWin.SetActive(true);
+        battleUI.SetActive(false);
+    }
     
 }
