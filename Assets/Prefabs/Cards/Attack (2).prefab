@@ -157,10 +157,13 @@ MonoBehaviour:
   discDek: {x: 0, y: 0, z: 0}
   fm: {fileID: 0}
   trail: {fileID: 0}
-  bonkAnim: {fileID: 0}
+  bonkAnim: {fileID: 8856384458246928311, guid: f2080ce061e48b94daeede1666a3aa21, type: 3}
   pl: {fileID: 0}
   enemies: []
   gm: {fileID: 0}
+  lineRen: {fileID: 5785217328126950574, guid: f2080ce061e48b94daeede1666a3aa21, type: 3}
+  index: 0
+  numOfTargets: 0
   baseNumOfTargets: 2
   attack: 3
   bonk: {fileID: 3356155904159209368, guid: 86afabfc67905044dbfa62c0b45cf989, type: 3}

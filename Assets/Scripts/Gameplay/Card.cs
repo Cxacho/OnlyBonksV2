@@ -19,10 +19,12 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     Animator animator;
     public GameplayManager gm;
     RectTransform pos;
+    [SerializeField] GameObject lineRen;
     List<GameObject> temp = new List<GameObject>();
-    [SerializeField] int index,numOfTargets;
+    [SerializeField] int index, numOfTargets;
     public int baseNumOfTargets;
     float clickDelay;
+    [SerializeField] List <GameObject> meshes = new List<GameObject>() ;
 
 
     private void Start()
@@ -50,6 +52,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     void Awake()
     {
+
         pl = GameObject.Find("Player").GetComponent<Player>();
         var find = GameObject.FindObjectsOfType<Enemy>();
         foreach (Enemy en in find)
@@ -172,6 +175,12 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             if (pos.anchoredPosition.y > -90)
             {
+                //podniesienie ataku ponad -90, przesuniencie atakku do poz srodka renki
+                meshes.AddRange(GameObject.FindGameObjectsWithTag("Test"));
+                foreach(GameObject obj in meshes)
+                {
+                    obj.GetComponent<MeshRenderer>().enabled = true;
+                }
                 currentCardState = cardState.Targetable;
                 var phPos = GameObject.Find("PlayerHand").transform.position;
                 pos.anchoredPosition = new Vector3(0, -400, 0);
@@ -180,13 +189,15 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             {
                 if (Input.GetButtonUp("Fire1") && fm.en.targeted == false && numOfTargets > 0)
                 {
-
+                    //wybor targetu, gdy liczba 
                     fm.en.targeted = true;
                     numOfTargets -= 1;
                     clickDelay = Time.time + 0.3f;
                 }
                 else if(Input.GetButtonUp("Fire1") && fm.en.targeted == true && numOfTargets>0)
                 {
+                    //cofnienice zaznaczenia
+                    
                     fm.en.targeted = false;
                     numOfTargets += 1;
                     clickDelay = Time.time + 0.3f;
@@ -195,6 +206,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
             if (Input.GetButtonUp("Fire1") && currentCardState == cardState.Targetable && numOfTargets == 0 && Time.time >clickDelay&& fm.en ==null)
             {
+                //zagranie ataku gdy liczba targetow rowna zero i nie ma targetu na myszcze
+                
                 OnDrop();
                 //play card
                 //trail.enabled = true;
@@ -204,6 +217,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             //cofnienicie karty do reki reset indeksu reset targetowania
                     if (Input.GetButton("Fire2") && currentCardState == cardState.Targetable)
                     {
+                        
                         currentCardState = cardState.InHand;
                         this.transform.SetParent(GameObject.Find("PlayerHand").transform);
                         numOfTargets = baseNumOfTargets;
@@ -220,6 +234,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         else if (cType == cardType.Power || cType == cardType.Skill)
         {
+            
             if (Input.GetButtonUp("Fire1") && pos.anchoredPosition.y > -90)
             {
                 OnDrop();
@@ -229,6 +244,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
         if (fm.viewPortPosition.x < 0 || fm.viewPortPosition.x > 1 || fm.viewPortPosition.y < 0 || fm.viewPortPosition.y > 1)
         {
+            Destroy(lineRen);
+            //cofnienice wybraniej karty gdy opusci viewport
             currentCardState = cardState.InHand;
             this.transform.SetParent(GameObject.Find("PlayerHand").transform);
             pos.anchoredPosition = posInHand;

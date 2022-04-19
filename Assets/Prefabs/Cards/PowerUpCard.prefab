@@ -259,6 +259,9 @@ MonoBehaviour:
   pl: {fileID: 0}
   enemies: []
   gm: {fileID: 0}
+  lineRen: {fileID: 5785217328126950574, guid: f2080ce061e48b94daeede1666a3aa21, type: 3}
+  index: 0
+  numOfTargets: 0
   baseNumOfTargets: 0
 --- !u!1 &3868653325569000508
 GameObject:

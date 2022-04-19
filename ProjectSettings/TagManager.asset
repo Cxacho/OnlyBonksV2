@@ -15,6 +15,7 @@ TagManager:
   - SpawnPoint
   - Rooms
   - Enemy
+  - Test
   layers:
   - Default
   - TransparentFX
