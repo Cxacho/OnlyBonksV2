@@ -59,7 +59,11 @@ public class GameplayManager : MonoBehaviour
     public List<GameObject> enemies = new List<GameObject>();
 
     //lista wszystkich przeciwnikow (nie zaimplementowane)
-    public List<GameObject> AllEnemies = new List<GameObject>();
+    public List<GameObject> floorOneEnemies = new List<GameObject>();
+
+    public List<GameObject> floorTwoEnemies = new List<GameObject>();
+
+    public List<GameObject> floorThreeEnemies = new List<GameObject>();
 
     void Start()
     {
