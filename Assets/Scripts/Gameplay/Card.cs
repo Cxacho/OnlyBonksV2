@@ -29,6 +29,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         numOfTargets = baseNumOfTargets;
            currentCardState = cardState.Elsewhere;
+        
     }
 
     public void OnPointerEnter(PointerEventData eventData)

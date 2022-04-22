@@ -22,7 +22,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject cardHolder;
     public GameObject battleUI;
     public GameObject enemyGameObject;
-
+    public GameObject goldtxt;
 
     [SerializeField] private Player player;
     
@@ -35,11 +35,16 @@ public class GameplayManager : MonoBehaviour
 
 
     private int random;
-    
+
+    public int gold = 100;
+
+
+    //lista wszystkich kart w grze, wa¿ne ¿eby dodawaæ je po kolei 
+    public List<GameObject> allCards = new List<GameObject>();
 
     //lista kart ktore posiada gracz na poczatku
     public List<GameObject> startingDeck = new List<GameObject>();
-
+    
 
     //lista kart ktore mozemy dobrac do reki
     public List<GameObject> drawDeck;
@@ -60,6 +65,13 @@ public class GameplayManager : MonoBehaviour
 
     //lista wszystkich przeciwnikow (nie zaimplementowane)
     public List<GameObject> AllEnemies = new List<GameObject>();
+
+
+
+    private void Update()
+    {
+        goldtxt.GetComponent<TextMeshProUGUI>().text = gold.ToString();
+    }
 
     void Start()
     {
