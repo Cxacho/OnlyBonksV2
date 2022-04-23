@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 using TMPro;
 
@@ -31,17 +32,23 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    //shuffle, a póŸniej spawn kart z listy "cards"
+    //shuffle listy "cards", a póŸniej spawn kart z listy "cards"
     void SpawnShuffledCards()
     {
+        fiveCardsArea.GetComponent<GridLayoutGroup>().enabled = true;
         Shuffle(cards);
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 5; i++)
         {
             Instantiate(cards[i], fiveCardsArea.transform);
         }
+        Invoke("GridGroupDisable", 0.01f);
     }
 
-
+    //wyl¹cza grid layout group, aby po kupieniu karty pozosta³e karty zosta³y na swoich miejscach
+    void GridGroupDisable()
+    {
+        fiveCardsArea.GetComponent<GridLayoutGroup>().enabled = false;
     }
+}
 
 

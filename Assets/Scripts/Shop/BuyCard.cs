@@ -1,20 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using TMPro;
+using DG.Tweening;
 
-public class BuyCard : MonoBehaviour
+public class BuyCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private GameplayManager gameplayManager;
+    
     public int cardCost;
+    
     [SerializeField]
     private int ID;
+
+    private float PosY;
+    
     //trzeba ustawiaæ ID w prefabach kart sklepowych
     private void Awake()
     {
         gameplayManager = GameObject.Find("GameplayManager").GetComponent<GameplayManager>();
-        int.TryParse(this.transform.GetChild(5).GetChild(0).GetComponent<TextMeshProUGUI>().text, out cardCost);
-
+        int.TryParse(this.transform.GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text, out cardCost);
+        PosY = gameObject.GetComponent<RectTransform>().anchoredPosition.y;
+        
     }
 
     private void Update()
@@ -22,6 +30,7 @@ public class BuyCard : MonoBehaviour
         CheckIfCanBuy();
     }
 
+    //czynnoœci po klikniêciu w kartê, aby j¹ kupiæ
     public void Buy()
     {
         
@@ -40,18 +49,33 @@ public class BuyCard : MonoBehaviour
         
     }
 
+    //ustawia czerowny kolor tekstu jezeli nie stac nas na karte
     private void CheckIfCanBuy()
     {
         if (gameplayManager.gold < cardCost)
         {
-            gameObject.transform.GetChild(5).GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.red;
+            gameObject.transform.GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.red;
         }
         else
         {
 
-            gameObject.transform.GetChild(5).GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
+            gameObject.transform.GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
 
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        gameObject.GetComponent<RectTransform>().DOAnchorPosY(PosY - 200,0.2f);
+        gameObject.transform.DOScale(1.5f,0.2f);
+
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        gameObject.GetComponent<RectTransform>().DOAnchorPosY(-150, 0.2f);
+        gameObject.transform.DOScale(1, 0.2f);
+        
     }
 }
 
