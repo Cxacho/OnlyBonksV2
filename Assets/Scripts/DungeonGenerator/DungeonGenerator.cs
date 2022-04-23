@@ -31,7 +31,7 @@ public class DungeonGenerator : MonoBehaviour
                     return obligatory ? 3 : 1;
                 }
             }
-            else
+            else if(spawned == false)
             {
                 if (x >= minPosition.x && x <= maxPosition.x && y >= minPosition.y && y <= maxPosition.y)
                 {
@@ -57,7 +57,7 @@ public class DungeonGenerator : MonoBehaviour
     void Start()
     {
         MazeGenerator();
-        
+        RecenterGen();
     }
 
     void GenerateDungeon()
@@ -242,5 +242,5 @@ public class DungeonGenerator : MonoBehaviour
         return neighbors;
     }
 
-  
+    void RecenterGen() => this.transform.position = new Vector3(-100, 45, 0);
 }
