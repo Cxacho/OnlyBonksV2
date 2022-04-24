@@ -16,6 +16,7 @@ public class DungeonGenerator : MonoBehaviour
         public GameObject room;
         public Vector2Int minPosition;
         public Vector2Int maxPosition;
+        
 
         public bool obligatory;
         public bool oncePerDungeon;
@@ -242,5 +243,5 @@ public class DungeonGenerator : MonoBehaviour
         return neighbors;
     }
 
-    void RecenterGen() => this.transform.position = new Vector3(-100, 45, 0);
+    void RecenterGen() => gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(-405, 376);
 }
