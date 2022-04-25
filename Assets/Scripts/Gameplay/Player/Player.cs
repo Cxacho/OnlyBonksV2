@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using DG.Tweening;
 public class Player : MonoBehaviour
 {
     public GameObject fillArmor;
@@ -18,7 +19,7 @@ public class Player : MonoBehaviour
     public TMP_Text healthText;
     public TMP_Text armorText;
     public SliderHealth sdh;
-
+    public TextMeshProUGUI damagePopout;
 
 
     public int strenght = 0;
@@ -81,6 +82,17 @@ public class Player : MonoBehaviour
         {
             currentHealth -= damage;
             setHP();
+            damagePopout.text = "-" + damage.ToString();
+            damagePopout.gameObject.SetActive(true);
+            Sequence sequence = DOTween.Sequence();
+            sequence.Append(damagePopout.rectTransform.DOAnchorPosY(damagePopout.GetComponent<RectTransform>().anchoredPosition.y + 200, 0.5f));
+            sequence.Append(damagePopout.rectTransform.DOAnchorPosY(damagePopout.GetComponent<RectTransform>().anchoredPosition.y - 500, 1f));
+            sequence.Insert(0, damagePopout.rectTransform.DOAnchorPosX(damagePopout.GetComponent<RectTransform>().anchoredPosition.x - 300, sequence.Duration()));
+            sequence.OnComplete(() =>
+            {
+                damagePopout.gameObject.SetActive(false);
+            });
+            
         }
             
     }
