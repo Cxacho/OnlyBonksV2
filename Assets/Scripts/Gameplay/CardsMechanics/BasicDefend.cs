@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicDefend : Card
+public class BasicDefend : Card 
 {
     private int armor = 3;
     private int cost = 1;
@@ -29,5 +29,6 @@ public class BasicDefend : Card
         base.OnDrop();
     }
 
-    
+
+
 }

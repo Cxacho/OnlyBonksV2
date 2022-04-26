@@ -12,51 +12,91 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] Vector3 mousePos, posInHand, discDek;
     [SerializeField] FollowMouse fm;
     [SerializeField] TrailRenderer trail;
-    [SerializeField] GameObject bonkAnim;
     public Player pl;
-    Quaternion oldRot, newRot = new Quaternion(0, 0, 0, 0);
+    Quaternion oldRot, newRot,hoverRotation = new Quaternion(0, 0, 0, 0);
     public List<Enemy> enemies = new List<Enemy>();
-    Animator animator;
+    CardAlign cAlign;
+    public bool playable;
     public GameplayManager gm;
     RectTransform pos;
-    [SerializeField] GameObject lineRen;
+    [SerializeField] GameObject par;
     List<GameObject> temp = new List<GameObject>();
     [SerializeField] int index, numOfTargets;
     public int baseNumOfTargets;
     float clickDelay;
-    [SerializeField] List <GameObject> meshes = new List<GameObject>() ;
+    [SerializeField] List<GameObject> meshes = new List<GameObject>();
+    float posY;
+
 
 
     private void Start()
     {
-        numOfTargets = baseNumOfTargets;
-           currentCardState = cardState.Elsewhere;
+        currentCardState = cardState.Elsewhere;
+    }
+    IEnumerator widen()
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (index - 1 >= 0)
+            cAlign.children[index - 1].DOMoveX(cAlign.children[index - 1].position.x - 2, 0.2f);
+        if (index + 1 < cAlign.children.Count)
+            cAlign.children[index + 1].DOMoveX(cAlign.children[index + 1].position.x + 2, 0.2f);
+        this.transform.DOMove(new Vector3(this.transform.position.x, -23, this.transform.position.z),0.2f);
+        if (index - 2 >= 0)
+            cAlign.children[index - 2].DOMoveX(cAlign.children[index - 2].position.x - 1, 0.2f);
+        if (index + 2 < cAlign.children.Count)
+            cAlign.children[index + 2].DOMoveX(cAlign.children[index + 2].position.x + 1, 0.2f);
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (this.transform.IsChildOf(GameObject.Find("PlayerHand").transform) && gm.playerHand.Count == par.transform.childCount)
+        {
+
+            this.transform.localScale = Vector3.one;
+            transform.rotation = hoverRotation;
+            transform.position = new Vector3(this.transform.position.x, posY, this.transform.position.z);
+            //this.pos.anchoredPosition = cAlign.positions[index];
+            this.transform.SetSiblingIndex(index);
+            for (int i = 0; i < cAlign.gameObject.transform.childCount; i++)
+            {
+                cAlign.children[i].transform.DOMove(cAlign.positions[i], 0.1f);
+            }
+            currentCardState = cardState.InHand;
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (this.transform.IsChildOf(GameObject.Find("PlayerHand").transform))
+        if (this.transform.IsChildOf(GameObject.Find("PlayerHand").transform)&& gm.playerHand.Count == par.transform.childCount)
         {
+            StartCoroutine(widen());
+            hoverRotation = this.transform.rotation;
+            this.transform.localScale += new Vector3(0.15f, 0.15f, 0.15f);
+            transform.rotation = Quaternion.identity;
+            posY = this.transform.position.y;
             currentCardState = cardState.OnMouse;
             index = this.transform.GetSiblingIndex();
+            /*
+            if(index -1 >0)
+            cAlign.children[index - 1].DOMoveX(cAlign.children[index - 1].position.x - 1, 0.2f);
+            if (index + 1 < cAlign.children.Count)
+                cAlign.children[index + 1].DOMoveX(cAlign.children[index + 1].position.x + 1, 0.2f);
+            */
             this.transform.SetAsLastSibling();
+            
         }
     }
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (this.transform.IsChildOf(GameObject.Find("PlayerHand").transform))
-        {
-            this.transform.SetSiblingIndex(index);
-            currentCardState = cardState.InHand;
-        }
-    }
+
     void Awake()
     {
-
+        par = GameObject.Find("PlayerHand");
+        cAlign = par.GetComponent<CardAlign>();
+        playable = true;
+        meshes.AddRange(GameObject.FindGameObjectsWithTag("Test"));
         pl = GameObject.Find("Player").GetComponent<Player>();
+        //kod do wymiany
         var find = GameObject.FindObjectsOfType<Enemy>();
-        foreach (Enemy en in find)
-            enemies.Add(en);
+            foreach (Enemy en in find)
+                enemies.Add(en);
         discDek = GameObject.Find("DiscardDeckButton").transform.position;
         trail = transform.GetComponent<TrailRenderer>();
         gm = GameObject.Find("GameplayManager").GetComponent<GameplayManager>();
@@ -104,6 +144,30 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Elsewhere = 3,
         Targetable = 4
     }
+    void ReturnToHand()
+    {
+        this.transform.localScale = Vector3.one;
+        currentCardState = cardState.InHand;
+        transform.SetParent(GameObject.Find("PlayerHand").transform);
+        numOfTargets = baseNumOfTargets;
+        foreach (Enemy en in enemies)
+        {
+            en.targeted = false;
+            en.isFirstTarget = false;
+            en.isSecondTarget = false;
+            en.isThirdTarget = false;
+        }
+        this.transform.position = cAlign.positions[index];
+        this.transform.rotation = hoverRotation;
+        this.transform.SetSiblingIndex(index);
+    }
+    void DisableIndicator()
+    {
+        foreach (GameObject obj in meshes)
+        {
+            obj.GetComponent<SpriteRenderer>().enabled = false;
+        }
+    }
     void OnClick()
     {
         if (Input.GetButton("Fire1"))
@@ -122,14 +186,12 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         pos.anchoredPosition = fm.rectPos.anchoredPosition;
         if (Input.GetButton("Fire2"))
         {
-            currentCardState = cardState.InHand;
-            this.transform.SetParent(GameObject.Find("PlayerHand").transform);
-            pos.anchoredPosition = posInHand;
-            this.transform.rotation = oldRot;
+            ReturnToHand();
+            DisableIndicator();
         }
-        
 
-        
+
+
         //na wyjsciu z viewportu karta ma wracac do reki
     }
     public enum cardType
@@ -175,11 +237,18 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             if (pos.anchoredPosition.y > -90)
             {
-                //podniesienie ataku ponad -90, przesuniencie atakku do poz srodka renki
-                meshes.AddRange(GameObject.FindGameObjectsWithTag("Test"));
-                foreach(GameObject obj in meshes)
+                numOfTargets = baseNumOfTargets;
+                if (numOfTargets > enemies.Count)
                 {
-                    obj.GetComponent<MeshRenderer>().enabled = true;
+                    numOfTargets = enemies.Count;
+                }
+               // else
+                   // Debug.Log(enemies.Count);
+                //podniesienie ataku ponad -90, przesuniencie atakku do poz srodka renki
+
+                foreach (GameObject obj in meshes)
+                {
+                    obj.GetComponent<SpriteRenderer>().enabled = true;
                 }
                 currentCardState = cardState.Targetable;
                 var phPos = GameObject.Find("PlayerHand").transform.position;
@@ -190,51 +259,75 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 if (Input.GetButtonUp("Fire1") && fm.en.targeted == false && numOfTargets > 0)
                 {
                     //wybor targetu, gdy liczba 
+                    //dodatkowy warunek od enemies.count tak jak w lini 215
+                    if (numOfTargets == baseNumOfTargets)
+                        fm.en.isFirstTarget = true;
+                    else if (numOfTargets == baseNumOfTargets - 1)
+                        fm.en.isSecondTarget = true;
+                    else if (numOfTargets == baseNumOfTargets - 2)
+                        fm.en.isThirdTarget = true;
+
                     fm.en.targeted = true;
                     numOfTargets -= 1;
+                    if (numOfTargets == 0)
+                        DisableIndicator();
                     clickDelay = Time.time + 0.3f;
                 }
-                else if(Input.GetButtonUp("Fire1") && fm.en.targeted == true && numOfTargets>0)
+                else if (Input.GetButtonUp("Fire1") && fm.en.targeted == true && numOfTargets >= 0)
                 {
                     //cofnienice zaznaczenia
+                    if (numOfTargets == baseNumOfTargets - 3 && fm.en.isThirdTarget == true)
+                    {
+                        fm.en.targeted = false;
+                        fm.en.isThirdTarget = false;
+                        numOfTargets += 1;
+                    }
+                    else if (numOfTargets == baseNumOfTargets - 2 && fm.en.isSecondTarget == true)
+                    {
+                        fm.en.targeted = false;
+                        fm.en.isSecondTarget = false;
+                        numOfTargets += 1;
+                    }
+                    else if (numOfTargets == baseNumOfTargets - 1 &&fm.en.isFirstTarget == true)
+                    {
+                        fm.en.targeted = false;
+                        fm.en.isFirstTarget = false;
+                        numOfTargets += 1;
+                    }
+
+
                     
-                    fm.en.targeted = false;
-                    numOfTargets += 1;
+                    if (numOfTargets == 1)
+                        foreach (GameObject obj in meshes)
+                        {
+                            obj.GetComponent<SpriteRenderer>().enabled = true;
+                        }
                     clickDelay = Time.time + 0.3f;
                 }
-            }
 
-            if (Input.GetButtonUp("Fire1") && currentCardState == cardState.Targetable && numOfTargets == 0 && Time.time >clickDelay&& fm.en ==null)
+            }
+            if (Input.GetButtonUp("Fire1") && currentCardState == cardState.Targetable && numOfTargets == 0 && Time.time > clickDelay && fm.en == null)
             {
                 //zagranie ataku gdy liczba targetow rowna zero i nie ma targetu na myszcze
-                
+                DisableIndicator();
                 OnDrop();
                 //play card
                 //trail.enabled = true;
                 //anim
 
-                    }
+            }
             //cofnienicie karty do reki reset indeksu reset targetowania
-                    if (Input.GetButton("Fire2") && currentCardState == cardState.Targetable)
-                    {
-                        
-                        currentCardState = cardState.InHand;
-                        this.transform.SetParent(GameObject.Find("PlayerHand").transform);
-                        numOfTargets = baseNumOfTargets;
-                        foreach (Enemy en in enemies)
-                            en.targeted = false;
-                        pos.anchoredPosition = posInHand;
-                        this.transform.rotation = oldRot;
-                        this.transform.SetSiblingIndex(index);
-                    }
-                    //move to discard pile || exhaust
-                
-            
-        }
+            if (Input.GetButton("Fire2") && currentCardState == cardState.Targetable)
+            {
+                ReturnToHand();
+                DisableIndicator();
+                //move to discard pile || exhaust
 
+
+            }
+        }
         else if (cType == cardType.Power || cType == cardType.Skill)
         {
-            
             if (Input.GetButtonUp("Fire1") && pos.anchoredPosition.y > -90)
             {
                 OnDrop();
@@ -242,20 +335,27 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
 
         }
-        if (fm.viewPortPosition.x < 0 || fm.viewPortPosition.x > 1 || fm.viewPortPosition.y < 0 || fm.viewPortPosition.y > 1)
-        {
-            Destroy(lineRen);
-            //cofnienice wybraniej karty gdy opusci viewport
-            currentCardState = cardState.InHand;
-            this.transform.SetParent(GameObject.Find("PlayerHand").transform);
-            pos.anchoredPosition = posInHand;
-            this.transform.rotation = oldRot;
-            this.transform.SetSiblingIndex(index);
-            foreach (Enemy en in enemies)
-                en.targeted = false;
-        }
-    }
+            
+            if (fm.viewPortPosition.x < 0 || fm.viewPortPosition.x > 1 || fm.viewPortPosition.y < 0 || fm.viewPortPosition.y > 1)
+            {
+                /*
+                //cofnienice wybraniej karty gdy opusci viewport
+                currentCardState = cardState.InHand;
+                this.transform.SetParent(GameObject.Find("PlayerHand").transform);
+                pos.anchoredPosition = posInHand;
+                this.transform.rotation = oldRot;
+                this.transform.SetSiblingIndex(index);
+                foreach (Enemy en in enemies)
+                    en.targeted = false;
+                */
+                ReturnToHand();
+            DisableIndicator();
+            }
+            
+            
+        
 
 
     }
+}
 

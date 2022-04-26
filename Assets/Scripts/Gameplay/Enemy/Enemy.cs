@@ -20,7 +20,8 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public TMP_Text healthTxt;
     
     
-    public bool targeted;
+    public bool targeted,isFirstTarget,isSecondTarget,isThirdTarget;
+    //zmienic kolor zaleznie od kolejnosci targetowania
     [SerializeField] GameObject border;
     public EnemyType EnemyType;
     public Vector3[] corners;
@@ -29,6 +30,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     public void OnPointerExit(PointerEventData eventData)
     {
+
         fm.en = null;
     }
     public void OnPointerEnter(PointerEventData eventData)

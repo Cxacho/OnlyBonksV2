@@ -34,8 +34,8 @@ public class BabalityScript : Card
                     anim.Add(enm.GetComponent<Animator>());
                 }
                 */
-                foreach (Animator an in anim)
-                    an.SetTrigger("BabalityTrigger");
+                //foreach (Animator an in anim)
+                    //an.SetTrigger("BabalityTrigger");
                     en.damage--;
                 en.targeted = false;
             }

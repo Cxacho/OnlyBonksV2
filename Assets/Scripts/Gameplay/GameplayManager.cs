@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST, VictoryScreen}
 
@@ -74,7 +75,7 @@ public class GameplayManager : MonoBehaviour
     }
     IEnumerator OnPlayersTurn()
     {
-        DrawCards();
+        cAlign.DrawCards();
         player.mana = 3;
         player.manaText.text = player.mana.ToString();
         player.ResetImg();
@@ -153,7 +154,7 @@ public class GameplayManager : MonoBehaviour
         StartCoroutine(OnEnemiesTurn());
         
     }
-    public void DrawCards()
+    void DrawCards()
     {
         /*
         for (int i = 0; i < playerDrawAmount; i++)
@@ -171,25 +172,9 @@ public class GameplayManager : MonoBehaviour
             
         }
         */
-        drawAmount++;
-        if (playerDrawAmount>=drawAmount)
-        {
-            if (drawDeck.Count == 0)
-            {
-                shuffleDeck();
-            }
-            var random = Random.Range(0, drawDeck.Count);
-            var card = Instantiate(drawDeck[random], drawPile.transform.position, transform.rotation);
-            card.transform.SetParent(playerHandObject.transform);
-            card.transform.localScale = Vector3.one;
-            playerHand.Add(drawDeck[random]);
-            drawDeck.RemoveAt(random);
-            cAlign.Invoke("Animate",1f);
-        }
-
     }
     
-    void shuffleDeck()
+    public void shuffleDeck()
     {
         discardDeck.ForEach(item => drawDeck.Add(item));
         discardDeck.Clear();

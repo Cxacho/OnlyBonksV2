@@ -9,7 +9,7 @@ public class BasicAttack : Card
     private int cost = 1;
     public GameObject bonk;
 
-    
+
 
     public override void OnDrop()
     {
@@ -26,6 +26,7 @@ public class BasicAttack : Card
                 }
             } 
     }
+
 
     IEnumerator ExecuteAfterTime(float time)
     {
@@ -51,5 +52,6 @@ public class BasicAttack : Card
 
 
     }
+
 
 }
