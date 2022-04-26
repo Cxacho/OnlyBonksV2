@@ -263,6 +263,7 @@ MonoBehaviour:
   index: 0
   numOfTargets: 0
   baseNumOfTargets: 1
+  ID: 3
 --- !u!1 &3868653325569000508
 GameObject:
   m_ObjectHideFlags: 0

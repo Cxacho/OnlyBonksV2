@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
-using DG.Tweening;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST, VictoryScreen}
 
@@ -13,8 +12,8 @@ public class GameplayManager : MonoBehaviour
 {
     public BattleState state;
 
-    public Transform playerBattleStation;
-    public Transform enemyBattleStation;
+    [SerializeField] private Transform playerBattleStation;
+    [SerializeField] private Transform enemyBattleStation;
     
     public GameObject drawPile,playersHand;
     public GameObject discardPile;
@@ -23,23 +22,29 @@ public class GameplayManager : MonoBehaviour
     public GameObject cardHolder;
     public GameObject battleUI;
     public GameObject enemyGameObject;
-    public CardAlign cAlign;
+    public GameObject goldtxt;
 
-
-    public Player player;
-    public Enemy enemy;
+    [SerializeField] private Player player;
+    
 
     public bool canPlayCards = true;
     public bool firstRound = true;
 
-    public int playerDrawAmount,drawAmount;
+    public int playerDrawAmount;
     public int maxCardDraw = 12;
+
+
     private int random;
-    public float tilt = 20;
+
+    public int gold = 100;
+
+
+    //lista wszystkich kart w grze, wa¿ne ¿eby dodawaæ je po kolei 
+    public List<GameObject> allCards = new List<GameObject>();
 
     //lista kart ktore posiada gracz na poczatku
     public List<GameObject> startingDeck = new List<GameObject>();
-
+    
 
     //lista kart ktore mozemy dobrac do reki
     public List<GameObject> drawDeck;
@@ -56,14 +61,31 @@ public class GameplayManager : MonoBehaviour
     public List<GameObject> cards = new List<GameObject>();
 
     //lista przeciwnikow na scenie
-    public GameObject[] enemies;
-    
+    public List<GameObject> enemies = new List<GameObject>();
+
+    //lista wszystkich przeciwnikow (nie zaimplementowane)
+    public List<GameObject> floorOneEnemies = new List<GameObject>();
+
+    public List<GameObject> floorTwoEnemies = new List<GameObject>();
+
+    public List<GameObject> floorThreeEnemies = new List<GameObject>();
+
+
+
+    private void Update()
+    {
+        goldtxt.GetComponent<TextMeshProUGUI>().text = gold.ToString();
+    }
+
     void Start()
     {
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+    
         state = BattleState.START;
+
         StartCoroutine(SetupBattle());
-        cAlign = playerHandObject.GetComponent<CardAlign>();
+        
     }
     IEnumerator SetupBattle()
     {
@@ -75,11 +97,16 @@ public class GameplayManager : MonoBehaviour
     }
     IEnumerator OnPlayersTurn()
     {
-        cAlign.DrawCards();
-        player.mana = 3;
-        player.manaText.text = player.mana.ToString();
+
+        DrawCards();
+
+        player.AssignMana();
+
         player.ResetImg();
+
         canPlayCards = true;
+
+
         yield return new WaitForSeconds(2);
 
     }
@@ -93,7 +120,12 @@ public class GameplayManager : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        player.armor = 0;
+        
+
+        player.ResetPlayerArmor();
+
+        player.OnEndTurn();
+
         state = BattleState.PLAYERTURN;
         StartCoroutine(OnPlayersTurn());
     }
@@ -114,10 +146,12 @@ public class GameplayManager : MonoBehaviour
     IEnumerator VictoryScreen()
     {
         yield return new WaitForSeconds(2f);
+
         Debug.Log("Victory Screen");
-        panelWin.SetActive(true);
-        battleUI.SetActive(false);
-        enemyGameObject.SetActive(false);
+
+        Panels();
+
+        
         for (int i = 0; i < 2; i++)
         {
             random = Random.Range(0, cards.Count);
@@ -156,7 +190,7 @@ public class GameplayManager : MonoBehaviour
     }
     void DrawCards()
     {
-        /*
+        
         for (int i = 0; i < playerDrawAmount; i++)
         {
             if (drawDeck.Count == 0)
@@ -171,10 +205,9 @@ public class GameplayManager : MonoBehaviour
             drawDeck.RemoveAt(random);
             
         }
-        */
+        
     }
-    
-    public void shuffleDeck()
+    void shuffleDeck()
     {
         discardDeck.ForEach(item => drawDeck.Add(item));
         discardDeck.Clear();
@@ -191,6 +224,10 @@ public class GameplayManager : MonoBehaviour
             player.mana -= cost;
         }
     }
-
+    private void Panels()
+    {
+        panelWin.SetActive(true);
+        battleUI.SetActive(false);
+    }
     
 }

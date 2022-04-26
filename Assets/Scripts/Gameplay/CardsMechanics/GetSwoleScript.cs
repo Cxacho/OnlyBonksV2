@@ -6,23 +6,25 @@ public class GetSwoleScript : Card
 {
 
     private int cost = 2;
-    private int ifcost;
-    private void Start()
-    {
-
-    }
+    
     
     public override void OnDrop()
     {
-        
 
-        base.OnDrop();
+        gm.checkPlayerMana(cost);
+        if (gm.canPlayCards == true)
+        {
+            base.OnDrop();
 
             pl.GetComponentInChildren<Animator>().SetTrigger("GetSwoleTrigger");
             Invoke("GainHP", 1f);
 
-            pl.mana -= cost;
-        
+            pl.manaText.text = pl.mana.ToString();
+        }
+        else
+        {
+            Debug.Log("fajnie dzia³a");
+        }
     }
     
 
@@ -30,9 +32,10 @@ public class GetSwoleScript : Card
 
 
         public void GainHP()
-    {
-        pl.currentHealth = pl.currentHealth + 10;
-        pl.setHP();
-    }
+        {
+            pl.currentHealth = pl.currentHealth + 10;
+            pl.strenght++;
+            pl.setHP();
+        }
 
 }

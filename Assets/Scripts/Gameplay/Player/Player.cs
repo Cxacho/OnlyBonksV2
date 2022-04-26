@@ -3,27 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using DG.Tweening;
 public class Player : MonoBehaviour
 {
     public GameObject fillArmor;
     public GameObject textHealth;
     public GameObject textArmor;
-    public float maxHealth = 70;
-    public float currentHealth;
-    public float armor;
-    public float armorAndHp;
-    public float mana;
+    public int maxHealth = 70;
+    public int currentHealth;
+    public int armor;
+    public int armorAndHp;
+    public int mana;
     public GameObject armorImage;
     public TMP_Text manaText;
     public TMP_Text healthText;
     public TMP_Text armorText;
     public SliderHealth sdh;
-    public float strenght = 1;
+    public TextMeshProUGUI damagePopout;
+
+
+    public int strenght = 0;
+    public int dexterity = 0;
+    public int inteligence = 0;
     private void Awake()
     {
         currentHealth = maxHealth;
         armor = 0;
         mana = 3;
+        
     }
 
     void Start()
@@ -51,7 +58,7 @@ public class Player : MonoBehaviour
         textArmor.SetActive(false);
         armorText.text = armor.ToString();
     }
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         Debug.Log(damage);
         if (armor > 0)
@@ -75,16 +82,42 @@ public class Player : MonoBehaviour
         {
             currentHealth -= damage;
             setHP();
+            damagePopout.text = "-" + damage.ToString();
+            damagePopout.gameObject.SetActive(true);
+            Sequence sequence = DOTween.Sequence();
+            sequence.Append(damagePopout.rectTransform.DOAnchorPosY(damagePopout.GetComponent<RectTransform>().anchoredPosition.y + 200, 0.5f));
+            sequence.Append(damagePopout.rectTransform.DOAnchorPosY(damagePopout.GetComponent<RectTransform>().anchoredPosition.y - 500, 1f));
+            sequence.Insert(0, damagePopout.rectTransform.DOAnchorPosX(damagePopout.GetComponent<RectTransform>().anchoredPosition.x - 300, sequence.Duration()));
+            sequence.OnComplete(() =>
+            {
+                damagePopout.gameObject.SetActive(false);
+            });
+            
         }
             
     }
     public void Charmed()
     {
-        strenght = strenght / 2;
+       strenght = strenght - 1;
     }
     public void setHP()
     {
         sdh.SetHealth(currentHealth);
         healthText.text = currentHealth + "/" + maxHealth;
+    }
+    public void ResetPlayerArmor()
+    {
+        armor = 0;
+    }
+    public void AssignMana()
+    {
+        mana = 3;
+        manaText.text = mana.ToString();
+    }
+    public void OnEndTurn()
+    {
+        if(strenght>0 ) strenght--;
+        if(dexterity>0 ) dexterity--;
+        if(inteligence>0) inteligence--;
     }
 }
