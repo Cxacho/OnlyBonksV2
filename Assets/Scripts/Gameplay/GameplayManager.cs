@@ -23,16 +23,18 @@ public class GameplayManager : MonoBehaviour
     public GameObject battleUI;
     public GameObject enemyGameObject;
     public GameObject goldtxt;
+    public GameObject drawButton;
 
     [SerializeField] private Player player;
-    
+
+    private CardAlign cardAlign;
 
     public bool canPlayCards = true;
     public bool firstRound = true;
 
     public int playerDrawAmount;
     public int maxCardDraw = 12;
-
+    public int drawAmount;
 
     private int random;
 
@@ -70,7 +72,10 @@ public class GameplayManager : MonoBehaviour
 
     public List<GameObject> floorThreeEnemies = new List<GameObject>();
 
-
+    private void Awake()
+    {
+        cardAlign = GameObject.Find("PlayerHand").GetComponent<CardAlign>();   
+    }
 
     private void Update()
     {
@@ -188,7 +193,7 @@ public class GameplayManager : MonoBehaviour
         StartCoroutine(OnEnemiesTurn());
         
     }
-    void DrawCards()
+    /*void DrawCards()
     {
         
         for (int i = 0; i < playerDrawAmount; i++)
@@ -206,8 +211,27 @@ public class GameplayManager : MonoBehaviour
             
         }
         
+    }*/
+    public void DrawCards()
+    {
+        drawAmount++;
+        if (playerDrawAmount >= drawAmount)
+        {
+            if (drawDeck.Count == 0)
+            {
+                shuffleDeck();
+            }
+            var random = Random.Range(0, drawDeck.Count);
+            GameObject card = Instantiate(drawDeck[random], drawButton.transform.position, transform.rotation);
+            card.transform.SetParent(this.transform);
+            card.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            playerHand.Add(drawDeck[random]);
+            drawDeck.RemoveAt(random);
+            cardAlign.Animate(card);
+            
+        }
     }
-    void shuffleDeck()
+    public void shuffleDeck()
     {
         discardDeck.ForEach(item => drawDeck.Add(item));
         discardDeck.Clear();

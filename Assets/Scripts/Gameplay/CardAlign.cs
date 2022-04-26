@@ -7,80 +7,86 @@ using DG.Tweening;
 public class CardAlign : MonoBehaviour
 {
     public GameplayManager gm;
-    public float cardsInHand, moveCardUp, totalTwist, twistPerCard, startTwist;
+    public float cardsInHand, moveCardUp, totalTwist, twistPerCard, startTwist, drawTime;
     public List<RectTransform> children = new List<RectTransform>();
-    public List<Transform> faken = new List<Transform>();
-    //List <RectTransform> height = new List<RectTransform>();
-    //public List<Vector3> positions = new List<Vector3>();
+    public List<Vector3> positions = new List<Vector3>();
+    [SerializeField] List<Vector3> rotations = new List<Vector3>();
     [SerializeField] private TMP_Text discardDeck_text, drawDeck_text;
     [SerializeField] Transform pos1, pos2;
     [SerializeField] float mnoznik, pierwszyWyraz, cardHeight;
     [SerializeField] private AnimationCurve anCurve;
+    [SerializeField] RectTransform drawDeck;
     //public Transform empty;
-    private float twistFirstCard, nTyWyraz, liczbaWyrazow,dist,place;
-    public int index;
+    private float twistFirstCard, nTyWyraz, liczbaWyrazow, dist, place;
 
 
     void Update()
     {
         OnHandAmountChange();
-        // Animate();
+
     }
-    
+
+
     void Align()
     {
-        children.Clear();
+        foreach (RectTransform child in transform)
+        {
+            child.transform.rotation = Quaternion.identity;
+        }
+
         cardsInHand = gm.playerHand.Count;
         twistPerCard = totalTwist / cardsInHand;
         startTwist = -1f * (totalTwist / 2f);
         float twistForThisCard = startTwist + twistPerCard;
         Quaternion rotZero = new Quaternion();
         rotZero.eulerAngles = Vector3.zero;
+        /*
         foreach (RectTransform child in transform)
         {
             children.Add(child);
             child.transform.rotation = rotZero;
         }
+        */
         //foreach (RectTransform pog in children)
-            //height.Add(pog);
+        //height.Add(pog);
         switch (cardsInHand)
-        { 
+        {
             case 1:
                 twistFirstCard = 0;
-            break;
-        case 2:
-                twistFirstCard = 10f;   
                 break;
-        case 3:
+            case 2:
+                twistFirstCard = 10f;
+                break;
+            case 3:
                 twistFirstCard = 13.3f;
 
                 break;
-        case 4:
+            case 4:
                 twistFirstCard = 15f;
                 break;
-        case 5:
+            case 5:
                 twistFirstCard = 16f;
 
                 break;
-        case 6:
+            case 6:
                 twistFirstCard = 16.6f;
 
                 break;
-        case 7:
+            case 7:
                 twistFirstCard = 17.1f;
-                
+
                 break;
-        case 8:
+            case 8:
                 twistFirstCard = 17.5f;
 
                 break;
-        case 9:
+            case 9:
                 twistFirstCard = 17.7f;
 
                 break;
-        case 10:
+            case 10:
                 twistFirstCard = 18;
-                
+
                 break;
         }
 
@@ -88,94 +94,80 @@ public class CardAlign : MonoBehaviour
         Quaternion rotForFirst = new Quaternion();
         rotForFirst = children[0].transform.rotation;
         var rot = rotForFirst.eulerAngles.z;
-
-            for (int i = 1; i < this.transform.childCount; i++)
-            {
-                children[i].transform.Rotate(0f, 0f, rot + (twistPerCard * (-i)));
-            }
+        rotations[0] = rotForFirst.eulerAngles;
+        for (int i = 1; i < gm.playerHand.Count; i++)
+        {
+            //children[i].transform.Rotate(0f, 0f, rot + (twistPerCard * (-i)));
+            rotations[i] = new Vector3(0f, 0f, rot + (twistPerCard * (-i)));
+        }
     }
-    
+
     void FitCards()
     {
-        //
-       // foreach (Transform child in empty.transform)
-         //   faken.Add(child);
-
-        //
         liczbaWyrazow = gm.playerHand.Count - 1;
         nTyWyraz = pierwszyWyraz * Mathf.Pow(mnoznik, liczbaWyrazow - 1);
         var multiplier = cardsInHand;
-        if(cardsInHand==10)
+        if (cardsInHand == 10)
         {
             multiplier = 0;
         }
         if (cardsInHand == 3)
-            multiplier = 4; 
+            multiplier = 4;
         nTyWyraz += multiplier;
         pos1.position = new Vector3(-nTyWyraz, pos1.position.y, 0);
-        pos2.position = new Vector3(-pos1.position.x, pos2.position.y,0);
+        pos2.position = new Vector3(-pos1.position.x, pos2.position.y, 0);
         var leftPoint = pos1.position;
         var rightPoint = pos2.position;
         var delta = (rightPoint - leftPoint).magnitude;
         var howMany = this.transform.childCount;
-        var howManyGapsBetweenItems = howMany-1;
+        var howManyGapsBetweenItems = howMany - 1;
         var theHighestIndex = howMany;
         var gapFromOneItemToTheNextOne = delta / howManyGapsBetweenItems;
-        dist = 1.0f / (cardsInHand - 1);
+        dist = 1.0f / (gm.playerHand.Count - 1);
+
 
         for (int i = 0; i < theHighestIndex; i++)
         {
-    
-            children[i].transform.position = leftPoint;
-            if(theHighestIndex>1)
-            children[i].transform.position += new Vector3((i * gapFromOneItemToTheNextOne), cardHeight, children[i].transform.position.z);
+            positions.Add(leftPoint);
+            //children[i].transform.position = leftPoint;
+            if (theHighestIndex > 1)
+                positions[i] += new Vector3((i * gapFromOneItemToTheNextOne), cardHeight, children[i].transform.position.z);
+            //children[i].transform.position += new Vector3((i * gapFromOneItemToTheNextOne), cardHeight, children[i].transform.position.z);
             //
             if (i == 0)
             {
                 place = anCurve.Evaluate(0);
-                children[i].anchoredPosition = new Vector3(children[i].anchoredPosition.x, place, children[i].transform.position.z);
+                positions[i] = new Vector3(positions[i].x, place + cardHeight, positions[i].z);
+
             }
             else
             {
                 place = anCurve.Evaluate(i * dist);
-                children[i].anchoredPosition = new Vector3(children[i].anchoredPosition.x, place, children[i].transform.position.z);
+                positions[i] = new Vector3(positions[i].x, place + cardHeight, positions[i].z);
             }
         }
         if (theHighestIndex <= 1)
         {
-            children[0].transform.position = new Vector3(0, pos1.position.y + cardHeight, children[0].transform.position.z);
+            positions.Add(new Vector3(0, pos1.position.y + cardHeight, 0));
+            //children[0].transform.position = new Vector3(0, pos1.position.y + cardHeight, children[0].transform.position.z);
         }
 
     }
+    
     void OnHandAmountChange()
     {
+
         if (cardsInHand != gm.playerHand.Count)
         {
             if (gm.playerHand.Count != 0)
             {
-                Invoke("Align", 0.02f);
-                //Invoke("GetValues", 0.02f);
-                Invoke("FitCards", 0.02f);
+                SetValues();
             }
             Invoke("ValueUpdate", 0.02f);
         }
         cardsInHand = gm.playerHand.Count;
     }
-    /*
-    void BedzieLepiej()
-    {
-        var n = gm.playerHand.Count;
-        for (var i = n - 1; i >= 0; i--)
-        {
-            var y = 1.5f - i;
-             
-            var x = cardParent.transform.GetChild(i).gameObject;
-            x.transform.Rotate(0f,0f,y * 10f);
-            x.transform.Translate(0,  40f, 0);
-            
-        }
-    }
-    */
+
     void ValueUpdate()
     {
         string dek = gm.drawDeck.Count.ToString();
@@ -183,12 +175,113 @@ public class CardAlign : MonoBehaviour
         discardDeck_text.SetText(dis);
         drawDeck_text.SetText(dek);
     }
-    void Animate()
+    public void SetValues()
     {
 
-        if(Input.GetKey("l"))
+        positions.Clear();
+        children.Clear();
+        rotations.Clear();
+        foreach (RectTransform child in transform)
         {
-            faken[index].transform.DOMove(this.transform.position, 0.5f);
+            children.Add(child);
+            rotations.Add(child.rotation.eulerAngles);
+        }
+        FitCards();
+        Align();
+        for (int i = 0; i < this.transform.childCount; i++)
+        {
+            children[i].transform.DORotate(rotations[i], 0.2f);
+            children[i].transform.DOMove(positions[i], 0.2f);
         }
     }
+
+    public void Animate(GameObject card)
+    {
+        SetValues();
+        /*
+        positions.Clear();
+        children.Clear();
+        rotations.Clear();
+        foreach (RectTransform child in transform)
+        {
+            children.Add(child);
+            rotations.Add(child.rotation.eulerAngles);
+        }
+        FitCards();
+        Align();
+        */
+        card.transform.DOScale(Vector3.one, 0.2f).OnComplete(() =>
+        {
+            card.transform.DOMove(positions[card.transform.GetSiblingIndex()], 0.2f).OnComplete(() =>
+            {
+
+                for (int i = 0; i < this.transform.childCount; i++)
+                {
+                    children[i].transform.DORotate(rotations[i], 0.5f);
+                    children[i].transform.DOMove(positions[i], 0.2f);
+                }
+                //wywolanie draw'u kolejnych kart
+                gm.DrawCards();
+            });
+        });
+
+
+
+        //{
+        // 
+        // });
+        // ;
+
+        /*
+            test[fak].transform.DOMove(children[fak].transform.position, drawTime).OnComplete(() =>
+                {
+                    for (int i = 0; i < test.Length; i++)
+                    {
+                        if (test[i] != null)
+                            test[i].transform.DOMove(children[i].transform.position, drawTime).OnComplete(() =>
+                            {
+                                for (int i = 0; i < fak; i++)
+                                {
+                                    if(test[i] !=null)
+                                    test[i].transform.DORotate(children[i].transform.rotation.eulerAngles, drawTime);
+                                }
+                            });
+
+                    }
+                });
+        fak++;
+        */
+
+
+        /*
+        test[0].transform.DOMove(children[0].transform.position, drawTime).OnComplete(() =>
+        {
+            test[1].transform.DOMove(children[1].transform.position, drawTime).OnComplete(() =>
+            {
+                test[2].transform.DOMove(children[2].transform.position, drawTime).OnComplete(() =>
+                {
+                    test[3].transform.DOMove(children[3].transform.position, drawTime).OnComplete(() =>
+                    {
+                        test[4].transform.DOMove(children[4].transform.position, drawTime).OnComplete(() =>
+                        {
+                        for (int i = 0;i <test.Length;i++)
+                            {
+                                test[i].transform.DORotate(children[i].transform.rotation.eulerAngles,2f);
+                            }
+                        });
+                        
+                        ;
+                    });
+                });
+            });
+        });
+        
+        */
+        //wywyolywac ta funkcje za kazdym drawem
+
+
+
+
+    }
+
 }

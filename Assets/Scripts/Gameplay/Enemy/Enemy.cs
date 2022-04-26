@@ -18,9 +18,9 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     
     public GameplayManager gm;
     public TMP_Text healthTxt;
-    
-    
-    public bool targeted;
+
+
+    public bool targeted, isFirstTarget, isSecondTarget, isThirdTarget;
     [SerializeField] GameObject border;
     public EnemyType EnemyType;
     public Vector3[] corners;
