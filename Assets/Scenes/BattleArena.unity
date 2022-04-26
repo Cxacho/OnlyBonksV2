@@ -438,7 +438,7 @@ MonoBehaviour:
   canPlayCards: 1
   firstRound: 1
   playerDrawAmount: 5
-  maxCardDraw: 0
+  maxCardDraw: 10
   drawAmount: 0
   gold: 100
   allCards:
@@ -9651,7 +9651,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  drawDeck: {fileID: 0}
 --- !u!222 &1961781025
 CanvasRenderer:
   m_ObjectHideFlags: 0

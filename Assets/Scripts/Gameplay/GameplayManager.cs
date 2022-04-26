@@ -223,11 +223,11 @@ public class GameplayManager : MonoBehaviour
             }
             var random = Random.Range(0, drawDeck.Count);
             GameObject card = Instantiate(drawDeck[random], drawButton.transform.position, transform.rotation);
-            card.transform.SetParent(this.transform);
+            card.transform.SetParent(cardAlign.gameObject.transform);
             card.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             playerHand.Add(drawDeck[random]);
             drawDeck.RemoveAt(random);
-            cardAlign.Animate(card);
+            cardAlign.Animate();
             
         }
     }

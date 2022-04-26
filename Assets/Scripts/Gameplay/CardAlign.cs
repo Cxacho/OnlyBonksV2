@@ -15,7 +15,6 @@ public class CardAlign : MonoBehaviour
     [SerializeField] Transform pos1, pos2;
     [SerializeField] float mnoznik, pierwszyWyraz, cardHeight;
     [SerializeField] private AnimationCurve anCurve;
-    [SerializeField] RectTransform drawDeck;
     //public Transform empty;
     private float twistFirstCard, nTyWyraz, liczbaWyrazow, dist, place;
 
@@ -183,6 +182,7 @@ public class CardAlign : MonoBehaviour
         rotations.Clear();
         foreach (RectTransform child in transform)
         {
+            Debug.Log("ss");
             children.Add(child);
             rotations.Add(child.rotation.eulerAngles);
         }
@@ -195,9 +195,12 @@ public class CardAlign : MonoBehaviour
         }
     }
 
-    public void Animate(GameObject card)
+    public void Animate()
     {
+
         SetValues();
+        GameObject card = children[gm.drawAmount - 1].gameObject;
+
         /*
         positions.Clear();
         children.Clear();
