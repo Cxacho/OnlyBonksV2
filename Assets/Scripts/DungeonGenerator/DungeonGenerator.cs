@@ -21,7 +21,7 @@ public class DungeonGenerator : MonoBehaviour
         public bool obligatory;
         public bool oncePerDungeon;
         public bool spawned = false;
-        private DungeonGenerator gen;
+        
         public int ProbabilityOfSpawning(int x, int y)
         {
             // 0 - cannot spawn 1 - can spawn 2 - HAS to spawn
@@ -109,9 +109,9 @@ public class DungeonGenerator : MonoBehaviour
 
                     var newRoom = Instantiate(rooms[randomRoom].room, new Vector3(i * offset.x,  - j * offset.y,0 ), Quaternion.identity, transform).GetComponent<Room>();
                     newRoom.UpdateRoom(currentCell.status);
-                    if (newRoom.name == "Shop")
+                    if (newRoom.name == "Shop(Clone)")
                     {
-                        newRoom.name += " Shop " ;
+                        newRoom.name = "Shop";
                     }
                     else
                     {

@@ -3804,8 +3804,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 228611244}
-  - {fileID: 2105014873}
   - {fileID: 1099828457}
+  - {fileID: 2105014873}
   - {fileID: 845683428}
   - {fileID: 737091774}
   - {fileID: 1473517032}
@@ -5893,7 +5893,7 @@ RectTransform:
   - {fileID: 190394542}
   - {fileID: 354863726}
   m_Father: {fileID: 719975772}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6888,6 +6888,12 @@ MonoBehaviour:
     spawned: 0
   - room: {fileID: 5660697458667791274, guid: f839aa9b9673392418e6efaaec7ca72a, type: 3}
     minPosition: {x: 4, y: 4}
+    maxPosition: {x: 6, y: 6}
+    obligatory: 1
+    oncePerDungeon: 1
+    spawned: 0
+  - room: {fileID: 5660697458667791274, guid: 7a1c9b30b05b08d4c92ef7c3bc827c94, type: 3}
+    minPosition: {x: 3, y: 3}
     maxPosition: {x: 6, y: 6}
     obligatory: 1
     oncePerDungeon: 1
@@ -10889,7 +10895,7 @@ RectTransform:
   - {fileID: 152477581}
   - {fileID: 655052160}
   m_Father: {fileID: 719975772}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

@@ -102,7 +102,7 @@ public class GameplayManager : MonoBehaviour
     }
     IEnumerator OnPlayersTurn()
     {
-
+        drawAmount = 0;
         DrawCards();
 
         player.AssignMana();
@@ -121,9 +121,10 @@ public class GameplayManager : MonoBehaviour
         {
             ITakeTurn takeTurn = enemy.GetComponent<ITakeTurn>();
             takeTurn.takeTurn(player);
+            yield return new WaitForSeconds(2f);
         }
 
-        yield return new WaitForSeconds(2f);
+        
 
         
 
