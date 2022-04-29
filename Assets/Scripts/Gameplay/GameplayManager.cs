@@ -102,7 +102,7 @@ public class GameplayManager : MonoBehaviour
     }
     IEnumerator OnPlayersTurn()
     {
-
+        drawAmount = 0;
         DrawCards();
 
         player.AssignMana();

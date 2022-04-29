@@ -91,7 +91,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         par = GameObject.Find("PlayerHand");
         cAlign = par.GetComponent<CardAlign>();
         playable = true;
-        //meshes.AddRange(GameObject.FindGameObjectsWithTag("Test"));
+        meshes.AddRange(GameObject.FindGameObjectsWithTag("Indicator"));
         pl = GameObject.Find("Player").GetComponent<Player>();
         //kod do wymiany
         var find = GameObject.FindObjectsOfType<Enemy>();
@@ -348,8 +348,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             foreach (Enemy en in enemies)
                 en.targeted = false;
             */
-            ReturnToHand();
-            DisableIndicator();
+            //ReturnToHand();
+            //DisableIndicator();
         }
 
 

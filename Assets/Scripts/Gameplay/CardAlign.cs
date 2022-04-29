@@ -182,7 +182,6 @@ public class CardAlign : MonoBehaviour
         rotations.Clear();
         foreach (RectTransform child in transform)
         {
-            Debug.Log("ss");
             children.Add(child);
             rotations.Add(child.rotation.eulerAngles);
         }

@@ -15,6 +15,9 @@ TagManager:
   - SpawnPoint
   - Rooms
   - Enemy
+  - ship
+  - asteroid
+  - Indicator
   layers:
   - Default
   - TransparentFX
