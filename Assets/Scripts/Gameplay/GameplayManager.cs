@@ -117,11 +117,21 @@ public class GameplayManager : MonoBehaviour
         canPlayCards = true;
 
 
+         List<GameObject> _indicators = new List<GameObject>();
+        _indicators.AddRange(GameObject.FindGameObjectsWithTag("EnemyIndicator"));
+        
+        foreach(var indicator in _indicators)
+        {
+            indicator.GetComponent<Image>().enabled = true;
+            indicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>().enabled = true;
+        }
+
         yield return new WaitForSeconds(2);
 
     }
     IEnumerator OnEnemiesTurn()
     {
+        yield return new WaitForSeconds(3f);
         foreach (var enemy in enemies)
         {
             ITakeTurn takeTurn = enemy.GetComponent<ITakeTurn>();
@@ -195,7 +205,7 @@ public class GameplayManager : MonoBehaviour
 
         ExecuteDarkSoulsText("Enemy Turn");
 
-
+        
         state = BattleState.ENEMYTURN;
         StartCoroutine(OnEnemiesTurn());
         

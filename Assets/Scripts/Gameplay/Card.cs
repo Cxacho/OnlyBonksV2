@@ -91,6 +91,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         par = GameObject.Find("PlayerHand");
         cAlign = par.GetComponent<CardAlign>();
         playable = true;
+        
         meshes.AddRange(GameObject.FindGameObjectsWithTag("Indicator"));
         pl = GameObject.Find("Player").GetComponent<Player>();
         //kod do wymiany

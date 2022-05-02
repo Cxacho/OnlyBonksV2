@@ -18,6 +18,7 @@ TagManager:
   - ship
   - asteroid
   - Indicator
+  - EnemyIndicator
   layers:
   - Default
   - TransparentFX

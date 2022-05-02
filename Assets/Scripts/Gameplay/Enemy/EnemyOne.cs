@@ -20,6 +20,8 @@ public class EnemyOne : Enemy, ITakeTurn
                 i++;
                 indicatorSpriteRenderer.sprite = indicatorImages[1];
                 indicatortxt.text = 10.ToString();
+                indicatorSpriteRenderer.enabled = false;
+                indicatortxt.enabled = false;
                 break;
             case 1:
                 armor = 10;
