@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST, VictoryScreen}
 
@@ -40,6 +41,8 @@ public class GameplayManager : MonoBehaviour
 
     public int gold = 100;
 
+    public GameObject textPanel;
+    public TextMeshProUGUI darkSoulsText;
 
     //lista wszystkich kart w grze, wa¿ne ¿eby dodawaæ je po kolei 
     public List<GameObject> allCards = new List<GameObject>();
@@ -90,6 +93,8 @@ public class GameplayManager : MonoBehaviour
         state = BattleState.START;
 
         StartCoroutine(SetupBattle());
+
+        
         
     }
     IEnumerator SetupBattle()
@@ -187,8 +192,9 @@ public class GameplayManager : MonoBehaviour
             }
 
         }
-            
-          
+
+        ExecuteDarkSoulsText("Enemy Turn");
+
 
         state = BattleState.ENEMYTURN;
         StartCoroutine(OnEnemiesTurn());
@@ -255,4 +261,23 @@ public class GameplayManager : MonoBehaviour
         battleUI.SetActive(false);
     }
     
+    private void ExecuteDarkSoulsText(string _text)
+    {
+        textPanel.SetActive(true);
+        darkSoulsText.text = _text;
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(darkSoulsText.DOFade(1, 1.5f));
+        sequence.Insert(0,darkSoulsText.transform.DOScale(1.5f, 3f));
+        sequence.OnComplete(()=>
+        {
+            darkSoulsText.DOFade(0, 0);
+            darkSoulsText.transform.DOScale(1f, 0);
+            textPanel.SetActive(false);        
+        });
+        
+
+
+
+    }
+
 }
