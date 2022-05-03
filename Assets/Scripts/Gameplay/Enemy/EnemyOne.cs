@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class EnemyOne : Enemy, ITakeTurn
 {
-    private int i = 0;
+    private int i = 0;    
 
     private void Start()
     {
         indicatortxt.text = damage.ToString();
+        
     }
 
     public void takeTurn(Player player)
@@ -72,4 +73,5 @@ public class EnemyOne : Enemy, ITakeTurn
 
         damage = damage - 3;
     }
+
 }

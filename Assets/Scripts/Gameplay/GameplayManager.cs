@@ -20,11 +20,13 @@ public class GameplayManager : MonoBehaviour
     public GameObject discardPile;
     public GameObject playerHandObject;
     public GameObject panelWin;
+    public GameObject panelLose;
     public GameObject cardHolder;
     public GameObject battleUI;
     public GameObject enemyGameObject;
     public GameObject goldtxt;
     public GameObject drawButton;
+    public LevelProgress levelProgress;
 
     [SerializeField] private Player player;
 
@@ -40,6 +42,7 @@ public class GameplayManager : MonoBehaviour
     private int random;
 
     public int gold = 100;
+    public int currentXP=0;
 
     public GameObject textPanel;
     public TextMeshProUGUI darkSoulsText;
@@ -164,6 +167,14 @@ public class GameplayManager : MonoBehaviour
         //Zmien battlestate do mapy, przenies gracza na mape
 
     }
+    public IEnumerator OnBattleLost()
+    {
+        yield return new WaitForSeconds(2);
+
+
+        StartCoroutine(LoseScreen());
+        //przenies do menu glownego
+    }
     IEnumerator VictoryScreen()
     {
         yield return new WaitForSeconds(2f);
@@ -180,15 +191,17 @@ public class GameplayManager : MonoBehaviour
         }
         
     }
-    IEnumerator OnBattleLost()
+    IEnumerator LoseScreen()
     {
-        yield return new WaitForSeconds(2);
-        //pokaz panel statystyk
-        //przenies do menu glownego
-    }
-    
-    
+        yield return new WaitForSeconds(0f);
 
+        levelProgress.UpdateLevelProgress();
+
+        panelLose.SetActive(true);
+        battleUI.SetActive(false);
+    }
+ 
+    
     public void OnClick()
     {
         if (playerHand.Count != 0)

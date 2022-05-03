@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     public SliderHealth sdh;
     public GameObject dmgPopOutBlock;
     public TextMeshProUGUI dmgPopOutTMP;
-
+    public GameplayManager gm;
 
 
     public int strenght = 0;
@@ -133,6 +133,10 @@ public class Player : MonoBehaviour
     }
     public void setHP()
     {
+        if (currentHealth <= 0)
+        {
+            gm.StartCoroutine(gm.OnBattleLost());
+        }
         sdh.SetHealth(currentHealth);
         healthText.text = currentHealth + "/" + maxHealth;
     }
