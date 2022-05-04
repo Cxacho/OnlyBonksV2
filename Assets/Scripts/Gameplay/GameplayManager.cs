@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST, VictoryScreen}
 
@@ -19,11 +20,13 @@ public class GameplayManager : MonoBehaviour
     public GameObject discardPile;
     public GameObject playerHandObject;
     public GameObject panelWin;
+    public GameObject panelLose;
     public GameObject cardHolder;
     public GameObject battleUI;
     public GameObject enemyGameObject;
     public GameObject goldtxt;
     public GameObject drawButton;
+    public LevelProgress levelProgress;
 
     [SerializeField] private Player player;
 
@@ -39,7 +42,10 @@ public class GameplayManager : MonoBehaviour
     private int random;
 
     public int gold = 100;
+    public int currentXP=0;
 
+    public GameObject textPanel;
+    public TextMeshProUGUI darkSoulsText;
 
     //lista wszystkich kart w grze, wa¿ne ¿eby dodawaæ je po kolei 
     public List<GameObject> allCards = new List<GameObject>();
@@ -90,6 +96,8 @@ public class GameplayManager : MonoBehaviour
         state = BattleState.START;
 
         StartCoroutine(SetupBattle());
+
+        
         
     }
     IEnumerator SetupBattle()
@@ -112,11 +120,21 @@ public class GameplayManager : MonoBehaviour
         canPlayCards = true;
 
 
+         List<GameObject> _indicators = new List<GameObject>();
+        _indicators.AddRange(GameObject.FindGameObjectsWithTag("EnemyIndicator"));
+        
+        foreach(var indicator in _indicators)
+        {
+            indicator.GetComponent<Image>().enabled = true;
+            indicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>().enabled = true;
+        }
+
         yield return new WaitForSeconds(2);
 
     }
     IEnumerator OnEnemiesTurn()
     {
+        yield return new WaitForSeconds(3f);
         foreach (var enemy in enemies)
         {
             ITakeTurn takeTurn = enemy.GetComponent<ITakeTurn>();
@@ -149,6 +167,14 @@ public class GameplayManager : MonoBehaviour
         //Zmien battlestate do mapy, przenies gracza na mape
 
     }
+    public IEnumerator OnBattleLost()
+    {
+        yield return new WaitForSeconds(2);
+
+
+        StartCoroutine(LoseScreen());
+        //przenies do menu glownego
+    }
     IEnumerator VictoryScreen()
     {
         yield return new WaitForSeconds(2f);
@@ -165,15 +191,17 @@ public class GameplayManager : MonoBehaviour
         }
         
     }
-    IEnumerator OnBattleLost()
+    IEnumerator LoseScreen()
     {
-        yield return new WaitForSeconds(2);
-        //pokaz panel statystyk
-        //przenies do menu glownego
-    }
-    
-    
+        yield return new WaitForSeconds(0f);
 
+        levelProgress.UpdateLevelProgress();
+
+        panelLose.SetActive(true);
+        battleUI.SetActive(false);
+    }
+ 
+    
     public void OnClick()
     {
         if (playerHand.Count != 0)
@@ -187,9 +215,10 @@ public class GameplayManager : MonoBehaviour
             }
 
         }
-            
-          
 
+        ExecuteDarkSoulsText("Enemy Turn");
+
+        
         state = BattleState.ENEMYTURN;
         StartCoroutine(OnEnemiesTurn());
         
@@ -255,4 +284,23 @@ public class GameplayManager : MonoBehaviour
         battleUI.SetActive(false);
     }
     
+    private void ExecuteDarkSoulsText(string _text)
+    {
+        textPanel.SetActive(true);
+        darkSoulsText.text = _text;
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(darkSoulsText.DOFade(1, 1.5f));
+        sequence.Insert(0,darkSoulsText.transform.DOScale(1.5f, 3f));
+        sequence.OnComplete(()=>
+        {
+            darkSoulsText.DOFade(0, 0);
+            darkSoulsText.transform.DOScale(1f, 0);
+            textPanel.SetActive(false);        
+        });
+        
+
+
+
+    }
+
 }

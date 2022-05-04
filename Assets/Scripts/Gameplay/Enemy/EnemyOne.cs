@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class EnemyOne : Enemy, ITakeTurn
 {
-    private int i = 0;
+    private int i = 0;    
 
     private void Start()
     {
         indicatortxt.text = damage.ToString();
+        
     }
 
     public void takeTurn(Player player)
@@ -20,6 +21,8 @@ public class EnemyOne : Enemy, ITakeTurn
                 i++;
                 indicatorSpriteRenderer.sprite = indicatorImages[1];
                 indicatortxt.text = 10.ToString();
+                indicatorSpriteRenderer.enabled = false;
+                indicatortxt.enabled = false;
                 break;
             case 1:
                 armor = 10;
@@ -70,4 +73,5 @@ public class EnemyOne : Enemy, ITakeTurn
 
         damage = damage - 3;
     }
+
 }

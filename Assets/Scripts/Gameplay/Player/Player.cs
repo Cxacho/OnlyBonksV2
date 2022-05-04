@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using DG.Tweening;
 public class Player : MonoBehaviour
 {
     public GameObject fillArmor;
@@ -18,7 +19,9 @@ public class Player : MonoBehaviour
     public TMP_Text healthText;
     public TMP_Text armorText;
     public SliderHealth sdh;
-
+    public GameObject dmgPopOutBlock;
+    public TextMeshProUGUI dmgPopOutTMP;
+    public GameplayManager gm;
 
 
     public int strenght = 0;
@@ -66,21 +69,61 @@ public class Player : MonoBehaviour
             {
                 armor -= damage;
                 armorText.text = armor.ToString();
+
+                dmgPopOutTMP.text = "Blocked " + damage + " dmg";
+                dmgPopOutTMP.color = new Color(0, 0, 255);
+                
+                TextMeshProUGUI dmgText;
+                dmgText = Instantiate(dmgPopOutTMP, dmgPopOutBlock.transform);
+
+                
+                Sequence dmgTextSeq = DOTween.Sequence();
+                dmgTextSeq.Append(dmgText.transform.DOMoveY(8f, 1f));
+                dmgTextSeq.Insert(0, dmgText.transform.DOMoveX(1f, dmgTextSeq.Duration()));
+                dmgTextSeq.OnComplete(() => { GameObject.Destroy(dmgText); });
+
             }
             else
             {
                 armorAndHp = armor + currentHealth;
                 armorAndHp -= damage;
+                int dmgarm;
+                dmgarm = damage - armor;
                 armor = 0;
                 currentHealth = armorAndHp;
                 ResetImg();
                 setHP();
+
+                
+                
+                dmgPopOutTMP.text = "- " + dmgarm;
+                dmgPopOutTMP.color = new Color(255, 0, 0);
+                
+                TextMeshProUGUI dmgText;
+                dmgText = Instantiate(dmgPopOutTMP, dmgPopOutBlock.transform);
+
+                Sequence dmgTextSeq = DOTween.Sequence();
+                dmgTextSeq.Append(dmgText.transform.DOMoveY(8f, 0.5f));
+                dmgTextSeq.Append(dmgText.transform.DOMoveY(-60f, 1f));
+                dmgTextSeq.Insert(0, dmgText.transform.DOMoveX(1f, dmgTextSeq.Duration()));
+                dmgTextSeq.OnComplete(() => { GameObject.Destroy(dmgText); });
             }
         }
         else
-        {
+        {                      
             currentHealth -= damage;
             setHP();
+
+            dmgPopOutTMP.text = "- " + damage;
+            dmgPopOutTMP.color = new Color(255, 0, 0);
+            TextMeshProUGUI dmgText;
+            dmgText = Instantiate(dmgPopOutTMP, dmgPopOutBlock.transform);
+
+            Sequence dmgTextSeq = DOTween.Sequence();
+            dmgTextSeq.Append(dmgText.transform.DOMoveY(8f, 0.5f));
+            dmgTextSeq.Append(dmgText.transform.DOMoveY(-60f, 1f));
+            dmgTextSeq.Insert(0, dmgText.transform.DOMoveX(1f, dmgTextSeq.Duration()));
+            dmgTextSeq.OnComplete(() => { GameObject.Destroy(dmgText); });
         }
             
     }
@@ -90,6 +133,10 @@ public class Player : MonoBehaviour
     }
     public void setHP()
     {
+        if (currentHealth <= 0)
+        {
+            gm.StartCoroutine(gm.OnBattleLost());
+        }
         sdh.SetHealth(currentHealth);
         healthText.text = currentHealth + "/" + maxHealth;
     }

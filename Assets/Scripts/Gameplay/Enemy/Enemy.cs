@@ -12,7 +12,8 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public int damage;
     public int _currentHealth;
     public string _name;
-    
+    public int xp;
+
     public SliderHealth sdh;
     public RectTransform rect;
     
@@ -68,7 +69,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     private void Update()
     {
-        if(targeted == true)
+        if (targeted == true)
         {
             border.SetActive(true);
         }
@@ -80,29 +81,34 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     }
 
-    public void UpdateHealth(int newHealthValue)
+    public void OnDeath(int newHealthValue)
     {
         _currentHealth = newHealthValue;
         if(_currentHealth <= 0)
         {
+            
+
+
             for(int i = 0; i < gm.enemies.Count; i++)
             {
                 if(gm.enemies[i].name == _name)
                 {
 
-                    gm.enemies.RemoveAt(i);
+                    gm.enemies.RemoveAt(i); //usuniêcie danego przeciwnika z listy
+                    gm.currentXP += gm.enemies[i].GetComponent<EnemyOne>().xp; //dodanie xpa za przeciwnika
                 }
             }
+            
             Destroy(gameObject);
             
         }
-        Debug.Log(_currentHealth);
+        
     }
 
     public void ReceiveDamage(int damage)
     {
         int updatedHealth = _currentHealth - damage;
-        UpdateHealth(updatedHealth > 0 ? updatedHealth : 0);
+        OnDeath(updatedHealth > 0 ? updatedHealth : 0);
         healthTxt.text = updatedHealth + "/" + maxHealth;
         sdh.SetHealth(updatedHealth);
     }
