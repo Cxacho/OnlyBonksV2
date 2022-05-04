@@ -33,58 +33,47 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         currentCardState = cardState.Elsewhere;
     }
-    IEnumerator widen()
+    IEnumerator Return()
     {
-        yield return new WaitForSeconds(0.1f);
-        if (index - 1 >= 0)
-            cAlign.children[index - 1].DOMoveX(cAlign.children[index - 1].position.x - 2, 0.2f);
-        if (index + 1 < cAlign.children.Count)
-            cAlign.children[index + 1].DOMoveX(cAlign.children[index + 1].position.x + 2, 0.2f);
-        this.transform.DOMove(new Vector3(this.transform.position.x, -23, this.transform.position.z), 0.2f);
-        if (index - 2 >= 0)
-            cAlign.children[index - 2].DOMoveX(cAlign.children[index - 2].position.x - 1, 0.2f);
-        if (index + 2 < cAlign.children.Count)
-            cAlign.children[index + 2].DOMoveX(cAlign.children[index + 2].position.x + 1, 0.2f);
-    }
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (this.transform.IsChildOf(GameObject.Find("PlayerHand").transform) && gm.playerHand.Count == par.transform.childCount)
-        {
-
-            this.transform.localScale = Vector3.one;
-            transform.rotation = hoverRotation;
-            transform.position = new Vector3(this.transform.position.x, posY, this.transform.position.z);
-            //this.pos.anchoredPosition = cAlign.positions[index];
-            this.transform.SetSiblingIndex(index);
+        yield return new WaitForSeconds(0.05f);
+        if (fm.crd == null)
             for (int i = 0; i < cAlign.gameObject.transform.childCount; i++)
             {
                 cAlign.children[i].transform.DOMove(cAlign.positions[i], 0.1f);
             }
-            currentCardState = cardState.InHand;
-        }
     }
-
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (this.transform.IsChildOf(GameObject.Find("PlayerHand").transform) && gm.playerHand.Count == par.transform.childCount)
         {
-            StartCoroutine(widen());
+            fm.crd = GetComponent<Card>();
             hoverRotation = this.transform.rotation;
             this.transform.localScale += new Vector3(0.15f, 0.15f, 0.15f);
             transform.rotation = Quaternion.identity;
             posY = this.transform.position.y;
             currentCardState = cardState.OnMouse;
             index = this.transform.GetSiblingIndex();
-            /*
-            if(index -1 >0)
-            cAlign.children[index - 1].DOMoveX(cAlign.children[index - 1].position.x - 1, 0.2f);
-            if (index + 1 < cAlign.children.Count)
-                cAlign.children[index + 1].DOMoveX(cAlign.children[index + 1].position.x + 1, 0.2f);
-            */
+            cAlign.cardIndex = index;
+            cAlign.Realign();
             this.transform.SetAsLastSibling();
 
         }
     }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (this.transform.IsChildOf(GameObject.Find("PlayerHand").transform) && gm.playerHand.Count == par.transform.childCount)
+        {
+            fm.crd = null;
+            this.transform.localScale = Vector3.one;
+            transform.rotation = hoverRotation;
+            transform.position = new Vector3(this.transform.position.x, posY, this.transform.position.z);
+            this.transform.SetSiblingIndex(index);
+            StartCoroutine(Return());
+            currentCardState = cardState.InHand;
+        }
+    }
+
+
 
     void Awake()
     {

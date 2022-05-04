@@ -12,7 +12,7 @@ public class FollowMouse : MonoBehaviour
     public List<GameObject> objs = new List<GameObject>();
     [SerializeField] List<RectTransform> rect = new List<RectTransform>();
     [SerializeField] float multipiler;
-    // Start is called before the first frame update
+    public Card crd;
     private void Awake()
     {
         objs.AddRange(GameObject.FindGameObjectsWithTag("Indicator"));
@@ -21,7 +21,6 @@ public class FollowMouse : MonoBehaviour
         rect[0].anchoredPosition = new Vector3(0, -400, 0);
     }
 
-    // Update is called once per frame
     void Update()
     {
         float test = 1.0f / objs.Count;
@@ -36,6 +35,5 @@ public class FollowMouse : MonoBehaviour
         rectPos.anchoredPosition = new Vector2(Input.mousePosition.x * scaler.referenceResolution.x / Screen.width, Input.mousePosition.y * scaler.referenceResolution.y / Screen.height);
         rectPos.anchoredPosition -= new Vector2(960, 540);
         rect[rect.Count - 1].anchoredPosition = rectPos.anchoredPosition;
-        //enemy.takeddmg
     }
 }

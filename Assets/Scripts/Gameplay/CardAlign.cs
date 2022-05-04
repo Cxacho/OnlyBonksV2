@@ -13,6 +13,7 @@ public class CardAlign : MonoBehaviour
     [SerializeField] List<Vector3> rotations = new List<Vector3>();
     [SerializeField] private TMP_Text discardDeck_text, drawDeck_text;
     [SerializeField] Transform pos1, pos2;
+    public int cardIndex;
     [SerializeField] float mnoznik, pierwszyWyraz, cardHeight;
     [SerializeField] private AnimationCurve anCurve;
     //public Transform empty;
@@ -25,7 +26,31 @@ public class CardAlign : MonoBehaviour
 
     }
 
-
+    public void Realign()
+    {
+        
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            if (i + 1 < gameObject.transform.childCount)
+                children[i].transform.DOMove(positions[i], 0.05f);
+            else
+            {
+                children[i].transform.DOMove(positions[i], 0.1f).OnComplete(() =>
+                {
+                    if (cardIndex - 1 >= 0)
+                        children[cardIndex - 1].DOMoveX(children[cardIndex - 1].position.x - 2.5f, 0.2f);
+                    if (cardIndex + 1 < children.Count)
+                        children[cardIndex + 1].DOMoveX(children[cardIndex + 1].position.x + 2.5f, 0.2f);
+                    children[cardIndex].DOMove(new Vector3(children[cardIndex].position.x, -23, children[cardIndex].position.z), 0.05f);
+                    if (cardIndex - 2 >= 0)
+                        children[cardIndex - 2].DOMoveX(children[cardIndex - 2].position.x - 1.5f, 0.2f);
+                    if (cardIndex + 2 < children.Count)
+                        children[cardIndex + 2].DOMoveX(children[cardIndex + 2].position.x + 1.5f, 0.2f);
+                });
+            }
+                
+        }
+    }
     void Align()
     {
         foreach (RectTransform child in transform)
