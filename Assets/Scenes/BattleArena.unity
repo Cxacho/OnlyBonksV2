@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0.99999946, b: 0.99999946, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2453952}
   - component: {fileID: 2453953}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (11)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ RectTransform:
   m_GameObject: {fileID: 2453951}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 11
@@ -1714,7 +1714,7 @@ GameObject:
   m_Component:
   - component: {fileID: 246607104}
   - component: {fileID: 246607105}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (8)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -1730,7 +1730,7 @@ RectTransform:
   m_GameObject: {fileID: 246607103}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 8
@@ -2398,7 +2398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 360362868}
   - component: {fileID: 360362869}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (1)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -2414,7 +2414,7 @@ RectTransform:
   m_GameObject: {fileID: 360362867}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 1
@@ -2842,7 +2842,7 @@ GameObject:
   m_Component:
   - component: {fileID: 425086525}
   - component: {fileID: 425086526}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (21)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -2858,7 +2858,7 @@ RectTransform:
   m_GameObject: {fileID: 425086524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 21
@@ -2929,7 +2929,7 @@ GameObject:
   m_Component:
   - component: {fileID: 435874261}
   - component: {fileID: 435874262}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (13)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -2945,7 +2945,7 @@ RectTransform:
   m_GameObject: {fileID: 435874260}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 13
@@ -3016,7 +3016,7 @@ GameObject:
   m_Component:
   - component: {fileID: 441649404}
   - component: {fileID: 441649405}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (16)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -3032,7 +3032,7 @@ RectTransform:
   m_GameObject: {fileID: 441649403}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 16
@@ -3496,7 +3496,7 @@ GameObject:
   m_Component:
   - component: {fileID: 620621906}
   - component: {fileID: 620621907}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (3)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -3512,7 +3512,7 @@ RectTransform:
   m_GameObject: {fileID: 620621905}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 3
@@ -3761,7 +3761,7 @@ GameObject:
   m_Component:
   - component: {fileID: 624751535}
   - component: {fileID: 624751536}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (9)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -3777,7 +3777,7 @@ RectTransform:
   m_GameObject: {fileID: 624751534}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 9
@@ -4911,7 +4911,7 @@ GameObject:
   m_Component:
   - component: {fileID: 736317882}
   - component: {fileID: 736317883}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (22)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -4927,7 +4927,7 @@ RectTransform:
   m_GameObject: {fileID: 736317881}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 22
@@ -5112,7 +5112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 758036233}
   - component: {fileID: 758036234}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (12)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -5128,7 +5128,7 @@ RectTransform:
   m_GameObject: {fileID: 758036232}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 12
@@ -6148,7 +6148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 902525530}
   - component: {fileID: 902525531}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -6164,7 +6164,7 @@ RectTransform:
   m_GameObject: {fileID: 902525529}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 0
@@ -6235,7 +6235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 912935528}
   - component: {fileID: 912935529}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (18)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -6251,7 +6251,7 @@ RectTransform:
   m_GameObject: {fileID: 912935527}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 18
@@ -7067,7 +7067,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1003420335}
   - component: {fileID: 1003420336}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (5)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -7083,7 +7083,7 @@ RectTransform:
   m_GameObject: {fileID: 1003420334}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 5
@@ -7154,7 +7154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1015340605}
   - component: {fileID: 1015340606}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (7)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -7170,7 +7170,7 @@ RectTransform:
   m_GameObject: {fileID: 1015340604}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 7
@@ -7241,7 +7241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1023244645}
   - component: {fileID: 1023244646}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (10)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -7257,7 +7257,7 @@ RectTransform:
   m_GameObject: {fileID: 1023244644}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 10
@@ -7583,7 +7583,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.88368756, y: 0.16745436}
   m_AnchorMax: {x: 0.9395209, y: 0.89060545}
-  m_AnchoredPosition: {x: -1.1999512, y: -3}
+  m_AnchoredPosition: {x: -1.1999512, y: -2.999998}
   m_SizeDelta: {x: 0.46398926, y: 8.074997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1091676186
@@ -7886,7 +7886,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1141611661}
   - component: {fileID: 1141611662}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (4)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -7902,7 +7902,7 @@ RectTransform:
   m_GameObject: {fileID: 1141611660}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 4
@@ -8230,7 +8230,9 @@ MonoBehaviour:
   en: {fileID: 0}
   objs: []
   rect: []
-  multipiler: 1.5
+  multipiler: 1.2
+  spriteScale: []
+  crd: {fileID: 0}
 --- !u!224 &1288809385
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8516,7 +8518,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1370967308}
   - component: {fileID: 1370967309}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (24)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -8532,7 +8534,7 @@ RectTransform:
   m_GameObject: {fileID: 1370967307}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 24
@@ -8867,7 +8869,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1413453773}
   - component: {fileID: 1413453774}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (20)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -8883,7 +8885,7 @@ RectTransform:
   m_GameObject: {fileID: 1413453772}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 20
@@ -9471,7 +9473,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1437337368}
   - component: {fileID: 1437337369}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (14)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -9487,7 +9489,7 @@ RectTransform:
   m_GameObject: {fileID: 1437337367}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 14
@@ -10071,7 +10073,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.077391766, y: 0.23200001}
   m_AnchorMax: {x: 0.13678141, y: 0.379}
-  m_AnchoredPosition: {x: -0.5, y: -87.89998}
+  m_AnchoredPosition: {x: -0.5, y: -87.899956}
   m_SizeDelta: {x: 160.5, y: -4.322998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1533790606
@@ -10279,7 +10281,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1540954556}
   - component: {fileID: 1540954557}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (15)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -10295,7 +10297,7 @@ RectTransform:
   m_GameObject: {fileID: 1540954555}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 15
@@ -10767,7 +10769,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1593026775}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10782,7 +10784,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593026774}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 902525530}
@@ -10923,7 +10925,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1620695886}
   - component: {fileID: 1620695887}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (6)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -10939,7 +10941,7 @@ RectTransform:
   m_GameObject: {fileID: 1620695885}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 6
@@ -11085,7 +11087,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1647463222}
   - component: {fileID: 1647463223}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (23)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -11101,7 +11103,7 @@ RectTransform:
   m_GameObject: {fileID: 1647463221}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 23
@@ -11510,7 +11512,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1706858041}
   - component: {fileID: 1706858042}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (2)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -11526,7 +11528,7 @@ RectTransform:
   m_GameObject: {fileID: 1706858040}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 2
@@ -12634,6 +12636,7 @@ MonoBehaviour:
   drawDeck_text: {fileID: 1650755122}
   pos1: {fileID: 2023778588}
   pos2: {fileID: 1838394995}
+  cardIndex: 0
   mnoznik: 1.33
   pierwszyWyraz: 4
   cardHeight: -31
@@ -12878,7 +12881,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2015846077}
   - component: {fileID: 2015846078}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (19)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -12894,7 +12897,7 @@ RectTransform:
   m_GameObject: {fileID: 2015846076}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 19
@@ -13498,7 +13501,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2042028803}
   - component: {fileID: 2042028804}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle (17)
   m_TagString: Indicator
   m_Icon: {fileID: 0}
@@ -13514,7 +13517,7 @@ RectTransform:
   m_GameObject: {fileID: 2042028802}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1593026775}
   m_RootOrder: 17

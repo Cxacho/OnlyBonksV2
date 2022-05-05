@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class FollowMouse : MonoBehaviour
 {
@@ -10,8 +11,9 @@ public class FollowMouse : MonoBehaviour
     [SerializeField] CanvasScaler scaler;
     public Enemy en;
     public List<GameObject> objs = new List<GameObject>();
-    [SerializeField] List<RectTransform> rect = new List<RectTransform>();
+    public List<RectTransform> rect = new List<RectTransform>();
     [SerializeField] float multipiler;
+    public List<Vector3> spriteScale = new List<Vector3>();
     public Card crd;
     private void Awake()
     {
@@ -28,12 +30,13 @@ public class FollowMouse : MonoBehaviour
         {
             if (i != 0)
                 rect[i].anchoredPosition = Vector3.LerpUnclamped(rect[0].anchoredPosition, rect[objs.Count - 1].anchoredPosition, test * i);
-            rect[i].localScale = new Vector3(i * multipiler, i * multipiler, 1);
+            spriteScale.Add(new Vector3(i * multipiler, i * multipiler, 1));
+
         }
 
         viewPortPosition = Camera.main.ScreenToViewportPoint(Input.mousePosition);
         rectPos.anchoredPosition = new Vector2(Input.mousePosition.x * scaler.referenceResolution.x / Screen.width, Input.mousePosition.y * scaler.referenceResolution.y / Screen.height);
         rectPos.anchoredPosition -= new Vector2(960, 540);
-        rect[rect.Count - 1].anchoredPosition = rectPos.anchoredPosition;
+        rect[rect.Count - 1].anchoredPosition = new Vector3(rectPos.anchoredPosition.x, rectPos.anchoredPosition.y, -100); 
     }
 }

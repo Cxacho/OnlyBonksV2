@@ -80,7 +80,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         par = GameObject.Find("PlayerHand");
         cAlign = par.GetComponent<CardAlign>();
         playable = true;
-        
         meshes.AddRange(GameObject.FindGameObjectsWithTag("Indicator"));
         pl = GameObject.Find("Player").GetComponent<Player>();
         //kod do wymiany
@@ -153,9 +152,31 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     void DisableIndicator()
     {
+        Cursor.visible = true;
+        foreach(RectTransform obj in fm.rect)
+        {
+            obj.DOScale(Vector3.zero, 0.5f).OnComplete (()=>
+            {
+                foreach (GameObject obj in meshes)
+                {
+                    obj.GetComponent<SpriteRenderer>().enabled = false;
+                }
+            });
+        }
+
+
+    }
+    void EnableIndicator()
+    {
+        Cursor.visible = false;
         foreach (GameObject obj in meshes)
         {
-            obj.GetComponent<SpriteRenderer>().enabled = false;
+            obj.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        
+        for (int i = 0; i < fm.objs.Count; i++)
+        {
+            fm.rect[i].DOScale(fm.spriteScale[i], 0.5f);
         }
     }
     void OnClick()
@@ -235,11 +256,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 // else
                 // Debug.Log(enemies.Count);
                 //podniesienie ataku ponad -90, przesuniencie atakku do poz srodka renki
-
-                foreach (GameObject obj in meshes)
-                {
-                    obj.GetComponent<SpriteRenderer>().enabled = true;
-                }
+                EnableIndicator();
                 currentCardState = cardState.Targetable;
                 var phPos = GameObject.Find("PlayerHand").transform.position;
                 pos.anchoredPosition = new Vector3(0, -400, 0);
@@ -288,10 +305,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
 
                     if (numOfTargets == 1)
-                        foreach (GameObject obj in meshes)
-                        {
-                            obj.GetComponent<SpriteRenderer>().enabled = true;
-                        }
+                        EnableIndicator();
                     clickDelay = Time.time + 0.3f;
                 }
 
@@ -311,6 +325,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             {
                 ReturnToHand();
                 DisableIndicator();
+                cAlign.SetValues();
                 //move to discard pile || exhaust
 
 
@@ -328,18 +343,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         if (fm.viewPortPosition.x < 0 || fm.viewPortPosition.x > 1 || fm.viewPortPosition.y < 0 || fm.viewPortPosition.y > 1)
         {
-            /*
-            //cofnienice wybraniej karty gdy opusci viewport
-            currentCardState = cardState.InHand;
-            this.transform.SetParent(GameObject.Find("PlayerHand").transform);
-            pos.anchoredPosition = posInHand;
-            this.transform.rotation = oldRot;
-            this.transform.SetSiblingIndex(index);
-            foreach (Enemy en in enemies)
-                en.targeted = false;
-            */
-            //ReturnToHand();
-            //DisableIndicator();
+            ReturnToHand();
+            DisableIndicator();
+            cAlign.SetValues();
         }
 
 
