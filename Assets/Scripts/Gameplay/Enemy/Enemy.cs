@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     private void Awake()
     {
         fm = GameObject.Find("Cursor").GetComponent<FollowMouse>();
-        
+        _name = this.gameObject.name;
         corners = new Vector3[4];
         rect = GetComponent<RectTransform>();
         rect.GetLocalCorners(corners);
@@ -86,28 +86,38 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         _currentHealth = newHealthValue;
         if(_currentHealth <= 0)
         {
-            
 
 
-            for(int i = 0; i < gm.enemies.Count; i++)
+
+            for (int i = 0; i < gm.enemies.Count; i++)
             {
                 if(gm.enemies[i].name == _name)
                 {
+                    
+                    gm.currentXP += gm.enemies[i].GetComponent<Enemy>().xp; //dodanie xpa za przeciwnika
 
+                    gm.enType.RemoveAt(i);
                     gm.enemies.RemoveAt(i); //usuniêcie danego przeciwnika z listy
-                    gm.currentXP += gm.enemies[i].GetComponent<EnemyOne>().xp; //dodanie xpa za przeciwnika
+
                 }
             }
+           // gm.enType.Clear();
+            //foreach (Enemy en in GameObject.FindObjectsOfType<Enemy>())
+            //    gm.enType.Add(en);
             
+
             Destroy(gameObject);
-            
+
+
+
         }
         
     }
 
-    public void ReceiveDamage(int damage)
+    public void ReceiveDamage(float damage)
     {
-        int updatedHealth = _currentHealth - damage;
+        
+        int updatedHealth = (int)_currentHealth - (int)damage;
         OnDeath(updatedHealth > 0 ? updatedHealth : 0);
         healthTxt.text = updatedHealth + "/" + maxHealth;
         sdh.SetHealth(updatedHealth);

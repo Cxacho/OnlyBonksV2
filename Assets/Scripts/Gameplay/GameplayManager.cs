@@ -56,7 +56,8 @@ public class GameplayManager : MonoBehaviour
 
     //lista kart ktore mozemy dobrac do reki
     public List<GameObject> drawDeck;
-
+    //lista przeciwnikow z typem enemy
+    public List<Enemy> enType = new List<Enemy>();
    
     //Player Hand
     public List<GameObject> playerHand = new List<GameObject>();
@@ -92,13 +93,14 @@ public class GameplayManager : MonoBehaviour
     {
         
         enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
-    
+        foreach (GameObject en in enemies)
+            enType.Add(en.GetComponent<Enemy>());
         state = BattleState.START;
 
         StartCoroutine(SetupBattle());
+        
 
-        
-        
+
     }
     IEnumerator SetupBattle()
     {

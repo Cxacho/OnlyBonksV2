@@ -17,7 +17,7 @@ public class BabalityScript : Card
         gm.checkPlayerMana(cost);
         if (gm.canPlayCards == true)
         {
-            foreach (Enemy en in enemies)
+            foreach (Enemy en in _enemies)
                 if (en.targeted == true)
                 {
                     anim.Add(en.gameObject.GetComponent<Animator>());

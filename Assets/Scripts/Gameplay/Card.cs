@@ -14,7 +14,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] TrailRenderer trail;
     public Player pl;
     Quaternion oldRot, newRot, hoverRotation = new Quaternion(0, 0, 0, 0);
-    public List<Enemy> enemies = new List<Enemy>();
     CardAlign cAlign;
     public bool playable;
     public GameplayManager gm;
@@ -25,6 +24,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public int baseNumOfTargets;
     float clickDelay;
     [SerializeField] List<GameObject> meshes = new List<GameObject>();
+    public List<Enemy> _enemies = new List<Enemy>();
     float posY;
 
 
@@ -83,9 +83,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         meshes.AddRange(GameObject.FindGameObjectsWithTag("Indicator"));
         pl = GameObject.Find("Player").GetComponent<Player>();
         //kod do wymiany
-        var find = GameObject.FindObjectsOfType<Enemy>();
-        foreach (Enemy en in find)
-            enemies.Add(en);
+        //wywoluje sie na on dropie i na starcie tury gracza
         discDek = GameObject.Find("DiscardDeckButton").transform.position;
         trail = transform.GetComponent<TrailRenderer>();
         gm = GameObject.Find("GameplayManager").GetComponent<GameplayManager>();
@@ -139,12 +137,16 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         currentCardState = cardState.InHand;
         transform.SetParent(GameObject.Find("PlayerHand").transform);
         numOfTargets = baseNumOfTargets;
-        foreach (Enemy en in enemies)
+        _enemies.Clear();
+        _enemies.AddRange(gm.enType);
+        foreach (Enemy en in _enemies)
         {
-            en.targeted = false;
-            en.isFirstTarget = false;
-            en.isSecondTarget = false;
-            en.isThirdTarget = false;
+
+                en.targeted = false;
+                en.isFirstTarget = false;
+                en.isSecondTarget = false;
+                en.isThirdTarget = false;
+            
         }
         this.transform.position = cAlign.positions[index];
         this.transform.rotation = hoverRotation;
@@ -155,7 +157,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Cursor.visible = true;
         foreach(RectTransform obj in fm.rect)
         {
-            obj.DOScale(Vector3.zero, 0.5f).OnComplete (()=>
+            obj.DOScale(Vector3.zero, 0.2f).OnComplete (()=>
             {
                 foreach (GameObject obj in meshes)
                 {
@@ -213,6 +215,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public virtual void OnDrop()
     {
+
         currentCardState = cardState.Elsewhere;
         //play card
         trail.enabled = true;
@@ -249,9 +252,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             if (pos.anchoredPosition.y > -90)
             {
                 numOfTargets = baseNumOfTargets;
-                if (numOfTargets > enemies.Count)
+                _enemies.Clear();
+                _enemies.AddRange(gm.enType);
+                if (numOfTargets > _enemies.Count)
                 {
-                    numOfTargets = enemies.Count;
+                    numOfTargets = _enemies.Count;
                 }
                 // else
                 // Debug.Log(enemies.Count);

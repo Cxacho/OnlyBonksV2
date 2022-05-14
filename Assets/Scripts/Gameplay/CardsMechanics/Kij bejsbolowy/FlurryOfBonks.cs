@@ -1,15 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
-public class BasicAttack : Card
+public class FlurryOfBonks : Card
 {
-    public int attack = 3;
-    private int cost = 1;
+    public int attack = 4;
+    private int cost = 2;
     public GameObject bonk;
 
-    
+
 
     public override void OnDrop()
     {
@@ -18,31 +17,55 @@ public class BasicAttack : Card
         {
             base.OnDrop();
 
-            Instantiate(bonk, new Vector3(0, -10, 0), Quaternion.identity, GameObject.Find("Player").transform);
             StartCoroutine(ExecuteAfterTime(1f));
+            
             foreach (Enemy en in _enemies)
             {
                 if (en.targeted == true)
                 {
-                    en.ReceiveDamage(attack + pl.strenght);
+                    IEnumerator Flurry()
+                    {
+                        yield return new WaitForSeconds(0.15f);
+                        //anim/playsfx
+                        en.ReceiveDamage(attack + pl.strenght);
+                        
+                        yield return new WaitForSeconds(0.3f);
+                        //anim/playsfx
+                        en.ReceiveDamage(attack + pl.strenght);
+                        
+                        yield return new WaitForSeconds(0.3f);
+                        //anim/playsfx
+                        en.ReceiveDamage(attack + pl.strenght);
+                        
+                    }
+                    StartCoroutine(Flurry());
+                    //InvokeRepeating(en.ReceiveDamage(attack + pl.strenght), 0.1f, 0.3f);
 
                     en.targeted = false;
+                    en.isFirstTarget = false;
                 }
+
             }
         }
+        
+
+
+
         else
         {
             Debug.Log("fajnie dzia³a");
         }
+
     }
+
 
     IEnumerator ExecuteAfterTime(float time)
     {
         yield return new WaitForSeconds(time);
 
-        
+
         //enemy.ReceiveDamage(attack * pl.strenght);
-        
+
 
         pl.manaText.text = pl.mana.ToString();
 
