@@ -28,12 +28,12 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     Vector3 mousePos;
     FollowMouse fm;
 
-    public GameObject indicator;
-    public TextMeshProUGUI indicatortxt;
+   // public GameObject indicator;
+   // public TextMeshProUGUI indicatortxt;
 
-    public Sprite[] indicatorImages;
+/*  public Sprite[] indicatorImages;
     [HideInInspector]
-    public Image indicatorSpriteRenderer;
+    public Image indicatorSpriteRenderer;*/
 
     public void OnPointerExit(PointerEventData eventData)
     {
@@ -47,14 +47,8 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     private void Awake()
     {
-        fm = GameObject.Find("Cursor").GetComponent<FollowMouse>();
+        gm = GameObject.Find("GameplayManager").GetComponent<GameplayManager>();
         
-        corners = new Vector3[4];
-        rect = GetComponent<RectTransform>();
-        rect.GetLocalCorners(corners);
-        indicatorSpriteRenderer = indicator.GetComponent<Image>();
-
-
         Debug.Log("inicjalizacja");
         _currentHealth = maxHealth;
         healthTxt.text = _currentHealth + "/" + maxHealth;
@@ -65,11 +59,20 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     void Start()
     {
         
+        fm = GameObject.Find("Cursor").GetComponent<FollowMouse>();
+
+        corners = new Vector3[4];
+        rect = GetComponent<RectTransform>();
+        rect.GetLocalCorners(corners);
+        //indicatorSpriteRenderer = indicator.GetComponent<Image>();
+
+
+        
     }
 
     private void Update()
     {
-        if (targeted == true)
+       if (targeted == true)
         {
             border.SetActive(true);
         }

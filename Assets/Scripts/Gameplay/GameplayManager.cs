@@ -13,8 +13,8 @@ public class GameplayManager : MonoBehaviour
 {
     public BattleState state;
 
-    [SerializeField] private Transform playerBattleStation;
-    [SerializeField] private Transform enemyBattleStation;
+    
+    [SerializeField] private Transform[] enemyBattleStation = new Transform[3];
     
     public GameObject drawPile,playersHand;
     public GameObject discardPile;
@@ -80,7 +80,11 @@ public class GameplayManager : MonoBehaviour
 
     private void Awake()
     {
-        cardAlign = GameObject.Find("PlayerHand").GetComponent<CardAlign>();   
+        cardAlign = GameObject.Find("PlayerHand").GetComponent<CardAlign>();
+
+        
+
+
     }
 
     private void Update()
@@ -94,7 +98,10 @@ public class GameplayManager : MonoBehaviour
         enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
     
         state = BattleState.START;
-
+        for (int i = 0; i < enemyBattleStation.Length; i++)
+        {
+            SpawnEnemies(i);
+        }
         StartCoroutine(SetupBattle());
 
         
@@ -111,6 +118,7 @@ public class GameplayManager : MonoBehaviour
     IEnumerator OnPlayersTurn()
     {
         drawAmount = 0;
+
         DrawCards();
 
         player.AssignMana();
@@ -223,25 +231,6 @@ public class GameplayManager : MonoBehaviour
         StartCoroutine(OnEnemiesTurn());
         
     }
-    /*void DrawCards()
-    {
-        
-        for (int i = 0; i < playerDrawAmount; i++)
-        {
-            if (drawDeck.Count == 0)
-            {
-                
-                shuffleDeck();
-            }
-            random = Random.Range(0, drawDeck.Count);
-            Instantiate(drawDeck[random], GameObject.FindGameObjectWithTag("PlayerHand").transform);
-            
-            playerHand.Add(drawDeck[random]);
-            drawDeck.RemoveAt(random);
-            
-        }
-        
-    }*/
     public void DrawCards()
     {
         drawAmount++;
@@ -302,5 +291,9 @@ public class GameplayManager : MonoBehaviour
 
 
     }
-
+    private void SpawnEnemies(int i)
+    {
+        Instantiate(floorOneEnemies[i], enemyBattleStation[i].transform.position, Quaternion.identity, enemyBattleStation[i].transform);
+    }
 }
+

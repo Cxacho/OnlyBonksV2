@@ -8,7 +8,7 @@ public class EnemyOne : Enemy, ITakeTurn
 
     private void Start()
     {
-        indicatortxt.text = damage.ToString();
+        //indicatortxt.text = damage.ToString();
         
     }
 
@@ -19,17 +19,17 @@ public class EnemyOne : Enemy, ITakeTurn
             case 0:              
                 player.TakeDamage(damage);
                 i++;
-                indicatorSpriteRenderer.sprite = indicatorImages[1];
+                /*indicatorSpriteRenderer.sprite = indicatorImages[1];
                 indicatortxt.text = 10.ToString();
                 indicatorSpriteRenderer.enabled = false;
-                indicatortxt.enabled = false;
+                indicatortxt.enabled = false;*/
                 break;
             case 1:
                 armor = 10;
                 i++;
                 
-                indicatortxt.text = (damage * 3).ToString();
-                indicatorSpriteRenderer.sprite = indicatorImages[0];
+               /* indicatortxt.text = (damage * 3).ToString();
+                indicatorSpriteRenderer.sprite = indicatorImages[0];*/
                 break;
             case 2:
 
@@ -42,21 +42,21 @@ public class EnemyOne : Enemy, ITakeTurn
                     crippled();
                 }
                 i++;
-                indicatortxt.enabled = false;
-                indicatorSpriteRenderer.sprite = indicatorImages[2];
+               /* indicatortxt.enabled = false;
+                indicatorSpriteRenderer.sprite = indicatorImages[2];*/
                 break;
             case 3:
                 player.Charmed();
                 i++;
-                indicatortxt.enabled = true;
+               /* indicatortxt.enabled = true;
                 indicatortxt.text = damage.ToString();
-                indicatorSpriteRenderer.sprite = indicatorImages[0];
+                indicatorSpriteRenderer.sprite = indicatorImages[0];*/
                 break;
             case 4:
                 player.TakeDamage(damage);
                 i = 0;
-                indicatortxt.text = damage.ToString();
-                indicatorSpriteRenderer.sprite = indicatorImages[0];
+               /* indicatortxt.text = damage.ToString();
+                indicatorSpriteRenderer.sprite = indicatorImages[0];*/
                 break;
             default:
                 break;
