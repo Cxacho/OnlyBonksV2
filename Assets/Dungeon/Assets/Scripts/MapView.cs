@@ -120,6 +120,7 @@ namespace Map
         private void CreateMapParent()
         {
             firstParent = new GameObject("OuterMapParent");
+            firstParent.transform.SetParent(GameObject.Find("Map_Panel").transform);
             mapParent = new GameObject("MapParentWithAScroll");
             mapParent.transform.SetParent(firstParent.transform);
             var scrollNonUi = mapParent.AddComponent<ScrollNonUI>();

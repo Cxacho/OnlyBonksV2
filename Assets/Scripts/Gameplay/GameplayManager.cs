@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 
-public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST, VictoryScreen}
+public enum BattleState { NODE ,START, PLAYERTURN, ENEMYTURN, WON, LOST, VictoryScreen}
 
 
 public class GameplayManager : MonoBehaviour
@@ -20,10 +20,10 @@ public class GameplayManager : MonoBehaviour
     public GameObject discardPile;
     public GameObject playerHandObject;
     public GameObject panelWin;
+    public UiActive ui;
     public GameObject panelLose;
     public GameObject cardHolder;
     public GameObject battleUI;
-    public GameObject enemyGameObject;
     public GameObject goldtxt;
     public GameObject drawButton;
     public LevelProgress levelProgress;
@@ -81,12 +81,8 @@ public class GameplayManager : MonoBehaviour
     private void Awake()
     {
         cardAlign = GameObject.Find("PlayerHand").GetComponent<CardAlign>();
-        for (int i = 0; i < enemyBattleStation.Length; i++)
-        {
-            SpawnEnemies(i);
-        }
-        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
 
+        ui.OnMapClick();
 
     }
 
@@ -94,10 +90,10 @@ public class GameplayManager : MonoBehaviour
     {
         goldtxt.GetComponent<TextMeshProUGUI>().text = gold.ToString();
 
-        if(enemies == null)
+       /* if(enemies == null)
         {
             StartCoroutine(OnBattleWin());
-        }
+        }*/
     }
 
     void Start()
@@ -107,15 +103,26 @@ public class GameplayManager : MonoBehaviour
     
         state = BattleState.START;
         
-        StartCoroutine(OnBattleLost());
+        StartCoroutine(ChooseNode());
 
+
+
+    }
+    IEnumerator ChooseNode()
+    {
+        state = BattleState.NODE;
         
-        
+        yield return new WaitForSeconds(.1f);
     }
     IEnumerator SetupBattle()
     {
 
         yield return new WaitForSeconds(2f);
+        for (int i = 0; i < enemyBattleStation.Length; i++)
+        {
+            SpawnEnemies(i);
+        }
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
 
         state = BattleState.PLAYERTURN;
         StartCoroutine(OnPlayersTurn());
