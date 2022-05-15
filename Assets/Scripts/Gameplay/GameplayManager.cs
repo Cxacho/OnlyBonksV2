@@ -81,8 +81,11 @@ public class GameplayManager : MonoBehaviour
     private void Awake()
     {
         cardAlign = GameObject.Find("PlayerHand").GetComponent<CardAlign>();
-
-        
+        for (int i = 0; i < enemyBattleStation.Length; i++)
+        {
+            SpawnEnemies(i);
+        }
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
 
 
     }
@@ -90,19 +93,21 @@ public class GameplayManager : MonoBehaviour
     private void Update()
     {
         goldtxt.GetComponent<TextMeshProUGUI>().text = gold.ToString();
+
+        if(enemies == null)
+        {
+            StartCoroutine(OnBattleWin());
+        }
     }
 
     void Start()
     {
         
-        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+        
     
         state = BattleState.START;
-        for (int i = 0; i < enemyBattleStation.Length; i++)
-        {
-            SpawnEnemies(i);
-        }
-        StartCoroutine(SetupBattle());
+        
+        StartCoroutine(OnBattleLost());
 
         
         
