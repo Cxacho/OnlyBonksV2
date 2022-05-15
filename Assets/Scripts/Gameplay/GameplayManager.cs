@@ -90,10 +90,10 @@ public class GameplayManager : MonoBehaviour
     {
         goldtxt.GetComponent<TextMeshProUGUI>().text = gold.ToString();
 
-       /* if(enemies == null)
+        if(enemies == null)
         {
             StartCoroutine(OnBattleWin());
-        }*/
+        }
     }
 
     void Start()
@@ -114,10 +114,10 @@ public class GameplayManager : MonoBehaviour
         
         yield return new WaitForSeconds(.1f);
     }
-    IEnumerator SetupBattle()
+    public IEnumerator SetupBattle()
     {
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.1f);
         for (int i = 0; i < enemyBattleStation.Length; i++)
         {
             SpawnEnemies(i);

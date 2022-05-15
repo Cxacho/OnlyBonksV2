@@ -11,6 +11,8 @@ namespace Map
         public float enterNodeDelay = 1f;
         public MapManager mapManager;
         public MapView view;
+        private UiActive ui;
+        private GameplayManager gameplay;
 
         public static MapPlayerTracker Instance;
 
@@ -19,6 +21,8 @@ namespace Map
         private void Awake()
         {
             Instance = this;
+            ui = GameObject.Find("UIManager").GetComponent<UiActive>();
+            gameplay = GameObject.Find("GameplayManager").GetComponent<GameplayManager>();
         }
 
         public void SelectNode(MapNode mapNode)
@@ -59,7 +63,7 @@ namespace Map
             DOTween.Sequence().AppendInterval(enterNodeDelay).OnComplete(() => EnterNode(mapNode));
         }
 
-        private static void EnterNode(MapNode mapNode)
+        private void EnterNode(MapNode mapNode)
         {
             // we have access to blueprint name here as well
             Debug.Log("Entering node: " + mapNode.Node.blueprintName + " of type: " + mapNode.Node.nodeType);
@@ -69,6 +73,9 @@ namespace Map
             switch (mapNode.Node.nodeType)
             {
                 case NodeType.MinorEnemy:
+                    ui.OnMapClick();
+                    StartCoroutine(gameplay.SetupBattle());
+                    Locked = true;
                     break;
                 case NodeType.EliteEnemy:
                     break;
