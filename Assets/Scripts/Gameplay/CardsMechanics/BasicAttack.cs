@@ -20,7 +20,7 @@ public class BasicAttack : Card
 
             Instantiate(bonk, new Vector3(0, -10, 0), Quaternion.identity, GameObject.Find("Player").transform);
             StartCoroutine(ExecuteAfterTime(1f));
-            foreach (Enemy en in enemies)
+            foreach (Enemy en in _enemies)
             {
                 if (en.targeted == true)
                 {

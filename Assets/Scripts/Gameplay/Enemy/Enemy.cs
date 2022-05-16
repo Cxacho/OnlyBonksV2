@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     private void Awake()
     {
         gm = GameObject.Find("GameplayManager").GetComponent<GameplayManager>();
-        
+        _name = this.gameObject.name;
         Debug.Log("inicjalizacja");
         _currentHealth = maxHealth;
         healthTxt.text = _currentHealth + "/" + maxHealth;
@@ -99,9 +99,10 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
             {
                 if(gm.enemies[i].name == _name)
                 {
+                    gm.currentXP += gm.enemies[i].GetComponent<Enemy>().xp; //dodanie xpa za przeciwnika
 
-                    gm.enemies.RemoveAt(i); //usuniêcie danego przeciwnika z listy
-                    gm.currentXP += gm.enemies[i].GetComponent<EnemyOne>().xp; //dodanie xpa za przeciwnika
+                    gm.enType.RemoveAt(i);
+                    gm.enemies.RemoveAt(i); //usuni?cie danego przeciwnika z listy
                 }
             }
             
@@ -111,12 +112,17 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         
     }
 
-    public void ReceiveDamage(int damage)
+    public void ReceiveDamage(float damage)
     {
-        int updatedHealth = _currentHealth - damage;
+
+        int updatedHealth = (int)_currentHealth - (int)damage;
         OnDeath(updatedHealth > 0 ? updatedHealth : 0);
         healthTxt.text = updatedHealth + "/" + maxHealth;
         sdh.SetHealth(updatedHealth);
+        if (gm.enemies.Count == 0)
+        {
+            StartCoroutine(gm.OnBattleWin());
+        }
     }
 
     

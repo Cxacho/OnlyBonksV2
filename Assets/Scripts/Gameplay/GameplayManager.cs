@@ -79,27 +79,26 @@ public class GameplayManager : MonoBehaviour
 
     public List<GameObject> floorThreeEnemies = new List<GameObject>();
 
+    public List<Enemy> enType = new List<Enemy>();
 
-    Map.MapPlayerTracker map;
+
+    public Map.MapPlayerTracker map;
 
 
 
     private void Awake()
     {
         cardAlign = GameObject.Find("PlayerHand").GetComponent<CardAlign>();
+        gogo();
 
-        ui.OnMapClick();
-        
+
     }
 
     private void Update()
     {
         goldtxt.GetComponent<TextMeshProUGUI>().text = gold.ToString();
-
-        if(enemies == null)
-        {
-            StartCoroutine(OnBattleWin());
-        }
+        Debug.Log(enemies.Count);
+        
     }
 
     void Start()
@@ -108,8 +107,8 @@ public class GameplayManager : MonoBehaviour
         
     
         state = BattleState.START;
+
         
-        StartCoroutine(ChooseNode());
 
 
 
@@ -117,18 +116,23 @@ public class GameplayManager : MonoBehaviour
     IEnumerator ChooseNode()
     {
         state = BattleState.NODE;
-        
+        ui.OnMapClick();
         yield return new WaitForSeconds(.1f);
     }
     public IEnumerator SetupBattle()
     {
 
         yield return new WaitForSeconds(0.1f);
-        for (int i = 0; i < enemyBattleStation.Length; i++)
+
+        for (int i = 0; i < 1; i++)
         {
             SpawnEnemies(i);
         }
         enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+        foreach (GameObject en in enemies)
+            enType.Add(en.GetComponent<Enemy>());
+
+
 
         state = BattleState.PLAYERTURN;
         StartCoroutine(OnPlayersTurn());
@@ -233,7 +237,7 @@ public class GameplayManager : MonoBehaviour
 
         Debug.Log("Victory Screen");
 
-        Panels();
+        PanelsOnWin();
         map.Locked = false;
         
         for (int i = 0; i < 2; i++)
@@ -311,12 +315,16 @@ public class GameplayManager : MonoBehaviour
             player.mana -= cost;
         }
     }
-    private void Panels()
+    private void PanelsOnWin()
     {
         panelWin.SetActive(true);
         battleUI.SetActive(false);
     }
-    
+    public void PanelsOnButtonNext()
+    {
+        panelWin.SetActive(false);
+        battleUI.SetActive(true);
+    }
     private void ExecuteDarkSoulsText(string _text)
     {
         textPanel.SetActive(true);
@@ -338,6 +346,12 @@ public class GameplayManager : MonoBehaviour
     private void SpawnEnemies(int i)
     {
         Instantiate(floorOneEnemies[i], enemyBattleStation[i].transform.position, Quaternion.identity, enemyBattleStation[i].transform);
+    }
+    public void gogo()
+    {
+        
+        StartCoroutine(ChooseNode());
+        
     }
 }
 
