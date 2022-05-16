@@ -27,6 +27,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject goldtxt;
     public GameObject drawButton;
     public LevelProgress levelProgress;
+    
 
     [SerializeField] private Player player;
 
@@ -78,12 +79,17 @@ public class GameplayManager : MonoBehaviour
 
     public List<GameObject> floorThreeEnemies = new List<GameObject>();
 
+
+    Map.MapPlayerTracker map;
+
+
+
     private void Awake()
     {
         cardAlign = GameObject.Find("PlayerHand").GetComponent<CardAlign>();
 
         ui.OnMapClick();
-
+        
     }
 
     private void Update()
@@ -127,6 +133,31 @@ public class GameplayManager : MonoBehaviour
         state = BattleState.PLAYERTURN;
         StartCoroutine(OnPlayersTurn());
     }
+
+    public IEnumerator SetupEliteBattle()
+    {
+        yield break;
+    }
+    public IEnumerator SetupRestSite()
+    {
+        yield break;
+    }
+    public IEnumerator SetupBoss()
+    {
+        yield break;
+    }
+    public IEnumerator SetupStore()
+    {
+        yield break;
+    }
+    public IEnumerator SetupTreasure()
+    {
+        yield break;
+    }
+    public IEnumerator SetupMistery()
+    {
+        yield break;
+    }
     IEnumerator OnPlayersTurn()
     {
         drawAmount = 0;
@@ -159,7 +190,7 @@ public class GameplayManager : MonoBehaviour
         {
             ITakeTurn takeTurn = enemy.GetComponent<ITakeTurn>();
             takeTurn.takeTurn(player);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
         }
 
         
@@ -171,6 +202,7 @@ public class GameplayManager : MonoBehaviour
         player.OnEndTurn();
 
         state = BattleState.PLAYERTURN;
+
         StartCoroutine(OnPlayersTurn());
     }
     public IEnumerator OnBattleWin()
@@ -193,7 +225,7 @@ public class GameplayManager : MonoBehaviour
 
 
         StartCoroutine(LoseScreen());
-        //przenies do menu glownego
+        
     }
     IEnumerator VictoryScreen()
     {
@@ -202,7 +234,7 @@ public class GameplayManager : MonoBehaviour
         Debug.Log("Victory Screen");
 
         Panels();
-
+        map.Locked = false;
         
         for (int i = 0; i < 2; i++)
         {

@@ -78,16 +78,34 @@ namespace Map
                     Locked = true;
                     break;
                 case NodeType.EliteEnemy:
+                    ui.OnMapClick();
+                    StartCoroutine(gameplay.SetupEliteBattle());
+                    Locked = true;
                     break;
                 case NodeType.RestSite:
+                    ui.OnMapClick();
+                    StartCoroutine(gameplay.SetupRestSite());
+                    Locked = true;
                     break;
                 case NodeType.Treasure:
+                    ui.OnMapClick();
+                    StartCoroutine(gameplay.SetupTreasure());
+                    Locked = true;
                     break;
                 case NodeType.Store:
+                    ui.OnMapClick();
+                    StartCoroutine(gameplay.SetupStore());
+                    Locked = true;
                     break;
                 case NodeType.Boss:
+                    ui.OnMapClick();
+                    StartCoroutine(gameplay.SetupBoss());
+                    Locked = true;
                     break;
                 case NodeType.Mystery:
+                    ui.OnMapClick();
+                    StartCoroutine(gameplay.SetupMistery());
+                    Locked = true;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
