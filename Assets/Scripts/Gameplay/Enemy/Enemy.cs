@@ -28,12 +28,13 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     Vector3 mousePos;
     FollowMouse fm;
 
-   // public GameObject indicator;
-   // public TextMeshProUGUI indicatortxt;
+    public GameObject indicator;
+    public TextMeshProUGUI indicatortxt;
 
-/*  public Sprite[] indicatorImages;
+    public Sprite[] indicatorImages;
     [HideInInspector]
-    public Image indicatorSpriteRenderer;*/
+    public Image indicatorSpriteRenderer;
+ 
 
     public void OnPointerExit(PointerEventData eventData)
     {
@@ -54,17 +55,19 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         healthTxt.text = _currentHealth + "/" + maxHealth;
         armor = 0;
         sdh.SetMaxHealth(maxHealth);
+        fm = GameObject.Find("Cursor").GetComponent<FollowMouse>();
+        indicatorSpriteRenderer = indicator.GetComponent<Image>();
     }
     
     void Start()
     {
         
-        fm = GameObject.Find("Cursor").GetComponent<FollowMouse>();
+        
 
         corners = new Vector3[4];
         rect = GetComponent<RectTransform>();
         rect.GetLocalCorners(corners);
-        //indicatorSpriteRenderer = indicator.GetComponent<Image>();
+        
 
 
         
