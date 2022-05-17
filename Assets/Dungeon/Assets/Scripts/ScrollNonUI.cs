@@ -7,7 +7,7 @@ namespace Map
     {
         public float tweenBackDuration = 0.3f;
         public Ease tweenBackEase;
-        public bool freezeX;
+        public bool freezeX = true;
         public FloatMinMax xConstraints = new FloatMinMax();
         public bool freezeY;
         public FloatMinMax yConstraints = new FloatMinMax();

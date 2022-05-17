@@ -8,7 +8,8 @@ using DG.Tweening;
 
 public enum BattleState { NODE ,START, PLAYERTURN, ENEMYTURN, WON, LOST, VictoryScreen}
 
-
+[RequireComponent(typeof(AudioListener))]
+[RequireComponent(typeof(AudioSource))]
 public class GameplayManager : MonoBehaviour
 {
     public BattleState state;
@@ -118,6 +119,10 @@ public class GameplayManager : MonoBehaviour
         state = BattleState.NODE;
         ui.OnMapClick();
         yield return new WaitForSeconds(.1f);
+        if (playerHand.Count != 0)
+        {
+            resetDeck();
+        }
     }
     public IEnumerator SetupBattle()
     {
@@ -131,7 +136,7 @@ public class GameplayManager : MonoBehaviour
         enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
         foreach (GameObject en in enemies)
             enType.Add(en.GetComponent<Enemy>());
-
+        
 
 
         state = BattleState.PLAYERTURN;
@@ -298,10 +303,21 @@ public class GameplayManager : MonoBehaviour
             
         }
     }
-    public void shuffleDeck()
+    private void shuffleDeck()
     {
         discardDeck.ForEach(item => drawDeck.Add(item));
         discardDeck.Clear();
+    }
+    private void resetDeck()
+    {
+        playerHand.ForEach(item => drawDeck.Add(item));
+        var hand = GameObject.Find("PlayerHand");
+        for (int i = 0; i < playerHand.Count; i++)
+        {
+            Destroy(hand.transform.GetChild(i).gameObject);
+        }
+        
+        playerHand.Clear();
     }
     public void checkPlayerMana(int cost)
     {
