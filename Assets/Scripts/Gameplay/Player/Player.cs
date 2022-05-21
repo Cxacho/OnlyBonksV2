@@ -19,13 +19,9 @@ public class Player : MonoBehaviour
     public TMP_Text healthText;
     public TMP_Text armorText;
     public SliderHealth sdh;
-<<<<<<< HEAD
     public GameObject dmgPopOutBlock;
     public TextMeshProUGUI dmgPopOutTMP;
     public GameplayManager gm;
-=======
-    public TextMeshProUGUI damagePopout;
->>>>>>> Main-Workspace
 
 
     public int strenght = 0;
@@ -117,7 +113,6 @@ public class Player : MonoBehaviour
         {                      
             currentHealth -= damage;
             setHP();
-<<<<<<< HEAD
 
             dmgPopOutTMP.text = "- " + damage;
             dmgPopOutTMP.color = new Color(255, 0, 0);
@@ -129,19 +124,6 @@ public class Player : MonoBehaviour
             dmgTextSeq.Append(dmgText.transform.DOMoveY(-60f, 1f));
             dmgTextSeq.Insert(0, dmgText.transform.DOMoveX(1f, dmgTextSeq.Duration()));
             dmgTextSeq.OnComplete(() => { GameObject.Destroy(dmgText); });
-=======
-            damagePopout.text = "-" + damage.ToString();
-            damagePopout.gameObject.SetActive(true);
-            Sequence sequence = DOTween.Sequence();
-            sequence.Append(damagePopout.rectTransform.DOAnchorPosY(damagePopout.GetComponent<RectTransform>().anchoredPosition.y + 200, 0.5f));
-            sequence.Append(damagePopout.rectTransform.DOAnchorPosY(damagePopout.GetComponent<RectTransform>().anchoredPosition.y - 500, 1f));
-            sequence.Insert(0, damagePopout.rectTransform.DOAnchorPosX(damagePopout.GetComponent<RectTransform>().anchoredPosition.x - 300, sequence.Duration()));
-            sequence.OnComplete(() =>
-            {
-                damagePopout.gameObject.SetActive(false);
-            });
-            
->>>>>>> Main-Workspace
         }
             
     }

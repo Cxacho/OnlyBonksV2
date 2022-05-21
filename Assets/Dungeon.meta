@@ -1,14 +1,8 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Dungeon.meta
 guid: 6a6772a4cd3df294cabaa23a8703c320
 folderAsset: yes
 DefaultImporter:
-========
-guid: cbd5ead9a57ce8241bf4520068cd0748
-NativeFormatImporter:
->>>>>>>> Main-Workspace:Assets/Prefabs/Sprites/Characters/PopCatIdleMouth.anim.meta
   externalObjects: {}
-  mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
