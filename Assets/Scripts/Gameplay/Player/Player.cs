@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     public GameplayManager gm;
 
 
+
     public int strenght = 0;
     public int dexterity = 0;
     public int inteligence = 0;
@@ -126,6 +127,29 @@ public class Player : MonoBehaviour
             dmgTextSeq.OnComplete(() => { GameObject.Destroy(dmgText); });
         }
             
+    }
+    public void Heal(int value)
+    {
+        
+        if (currentHealth + value < maxHealth)
+            currentHealth += value;
+        else if (value + currentHealth > maxHealth)
+        {
+            if (currentHealth == maxHealth)
+            {
+                TakeDamage(5);
+                //wstaw wiadomosc NO OVERHEALING U MOROn
+            }
+            else
+            {
+                var ss = value + currentHealth;
+                int healValue = ss - maxHealth;
+                currentHealth = maxHealth;
+            }
+        }
+        setHP();
+
+
     }
     public void Charmed()
     {

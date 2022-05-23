@@ -9,22 +9,22 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public cardType cType;
     public cardState currentCardState;
-    [SerializeField] Vector3 mousePos, posInHand, discDek;
-    [SerializeField] FollowMouse fm;
+    private Vector3 mousePos, posInHand, discDek;
+    private FollowMouse fm;
     [SerializeField] TrailRenderer trail;
-    public Player pl;
+    [HideInInspector] public Player pl;
     Quaternion oldRot, newRot, hoverRotation = new Quaternion(0, 0, 0, 0);
     CardAlign cAlign;
-    public bool playable;
-    public GameplayManager gm;
+    [HideInInspector] public GameplayManager gm;
     RectTransform pos;
-    [SerializeField] GameObject par;
+    GameObject par;
     List<GameObject> temp = new List<GameObject>();
-    [SerializeField] int index, numOfTargets;
+    [SerializeField] int index;
+    private int numOfTargets;
     public int baseNumOfTargets;
-    float clickDelay;
-    [SerializeField] List<GameObject> meshes = new List<GameObject>();
-    public List<Enemy> _enemies = new List<Enemy>();
+    private float clickDelay;
+    private List<GameObject> meshes = new List<GameObject>();
+    [HideInInspector]public List<Enemy> _enemies = new List<Enemy>();
     float posY;
 
 
@@ -79,7 +79,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         par = GameObject.Find("PlayerHand");
         cAlign = par.GetComponent<CardAlign>();
-        playable = true;
         meshes.AddRange(GameObject.FindGameObjectsWithTag("Indicator"));
         pl = GameObject.Find("Player").GetComponent<Player>();
         //kod do wymiany

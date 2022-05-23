@@ -410,19 +410,19 @@ MonoBehaviour:
   - {fileID: 2858555165568228111, guid: cfcff1f83ae779d489c16fc6f5a49bec, type: 3}
   startingDeck:
   - {fileID: 2858555165568228111, guid: 2d1125c2371a69541bf5264558b09929, type: 3}
-  - {fileID: 2858555165568228111, guid: cfcff1f83ae779d489c16fc6f5a49bec, type: 3}
+  - {fileID: 3383854915774529881, guid: bdf64af54e6e0804ca6cc76cd5ac0d99, type: 3}
   - {fileID: 2858555165568228111, guid: cfcff1f83ae779d489c16fc6f5a49bec, type: 3}
   - {fileID: 2858555165568228111, guid: f295629c93a6be545924df461971ba20, type: 3}
   - {fileID: 2858555165568228111, guid: 5b51ad2ef115ead46a2213787448281a, type: 3}
   - {fileID: 2858555165568228111, guid: 91863920655f72f47a456fa5c34d3c77, type: 3}
   - {fileID: 7898178142826349868, guid: da4c0f2ff7b643f40858ecab3e75cfaa, type: 3}
-  - {fileID: 2858555165568228111, guid: 2d1125c2371a69541bf5264558b09929, type: 3}
+  - {fileID: 9216945231615369283, guid: 5ed75648b13d06948b6b5101820cb497, type: 3}
   - {fileID: 8375890335322642537, guid: d0e0311802861924b9ae71e6d10dd032, type: 3}
   - {fileID: 2858555165568228111, guid: 2f9a5ea12e7b61a4999d1b1938e6572a, type: 3}
   - {fileID: 7546190796451804516, guid: 88857b4396b9d284e9464ca71d8ab3ff, type: 3}
   - {fileID: 806097991063666207, guid: a73c570927c6e334d8904b9ea7dc22a2, type: 3}
-  - {fileID: 3383854915774529881, guid: bdf64af54e6e0804ca6cc76cd5ac0d99, type: 3}
-  - {fileID: 9216945231615369283, guid: 5ed75648b13d06948b6b5101820cb497, type: 3}
+  - {fileID: 1754210890247010475, guid: 29d6cb46ccc1c0b4cab1319b3bfc37b1, type: 3}
+  - {fileID: 7947560193341729093, guid: a59d53115ba19e946a65a3e089a93aae, type: 3}
   drawDeck: []
   playerHand: []
   discardDeck: []
@@ -6681,7 +6681,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.88368756, y: 0.16745436}
   m_AnchorMax: {x: 0.9395209, y: 0.89060545}
-  m_AnchoredPosition: {x: -1.1999512, y: -3}
+  m_AnchoredPosition: {x: -1.1999512, y: -2.999998}
   m_SizeDelta: {x: 0.46398926, y: 8.074997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1091676186
@@ -9024,7 +9024,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.077391766, y: 0.23200001}
   m_AnchorMax: {x: 0.13678141, y: 0.379}
-  m_AnchoredPosition: {x: -0.5, y: -87.89993}
+  m_AnchoredPosition: {x: -0.5, y: -87.8999}
   m_SizeDelta: {x: 160.5, y: -4.322998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1533790606

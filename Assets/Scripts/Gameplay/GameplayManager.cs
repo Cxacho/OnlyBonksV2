@@ -98,7 +98,6 @@ public class GameplayManager : MonoBehaviour
     private void Update()
     {
         goldtxt.GetComponent<TextMeshProUGUI>().text = gold.ToString();
-        Debug.Log(enemies.Count);
         
     }
 
