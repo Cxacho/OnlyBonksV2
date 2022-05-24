@@ -8,6 +8,9 @@ public class EnemyOne : Enemy, ITakeTurn
 
     private void Start()
     {
+        indicatorStrings.AddRange(new string[] { "10", (damage * 3).ToString(), " ", damage.ToString(), damage.ToString() });
+        indicatorStringsBool.AddRange(new bool[] {true,true,false,true,true});
+
         indicatortxt.text = damage.ToString();
         
     }
@@ -18,19 +21,15 @@ public class EnemyOne : Enemy, ITakeTurn
         {
             case 0:              
                 player.TakeDamage(damage);
-                actionsInt++;
-                //indicatorSpriteRenderer.sprite = indicatorImages[1];
-                SetIndicator(10.ToString(), 1, false);
-                //indicatortxt.text = 10.ToString();
                 
-                //indicatortxt.enabled = false;
+
+                SetIndicator();
+                actionsInt++;
                 break;
             case 1:
                 armor = 10;
+                SetIndicator();
                 actionsInt++;
-                
-                indicatortxt.text = (damage * 3).ToString();
-                indicatorSpriteRenderer.sprite = indicatorImages[0];
                 break;
             case 2:
 
@@ -42,22 +41,18 @@ public class EnemyOne : Enemy, ITakeTurn
                 {
                     crippled();
                 }
+                SetIndicator();
                 actionsInt++;
-                indicatortxt.enabled = false;
-                indicatorSpriteRenderer.sprite = indicatorImages[2];
                 break;
             case 3:
                 player.Charmed();
+                SetIndicator();
                 actionsInt++;
-                indicatortxt.enabled = true;
-                indicatortxt.text = damage.ToString();
-                indicatorSpriteRenderer.sprite = indicatorImages[0];
                 break;
             case 4:
                 player.TakeDamage(damage);
+                SetIndicator();
                 actionsInt = 0;
-                indicatortxt.text = damage.ToString();
-                indicatorSpriteRenderer.sprite = indicatorImages[0];
                 break;
             default:
                 break;

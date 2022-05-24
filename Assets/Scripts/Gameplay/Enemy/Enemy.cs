@@ -33,6 +33,9 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public TextMeshProUGUI indicatortxt;
 
     public Sprite[] indicatorImages;
+    public List<string> indicatorStrings = new List<string>();
+    public List<bool> indicatorStringsBool = new List<bool>();
+    public int[] indicatorImagesInt;
     [HideInInspector]
     public Image indicatorSpriteRenderer;
  
@@ -128,18 +131,18 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         }
     }
 
-    public void SetIndicator(string txtvalue, int value, bool yesno)
+    public void SetIndicator()
     {
-        indicatortxt.text = txtvalue;
-        if (yesno == true) {
+        indicatortxt.text = indicatorStrings[actionsInt];
+        if (indicatorStringsBool[actionsInt] == true) {
             
             indicatortxt.enabled = true;
         }
-        else if (yesno == false)
+        else
         {
             indicatortxt.enabled = false;
         }
-        indicatorSpriteRenderer.sprite = indicatorImages[value];
+        indicatorSpriteRenderer.sprite = indicatorImages[indicatorImagesInt[actionsInt]];
 
     }
 }

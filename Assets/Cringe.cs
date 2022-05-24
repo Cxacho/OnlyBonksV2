@@ -19,8 +19,9 @@ public class Cringe : Card
             {
                 if (en.targeted == true)
                 {
+                    en.SetIndicator();
                     en.actionsInt++;
-
+                    
                     en.targeted = false;
                 }
             }

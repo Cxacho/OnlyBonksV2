@@ -497,6 +497,7 @@ MonoBehaviour:
   _currentHealth: 0
   _name: Wojownik
   xp: 0
+  actionsInt: 0
   sdh: {fileID: 8057601061976604046}
   rect: {fileID: 8057601061976604041}
   gm: {fileID: 0}
@@ -514,6 +515,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1b8b87b1257070743b2381678d8a56aa, type: 3}
   - {fileID: 21300000, guid: aaab0c6227ef1d04cb321e65689e6d7f, type: 3}
   - {fileID: 21300000, guid: 2e8d93c9930db5d48b76a6d8549f5035, type: 3}
+  indicatorStrings: []
+  indicatorImagesInt: 0100000000000000020000000000000000000000
   indicatorSpriteRenderer: {fileID: 0}
 --- !u!1 &8057601062704595033
 GameObject:
