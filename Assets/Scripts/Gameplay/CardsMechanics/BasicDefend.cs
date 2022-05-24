@@ -13,6 +13,7 @@ public class BasicDefend : Card
         gm.checkPlayerMana(cost);
         if (gm.canPlayCards == true)
         {
+            
             if (pl.armor == 0)
             {
                 Instantiate(shield, new Vector3(GameObject.Find("Player").transform.position.x, GameObject.Find("Player").transform.position.y, 0), Quaternion.identity, GameObject.Find("Player").transform);
@@ -20,6 +21,7 @@ public class BasicDefend : Card
             pl.armor += armor;
             pl.manaText.text = pl.mana.ToString();
             base.OnDrop();
+            gm.DrawCards(2);
         }
         else
         {

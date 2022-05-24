@@ -396,6 +396,7 @@ MonoBehaviour:
   player: {fileID: 228611245}
   canPlayCards: 1
   firstRound: 1
+  basePlayerDrawAmount: 5
   playerDrawAmount: 5
   maxCardDraw: 10
   drawAmount: 0
@@ -4722,6 +4723,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 228611244}
     m_Modifications:
+    - target: {fileID: 3718975651425124164, guid: 0d1acd6f6edbe2f4286de6f7c16dc30b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.4992316
+      objectReference: {fileID: 0}
+    - target: {fileID: 3718975651425124164, guid: 0d1acd6f6edbe2f4286de6f7c16dc30b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.055890184
+      objectReference: {fileID: 0}
     - target: {fileID: 6199131370539811927, guid: 0d1acd6f6edbe2f4286de6f7c16dc30b, type: 3}
       propertyPath: m_Name
       value: CheemsFinal 1
@@ -7100,6 +7109,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1184746753}
   m_CullTransparentMesh: 1
+--- !u!1 &1199990066
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1199990067}
+  m_Layer: 0
+  m_Name: OuterMapParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1199990067
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199990066}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1257421012
 GameObject:
   m_ObjectHideFlags: 0
@@ -7598,6 +7637,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354168582}
   m_CullTransparentMesh: 1
+--- !u!1 &1358411024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1358411025}
+  m_Layer: 0
+  m_Name: OuterMapParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1358411025
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358411024}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1370967307
 GameObject:
   m_ObjectHideFlags: 0
@@ -9024,7 +9093,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.077391766, y: 0.23200001}
   m_AnchorMax: {x: 0.13678141, y: 0.379}
-  m_AnchoredPosition: {x: -0.5, y: -87.8999}
+  m_AnchoredPosition: {x: -0.5, y: -87.89989}
   m_SizeDelta: {x: 160.5, y: -4.322998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1533790606
