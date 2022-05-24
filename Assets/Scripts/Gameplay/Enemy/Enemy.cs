@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public int _currentHealth;
     public string _name;
     public int xp;
+    [HideInInspector]public int actionsInt = 0;
 
     public SliderHealth sdh;
     public RectTransform rect;
@@ -85,6 +86,8 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         }
         mousePos = fm.rectPos.anchoredPosition;
 
+        Debug.Log(actionsInt);
+
     }
 
     public void OnDeath(int newHealthValue)
@@ -125,5 +128,18 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         }
     }
 
-    
+    public void SetIndicator(string txtvalue, int value, bool yesno)
+    {
+        indicatortxt.text = txtvalue;
+        if (yesno == true) {
+            
+            indicatortxt.enabled = true;
+        }
+        else if (yesno == false)
+        {
+            indicatortxt.enabled = false;
+        }
+        indicatorSpriteRenderer.sprite = indicatorImages[value];
+
+    }
 }

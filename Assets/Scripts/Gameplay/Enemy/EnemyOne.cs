@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyOne : Enemy, ITakeTurn
 {
-    private int i = 0;    
+    
 
     private void Start()
     {
@@ -14,19 +14,20 @@ public class EnemyOne : Enemy, ITakeTurn
 
     public void takeTurn(Player player)
     {
-        switch (i)
+        switch (actionsInt)
         {
             case 0:              
                 player.TakeDamage(damage);
-                i++;
-                indicatorSpriteRenderer.sprite = indicatorImages[1];
-                indicatortxt.text = 10.ToString();
-                indicatorSpriteRenderer.enabled = false;
-                indicatortxt.enabled = false;
+                actionsInt++;
+                //indicatorSpriteRenderer.sprite = indicatorImages[1];
+                SetIndicator(10.ToString(), 1, false);
+                //indicatortxt.text = 10.ToString();
+                
+                //indicatortxt.enabled = false;
                 break;
             case 1:
                 armor = 10;
-                i++;
+                actionsInt++;
                 
                 indicatortxt.text = (damage * 3).ToString();
                 indicatorSpriteRenderer.sprite = indicatorImages[0];
@@ -41,20 +42,20 @@ public class EnemyOne : Enemy, ITakeTurn
                 {
                     crippled();
                 }
-                i++;
+                actionsInt++;
                 indicatortxt.enabled = false;
                 indicatorSpriteRenderer.sprite = indicatorImages[2];
                 break;
             case 3:
                 player.Charmed();
-                i++;
+                actionsInt++;
                 indicatortxt.enabled = true;
                 indicatortxt.text = damage.ToString();
                 indicatorSpriteRenderer.sprite = indicatorImages[0];
                 break;
             case 4:
                 player.TakeDamage(damage);
-                i = 0;
+                actionsInt = 0;
                 indicatortxt.text = damage.ToString();
                 indicatorSpriteRenderer.sprite = indicatorImages[0];
                 break;
