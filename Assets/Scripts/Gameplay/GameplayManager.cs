@@ -36,7 +36,7 @@ public class GameplayManager : MonoBehaviour
 
     public bool canPlayCards = true;
     public bool firstRound = true;
-
+    public int basePlayerDrawAmount;
     public int playerDrawAmount;
     public int maxCardDraw = 12;
     public int drawAmount;
@@ -170,7 +170,7 @@ public class GameplayManager : MonoBehaviour
     {
         drawAmount = 0;
 
-        DrawCards();
+        DrawCards(basePlayerDrawAmount);
 
         player.AssignMana();
 
@@ -283,8 +283,9 @@ public class GameplayManager : MonoBehaviour
         StartCoroutine(OnEnemiesTurn());
         
     }
-    public void DrawCards()
+    public void DrawCards(int amount)
     {
+        playerDrawAmount = amount;
         drawAmount++;
         if (playerDrawAmount >= drawAmount)
         {
@@ -301,6 +302,8 @@ public class GameplayManager : MonoBehaviour
             cardAlign.Animate();
             
         }
+        if (playerDrawAmount < drawAmount)
+            drawAmount = 0;
     }
     private void shuffleDeck()
     {

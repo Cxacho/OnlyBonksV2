@@ -223,20 +223,7 @@ public class CardAlign : MonoBehaviour
     {
 
         SetValues();
-        GameObject card = children[gm.drawAmount - 1].gameObject;
-
-        /*
-        positions.Clear();
-        children.Clear();
-        rotations.Clear();
-        foreach (RectTransform child in transform)
-        {
-            children.Add(child);
-            rotations.Add(child.rotation.eulerAngles);
-        }
-        FitCards();
-        Align();
-        */
+        GameObject card = children[children.Count-1].gameObject;
         card.transform.DOScale(Vector3.one, 0.2f).OnComplete(() =>
         {
             card.transform.DOMove(positions[card.transform.GetSiblingIndex()], 0.2f).OnComplete(() =>
@@ -248,66 +235,9 @@ public class CardAlign : MonoBehaviour
                     children[i].transform.DOMove(positions[i], 0.2f);
                 }
                 //wywolanie draw'u kolejnych kart
-                gm.DrawCards();
+                gm.DrawCards(gm.playerDrawAmount);
             });
         });
-
-
-
-        //{
-        // 
-        // });
-        // ;
-
-        /*
-            test[fak].transform.DOMove(children[fak].transform.position, drawTime).OnComplete(() =>
-                {
-                    for (int i = 0; i < test.Length; i++)
-                    {
-                        if (test[i] != null)
-                            test[i].transform.DOMove(children[i].transform.position, drawTime).OnComplete(() =>
-                            {
-                                for (int i = 0; i < fak; i++)
-                                {
-                                    if(test[i] !=null)
-                                    test[i].transform.DORotate(children[i].transform.rotation.eulerAngles, drawTime);
-                                }
-                            });
-
-                    }
-                });
-        fak++;
-        */
-
-
-        /*
-        test[0].transform.DOMove(children[0].transform.position, drawTime).OnComplete(() =>
-        {
-            test[1].transform.DOMove(children[1].transform.position, drawTime).OnComplete(() =>
-            {
-                test[2].transform.DOMove(children[2].transform.position, drawTime).OnComplete(() =>
-                {
-                    test[3].transform.DOMove(children[3].transform.position, drawTime).OnComplete(() =>
-                    {
-                        test[4].transform.DOMove(children[4].transform.position, drawTime).OnComplete(() =>
-                        {
-                        for (int i = 0;i <test.Length;i++)
-                            {
-                                test[i].transform.DORotate(children[i].transform.rotation.eulerAngles,2f);
-                            }
-                        });
-                        
-                        ;
-                    });
-                });
-            });
-        });
-        
-        */
-        //wywyolywac ta funkcje za kazdym drawem
-
-
-
 
     }
 
