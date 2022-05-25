@@ -89,7 +89,6 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         }
         mousePos = fm.rectPos.anchoredPosition;
 
-        Debug.Log(actionsInt);
 
     }
 

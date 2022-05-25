@@ -339,6 +339,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             if (Input.GetButtonUp("Fire1") && pos.anchoredPosition.y > -90)
             {
+                _enemies.Clear();
+                _enemies.AddRange(gm.enType);
                 OnDrop();
             }
 

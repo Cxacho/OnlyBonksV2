@@ -396,7 +396,7 @@ MonoBehaviour:
   player: {fileID: 228611245}
   canPlayCards: 1
   firstRound: 1
-  basePlayerDrawAmount: 5
+  basePlayerDrawAmount: 9
   playerDrawAmount: 5
   maxCardDraw: 10
   drawAmount: 0
@@ -426,6 +426,10 @@ MonoBehaviour:
   - {fileID: 7947560193341729093, guid: a59d53115ba19e946a65a3e089a93aae, type: 3}
   - {fileID: 9009665565481257416, guid: 42dec35dae99f6d439b183456b43d615, type: 3}
   - {fileID: 1807266026739072191, guid: 41a3691cf4556594c936753541ff7aef, type: 3}
+  - {fileID: 3278963245332868438, guid: 051a2292f88cf3245aadece428e909f6, type: 3}
+  - {fileID: 1150438450449328782, guid: 0dba074f75b46b944816abe5b8c9f4e1, type: 3}
+  - {fileID: 6681184060049790405, guid: 0931425ebc7f3cf46938a1d72571df3f, type: 3}
+  - {fileID: 2477842090758909019, guid: 8d91382be50e8a6418f3f58c17d84a09, type: 3}
   drawDeck: []
   playerHand: []
   discardDeck: []
@@ -1393,7 +1397,7 @@ MonoBehaviour:
   dmgPopOutBlock: {fileID: 341310769}
   dmgPopOutTMP: {fileID: 6919735377406600591, guid: 9bc1e7f281d42104aabf432f1d811b08, type: 3}
   gm: {fileID: 43265154}
-  strenght: 1
+  strenght: 0
   dexterity: 0
   inteligence: 0
 --- !u!222 &228611247
@@ -4725,6 +4729,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 228611244}
     m_Modifications:
+    - target: {fileID: -6193078689831474657, guid: 0d1acd6f6edbe2f4286de6f7c16dc30b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4573709847059401242, guid: 0d1acd6f6edbe2f4286de6f7c16dc30b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4174223783080062077, guid: 0d1acd6f6edbe2f4286de6f7c16dc30b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3815271240863587448, guid: 0d1acd6f6edbe2f4286de6f7c16dc30b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 190049828069207566, guid: 0d1acd6f6edbe2f4286de6f7c16dc30b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 922457753815677084, guid: 0d1acd6f6edbe2f4286de6f7c16dc30b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3096232783222023990, guid: 0d1acd6f6edbe2f4286de6f7c16dc30b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6199131370539811927, guid: 0d1acd6f6edbe2f4286de6f7c16dc30b, type: 3}
       propertyPath: m_Name
       value: CheemsFinal 1
