@@ -91,7 +91,7 @@ public class UiActive : MonoBehaviour
         //mousePosition = Camera.main.ScreenToWorldPoint(secPos);
         
     }
-    void Check()
+    public void Check()
     {
         switch (panelIndex)
         {

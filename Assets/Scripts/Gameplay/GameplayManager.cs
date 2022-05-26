@@ -28,7 +28,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject goldtxt;
     public GameObject drawButton;
     public LevelProgress levelProgress;
-    
+    public GameObject shopPanel;
 
     [SerializeField] private Player player;
 
@@ -80,6 +80,17 @@ public class GameplayManager : MonoBehaviour
 
     public List<GameObject> floorThreeEnemies = new List<GameObject>();
 
+
+    public List<GameObject> EliteEnemies = new List<GameObject>();
+
+
+    public List<GameObject> Mistery = new List<GameObject>();
+
+
+    public List<GameObject> Boss = new List<GameObject>();
+
+    public GameObject Shopkeep;
+
     public List<Enemy> enType = new List<Enemy>();
 
 
@@ -115,7 +126,9 @@ public class GameplayManager : MonoBehaviour
     }
     IEnumerator ChooseNode()
     {
+
         state = BattleState.NODE;
+        map.Locked = false;
         ui.OnMapClick();
         yield return new WaitForSeconds(.1f);
         if (playerHand.Count != 0)
@@ -156,6 +169,12 @@ public class GameplayManager : MonoBehaviour
     }
     public IEnumerator SetupStore()
     {
+        
+        ui.panelIndex = 0;
+        ui.Check();
+        shopPanel.SetActive(true);
+        var fix = GameObject.Find("5CardsArea").GetComponent<GridLayoutGroup>();
+        fix.enabled = true;
         yield break;
     }
     public IEnumerator SetupTreasure()

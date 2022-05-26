@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -393,6 +393,7 @@ MonoBehaviour:
   goldtxt: {fileID: 1571557677}
   drawButton: {fileID: 939817791}
   levelProgress: {fileID: 294253167}
+  shopPanel: {fileID: 1473517031}
   player: {fileID: 228611245}
   canPlayCards: 1
   firstRound: 1
@@ -444,6 +445,10 @@ MonoBehaviour:
   - {fileID: 8057601062645456930, guid: 89b87a776ee0fcb4ebfdb88f1b80ff74, type: 3}
   floorTwoEnemies: []
   floorThreeEnemies: []
+  EliteEnemies: []
+  Mistery: []
+  Boss: []
+  Shopkeep: {fileID: 0}
   enType: []
   map: {fileID: 153442879}
 --- !u!4 &43265155
@@ -504,7 +509,7 @@ AudioSource:
   m_Volume: 0.15
   m_Pitch: 1
   Loop: 1
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -2768,7 +2773,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 569983511}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
   m_Name: 
@@ -9059,7 +9064,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.077391766, y: 0.23200001}
   m_AnchorMax: {x: 0.13678141, y: 0.379}
-  m_AnchoredPosition: {x: -0.5, y: -87.89992}
+  m_AnchoredPosition: {x: -0.5, y: -87.89995}
   m_SizeDelta: {x: 160.5, y: -4.322998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1533790606
@@ -10221,7 +10226,7 @@ GameObject:
   - component: {fileID: 1667696519}
   - component: {fileID: 1667696518}
   m_Layer: 5
-  m_Name: TextPanel
+  m_Name: EnemyTurnPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10384,6 +10389,7 @@ GameObject:
   - component: {fileID: 1734405913}
   - component: {fileID: 1734405912}
   - component: {fileID: 1734405911}
+  - component: {fileID: 1734405914}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -10454,7 +10460,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1734405912}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1734405914}
+        m_TargetAssemblyTypeName: ExitShop, Assembly-CSharp
+        m_MethodName: Onclick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1734405912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10493,6 +10511,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734405909}
   m_CullTransparentMesh: 1
+--- !u!114 &1734405914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734405909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03539b7afd129e049af32c112ecb8525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopPanel: {fileID: 1473517031}
+  gameplayManager: {fileID: 43265154}
 --- !u!1 &1791244308
 GameObject:
   m_ObjectHideFlags: 0
