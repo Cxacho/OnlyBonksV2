@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     public int maxHealth = 70;
     public int armor;
-    public int damage;
+    public float baseDamage,damage;
     public int _currentHealth;
     public string _name;
     public int xp;
@@ -77,7 +77,6 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     private void Update()
     {
-        
        if (targeted == true)
         {
             border.SetActive(true);

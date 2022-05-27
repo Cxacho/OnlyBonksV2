@@ -104,14 +104,20 @@ public class Player : MonoBehaviour
 
     }
     
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         Debug.Log(damage);
+        /*
+        if(vurneable>0)
+        {
+            damage *= 1.25f;
+        }
+        */
         if (armor > 0)
         {
             if (armor > damage)
             {
-                armor -= damage;
+                armor -= (int)damage;
                 armorText.text = armor.ToString();
 
                 dmgPopOutTMP.text = "Blocked " + damage + " dmg";
@@ -130,9 +136,9 @@ public class Player : MonoBehaviour
             else
             {
                 armorAndHp = armor + currentHealth;
-                armorAndHp -= damage;
+                armorAndHp -= (int)damage;
                 int dmgarm;
-                dmgarm = damage - armor;
+                dmgarm = (int)damage - armor;
                 armor = 0;
                 currentHealth = armorAndHp;
                 ResetImg();
@@ -155,7 +161,7 @@ public class Player : MonoBehaviour
         }
         else
         {                      
-            currentHealth -= damage;
+            currentHealth -= (int)damage;
             setHP();
 
             dmgPopOutTMP.text = "- " + damage;
@@ -240,6 +246,14 @@ public class Player : MonoBehaviour
                 Destroy(obj);
 
              }
+        }
+        foreach(Enemy en in FindObjectsOfType<Enemy>())
+        {
+            //zadziala poprawnie, wypierdoli sie gdy dostaniemy itemek lub karte ktora cleansuje debuffy
+            if (vurneable > 0)
+                en.damage = en.baseDamage * 1.25f;
+            else
+                en.damage = en.baseDamage;
         }
     }
     enum buffs
