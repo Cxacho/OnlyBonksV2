@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public string _name;
     public int xp;
     [HideInInspector]public int actionsInt = 0;
-
+    private Player pl;
     public SliderHealth sdh;
     public RectTransform rect;
     
@@ -25,7 +25,6 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public bool targeted, isFirstTarget, isSecondTarget, isThirdTarget;
     [SerializeField] GameObject border;
     public EnemyType EnemyType;
-    public Vector3[] corners;
     Vector3 mousePos;
     FollowMouse fm;
 
@@ -38,6 +37,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public int[] indicatorImagesInt;
     [HideInInspector]
     public Image indicatorSpriteRenderer;
+
  
 
     public void OnPointerExit(PointerEventData eventData)
@@ -52,6 +52,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     private void Awake()
     {
+        pl = FindObjectOfType<Player>();
         gm = GameObject.Find("GameplayManager").GetComponent<GameplayManager>();
         _name = this.gameObject.name;
         Debug.Log("inicjalizacja");
@@ -68,17 +69,15 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         
         
 
-        corners = new Vector3[4];
         rect = GetComponent<RectTransform>();
-        rect.GetLocalCorners(corners);
         
-
 
         
     }
 
     private void Update()
     {
+        
        if (targeted == true)
         {
             border.SetActive(true);
@@ -87,6 +86,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         {
             border.SetActive(false);
         }
+        
         mousePos = fm.rectPos.anchoredPosition;
 
 
@@ -119,8 +119,19 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     public void ReceiveDamage(float damage)
     {
+        int updatedHealth;
+        if (pl.frail > 0)
+        {
+            updatedHealth = (int)_currentHealth - (int)(damage *0.75f);
+            Debug.Log(updatedHealth - _currentHealth);
+            Debug.Log("frailed");
+        }
+        else
+        {
+            Debug.Log("not Frailed");
+            updatedHealth = (int)_currentHealth - (int)damage;
+        }
 
-        int updatedHealth = (int)_currentHealth - (int)damage;
         OnDeath(updatedHealth > 0 ? updatedHealth : 0);
         healthTxt.text = updatedHealth + "/" + maxHealth;
         sdh.SetHealth(updatedHealth);

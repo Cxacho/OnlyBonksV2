@@ -19,6 +19,7 @@ TagManager:
   - asteroid
   - Indicator
   - EnemyIndicator
+  - BuffIndicator
   layers:
   - Default
   - TransparentFX

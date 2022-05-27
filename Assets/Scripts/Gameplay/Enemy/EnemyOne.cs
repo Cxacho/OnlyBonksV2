@@ -21,18 +21,19 @@ public class EnemyOne : Enemy, ITakeTurn
         {
             case 0:              
                 player.TakeDamage(damage);
-                
 
+                //player.setDebuffIndicator(2,0,player.buffIndicators[0]);
                 SetIndicator();
                 actionsInt++;
                 break;
             case 1:
+                //player.setDebuffIndicator(3, 1, player.buffIndicators[1]);
                 armor = 10;
                 SetIndicator();
                 actionsInt++;
                 break;
             case 2:
-
+                //player.setDebuffIndicator(3, 1, player.buffIndicators[1]);
                 if (armor > 0)
                 {
                     player.TakeDamage(damage * 3);
@@ -45,11 +46,13 @@ public class EnemyOne : Enemy, ITakeTurn
                 actionsInt++;
                 break;
             case 3:
+                //player.setDebuffIndicator(3, 1, player.buffIndicators[1]);
                 player.Charmed();
                 SetIndicator();
                 actionsInt++;
                 break;
             case 4:
+                //player.setDebuffIndicator(3, 1, player.buffIndicators[1]);
                 player.TakeDamage(damage);
                 SetIndicator();
                 actionsInt = 0;

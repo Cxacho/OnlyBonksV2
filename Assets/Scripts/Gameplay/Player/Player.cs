@@ -9,12 +9,14 @@ public class Player : MonoBehaviour
     public GameObject fillArmor;
     public GameObject textHealth;
     public GameObject textArmor;
+    public GameObject frailIndicator, vurneableIndicator;
+    TextMeshProUGUI value;
     public int maxHealth = 70;
     public int currentHealth;
     public int armor;
     public int armorAndHp;
     public int mana;
-    public GameObject armorImage;
+    public GameObject armorImage,buffsAndDebuffs;
     public TMP_Text manaText;
     public TMP_Text healthText;
     public TMP_Text armorText;
@@ -22,12 +24,12 @@ public class Player : MonoBehaviour
     public GameObject dmgPopOutBlock;
     public TextMeshProUGUI dmgPopOutTMP;
     public GameplayManager gm;
-
-
-
     public int strenght = 0;
     public int dexterity = 0;
     public int inteligence = 0;
+    public int frail,vurneable;
+    public List<GameObject> buffIndicators = new List<GameObject>();
+    buffs currentBuff;
     private void Awake()
     {
         currentHealth = maxHealth;
@@ -61,6 +63,47 @@ public class Player : MonoBehaviour
         textArmor.SetActive(false);
         armorText.text = armor.ToString();
     }
+    
+    public void setDebuffIndicator(int value,int select,GameObject buffIndicator)
+    {
+        currentBuff = (buffs)select;
+        switch(currentBuff)
+        {
+            case Player.buffs.frail:
+                frail += value;
+                //GameObject obj = null;
+                //if(obj == null)
+                //obiekt bedzie sie spawnowal w nieskonczonosc dopoki nie nalozymy ograniczenia
+                if (frailIndicator == null)
+                {
+                    frailIndicator = Instantiate(buffIndicator, buffsAndDebuffs.transform);
+                    var buffValue = frailIndicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+                    buffValue.text = frail.ToString();
+                }
+                else
+                {
+                    var buffValue = frailIndicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+                    buffValue.text = frail.ToString();
+                }
+                break;
+            case Player.buffs.vurneable:
+                vurneable += value;
+                if (vurneableIndicator == null)
+                {
+                    vurneableIndicator = Instantiate(buffIndicator, buffsAndDebuffs.transform);
+                    var buffValue1 = vurneableIndicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+                    buffValue1.text = vurneable.ToString();
+                }
+                else
+                {
+                    var buffValue1 = vurneableIndicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+                    buffValue1.text = vurneable.ToString();
+                }
+                break;
+        }
+
+    }
+    
     public void TakeDamage(int damage)
     {
         Debug.Log(damage);
@@ -178,5 +221,30 @@ public class Player : MonoBehaviour
         if(strenght>0 ) strenght--;
         if(dexterity>0 ) dexterity--;
         if(inteligence>0) inteligence--;
+        if (frail > 0) frail--;
+        if (vurneable > 0) vurneable--;
+        //usuniecie indicatora
+        foreach(GameObject obj in GameObject.FindGameObjectsWithTag("BuffIndicator"))
+        {
+             var some = obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            int statusAmount;
+            int.TryParse(some.text.ToString(),out statusAmount);
+            statusAmount -= 1;
+            if (statusAmount > 0)
+            {
+                some.text = statusAmount.ToString();
+
+            }
+            else
+            {
+                Destroy(obj);
+
+             }
+        }
+    }
+    enum buffs
+    {
+        frail=0,
+        vurneable=1
     }
 }
