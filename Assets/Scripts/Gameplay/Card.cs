@@ -22,7 +22,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] int index;
     private int numOfTargets;
     public int baseNumOfTargets;
-    private float clickDelay;
+    //private float clickDelay;
     private List<GameObject> meshes = new List<GameObject>();
     [HideInInspector]public List<Enemy> _enemies = new List<Enemy>();
     float posY;
@@ -282,7 +282,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                     numOfTargets -= 1;
                     if (numOfTargets == 0)
                         DisableIndicator();
-                    clickDelay = Time.time + 0.3f;
+                    //clickDelay = Time.time + 0.3f;
                 }
                 else if (Input.GetButtonUp("Fire1") && fm.en.targeted == true && numOfTargets >= 0)
                 {
@@ -310,11 +310,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
                     if (numOfTargets == 1)
                         EnableIndicator();
-                    clickDelay = Time.time + 0.3f;
+                    //clickDelay = Time.time + 0.3f;
                 }
 
             }
-            if (Input.GetButtonUp("Fire1") && currentCardState == cardState.Targetable && numOfTargets == 0 && Time.time > clickDelay && fm.en == null)
+            if (Input.GetButtonUp("Fire1") && currentCardState == cardState.Targetable && numOfTargets == 0)
             {
                 //zagranie ataku gdy liczba targetow rowna zero i nie ma targetu na myszcze
                 DisableIndicator();

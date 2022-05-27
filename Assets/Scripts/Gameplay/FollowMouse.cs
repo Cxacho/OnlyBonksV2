@@ -15,14 +15,17 @@ public class FollowMouse : MonoBehaviour
     [SerializeField] float multipiler;
     public List<Vector3> spriteScale = new List<Vector3>();
     public Card crd;
+    bool onStart;
     private void Awake()
     {
         objs.AddRange(GameObject.FindGameObjectsWithTag("Indicator"));
         foreach (GameObject obj in objs)
             rect.Add(obj.GetComponent<RectTransform>());
         rect[0].anchoredPosition = new Vector3(0, -400, 0);
-    }
+        onStart = true;
 
+    }
+    
     void Update()
     {
         float test = 1.0f / objs.Count;
@@ -30,10 +33,15 @@ public class FollowMouse : MonoBehaviour
         {
             if (i != 0)
                 rect[i].anchoredPosition = Vector3.LerpUnclamped(rect[0].anchoredPosition, rect[objs.Count - 1].anchoredPosition, test * i);
-            spriteScale.Add(new Vector3(i * multipiler, i * multipiler, 1));
+            if (onStart == true)
+            {
+                spriteScale.Add(new Vector3(i * multipiler, i * multipiler, 1));
+                if(spriteScale.Count > objs.Count)
+                onStart= false;
+            }
+
 
         }
-
         viewPortPosition = Camera.main.ScreenToViewportPoint(Input.mousePosition);
         rectPos.anchoredPosition = new Vector2(Input.mousePosition.x * scaler.referenceResolution.x / Screen.width, Input.mousePosition.y * scaler.referenceResolution.y / Screen.height);
         rectPos.anchoredPosition -= new Vector2(960, 540);
