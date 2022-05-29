@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PotFriend : Enemy, ITakeTurn
+public class DankMage : Enemy, ITakeTurn
 {
 
 
     private void Start()
     {
         //indicatorStrings.AddRange(new string[] {"10", (damage * 3).ToString(), " ", damage.ToString(), damage.ToString()});
-        indicatorStringsBool.AddRange(new bool[] { true, true, true, false});
+        indicatorStringsBool.AddRange(new bool[] { false, true, false, false });
         numberOfAttacks = 1;
         attackIndicatortxt.enabled = false;
         //SetAttackString(1);
@@ -26,33 +26,39 @@ public class PotFriend : Enemy, ITakeTurn
         switch (actionsInt)
         {
             case 0:
-                //corrosive spit
-                //naklada indicator poision , o wartosci 4
-                player.setDebuffIndicator(4, 2, player.buffIndicators[2]);
+                //Dankening
+                //naklada indicator frail , o wartosci 3
+                player.setDebuffIndicator(3, 0, player.buffIndicators[0]);
+                
                 SetIndicator();
                 actionsInt++;
-                numberOfAttacks = 1;
                 break;
             case 1:
-                //light Jab
-                player.TakeDamage(damage);                                        
-                SetIndicator();
-                actionsInt++;
-                ChangeIndicatorTexts("inny");
-                otherIndicatortxt.text = 12.ToString();
-                break;
-            case 2:
-                //harden
-                armor = armor + 12;
+                //FeelsDankMan
+                //nalozyc indicator buffa na przeciwnikow
+                foreach (Enemy en in FindObjectsOfType<Enemy>())
+                    en.baseDamage = en.baseDamage + 3;
                 ChangeIndicatorTexts("atak");
                 SetIndicator();
                 actionsInt++;
-                numberOfAttacks = 1.5f;
+
+                
+                break;
+            case 2:
+                //DankWave
+                player.TakeDamage(damage);
+                SetIndicator();
+                actionsInt++;
+                ChangeIndicatorTexts("inny");
+                otherIndicatortxt.text = 7.ToString();
                 break;
             case 3:
-                //slam
-                player.TakeDamage(damage * 1.5f);
+                //Dankness protect you !
+                foreach (Enemy en in FindObjectsOfType<Enemy>())
+                    en.armor = en.armor +7;
                 SetIndicator();
+                actionsInt++;
+                otherIndicatortxt.enabled = false;
                 actionsInt = 0;
                 break;
         }
