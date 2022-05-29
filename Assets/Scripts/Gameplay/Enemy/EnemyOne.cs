@@ -26,7 +26,7 @@ public class EnemyOne : Enemy, ITakeTurn
         {
             case 0:              
                 player.TakeDamage(damage);
-
+                //naklada indicator frail, o wartosci 2 
                 player.setDebuffIndicator(2,0,player.buffIndicators[0]);
                 attackIndicatortxt.text = 10.ToString();
                 SetIndicator();
@@ -36,6 +36,7 @@ public class EnemyOne : Enemy, ITakeTurn
                 break;
             case 1:
                 ChangeIndicatorTexts("atak");
+                //naklada indicator vurneable, o wartosci 3 
                 player.setDebuffIndicator(3, 1, player.buffIndicators[1]);
                 armor = 10;
                 
@@ -44,7 +45,8 @@ public class EnemyOne : Enemy, ITakeTurn
                 numberOfAttacks = 3;
                 break;
             case 2:
-                player.setDebuffIndicator(3, 1, player.buffIndicators[1]);
+                //naklada indicator poision , o wartosci 4
+                player.setDebuffIndicator(4, 2, player.buffIndicators[2]);
                 if (armor > 0)
                 {
                     player.TakeDamage(damage * 3);
