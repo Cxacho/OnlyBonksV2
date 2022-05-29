@@ -28,7 +28,6 @@ public class EnemyOne : Enemy, ITakeTurn
                 player.TakeDamage(damage);
                 //naklada indicator frail, o wartosci 2 
                 player.setDebuffIndicator(2,0,player.buffIndicators[0]);
-                attackIndicatortxt.text = 10.ToString();
                 SetIndicator();
                 actionsInt++;
                 ChangeIndicatorTexts("inny");

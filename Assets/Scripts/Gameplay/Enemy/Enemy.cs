@@ -73,9 +73,8 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     private void Update()
     {
-        SetAttackString(numberOfAttacks);
 
-        //Debug.Log(indicatorStringsBool[actionsInt]);
+        SetAttackString(numberOfAttacks);
 
        if (targeted == true)
         {
@@ -142,7 +141,6 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     public void SetIndicator()
     {
-        //indicatortxt.text = indicatorStrings[actionsInt];
         if (indicatorStringsBool[actionsInt] == true)
         {           
             attackIndicatortxt.enabled = true;            

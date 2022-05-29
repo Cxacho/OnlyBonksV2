@@ -31,17 +31,15 @@ public class PotFriend : Enemy, ITakeTurn
                 player.setDebuffIndicator(4, 2, player.buffIndicators[2]);
                 SetIndicator();
                 actionsInt++;
-                ChangeIndicatorTexts("atak");
                 numberOfAttacks = 1;
                 break;
             case 1:
                 //light Jab
-                player.TakeDamage(damage);
-                ChangeIndicatorTexts("inny");
-                otherIndicatortxt.text = 12.ToString();
+                player.TakeDamage(damage);                                        
                 SetIndicator();
                 actionsInt++;
-                
+                ChangeIndicatorTexts("inny");
+                otherIndicatortxt.text = 12.ToString();
                 break;
             case 2:
                 //harden
@@ -56,7 +54,6 @@ public class PotFriend : Enemy, ITakeTurn
                 player.TakeDamage(damage * 1.5f);
                 SetIndicator();
                 actionsInt++;
-                ChangeIndicatorTexts("inny");
                 actionsInt = 0;
                 break;
         }
