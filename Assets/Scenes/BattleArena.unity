@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -469,8 +469,8 @@ MonoBehaviour:
   - {fileID: 2858555165568228111, guid: cfcff1f83ae779d489c16fc6f5a49bec, type: 3}
   enemies: []
   floorOneEnemies:
-  - {fileID: 2867067199404586775, guid: 605f75cbda1d5f941816f2b9321140d0, type: 3}
   - {fileID: 2867067199404586775, guid: bcb86b166b3911642805caddb9c09dc5, type: 3}
+  - {fileID: 2867067199404586775, guid: 605f75cbda1d5f941816f2b9321140d0, type: 3}
   - {fileID: 8057601062645456930, guid: 89b87a776ee0fcb4ebfdb88f1b80ff74, type: 3}
   - {fileID: 2867067199404586775, guid: bcb86b166b3911642805caddb9c09dc5, type: 3}
   floorTwoEnemies: []
@@ -6856,7 +6856,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.88368756, y: 0.16745436}
   m_AnchorMax: {x: 0.9395209, y: 0.89060545}
-  m_AnchoredPosition: {x: -1.1999512, y: -2.999998}
+  m_AnchoredPosition: {x: -1.1999512, y: -3}
   m_SizeDelta: {x: 0.46398926, y: 8.074997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1091676186
@@ -9210,7 +9210,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.077391766, y: 0.23200001}
   m_AnchorMax: {x: 0.13678141, y: 0.379}
-  m_AnchoredPosition: {x: -0.5, y: -87.89993}
+  m_AnchoredPosition: {x: -0.5, y: -87.89992}
   m_SizeDelta: {x: 160.5, y: -4.322998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1533790606
