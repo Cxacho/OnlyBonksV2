@@ -203,8 +203,7 @@ public class GameplayManager : MonoBehaviour
         
         foreach(var indicator in _indicators)
         {
-            indicator.GetComponent<Image>().enabled = true;
-            indicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>().enabled = true;
+            indicator.GetComponent<Image>().enabled = true;           
         }
 
         yield return new WaitForSeconds(2);

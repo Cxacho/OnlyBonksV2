@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public int maxHealth = 70;
     public int armor;
     public float baseDamage,damage;
+    public float numberOfAttacks=1;
     public int _currentHealth;
     public string _name;
     public int xp;
@@ -29,7 +30,8 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     FollowMouse fm;
 
     public GameObject indicator;
-    public TextMeshProUGUI indicatortxt;
+    public TextMeshProUGUI attackIndicatortxt;
+    public TextMeshProUGUI otherIndicatortxt;
 
     public Sprite[] indicatorImages;
     public List<string> indicatorStrings = new List<string>();
@@ -66,17 +68,15 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     
     void Start()
     {
-        
-        
-
-        rect = GetComponent<RectTransform>();
-        
-
-        
+        rect = GetComponent<RectTransform>();     
     }
 
     private void Update()
     {
+        SetAttackString(numberOfAttacks);
+
+        //Debug.Log(indicatorStringsBool[actionsInt]);
+
        if (targeted == true)
         {
             border.SetActive(true);
@@ -142,16 +142,38 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     public void SetIndicator()
     {
-        indicatortxt.text = indicatorStrings[actionsInt];
-        if (indicatorStringsBool[actionsInt] == true) {
-            
-            indicatortxt.enabled = true;
+        //indicatortxt.text = indicatorStrings[actionsInt];
+        if (indicatorStringsBool[actionsInt] == true)
+        {           
+            attackIndicatortxt.enabled = true;            
         }
         else
         {
-            indicatortxt.enabled = false;
+            attackIndicatortxt.enabled = false;   
         }
         indicatorSpriteRenderer.sprite = indicatorImages[indicatorImagesInt[actionsInt]];
 
+    }
+    public void SetAttackString(float iloscAtakow)
+    {
+        attackIndicatortxt.text = (damage * iloscAtakow).ToString();
+    }
+    public void ChangeIndicatorTexts(string typ)
+    {
+
+        if(typ == "atak")
+        {
+            attackIndicatortxt.enabled = true;
+            otherIndicatortxt.enabled = false;
+        }
+        else if(typ == "inny")
+        {
+            attackIndicatortxt.enabled = false;
+            otherIndicatortxt.enabled = true;
+        }
+        else
+        {
+            Debug.Log("èle wpisany typ");
+        }
     }
 }

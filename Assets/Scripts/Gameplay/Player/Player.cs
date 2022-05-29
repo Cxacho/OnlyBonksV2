@@ -251,7 +251,7 @@ public class Player : MonoBehaviour
         {
             //zadziala poprawnie, wypierdoli sie gdy dostaniemy itemek lub karte ktora cleansuje debuffy
             if (vurneable > 0)
-                en.damage = en.baseDamage * 1.25f;
+                en.damage = Mathf.RoundToInt(en.baseDamage * 1.25f);
             else
                 en.damage = en.baseDamage;
         }
