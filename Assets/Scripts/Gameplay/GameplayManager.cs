@@ -342,7 +342,9 @@ public class GameplayManager : MonoBehaviour
     {
         if (cost > player.mana || player.mana == 0)
         {
-            canPlayCards = false;
+            if(cost == 0) canPlayCards = true;
+
+            else canPlayCards = false;
         }
         else
         {
