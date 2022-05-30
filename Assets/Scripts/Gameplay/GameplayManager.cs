@@ -47,6 +47,7 @@ public class GameplayManager : MonoBehaviour
     public int currentXP=0;
 
     public GameObject textPanel;
+    public Button endTurn;
     public TextMeshProUGUI darkSoulsText;
 
     //lista wszystkich kart w grze, wa¿ne ¿eby dodawaæ je po kolei 
@@ -108,19 +109,17 @@ public class GameplayManager : MonoBehaviour
 
     private void Update()
     {
+        if(state == BattleState.PLAYERTURN)
+        {
+            endTurn.interactable = true;
+        }
+        else endTurn.interactable = false;
         goldtxt.GetComponent<TextMeshProUGUI>().text = gold.ToString();
     }
 
     void Start()
     {
-        
-        
-    
         state = BattleState.START;
-
-        
-
-
 
     }
     IEnumerator ChooseNode()
@@ -150,7 +149,7 @@ public class GameplayManager : MonoBehaviour
         
 
 
-        state = BattleState.PLAYERTURN;
+        
         StartCoroutine(OnPlayersTurn());
     }
 
@@ -186,6 +185,8 @@ public class GameplayManager : MonoBehaviour
     }
     IEnumerator OnPlayersTurn()
     {
+        state = BattleState.PLAYERTURN;
+
         drawAmount = 0;
 
         DrawCards(basePlayerDrawAmount);
@@ -226,7 +227,7 @@ public class GameplayManager : MonoBehaviour
 
         player.OnEndTurn();
 
-        state = BattleState.PLAYERTURN;
+        
 
         StartCoroutine(OnPlayersTurn());
     }
@@ -388,6 +389,15 @@ public class GameplayManager : MonoBehaviour
     {
         
         StartCoroutine(ChooseNode());
+        
+    }
+    public void DestroyChilds() // MUHAHAHHA DIE STUPID CHILDS
+    {
+        var numberOfChilds = GameObject.FindGameObjectWithTag("cardHolder").transform.childCount;
+        for (int i = 0; i < numberOfChilds; i++)
+        {
+            Destroy(GameObject.FindGameObjectWithTag("cardHolder").transform.GetChild(i).gameObject);
+        }
         
     }
 }
