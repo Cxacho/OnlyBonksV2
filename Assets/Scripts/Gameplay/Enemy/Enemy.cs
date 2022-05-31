@@ -34,8 +34,8 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public TextMeshProUGUI otherIndicatortxt;
 
     public Sprite[] indicatorImages;
-    public List<string> indicatorStrings = new List<string>();
-    public List<bool> indicatorStringsBool = new List<bool>();
+    //public List<string> indicatorStrings = new List<string>();
+    [HideInInspector]public List<bool> indicatorStringsBool = new List<bool>();
     public int[] indicatorImagesInt;
     [HideInInspector]
     public Image indicatorSpriteRenderer;
@@ -173,5 +173,20 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         {
             Debug.Log("èle wpisany typ");
         }
+    }
+
+    public void NextCaseAttack(float nrOfAttacks)
+    {
+        ChangeIndicatorTexts("atak");
+        SetIndicator();
+        actionsInt++;
+        numberOfAttacks = nrOfAttacks;
+    }
+    public void NextCaseOther(string value)
+    {
+        SetIndicator();
+        actionsInt++;
+        ChangeIndicatorTexts("inny");
+        otherIndicatortxt.text = value;
     }
 }

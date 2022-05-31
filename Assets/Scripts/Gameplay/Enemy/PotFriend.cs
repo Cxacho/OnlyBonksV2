@@ -8,11 +8,11 @@ public class PotFriend : Enemy, ITakeTurn
 
     private void Start()
     {
-        //indicatorStrings.AddRange(new string[] {"10", (damage * 3).ToString(), " ", damage.ToString(), damage.ToString()});
         indicatorStringsBool.AddRange(new bool[] { true, true, true, false});
         numberOfAttacks = 1;
+        //tutaj wpisujemy Indicator na start (czy jest true/false) i jaki ma napis
         attackIndicatortxt.enabled = false;
-        //SetAttackString(1);
+        
         /*
         if (pl.vurneable > 0)
         {
@@ -20,6 +20,12 @@ public class PotFriend : Enemy, ITakeTurn
         }
         */
     }
+
+    //Gdy w nastêpnym case jest atak wpisujemy NextCaseAttack(1). Value w nawiasie to liczba atakow, ktora ma sie wywolac w next case!!!
+    
+    //Gdy w nastepnym case jest coc innego niz atak wpisujemy NextCaseOther("String").
+
+    //W ostatnim case musi byæ actionsInt = 0 . We wszystkich innych case actionsInt++ wykonuje siê w metodach NextCase
 
     public void takeTurn(Player player)
     {
@@ -29,30 +35,22 @@ public class PotFriend : Enemy, ITakeTurn
                 //corrosive spit
                 //naklada indicator poision , o wartosci 4
                 player.setDebuffIndicator(4, 2, player.buffIndicators[2]);
-                SetIndicator();
-                actionsInt++;
-                numberOfAttacks = 1;
+                NextCaseAttack(1);
                 break;
             case 1:
                 //light Jab
-                player.TakeDamage(damage);                                        
-                SetIndicator();
-                actionsInt++;
-                ChangeIndicatorTexts("inny");
-                otherIndicatortxt.text = 12.ToString();
+                player.TakeDamage(numberOfAttacks);
+                NextCaseOther("12");
                 break;
             case 2:
                 //harden
                 armor = armor + 12;
-                ChangeIndicatorTexts("atak");
-                SetIndicator();
-                actionsInt++;
-                numberOfAttacks = 1.5f;
+                NextCaseAttack(1.5f);
                 break;
             case 3:
                 //slam
-                player.TakeDamage(damage * 1.5f);
-                SetIndicator();
+                player.TakeDamage(damage * numberOfAttacks);
+                NextCaseOther(" ");
                 actionsInt = 0;
                 break;
         }
