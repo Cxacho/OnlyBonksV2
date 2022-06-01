@@ -20,6 +20,19 @@ public class Cringe : Card
                 if (en.targeted == true)
                 {
                     en.SetIndicator();
+                    if (en.indicatorImagesInt[en.actionsInt] == 0)
+                    {
+                        
+                        en.otherIndicatortxt.enabled = false;
+                        en.attackIndicatortxt.enabled = true;
+                        en.attackIndicatortxt.text = en.indicatorStrings[en.actionsInt];
+                    }
+                    else
+                    {
+                        en.otherIndicatortxt.enabled = true;
+                        en.attackIndicatortxt.enabled = false;
+                        en.otherIndicatortxt.text = en.indicatorStrings[en.actionsInt];
+                    }
                     en.actionsInt++;
                     
                     en.targeted = false;

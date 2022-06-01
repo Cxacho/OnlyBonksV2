@@ -9,6 +9,7 @@ public class PotFriend : Enemy, ITakeTurn
     private void Start()
     {
         indicatorStringsBool.AddRange(new bool[] { true, true, true, false});
+        indicatorStrings.AddRange(new string[] { (damage).ToString(), "12", (damage * 1.5).ToString(), " "});
         numberOfAttacks = 1;
         //tutaj wpisujemy Indicator na start (czy jest true/false) i jaki ma napis
         attackIndicatortxt.enabled = false;

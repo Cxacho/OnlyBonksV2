@@ -722,13 +722,8 @@ MonoBehaviour:
   indicator: {fileID: 3716066399429214384}
   attackIndicatortxt: {fileID: 8835190556800132639}
   otherIndicatortxt: {fileID: 6565015298228290831}
-  indicatorImages:
-  - {fileID: 21300000, guid: 1b8b87b1257070743b2381678d8a56aa, type: 3}
-  - {fileID: 21300000, guid: aaab0c6227ef1d04cb321e65689e6d7f, type: 3}
-  - {fileID: 21300000, guid: 97f47d07886236e4eb6812dbe2578b58, type: 3}
-  indicatorStrings: []
   indicatorStringsBool: 
-  indicatorImagesInt: 02000000000000000100000002000000
+  indicatorImagesInt: 04000000000000000100000004000000
   indicatorSpriteRenderer: {fileID: 0}
 --- !u!1 &3716066399429214384
 GameObject:

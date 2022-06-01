@@ -33,8 +33,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public TextMeshProUGUI attackIndicatortxt;
     public TextMeshProUGUI otherIndicatortxt;
 
-    public Sprite[] indicatorImages;
-    //public List<string> indicatorStrings = new List<string>();
+    [HideInInspector]public List<string> indicatorStrings = new List<string>();
     [HideInInspector]public List<bool> indicatorStringsBool = new List<bool>();
     public int[] indicatorImagesInt;
     [HideInInspector]
@@ -149,7 +148,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         {
             attackIndicatortxt.enabled = false;   
         }
-        indicatorSpriteRenderer.sprite = indicatorImages[indicatorImagesInt[actionsInt]];
+        indicatorSpriteRenderer.sprite = gm.indicatorImages[indicatorImagesInt[actionsInt]];
 
     }
     public void SetAttackString(float iloscAtakow)

@@ -98,7 +98,7 @@ public class GameplayManager : MonoBehaviour
 
     public Map.MapPlayerTracker map;
 
-
+    public Sprite[] indicatorImages;
 
     private void Awake()
     {
@@ -437,5 +437,7 @@ public class GameplayManager : MonoBehaviour
         }
         
     }
+
+
 }
 
