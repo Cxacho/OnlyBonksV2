@@ -180,7 +180,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         ChangeIndicatorTexts("atak");
         SetIndicator();
         actionsInt++;
-        numberOfAttacks = nrOfAttacks;
+        numberOfAttacks = Mathf.RoundToInt(nrOfAttacks);
     }
     public void NextCaseOther(string value)
     {

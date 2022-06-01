@@ -110,12 +110,6 @@ public class Player : MonoBehaviour
     public void TakeDamage(float damage)
     {
         Debug.Log(damage);
-        /*
-        if(vurneable>0)
-        {
-            damage *= 1.25f;
-        }
-        */
         if (armor > 0)
         {
             if (armor > damage)
@@ -179,6 +173,21 @@ public class Player : MonoBehaviour
             dmgTextSeq.OnComplete(() => { GameObject.Destroy(dmgText); });
         }
             
+    }
+    public void TakeHealthDamage(float damage)
+    {
+        currentHealth -= (int)damage;
+        setHP();
+        dmgPopOutTMP.text = "- " + damage;
+        dmgPopOutTMP.color = new Color(255, 0, 0);
+        TextMeshProUGUI dmgText;
+        dmgText = Instantiate(dmgPopOutTMP, dmgPopOutBlock.transform);
+
+        Sequence dmgTextSeq = DOTween.Sequence();
+        dmgTextSeq.Append(dmgText.transform.DOMoveY(8f, 0.5f));
+        dmgTextSeq.Append(dmgText.transform.DOMoveY(-60f, 1f));
+        dmgTextSeq.Insert(0, dmgText.transform.DOMoveX(1f, dmgTextSeq.Duration()));
+        dmgTextSeq.OnComplete(() => { GameObject.Destroy(dmgText); });
     }
     public void Heal(int value)
     {

@@ -26,6 +26,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private List<GameObject> meshes = new List<GameObject>();
     [HideInInspector]public List<Enemy> _enemies = new List<Enemy>();
     float posY;
+    [SerializeField]private bool exhaustable;
+    public bool retainable;
 
 
 
@@ -214,35 +216,66 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public virtual void OnDrop()
     {
-
-        currentCardState = cardState.Elsewhere;
-        //play card
-        trail.enabled = true;
-        //anim
-        var go = this.gameObject;
-        var nazwaObiektu = go.name.Remove(go.name.Length - 7);
-        for (int i = 0; i < gm.playerHand.Count; i++)
+        if (exhaustable)
         {
-            if (nazwaObiektu.Equals(gm.playerHand[i].name))
+            currentCardState = cardState.Elsewhere;
+            //play card
+            trail.enabled = true;
+            //anim
+            var go = this.gameObject;
+            var nazwaObiektu = go.name.Remove(go.name.Length - 7);
+            for (int i = 0; i < gm.playerHand.Count; i++)
             {
-                temp.Add(gm.playerHand[i]);
-                gm.discardDeck.Add(temp[0]);
-                gm.playerHand.RemoveAt(i);
-                temp.RemoveAt(0);
+                if (nazwaObiektu.Equals(gm.playerHand[i].name))
+                {
+                    temp.Add(gm.playerHand[i]);
+                    gm.exhaustedDeck.Add(temp[0]);
+                    gm.playerHand.RemoveAt(i);
+                    temp.RemoveAt(0);
+                }
             }
+            transform.DOMove(new Vector3(discDek.x, discDek.y, 0), 1.5f);
+            transform.DOScale(0.25f, 0.5f);
+            transform.DORotate(new Vector3(0, 0, -150f), 1.5f).OnComplete(() =>
+            {
+                trail.enabled = false;
+                this.transform.localScale = Vector3.one;
+                this.transform.rotation = newRot;
+                Destroy(this.gameObject);
+            }
+
+            );
         }
-        transform.DOMove(new Vector3(discDek.x, discDek.y, 0), 1.5f);
-        transform.DOScale(0.25f, 0.5f);
-        transform.DORotate(new Vector3(0, 0, -150f), 1.5f).OnComplete(() =>
+        else
         {
-            trail.enabled = false;
-            this.transform.localScale = Vector3.one;
-            this.transform.rotation = newRot;
-            Destroy(this.gameObject);
+            currentCardState = cardState.Elsewhere;
+            //play card
+            trail.enabled = true;
+            //anim
+            var go = this.gameObject;
+            var nazwaObiektu = go.name.Remove(go.name.Length - 7);
+            for (int i = 0; i < gm.playerHand.Count; i++)
+            {
+                if (nazwaObiektu.Equals(gm.playerHand[i].name))
+                {
+                    temp.Add(gm.playerHand[i]);
+                    gm.discardDeck.Add(temp[0]);
+                    gm.playerHand.RemoveAt(i);
+                    temp.RemoveAt(0);
+                }
+            }
+            transform.DOMove(new Vector3(discDek.x, discDek.y, 0), 1.5f);
+            transform.DOScale(0.25f, 0.5f);
+            transform.DORotate(new Vector3(0, 0, -150f), 1.5f).OnComplete(() =>
+            {
+                trail.enabled = false;
+                this.transform.localScale = Vector3.one;
+                this.transform.rotation = newRot;
+                Destroy(this.gameObject);
+            }
+
+            );
         }
-
-        );
-
     }
     public void DropControl()
     {
@@ -271,13 +304,39 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 {
                     //wybor targetu, gdy liczba 
                     //dodatkowy warunek od enemies.count tak jak w lini 215
-                    if (numOfTargets == baseNumOfTargets)
-                        fm.en.isFirstTarget = true;
-                    else if (numOfTargets == baseNumOfTargets - 1)
-                        fm.en.isSecondTarget = true;
-                    else if (numOfTargets == baseNumOfTargets - 2)
-                        fm.en.isThirdTarget = true;
+                    if (_enemies.Count >= 3)
+                    {
+                        if (numOfTargets == baseNumOfTargets)
+                            fm.en.isFirstTarget = true;
 
+                        else if (numOfTargets == baseNumOfTargets - 1)
+                            fm.en.isSecondTarget = true;
+                        else if (numOfTargets == baseNumOfTargets - 2)
+                            fm.en.isThirdTarget = true;
+                    }
+                    
+                    else if (baseNumOfTargets <=3  & _enemies.Count == 1)
+                        fm.en.isFirstTarget = true;
+                    else
+
+                    {
+                        //warunek dla 3 przeciwnikow
+                        if (_enemies.Count ==3)
+                        {
+                            if (numOfTargets == baseNumOfTargets - 1)
+                                fm.en.isFirstTarget = true;
+                            else if (numOfTargets == baseNumOfTargets - 2)
+                                fm.en.isSecondTarget = true;
+                        }
+                        else
+                        {
+                            if (numOfTargets == baseNumOfTargets)
+                                fm.en.isFirstTarget = true;
+                            if (numOfTargets == baseNumOfTargets - 1)
+                                fm.en.isSecondTarget = true;
+                        }
+                    }
+                    
                     fm.en.targeted = true;
                     numOfTargets -= 1;
                     if (numOfTargets == 0)

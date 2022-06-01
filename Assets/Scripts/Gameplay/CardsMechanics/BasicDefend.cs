@@ -21,7 +21,8 @@ public class BasicDefend : Card
             pl.armor += armor;
             pl.manaText.text = pl.mana.ToString();
             base.OnDrop();
-            gm.DrawCards(2);
+            //gm.DrawCards(2);
+            //gm.CreateCard(0);
         }
         else
         {

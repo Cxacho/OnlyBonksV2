@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
@@ -16,7 +17,6 @@ public class GameplayManager : MonoBehaviour
 
     
     [SerializeField] private Transform[] enemyBattleStation = new Transform[3];
-    
     public GameObject drawPile,playersHand;
     public GameObject discardPile;
     public GameObject playerHandObject;
@@ -55,8 +55,9 @@ public class GameplayManager : MonoBehaviour
 
     //lista kart ktore posiada gracz na poczatku
     public List<GameObject> startingDeck = new List<GameObject>();
-    
 
+    //lista kart ktore usuwamy z gryw trakcie pojedynku
+    public List<GameObject> exhaustedDeck = new List<GameObject>();
     //lista kart ktore mozemy dobrac do reki
     public List<GameObject> drawDeck;
 
@@ -64,7 +65,7 @@ public class GameplayManager : MonoBehaviour
     //Player Hand
     public List<GameObject> playerHand = new List<GameObject>();
 
-
+    public List<GameObject> retain = new List<GameObject>();
     //lista kart ktore zagralismy
     public List<GameObject> discardDeck = new List<GameObject>();
 
@@ -136,7 +137,7 @@ public class GameplayManager : MonoBehaviour
     }
     public IEnumerator SetupBattle()
     {
-
+        exhaustedDeck.Clear();
         yield return new WaitForSeconds(0.1f);
 
         for (int i = 0; i < 1; i++)
@@ -282,8 +283,15 @@ public class GameplayManager : MonoBehaviour
     
     public void OnClick()
     {
+        
         if (playerHand.Count != 0)
         {
+            /*
+             //mechanika retain'u kart
+            foreach (Card card in FindObjectsOfType<Card>())
+                if (card.retainable == true)
+                    retain.Add(card.gameObject);
+            */
             playerHand.ForEach(item => discardDeck.Add(item));
             playerHand.Clear();
             
@@ -293,6 +301,9 @@ public class GameplayManager : MonoBehaviour
             }
 
         }
+        
+        
+
 
         ExecuteDarkSoulsText("Enemy Turn");
 
@@ -307,6 +318,7 @@ public class GameplayManager : MonoBehaviour
         drawAmount++;
         if (playerDrawAmount >= drawAmount)
         {
+            //zablokowac draw powyzej 10
             if (drawDeck.Count == 0)
             {
                 shuffleDeck();
@@ -314,6 +326,8 @@ public class GameplayManager : MonoBehaviour
             var random = Random.Range(0, drawDeck.Count);
             GameObject card = Instantiate(drawDeck[random], drawButton.transform.position, transform.rotation);
             card.transform.SetParent(cardAlign.gameObject.transform);
+            var updateValue = drawButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+            updateValue.text = (drawDeck.Count -1).ToString();
             card.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             playerHand.Add(drawDeck[random]);
             drawDeck.RemoveAt(random);
@@ -323,6 +337,20 @@ public class GameplayManager : MonoBehaviour
         if (playerDrawAmount < drawAmount)
             drawAmount = 0;
     }
+
+    public void CreateCard(int cardIndex)
+    {
+        //var card = PrefabUtility.InstantiatePrefab(allCards[cardIndex]as GameObject) as GameObject;
+        playerHand.Add(allCards[cardIndex]);
+        var card = Instantiate(allCards[cardIndex], Vector3.zero, Quaternion.identity);
+        card.transform.SetParent(cardAlign.gameObject.transform);
+        card.transform.localScale = Vector3.one;
+        
+        cardAlign.SetValues();
+        
+        
+    }
+    
     private void shuffleDeck()
     {
         discardDeck.ForEach(item => drawDeck.Add(item));

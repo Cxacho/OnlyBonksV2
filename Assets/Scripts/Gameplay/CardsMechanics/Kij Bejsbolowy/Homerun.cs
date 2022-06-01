@@ -23,14 +23,12 @@ public class Homerun :  Card
                 if (en.isFirstTarget == true)
                 {
                     en.ReceiveDamage(attack + pl.strenght);
-
                     en.targeted = false;
                     en.isFirstTarget = false;
                 }
                 if (en.isSecondTarget == true)
                 {
                     en.ReceiveDamage(attack * 0.3f + pl.strenght);
-
                     en.targeted = false;
                     en.isSecondTarget = false;
                 }
