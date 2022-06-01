@@ -19,7 +19,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     RectTransform pos;
     GameObject par;
     List<GameObject> temp = new List<GameObject>();
-    [SerializeField] int index;
+    [SerializeField]private int index;
     private int numOfTargets;
     public int baseNumOfTargets;
     //private float clickDelay;

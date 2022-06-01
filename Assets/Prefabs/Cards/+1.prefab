@@ -265,6 +265,8 @@ MonoBehaviour:
   index: 0
   baseNumOfTargets: 0
   _enemies: []
+  exhaustable: 0
+  retainable: 1
   cost: 0
 --- !u!1 &1182447153954796977
 GameObject:

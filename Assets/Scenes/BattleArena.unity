@@ -397,7 +397,7 @@ MonoBehaviour:
   player: {fileID: 228611245}
   canPlayCards: 1
   firstRound: 1
-  basePlayerDrawAmount: 9
+  basePlayerDrawAmount: 5
   playerDrawAmount: 5
   maxCardDraw: 10
   drawAmount: 0

@@ -533,6 +533,8 @@ MonoBehaviour:
   index: 0
   baseNumOfTargets: 1
   _enemies: []
+  exhaustable: 0
+  retainable: 1
 --- !u!1 &5707762737621536743
 GameObject:
   m_ObjectHideFlags: 0

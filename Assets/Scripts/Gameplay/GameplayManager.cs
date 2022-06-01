@@ -29,7 +29,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject drawButton;
     public LevelProgress levelProgress;
     public GameObject shopPanel;
-
+    
     [SerializeField] private Player player;
 
     private CardAlign cardAlign;
@@ -40,7 +40,6 @@ public class GameplayManager : MonoBehaviour
     public int playerDrawAmount;
     public int maxCardDraw = 12;
     public int drawAmount;
-
     private int random;
 
     public int gold = 100;
@@ -66,6 +65,7 @@ public class GameplayManager : MonoBehaviour
     public List<GameObject> playerHand = new List<GameObject>();
 
     public List<GameObject> retain = new List<GameObject>();
+    List<GameObject> temp = new List<GameObject>();
     //lista kart ktore zagralismy
     public List<GameObject> discardDeck = new List<GameObject>();
 
@@ -283,26 +283,35 @@ public class GameplayManager : MonoBehaviour
     
     public void OnClick()
     {
-        
+        retain.Clear();
         if (playerHand.Count != 0)
         {
-            /*
-             //mechanika retain'u kart
+            temp.Clear();
+            //mechanika retain'u kart
             foreach (Card card in FindObjectsOfType<Card>())
                 if (card.retainable == true)
-                    retain.Add(card.gameObject);
-            */
+                {
+                    var cardIndex = card.gameObject.transform.GetSiblingIndex();
+                    Debug.Log(cardIndex);
+                    retain.Add(playerHand[cardIndex]);
+                    playerHand.RemoveAt(cardIndex);
+                    //zbierz index player handu.
+                    temp.Add(card.gameObject);
+                    card.transform.SetParent(battleUI.transform);
+                    
+                }
+            var phCount = playerHand.Count;
             playerHand.ForEach(item => discardDeck.Add(item));
             playerHand.Clear();
-            
-            for(var i = playerHandObject.transform.childCount-1;i>=0;i--)
+            for(var i = phCount-1;i>=0;i--)
             {
                 Destroy(playerHandObject.transform.GetChild(i).gameObject);
             }
-
+            playerHand.AddRange(retain);
+            temp.ForEach(obj => obj.transform.SetParent(playerHandObject.transform));
         }
-        
-        
+
+        //cardAlign.SetValues();
 
 
         ExecuteDarkSoulsText("Enemy Turn");
