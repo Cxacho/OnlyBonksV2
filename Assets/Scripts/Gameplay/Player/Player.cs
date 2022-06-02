@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public GameObject fillArmor;
     public GameObject textHealth;
     public GameObject textArmor;
-    public GameObject frailIndicator, vurneableIndicator, poisonIndicator;
+    GameObject frailIndicator, vurneableIndicator, poisonIndicator;
     TextMeshProUGUI value;
     public int maxHealth = 70;
     public int currentHealth;
@@ -71,9 +71,7 @@ public class Player : MonoBehaviour
         {
             case Player.buffs.frail:
                 frail += value;
-                //GameObject obj = null;
-                //if(obj == null)
-                //obiekt bedzie sie spawnowal w nieskonczonosc dopoki nie nalozymy ograniczenia
+
                 if (frailIndicator == null)
                 {
                     frailIndicator = Instantiate(buffIndicator, buffsAndDebuffs.transform);
@@ -268,8 +266,10 @@ public class Player : MonoBehaviour
 
              }
         }
+        
         foreach(Enemy en in FindObjectsOfType<Enemy>())
         {
+            en.OnEndTurn();
             //zadziala poprawnie, wypierdoli sie gdy dostaniemy itemek lub karte ktora cleansuje debuffy
             if (vurneable > 0)
                 en.damage = Mathf.RoundToInt(en.baseDamage * 1.25f);

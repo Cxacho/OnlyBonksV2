@@ -235,7 +235,10 @@ public class CardAlign : MonoBehaviour
                     children[i].transform.DOMove(positions[i], 0.2f);
                 }
                 //wywolanie draw'u kolejnych kart
-                gm.DrawCards(gm.playerDrawAmount);
+                if (gm.playerHand.Count < 10)
+                    gm.DrawCards(gm.playerDrawAmount);
+                else
+                    Debug.Log("Can't draw any further, u have already drawn" + " " + gm.playerHand.Count);
             });
         });
 

@@ -21,7 +21,13 @@ public class BasicDefend : Card
             pl.armor += armor;
             pl.manaText.text = pl.mana.ToString();
             base.OnDrop();
-            //gm.DrawCards(2);
+            foreach (Enemy en in _enemies)
+            {
+                en.setStatusIndicator(3, 0, gm.enemiesIndicators[0]);
+                en.setStatusIndicator(3, 1, gm.enemiesIndicators[1]);
+                    en.setStatusIndicator(3, 2, gm.enemiesIndicators[2]);
+            }
+            //gm.DrawCards(6);
             //gm.CreateCard(0);
         }
         else

@@ -6,9 +6,10 @@ using TMPro;
 using UnityEngine.EventSystems;
 public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
-
+    statuses currentStatus;
     public int maxHealth = 70;
     public int armor;
+    public int strength,vurneable,bleed;
     public float baseDamage,damage;
     public float numberOfAttacks=1;
     public int _currentHealth;
@@ -18,7 +19,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     private Player pl;
     public SliderHealth sdh;
     public RectTransform rect;
-    
+
     public GameplayManager gm;
     public TMP_Text healthTxt;
 
@@ -28,18 +29,19 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public EnemyType EnemyType;
     Vector3 mousePos;
     FollowMouse fm;
-
+    GameObject vurneableIndicator,bleedIndicator,strengthBuffIndicator;
     public GameObject indicator;
     public TextMeshProUGUI attackIndicatortxt;
     public TextMeshProUGUI otherIndicatortxt;
-
+    public List<GameObject> statusesList = new List<GameObject>();
     [HideInInspector]public List<string> indicatorStrings = new List<string>();
     [HideInInspector]public List<bool> indicatorStringsBool = new List<bool>();
     public int[] indicatorImagesInt;
     [HideInInspector]
     public Image indicatorSpriteRenderer;
+    [SerializeField] GameObject  statusEffectsTransform;
 
- 
+
 
     public void OnPointerExit(PointerEventData eventData)
     {
@@ -53,8 +55,10 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     private void Awake()
     {
+        
         pl = FindObjectOfType<Player>();
         gm = GameObject.Find("GameplayManager").GetComponent<GameplayManager>();
+        statusesList.AddRange(gm.enemiesIndicators);
         _name = this.gameObject.name;
         Debug.Log("inicjalizacja");
         _currentHealth = maxHealth;
@@ -187,5 +191,78 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         actionsInt++;
         ChangeIndicatorTexts("inny");
         otherIndicatortxt.text = value;
+    }
+    public void setStatusIndicator(int value,int select,GameObject statusIndicator)
+    {
+        currentStatus = (statuses)select;
+        switch(currentStatus)
+        {
+            case Enemy.statuses.strengthBuff:
+                strength += value;
+                if (strengthBuffIndicator == null)
+                    strengthBuffIndicator = Instantiate(statusIndicator, statusEffectsTransform.transform);
+                var statusValue = strengthBuffIndicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+                statusValue.text = strength.ToString();
+                break;
+            case Enemy.statuses.vurneable:
+                vurneable += value;
+                if (vurneableIndicator == null)
+                    vurneableIndicator = Instantiate(statusIndicator, statusEffectsTransform.transform);
+                var statusValue1 = vurneableIndicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+                statusValue1.text = vurneable.ToString();
+                break;
+
+            case Enemy.statuses.bleeding:
+                bleed += value;
+                if (bleedIndicator == null)
+                    bleedIndicator = Instantiate(statusIndicator, statusEffectsTransform.transform);
+                var statusValue2 = bleedIndicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+                statusValue2.text = bleed.ToString();
+                break;
+        }
+        //strength
+    }
+    public void OnEndTurn()
+    {
+        ReceiveDamage(bleed);
+        if (strength > 0) strength--;
+        if (vurneable > 0) vurneable--;
+        if (bleed > 0) bleed--;
+        List<GameObject> temp = new List<GameObject>();
+        temp.Clear();
+        for (int i = 0; i < statusEffectsTransform.transform.childCount; i++)
+            temp.Add(statusEffectsTransform.transform.GetChild(i).gameObject);
+
+        foreach (GameObject ind in temp)
+        {
+           var statusText = ind.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            int statusAmount;
+            int.TryParse(statusText.text.ToString(), out statusAmount);
+            statusAmount -= 1;
+            if (statusAmount > 0)
+                statusText.text = statusAmount.ToString();
+            else
+                Destroy(ind);
+        }
+        
+        /*
+        foreach(GameObject ind in )
+        {
+            var statusText = ind.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            int statusAmount;
+            int.TryParse(statusText.text.ToString(), out statusAmount);
+            if (statusAmount > 0)
+                statusText.text = statusAmount.ToString();
+            else
+                Destroy(ind);
+        }
+
+        */
+    }
+    enum statuses
+    {
+        strengthBuff =0,
+        vurneable =1,
+            bleeding = 2
     }
 }
