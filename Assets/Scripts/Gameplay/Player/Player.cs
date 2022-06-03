@@ -30,6 +30,10 @@ public class Player : MonoBehaviour
     public int frail,vurneable,poison;
     public List<GameObject> buffIndicators = new List<GameObject>();
     buffs currentBuff;
+
+
+    
+
     private void Awake()
     {
         currentHealth = maxHealth;
@@ -279,6 +283,7 @@ public class Player : MonoBehaviour
     }
     enum buffs
     {
+        brak = 3,
         frail=0,
         vurneable=1,
         poision =2

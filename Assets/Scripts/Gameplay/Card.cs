@@ -10,7 +10,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public cardType cType;
     public cardState currentCardState;
     private Vector3 mousePos, posInHand, discDek;
-    private FollowMouse fm;
+    protected FollowMouse fm;
     [SerializeField] TrailRenderer trail;
     [HideInInspector] public Player pl;
     Quaternion oldRot, newRot, hoverRotation = new Quaternion(0, 0, 0, 0);

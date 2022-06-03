@@ -2,15 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-
+using TMPro;
 public class BasicAttack : Card
 {
     public int attack = 3;
     private int cost = 1;
     public GameObject bonk;
 
-    
+    string desc;
+    private TextMeshPro textMeshPro;
 
+    private void Start()
+    {
+        
+
+        desc = $"Deal <color=blue>{attack.ToString()}</color> damage";
+
+        this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
+    }
+    public void FixedUpdate()
+    {
+        
+
+
+            attack++;
+            desc = $"Deal <color=blue>{attack.ToString()}</color>  <br> damage";
+            this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
+
+
+        
+    }
+    
     public override void OnDrop()
     {
         gm.checkPlayerMana(cost);
@@ -40,25 +62,9 @@ public class BasicAttack : Card
     {
         yield return new WaitForSeconds(time);
 
-        
-        //enemy.ReceiveDamage(attack * pl.strenght);
-        
-
         pl.manaText.text = pl.mana.ToString();
 
-
-        /* else
-         {
-             // enemy.currentHealth = 0;
-             gm.state = BattleState.WON;
-             StartCoroutine(gm.OnBattleWin());
-
-         }*/
-
-
-
-
-
     }
+
 
 }
