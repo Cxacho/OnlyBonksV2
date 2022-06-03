@@ -9,7 +9,8 @@ public class Player : MonoBehaviour
     public GameObject fillArmor;
     public GameObject textHealth;
     public GameObject textArmor;
-    GameObject frailIndicator, vurneableIndicator, poisonIndicator;
+    public GameObject shield;
+    GameObject frailIndicator, vurneableIndicator, poisonIndicator,strengthBuffIndicator;
     TextMeshProUGUI value;
     public int maxHealth = 70;
     public int currentHealth;
@@ -99,6 +100,16 @@ public class Player : MonoBehaviour
                 }
                 var buffValue2 = poisonIndicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                 buffValue2.text = poison.ToString();
+                break;
+            case Player.buffs.strengthBuff:
+                strenght += value;
+                if (strengthBuffIndicator == null)
+                {
+                    strengthBuffIndicator = Instantiate(buffIndicator, buffsAndDebuffs.transform);
+
+                }
+                var buffValue3 = strengthBuffIndicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+                buffValue3.text = strenght.ToString();
                 break;
 
         }
@@ -210,6 +221,16 @@ public class Player : MonoBehaviour
 
 
     }
+    public void GetArmor(int value)
+    {
+
+        if (armor == 0)
+        {
+            Instantiate(shield, new Vector3(GameObject.Find("Player").transform.position.x, GameObject.Find("Player").transform.position.y, 0), Quaternion.identity, GameObject.Find("Player").transform);
+        }
+        armor += value;
+        manaText.text = mana.ToString();
+    }
     public void Charmed()
     {
        strenght = strenght - 1;
@@ -276,11 +297,16 @@ public class Player : MonoBehaviour
             else
                 en.damage = en.baseDamage;
         }
+        foreach(Relic re in FindObjectsOfType<Relic>())
+        {
+            re.OnEndTurn();
+        }
     }
     enum buffs
     {
         frail=0,
         vurneable=1,
-        poision =2
+        poision =2,
+        strengthBuff=3
     }
 }
