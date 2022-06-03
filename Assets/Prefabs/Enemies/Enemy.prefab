@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &332116855489529835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6056798626068406028}
+  - component: {fileID: 3641126918655539033}
+  m_Layer: 0
+  m_Name: Statuses
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6056798626068406028
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332116855489529835}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8057601062645456931}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -226}
+  m_SizeDelta: {x: 270, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3641126918655539033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332116855489529835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 3
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 40, y: 40}
+  m_Spacing: {x: 8.4, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &4517417493022320148
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,8 +527,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00018310547, y: -179.20699}
-  m_SizeDelta: {x: 269.28, y: 27.996}
+  m_AnchoredPosition: {x: -0.000030517578, y: 0.000030517578}
+  m_SizeDelta: {x: 269.2804, y: 27.9926}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8057601061976604047
 MonoBehaviour:
@@ -566,6 +626,7 @@ RectTransform:
   m_Children:
   - {fileID: 8057601061976604041}
   - {fileID: 8300085797480096608}
+  - {fileID: 6056798626068406028}
   - {fileID: 7949604114873700612}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -627,6 +688,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 4
   armor: 0
+  strength: 0
+  vurneable: 0
+  bleed: 0
   baseDamage: 5
   damage: 5
   numberOfAttacks: 1
@@ -647,14 +711,12 @@ MonoBehaviour:
   indicator: {fileID: 8901815082973632389}
   attackIndicatortxt: {fileID: 3640984466854310186}
   otherIndicatortxt: {fileID: 1369122554794660410}
-  indicatorImages:
-  - {fileID: 21300000, guid: 1b8b87b1257070743b2381678d8a56aa, type: 3}
-  - {fileID: 21300000, guid: aaab0c6227ef1d04cb321e65689e6d7f, type: 3}
-  - {fileID: 21300000, guid: 2e8d93c9930db5d48b76a6d8549f5035, type: 3}
+  statusesList: []
   indicatorStrings: []
   indicatorStringsBool: 
   indicatorImagesInt: 0100000000000000020000000000000000000000
   indicatorSpriteRenderer: {fileID: 0}
+  statusEffectsTransform: {fileID: 332116855489529835}
 --- !u!1 &8057601062704595033
 GameObject:
   m_ObjectHideFlags: 0
@@ -896,7 +958,7 @@ RectTransform:
   - {fileID: 5646675873875573039}
   - {fileID: 4880921787197369371}
   m_Father: {fileID: 8057601062645456931}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.014863811}
   m_AnchorMax: {x: 1, y: 1}

@@ -265,6 +265,8 @@ MonoBehaviour:
   index: 0
   baseNumOfTargets: 0
   _enemies: []
+  exhaustable: 0
+  retainable: 0
   attack: 20
   cost: 3
 --- !u!1 &3492690168938492776
@@ -299,10 +301,10 @@ RectTransform:
   m_Father: {fileID: 6723275381223886161}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.87100005}
-  m_AnchorMax: {x: 0.16754524, y: 1}
-  m_AnchoredPosition: {x: 1.3125, y: -0.5631714}
-  m_SizeDelta: {x: 2.6327972, y: 1.1262817}
+  m_AnchorMin: {x: 0.022545248, y: 0.86800003}
+  m_AnchorMax: {x: 0.18554525, y: 0.994}
+  m_AnchoredPosition: {x: -0.2619934, y: -0.14430237}
+  m_SizeDelta: {x: -0.18300009, y: -0.036000013}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6445652391788325807
 CanvasRenderer:
@@ -334,8 +336,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 3
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
+  m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -359,13 +361,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40.25
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 2
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -433,10 +435,10 @@ RectTransform:
   m_Father: {fileID: 6723275381223886161}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.416, y: 0.42700002}
-  m_AnchorMax: {x: 0.583, y: 0.462}
-  m_AnchoredPosition: {x: 0.453125, y: 0.37799072}
-  m_SizeDelta: {x: 1.4297028, y: 0.75579834}
+  m_AnchorMin: {x: 0.42954525, y: 0.42700002}
+  m_AnchorMax: {x: 0.5965453, y: 0.46800002}
+  m_AnchoredPosition: {x: -0.37960052, y: 0.010799408}
+  m_SizeDelta: {x: 0.28009987, y: 0.021300077}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3253256781772855284
 CanvasRenderer:
@@ -468,8 +470,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Skill
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
+  m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -493,7 +495,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.3
+  m_fontSize: 11.75
   m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -602,8 +604,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Executive Fireball
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
+  m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -627,7 +629,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14.7
+  m_fontSize: 14.25
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -738,7 +740,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3050d580565ec244da3161d968b6002f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a0757b8284e8d4945ad15745b2de624d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -818,8 +820,8 @@ MonoBehaviour:
 
     Else deal 20 dmg'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
+  m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

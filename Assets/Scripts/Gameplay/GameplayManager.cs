@@ -59,8 +59,9 @@ public class GameplayManager : MonoBehaviour
     public List<GameObject> exhaustedDeck = new List<GameObject>();
     //lista kart ktore mozemy dobrac do reki
     public List<GameObject> drawDeck;
+    public List<GameObject> enemiesIndicators = new List<GameObject>();
 
-   
+    public List<GameObject> relicsList = new List<GameObject>();
     //Player Hand
     public List<GameObject> playerHand = new List<GameObject>();
 

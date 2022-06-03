@@ -9,7 +9,8 @@ public class Player : MonoBehaviour
     public GameObject fillArmor;
     public GameObject textHealth;
     public GameObject textArmor;
-    public GameObject frailIndicator, vurneableIndicator, poisonIndicator;
+    public GameObject shield;
+    GameObject frailIndicator, vurneableIndicator, poisonIndicator,strengthBuffIndicator;
     TextMeshProUGUI value;
     public int maxHealth = 70;
     public int currentHealth;
@@ -75,9 +76,7 @@ public class Player : MonoBehaviour
         {
             case Player.buffs.frail:
                 frail += value;
-                //GameObject obj = null;
-                //if(obj == null)
-                //obiekt bedzie sie spawnowal w nieskonczonosc dopoki nie nalozymy ograniczenia
+
                 if (frailIndicator == null)
                 {
                     frailIndicator = Instantiate(buffIndicator, buffsAndDebuffs.transform);
@@ -105,6 +104,16 @@ public class Player : MonoBehaviour
                 }
                 var buffValue2 = poisonIndicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                 buffValue2.text = poison.ToString();
+                break;
+            case Player.buffs.strengthBuff:
+                strenght += value;
+                if (strengthBuffIndicator == null)
+                {
+                    strengthBuffIndicator = Instantiate(buffIndicator, buffsAndDebuffs.transform);
+
+                }
+                var buffValue3 = strengthBuffIndicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+                buffValue3.text = strenght.ToString();
                 break;
 
         }
@@ -216,6 +225,16 @@ public class Player : MonoBehaviour
 
 
     }
+    public void GetArmor(int value)
+    {
+
+        if (armor == 0)
+        {
+            Instantiate(shield, new Vector3(GameObject.Find("Player").transform.position.x, GameObject.Find("Player").transform.position.y, 0), Quaternion.identity, GameObject.Find("Player").transform);
+        }
+        armor += value;
+        manaText.text = mana.ToString();
+    }
     public void Charmed()
     {
        strenght = strenght - 1;
@@ -272,13 +291,19 @@ public class Player : MonoBehaviour
 
              }
         }
+        
         foreach(Enemy en in FindObjectsOfType<Enemy>())
         {
+            en.OnEndTurn();
             //zadziala poprawnie, wypierdoli sie gdy dostaniemy itemek lub karte ktora cleansuje debuffy
             if (vurneable > 0)
                 en.damage = Mathf.RoundToInt(en.baseDamage * 1.25f);
             else
                 en.damage = en.baseDamage;
+        }
+        foreach(Relic re in FindObjectsOfType<Relic>())
+        {
+            re.OnEndTurn();
         }
     }
     enum buffs
@@ -286,6 +311,7 @@ public class Player : MonoBehaviour
         brak = 3,
         frail=0,
         vurneable=1,
-        poision =2
+        poision =2,
+        strengthBuff=3
     }
 }
