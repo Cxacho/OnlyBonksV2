@@ -29,8 +29,16 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField]private bool exhaustable;
     public bool retainable;
 
-
-
+    private BasicAttack bs;
+    public enum textType
+    {
+        Str,
+        Dex
+    }
+    public void textUpdate(textType typ)
+    {
+        if(typ == textType.Str) bs.UpdateAttack();
+    }
     private void Start()
     {
         currentCardState = cardState.Elsewhere;

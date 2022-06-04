@@ -6,6 +6,7 @@ using TMPro;
 public class BasicAttack : Card
 {
     public int attack = 3;
+
     private int cost = 1;
     public GameObject bonk;
 
@@ -14,23 +15,23 @@ public class BasicAttack : Card
 
     private void Start()
     {
-        
-
         desc = $"Deal <color=blue>{attack.ToString()}</color> damage";
 
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
-    public void FixedUpdate()
+    public void UpdateAttack()
     {
-        
-
-
-            attack++;
-            desc = $"Deal <color=blue>{attack.ToString()}</color>  <br> damage";
+        attack += pl.strenght;
+        if (attack > 3)
+        {
+            desc = $"Deal <color=green>{attack.ToString()}</color> damage";
             this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
-
-
-        
+        }
+        else if (attack < 3)
+        {
+            desc = $"Deal <color=red>{attack.ToString()}</color> damage";
+            this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
+        }
     }
     
     public override void OnDrop()

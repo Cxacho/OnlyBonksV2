@@ -308,7 +308,7 @@ public class Player : MonoBehaviour
     }
     enum buffs
     {
-        brak = 3,
+        brak = 4,
         frail=0,
         vurneable=1,
         poision =2,

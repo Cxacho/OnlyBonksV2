@@ -66,7 +66,9 @@ public class GameplayManager : MonoBehaviour
     public List<GameObject> playerHand = new List<GameObject>();
 
     public List<GameObject> retain = new List<GameObject>();
+
     List<GameObject> temp = new List<GameObject>();
+
     //lista kart ktore zagralismy
     public List<GameObject> discardDeck = new List<GameObject>();
 
@@ -101,13 +103,15 @@ public class GameplayManager : MonoBehaviour
 
     public Sprite[] indicatorImages;
 
+   
     private void Awake()
     {
         cardAlign = GameObject.Find("PlayerHand").GetComponent<CardAlign>();
         gogo();
-
-
+        
+        
     }
+    
 
     private void Update()
     {

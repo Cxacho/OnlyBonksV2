@@ -35,6 +35,7 @@ public class GetSwoleScript : Card
         {
             pl.currentHealth = pl.currentHealth + 10;
             pl.strenght++;
+            
             pl.setHP();
         }
 
