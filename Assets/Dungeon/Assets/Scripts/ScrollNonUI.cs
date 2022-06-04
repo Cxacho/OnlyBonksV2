@@ -7,7 +7,7 @@ namespace Map
     {
         public float tweenBackDuration = 0.3f;
         public Ease tweenBackEase;
-        public bool freezeX = true;
+        public bool freezeX;
         public FloatMinMax xConstraints = new FloatMinMax();
         public bool freezeY;
         public FloatMinMax yConstraints = new FloatMinMax();
@@ -22,6 +22,7 @@ namespace Map
         {
             mainCamera = Camera.main;
             zDisplacement = -mainCamera.transform.position.z + transform.position.z;
+            freezeX = true;
         }
 
         public void OnMouseDown()

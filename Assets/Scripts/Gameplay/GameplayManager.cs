@@ -103,16 +103,21 @@ public class GameplayManager : MonoBehaviour
 
     public Sprite[] indicatorImages;
 
+    public Map.ScrollNonUI scroll;
    
     private void Awake()
     {
         cardAlign = GameObject.Find("PlayerHand").GetComponent<CardAlign>();
-        gogo();
         
+        gogo();
+
         
     }
-    
 
+    private void OnEnable()
+    {
+        
+    }
     private void Update()
     {
         if(state == BattleState.PLAYERTURN)
@@ -139,6 +144,9 @@ public class GameplayManager : MonoBehaviour
         {
             resetDeck();
         }
+        
+        scroll = GameObject.Find("MapParentWithAScroll").GetComponent<Map.ScrollNonUI>();
+        scroll.freezeX = true;
     }
     public IEnumerator SetupBattle()
     {

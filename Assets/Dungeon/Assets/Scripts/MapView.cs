@@ -62,6 +62,7 @@ namespace Map
         {
             Instance = this;
             cam = Camera.main;
+           
         }
 
         private void ClearMap()
@@ -96,8 +97,10 @@ namespace Map
             SetAttainableNodes();
 
             SetLineColors();
-
+            mapParent.transform.localScale = new Vector2(3, 3);
             CreateMapBackground(m);
+
+            
         }
 
         private void CreateMapBackground(Map m)
@@ -105,6 +108,7 @@ namespace Map
             if (background == null) return;
 
             var backgroundObject = new GameObject("Background");
+            backgroundObject.transform.localScale = new Vector2(3,3);
             backgroundObject.transform.SetParent(mapParent.transform);
             var bossNode = MapNodes.FirstOrDefault(node => node.Node.nodeType == NodeType.Boss);
             var span = m.DistanceBetweenFirstAndLastLayers();
@@ -114,7 +118,7 @@ namespace Map
             sr.color = backgroundColor;
             sr.drawMode = SpriteDrawMode.Sliced;
             sr.sprite = background;
-            sr.size = new Vector2(xSize, span + yOffset * 2f);
+            sr.size = new Vector2(xSize+14f, span + yOffset * 3f);
         }
 
         private void CreateMapParent()
@@ -128,6 +132,7 @@ namespace Map
             scrollNonUi.freezeY = orientation == MapOrientation.LeftToRight || orientation == MapOrientation.RightToLeft;
             var boxCollider = mapParent.AddComponent<BoxCollider>();
             boxCollider.size = new Vector3(100, 100, 1);
+            
         }
 
         private void CreateNodes(IEnumerable<Node> nodes)
@@ -226,7 +231,7 @@ namespace Map
             Debug.Log("Map span in set orientation: " + span + " camera aspect: " + cam.aspect);
 
             // setting first parent to be right in front of the camera first:
-            firstParent.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y, 0f);
+            firstParent.transform.position = new Vector3(cam.transform.position.x-43f, cam.transform.position.y, 0f);
             var offset = orientationOffset;
             switch (orientation)
             {
