@@ -159,7 +159,8 @@ MonoBehaviour:
   baseNumOfTargets: 2
   _enemies: []
   exhaustable: 0
-  retainable: 0
+  retainable: 1
+  desc: 
   attack: 3
   bonk: {fileID: 3356155904159209368, guid: 86afabfc67905044dbfa62c0b45cf989, type: 3}
 --- !u!96 &5719361334517285922
