@@ -5,7 +5,6 @@ using UnityEngine;
 public class Sanic : Card
 {
 
-    public int attack = 5;
     [SerializeField]private int cost = 2;
 
 

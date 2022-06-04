@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Homerun :  Card
 {
-    public int attack = 9;
     private int cost = 2;
     public GameObject bonk;
 

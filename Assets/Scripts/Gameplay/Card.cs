@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
+using TMPro;
 
 
 public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -29,16 +30,23 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField]private bool exhaustable;
     public bool retainable;
 
+    public float attack;
+    [HideInInspector]public float defaultattack;
+    [HideInInspector] public float kalkulacja;
+    [HideInInspector] public float kalkulacjaPrzeciwnik;
+
+    [HideInInspector]public string desc;
+
     private BasicAttack bs;
-    public enum textType
+    /*public enum textType
     {
         Str,
         Dex
-    }
-    public void textUpdate(textType typ)
+    }*/
+    /*public void textUpdate(textType typ)
     {
         if(typ == textType.Str) bs.UpdateAttack();
-    }
+    }*/
     private void Start()
     {
         currentCardState = cardState.Elsewhere;
@@ -83,7 +91,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
     }
 
-
+    
 
     void Awake()
     {
@@ -98,6 +106,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         gm = GameObject.Find("GameplayManager").GetComponent<GameplayManager>();
         pos = this.transform.GetComponent<RectTransform>();
         fm = GameObject.Find("Cursor").GetComponent<FollowMouse>();
+        defaultattack = attack;
     }
     void Update()
     {

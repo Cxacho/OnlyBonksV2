@@ -5,7 +5,6 @@ using UnityEngine;
 public class PocketKnifeCard : Card
 {
     int cost = 0;
-    int attack = 3;
     public override void OnDrop()
     {
         gm.checkPlayerMana(cost);

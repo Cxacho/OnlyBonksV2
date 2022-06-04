@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DoubleBonk : Card
 {
-    public int attack = 5;
     private int cost = 1;
     public GameObject bonk;
 

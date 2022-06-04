@@ -123,14 +123,14 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         int updatedHealth;
         if (pl.frail > 0)
         {
-            updatedHealth = (int)_currentHealth - (int)(damage *0.75f);
+            updatedHealth = (int)_currentHealth - Mathf.RoundToInt((damage *0.75f));
             Debug.Log(updatedHealth - _currentHealth);
-            Debug.Log("frailed");
+            
         }
         else
         {
-            Debug.Log("not Frailed");
-            updatedHealth = (int)_currentHealth - (int)damage;
+           
+            updatedHealth = (int)_currentHealth - Mathf.RoundToInt(damage);
         }
 
         OnDeath(updatedHealth > 0 ? updatedHealth : 0);
