@@ -119,6 +119,7 @@ namespace Map
             sr.drawMode = SpriteDrawMode.Sliced;
             sr.sprite = background;
             sr.size = new Vector2(xSize+14f, span + yOffset * 3f);
+            sr.sortingOrder = 1;
         }
 
         private void CreateMapParent()
