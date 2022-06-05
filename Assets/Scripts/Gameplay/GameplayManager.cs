@@ -23,7 +23,9 @@ public class GameplayManager : MonoBehaviour
     public GameObject panelWin;
     public int currentFloor;
     public UiActive ui;
-    public GameObject treasurePanel;
+    Button coinButton, healButton;
+    public GameObject treasurePanel,restSitePanel;
+    [SerializeField] GameObject treasurePanelButton;
     public GameObject panelLose;
     public GameObject cardHolder;
     public GameObject battleUI;
@@ -186,6 +188,10 @@ public class GameplayManager : MonoBehaviour
     public IEnumerator SetupRestSite()
     {
         player.OnBattleSetup();
+        restSitePanel.SetActive(true);
+        coinButton = restSitePanel.transform.GetChild(1).gameObject.GetComponent<Button>();
+        healButton = restSitePanel.transform.GetChild(2).gameObject.GetComponent<Button>();
+
         yield break;
     }
     public IEnumerator SetupBoss()
@@ -207,14 +213,17 @@ public class GameplayManager : MonoBehaviour
     {
         player.OnBattleSetup();
         treasurePanel.SetActive(true);
-        if (treasurePanel.transform.childCount > 1)
+        if (treasurePanel.transform.childCount > 0)
         {
-            for (int i = 0; i < treasurePanel.transform.childCount - 2; i++)
+            for (int i = 0; i < treasurePanel.transform.childCount - 1; i++)
             {
-                Destroy(treasurePanel.transform.GetChild(i));
+                Destroy(treasurePanel.transform.GetChild(0).gameObject);
             }
-            Instantiate(relicsList[Random.Range(0, allRelicsList.Count - 1)],treasurePanel.transform);
-            //GetMoneyButton Instantiate(relicsList[Random.Range(0, allRelicsList.Count - 1)], treasurePanel.transform);
+            var random = Random.Range(0, allRelicsList.Count - 1);
+            Instantiate(allRelicsList[random],treasurePanel.transform);
+            allRelicsList.RemoveAt(random);
+            treasurePanelButton.transform.SetAsLastSibling();
+            //GetMoneyButton Instantiate(GetMoneyButtonczycos, treasurePanel.transform);
         }
         yield break;
     }
@@ -482,7 +491,32 @@ public class GameplayManager : MonoBehaviour
         }
         
     }
+    public void DisableTreasureNodePanel()
 
+    {
+        treasurePanel.SetActive(false);
+    }
+    public void DisableRestSitePanel()
+
+    {
+        restSitePanel.SetActive(false);
+        coinButton.interactable = true;
+        healButton.interactable = true;
+    }
+    public void GetGold()
+    {
+        gold = Mathf.RoundToInt(gold*1.3f);
+        goldtxt.GetComponent<TextMeshProUGUI>().text = gold.ToString();
+        coinButton.interactable = false;
+        healButton.interactable = false;
+    }
+    public void GetHealthBack()
+    {
+        var value = Mathf.RoundToInt(player.maxHealth * 0.3f);
+        player.Heal(value);
+        coinButton.interactable = false;
+        healButton.interactable = false;
+    }
 
 }
 
