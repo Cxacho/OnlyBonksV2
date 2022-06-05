@@ -11,6 +11,7 @@ public class UiActive : MonoBehaviour
     public GameObject discardPile;
     public int panelIndex = 0;
     public GameplayManager gm;
+    public GameObject fill;
     [SerializeField] GameObject mapScreen;
     [SerializeField] GameObject settings;
     //public Vector3 mousePosition,secPos;
@@ -102,6 +103,7 @@ public class UiActive : MonoBehaviour
                 discardPile.SetActive(false);
                 settings.SetActive(false);
                 mapScreen.SetActive(false);
+                fill.SetActive(true);
                 break;
             case 1:
                 //wlaczenie panelu decklayoutu
@@ -275,6 +277,7 @@ public class UiActive : MonoBehaviour
     {
         Debug.Log("////");
         mapScreen.SetActive(true);
+        fill.SetActive(false);
 
         if (panelIndex == 5)
         {
