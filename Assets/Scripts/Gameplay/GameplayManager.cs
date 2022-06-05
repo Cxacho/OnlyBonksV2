@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 
-public enum BattleState { NODE ,START, PLAYERTURN, ENEMYTURN, WON, LOST, VictoryScreen}
+public enum BattleState { NODE ,START, PLAYERTURN, ENEMYTURN, WON, LOST, VictoryScreen,DRAWING}
 
 [RequireComponent(typeof(AudioListener))]
 [RequireComponent(typeof(AudioSource))]
@@ -21,7 +21,9 @@ public class GameplayManager : MonoBehaviour
     public GameObject discardPile;
     public GameObject playerHandObject;
     public GameObject panelWin;
+    public int currentFloor;
     public UiActive ui;
+    public GameObject treasurePanel;
     public GameObject panelLose;
     public GameObject cardHolder;
     public GameObject battleUI;
@@ -49,7 +51,7 @@ public class GameplayManager : MonoBehaviour
     public Button endTurn;
     public Button mapButton;
     public TextMeshProUGUI darkSoulsText;
-
+    public List<GameObject> allRelicsList = new List<GameObject>();
     //lista wszystkich kart w grze, wa¿ne ¿eby dodawaæ je po kolei 
     public List<GameObject> allCards = new List<GameObject>();
 
@@ -94,7 +96,7 @@ public class GameplayManager : MonoBehaviour
 
 
     public List<GameObject> Boss = new List<GameObject>();
-
+    [HideInInspector] public float delay;
     public GameObject Shopkeep;
 
     public List<Enemy> enType = new List<Enemy>();
@@ -159,6 +161,7 @@ public class GameplayManager : MonoBehaviour
     public IEnumerator SetupBattle()
     {
         exhaustedDeck.Clear();
+        player.OnBattleSetup();
         yield return new WaitForSeconds(0.1f);
 
         for (int i = 0; i < 1; i++)
@@ -177,19 +180,22 @@ public class GameplayManager : MonoBehaviour
 
     public IEnumerator SetupEliteBattle()
     {
+        player.OnBattleSetup();
         yield break;
     }
     public IEnumerator SetupRestSite()
     {
+        player.OnBattleSetup();
         yield break;
     }
     public IEnumerator SetupBoss()
     {
+        player.OnBattleSetup();
         yield break;
     }
     public IEnumerator SetupStore()
     {
-        
+        player.OnBattleSetup();
         ui.panelIndex = 0;
         ui.Check();
         shopPanel.SetActive(true);
@@ -199,15 +205,27 @@ public class GameplayManager : MonoBehaviour
     }
     public IEnumerator SetupTreasure()
     {
+        player.OnBattleSetup();
+        treasurePanel.SetActive(true);
+        if (treasurePanel.transform.childCount > 1)
+        {
+            for (int i = 0; i < treasurePanel.transform.childCount - 2; i++)
+            {
+                Destroy(treasurePanel.transform.GetChild(i));
+            }
+            Instantiate(relicsList[Random.Range(0, allRelicsList.Count - 1)],treasurePanel.transform);
+            //GetMoneyButton Instantiate(relicsList[Random.Range(0, allRelicsList.Count - 1)], treasurePanel.transform);
+        }
         yield break;
     }
     public IEnumerator SetupMistery()
     {
+        player.OnBattleSetup();
         yield break;
     }
     IEnumerator OnPlayersTurn()
     {
-        state = BattleState.PLAYERTURN;
+        //state = BattleState.PLAYERTURN;
 
         drawAmount = 0;
 
@@ -344,11 +362,16 @@ public class GameplayManager : MonoBehaviour
     }
     public void DrawCards(int amount)
     {
+        state = BattleState.DRAWING;
         playerDrawAmount = amount;
+        if (delay == 0)
+        {
+            //gowniany fix, ale jednak fix
+            delay = ((playerDrawAmount + playerHand.Count) * 0.5f) + Time.time;
+        }
         drawAmount++;
         if (playerDrawAmount >= drawAmount)
         {
-            //zablokowac draw powyzej 10
             if (drawDeck.Count == 0)
             {
                 shuffleDeck();
@@ -356,6 +379,7 @@ public class GameplayManager : MonoBehaviour
             var random = Random.Range(0, drawDeck.Count);
             GameObject card = Instantiate(drawDeck[random], drawButton.transform.position, transform.rotation);
             card.transform.SetParent(cardAlign.gameObject.transform);
+            card.GetComponent<Card>().index = card.transform.GetSiblingIndex();
             var updateValue = drawButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
             updateValue.text = (drawDeck.Count -1).ToString();
             card.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);

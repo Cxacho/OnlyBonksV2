@@ -159,9 +159,12 @@ MonoBehaviour:
   baseNumOfTargets: 2
   _enemies: []
   exhaustable: 0
-  retainable: 1
-  desc: 
+  retainable: 0
   attack: 3
+  defaultattack: 0
+  kalkulacja: 0
+  kalkulacjaPrzeciwnik: 0
+  desc: 
   bonk: {fileID: 3356155904159209368, guid: 86afabfc67905044dbfa62c0b45cf989, type: 3}
 --- !u!96 &5719361334517285922
 TrailRenderer:

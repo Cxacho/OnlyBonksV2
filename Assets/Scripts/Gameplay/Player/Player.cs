@@ -259,7 +259,10 @@ public class Player : MonoBehaviour
     }
     public void OnEndTurn()
     {
-
+        foreach(Card card in FindObjectsOfType<Card>())
+        {
+            card.index = card.gameObject.transform.GetSiblingIndex();
+        }
         
         if(strenght>0 ) strenght--;
         if(dexterity>0 ) dexterity--;
@@ -313,5 +316,24 @@ public class Player : MonoBehaviour
         vurneable=1,
         poision =2,
         strengthBuff=3
+    }
+    public void OnBattleSetup()
+    {
+
+        strenght = 0;
+        dexterity = 0;
+        inteligence = 0;
+        frail = 0;
+        vurneable= 0;
+        poison=0;
+        //usuniecie indicatora
+
+
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("BuffIndicator"))
+        {
+            var some = obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            int statusAmount;
+            Destroy(obj);
+        }
     }
 }
