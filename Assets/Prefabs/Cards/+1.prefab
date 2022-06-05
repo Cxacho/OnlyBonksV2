@@ -266,7 +266,12 @@ MonoBehaviour:
   baseNumOfTargets: 0
   _enemies: []
   exhaustable: 0
-  retainable: 1
+  retainable: 0
+  attack: 0
+  defaultattack: 0
+  kalkulacja: 0
+  kalkulacjaPrzeciwnik: 0
+  desc: 
   cost: 0
 --- !u!1 &1182447153954796977
 GameObject:

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 
-public enum BattleState { NODE ,START, PLAYERTURN, ENEMYTURN, WON, LOST, VictoryScreen}
+public enum BattleState { NODE ,START, PLAYERTURN, ENEMYTURN, WON, LOST, VictoryScreen,DRAWING}
 
 [RequireComponent(typeof(AudioListener))]
 [RequireComponent(typeof(AudioSource))]
@@ -93,7 +93,7 @@ public class GameplayManager : MonoBehaviour
 
 
     public List<GameObject> Boss = new List<GameObject>();
-
+    [HideInInspector] public float delay;
     public GameObject Shopkeep;
 
     public List<Enemy> enType = new List<Enemy>();
@@ -199,7 +199,7 @@ public class GameplayManager : MonoBehaviour
     }
     IEnumerator OnPlayersTurn()
     {
-        state = BattleState.PLAYERTURN;
+        //state = BattleState.PLAYERTURN;
 
         drawAmount = 0;
 
@@ -336,11 +336,16 @@ public class GameplayManager : MonoBehaviour
     }
     public void DrawCards(int amount)
     {
+        state = BattleState.DRAWING;
         playerDrawAmount = amount;
+        if (delay == 0)
+        {
+            //gowniany fix, ale jednak fix
+            delay = ((playerDrawAmount + playerHand.Count) * 0.5f) + Time.time;
+        }
         drawAmount++;
         if (playerDrawAmount >= drawAmount)
         {
-            //zablokowac draw powyzej 10
             if (drawDeck.Count == 0)
             {
                 shuffleDeck();
@@ -348,6 +353,7 @@ public class GameplayManager : MonoBehaviour
             var random = Random.Range(0, drawDeck.Count);
             GameObject card = Instantiate(drawDeck[random], drawButton.transform.position, transform.rotation);
             card.transform.SetParent(cardAlign.gameObject.transform);
+            card.GetComponent<Card>().index = card.transform.GetSiblingIndex();
             var updateValue = drawButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
             updateValue.text = (drawDeck.Count -1).ToString();
             card.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);

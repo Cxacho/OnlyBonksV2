@@ -23,7 +23,11 @@ public class CardAlign : MonoBehaviour
     void Update()
     {
         OnHandAmountChange();
-
+        if (gm.delay < Time.time && gm.delay != 0)
+        {
+            gm.state = BattleState.PLAYERTURN;
+            gm.delay = 0;
+        }
     }
 
     public void Realign()
@@ -231,7 +235,7 @@ public class CardAlign : MonoBehaviour
 
                 for (int i = 0; i < this.transform.childCount; i++)
                 {
-                    children[i].transform.DORotate(rotations[i], 0.5f);
+                    children[i].transform.DORotate(rotations[i], 0.2f);
                     children[i].transform.DOMove(positions[i], 0.2f);
                 }
                 //wywolanie draw'u kolejnych kart
@@ -239,6 +243,7 @@ public class CardAlign : MonoBehaviour
                     gm.DrawCards(gm.playerDrawAmount);
                 else
                     Debug.Log("Can't draw any further, u have already drawn" + " " + gm.playerHand.Count);
+ 
             });
         });
 

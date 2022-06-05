@@ -20,7 +20,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     RectTransform pos;
     GameObject par;
     List<GameObject> temp = new List<GameObject>();
-    [SerializeField]private int index;
+    public int index;
     private int numOfTargets;
     public int baseNumOfTargets;
     //private float clickDelay;
@@ -62,7 +62,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (this.transform.IsChildOf(GameObject.Find("PlayerHand").transform) && gm.playerHand.Count == par.transform.childCount)
+        if (this.transform.IsChildOf(GameObject.Find("PlayerHand").transform) && gm.playerHand.Count == par.transform.childCount && gm.state== BattleState.PLAYERTURN)
         {
             fm.crd = GetComponent<Card>();
             hoverRotation = this.transform.rotation;
@@ -79,7 +79,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (this.transform.IsChildOf(GameObject.Find("PlayerHand").transform) && gm.playerHand.Count == par.transform.childCount)
+        if (this.transform.IsChildOf(GameObject.Find("PlayerHand").transform) && gm.playerHand.Count == par.transform.childCount && gm.state == BattleState.PLAYERTURN)
         {
             fm.crd = null;
             this.transform.localScale = Vector3.one;

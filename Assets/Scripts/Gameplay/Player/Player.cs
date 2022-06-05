@@ -259,7 +259,10 @@ public class Player : MonoBehaviour
     }
     public void OnEndTurn()
     {
-
+        foreach(Card card in FindObjectsOfType<Card>())
+        {
+            card.index = card.gameObject.transform.GetSiblingIndex();
+        }
         
         if(strenght>0 ) strenght--;
         if(dexterity>0 ) dexterity--;
