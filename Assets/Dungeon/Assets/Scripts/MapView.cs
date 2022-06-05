@@ -97,7 +97,7 @@ namespace Map
             SetAttainableNodes();
 
             SetLineColors();
-            mapParent.transform.localScale = new Vector2(3, 3);
+            mapParent.transform.localScale = new Vector2(4, 4);
             CreateMapBackground(m);
 
             
@@ -118,7 +118,7 @@ namespace Map
             sr.color = backgroundColor;
             sr.drawMode = SpriteDrawMode.Sliced;
             sr.sprite = background;
-            sr.size = new Vector2(xSize+14f, span + yOffset * 3f);
+            sr.size = new Vector2(xSize+15f, span + yOffset * 16f);
             sr.sortingOrder = 1;
         }
 
@@ -232,7 +232,7 @@ namespace Map
             Debug.Log("Map span in set orientation: " + span + " camera aspect: " + cam.aspect);
 
             // setting first parent to be right in front of the camera first:
-            firstParent.transform.position = new Vector3(cam.transform.position.x-43f, cam.transform.position.y, 0f);
+            firstParent.transform.position = new Vector3(cam.transform.position.x-55f, cam.transform.position.y-3f, 0f);
             var offset = orientationOffset;
             switch (orientation)
             {

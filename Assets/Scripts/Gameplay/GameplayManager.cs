@@ -47,6 +47,7 @@ public class GameplayManager : MonoBehaviour
 
     public GameObject textPanel;
     public Button endTurn;
+    public Button mapButton;
     public TextMeshProUGUI darkSoulsText;
 
     //lista wszystkich kart w grze, wa¿ne ¿eby dodawaæ je po kolei 
@@ -125,12 +126,19 @@ public class GameplayManager : MonoBehaviour
             endTurn.interactable = true;
         }
         else endTurn.interactable = false;
+
+        if(state == BattleState.NODE)
+        {
+            mapButton.interactable = false;
+
+        }
+        else mapButton.interactable = true;
         goldtxt.GetComponent<TextMeshProUGUI>().text = gold.ToString();
     }
 
     void Start()
     {
-        state = BattleState.START;
+        state = BattleState.NODE;
 
     }
     IEnumerator ChooseNode()
