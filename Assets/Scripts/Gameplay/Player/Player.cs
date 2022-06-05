@@ -317,4 +317,23 @@ public class Player : MonoBehaviour
         poision =2,
         strengthBuff=3
     }
+    public void OnBattleSetup()
+    {
+
+        strenght = 0;
+        dexterity = 0;
+        inteligence = 0;
+        frail = 0;
+        vurneable= 0;
+        poison=0;
+        //usuniecie indicatora
+
+
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("BuffIndicator"))
+        {
+            var some = obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            int statusAmount;
+            Destroy(obj);
+        }
+    }
 }

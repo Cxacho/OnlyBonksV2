@@ -36,6 +36,8 @@ public class Relic : MonoBehaviour
         {
             gameObject.transform.SetParent(relicHolder.transform);
             gm.relicsList.Add(gameObject);
+            //check czy relic ma taka sama nazwe jak jego klon// usun klona
+            //gm.allRelicsList.Remove()
             
 
         });

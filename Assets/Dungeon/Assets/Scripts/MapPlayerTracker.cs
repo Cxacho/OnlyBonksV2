@@ -2,6 +2,7 @@
 using System.Linq;
 using DG.Tweening;
 using UnityEngine;
+using TMPro;
 
 namespace Map
 {
@@ -13,7 +14,7 @@ namespace Map
         public MapView view;
         private UiActive ui;
         private GameplayManager gameplay;
-
+        [SerializeField] TextMeshProUGUI floorText;
         public static MapPlayerTracker Instance;
 
         public bool Locked { get; set; }
@@ -74,36 +75,50 @@ namespace Map
             {
                 case NodeType.MinorEnemy:
                     ui.OnMapClick();
+                    gameplay.currentFloor++;
+                    floorText.text = gameplay.currentFloor.ToString();
                     StartCoroutine(gameplay.SetupBattle());
                     Locked = true;
                     break;
                 case NodeType.EliteEnemy:
                     ui.OnMapClick();
+                    gameplay.currentFloor++;
+                    floorText.text = gameplay.currentFloor.ToString();
                     StartCoroutine(gameplay.SetupEliteBattle());
                     Locked = true;
                     break;
                 case NodeType.RestSite:
                     ui.OnMapClick();
+                    gameplay.currentFloor++;
+                    floorText.text = gameplay.currentFloor.ToString();
                     StartCoroutine(gameplay.SetupRestSite());
                     Locked = true;
                     break;
                 case NodeType.Treasure:
                     ui.OnMapClick();
+                    gameplay.currentFloor++;
+                    floorText.text = gameplay.currentFloor.ToString();
                     StartCoroutine(gameplay.SetupTreasure());
                     Locked = true;
                     break;
                 case NodeType.Store:
                     ui.OnMapClick();
+                    gameplay.currentFloor++;
+                    floorText.text = gameplay.currentFloor.ToString();
                     StartCoroutine(gameplay.SetupStore());
                     Locked = true;
                     break;
                 case NodeType.Boss:
                     ui.OnMapClick();
+                    gameplay.currentFloor++;
+                    floorText.text = gameplay.currentFloor.ToString();
                     StartCoroutine(gameplay.SetupBoss());
                     Locked = true;
                     break;
                 case NodeType.Mystery:
                     ui.OnMapClick();
+                    gameplay.currentFloor++;
+                    floorText.text = gameplay.currentFloor.ToString();
                     StartCoroutine(gameplay.SetupMistery());
                     Locked = true;
                     break;

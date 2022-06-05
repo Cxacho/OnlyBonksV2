@@ -21,7 +21,9 @@ public class GameplayManager : MonoBehaviour
     public GameObject discardPile;
     public GameObject playerHandObject;
     public GameObject panelWin;
+    public int currentFloor;
     public UiActive ui;
+    public GameObject treasurePanel;
     public GameObject panelLose;
     public GameObject cardHolder;
     public GameObject battleUI;
@@ -48,7 +50,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject textPanel;
     public Button endTurn;
     public TextMeshProUGUI darkSoulsText;
-
+    public List<GameObject> allRelicsList = new List<GameObject>();
     //lista wszystkich kart w grze, wa¿ne ¿eby dodawaæ je po kolei 
     public List<GameObject> allCards = new List<GameObject>();
 
@@ -151,6 +153,7 @@ public class GameplayManager : MonoBehaviour
     public IEnumerator SetupBattle()
     {
         exhaustedDeck.Clear();
+        player.OnBattleSetup();
         yield return new WaitForSeconds(0.1f);
 
         for (int i = 0; i < 1; i++)
@@ -169,19 +172,22 @@ public class GameplayManager : MonoBehaviour
 
     public IEnumerator SetupEliteBattle()
     {
+        player.OnBattleSetup();
         yield break;
     }
     public IEnumerator SetupRestSite()
     {
+        player.OnBattleSetup();
         yield break;
     }
     public IEnumerator SetupBoss()
     {
+        player.OnBattleSetup();
         yield break;
     }
     public IEnumerator SetupStore()
     {
-        
+        player.OnBattleSetup();
         ui.panelIndex = 0;
         ui.Check();
         shopPanel.SetActive(true);
@@ -191,10 +197,22 @@ public class GameplayManager : MonoBehaviour
     }
     public IEnumerator SetupTreasure()
     {
+        player.OnBattleSetup();
+        treasurePanel.SetActive(true);
+        if (treasurePanel.transform.childCount > 1)
+        {
+            for (int i = 0; i < treasurePanel.transform.childCount - 2; i++)
+            {
+                Destroy(treasurePanel.transform.GetChild(i));
+            }
+            Instantiate(relicsList[Random.Range(0, allRelicsList.Count - 1)],treasurePanel.transform);
+            //GetMoneyButton Instantiate(relicsList[Random.Range(0, allRelicsList.Count - 1)], treasurePanel.transform);
+        }
         yield break;
     }
     public IEnumerator SetupMistery()
     {
+        player.OnBattleSetup();
         yield break;
     }
     IEnumerator OnPlayersTurn()
