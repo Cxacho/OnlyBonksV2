@@ -24,8 +24,8 @@ public class GameplayManager : MonoBehaviour
     public int currentFloor;
     public UiActive ui;
     Button coinButton, healButton;
-    public GameObject treasurePanel,restSitePanel;
-    [SerializeField] GameObject treasurePanelButton;
+    public GameObject treasurePanel,restSitePanel,mysteryPanel;
+    public GameObject treasurePanelButton;
     public GameObject panelLose;
     public GameObject cardHolder;
     public GameObject battleUI;
@@ -59,7 +59,6 @@ public class GameplayManager : MonoBehaviour
 
     //lista kart ktore posiada gracz na poczatku
     public List<GameObject> startingDeck = new List<GameObject>();
-
     //lista kart ktore usuwamy z gryw trakcie pojedynku
     public List<GameObject> exhaustedDeck = new List<GameObject>();
     //lista kart ktore mozemy dobrac do reki
@@ -162,6 +161,7 @@ public class GameplayManager : MonoBehaviour
     }
     public IEnumerator SetupBattle()
     {
+        //tu w construktorze trzeba wrzucic liste przeciwnikow na ktorom mozemy trafic, zeby mozna bylo ich roznie spawnic
         exhaustedDeck.Clear();
         player.OnBattleSetup();
         yield return new WaitForSeconds(0.1f);
@@ -215,11 +215,12 @@ public class GameplayManager : MonoBehaviour
         treasurePanel.SetActive(true);
         if (treasurePanel.transform.childCount > 0)
         {
-            for (int i = 0; i < treasurePanel.transform.childCount - 1; i++)
+            var checkChildCount = treasurePanel.transform.childCount;
+            for (int i = 0; i < checkChildCount - 1; i++)
             {
-                Destroy(treasurePanel.transform.GetChild(0).gameObject);
+                Destroy(treasurePanel.transform.GetChild(i).gameObject);
             }
-            var random = Random.Range(0, allRelicsList.Count - 1);
+            var random = Random.Range(1, allRelicsList.Count - 1);
             Instantiate(allRelicsList[random],treasurePanel.transform);
             allRelicsList.RemoveAt(random);
             treasurePanelButton.transform.SetAsLastSibling();
@@ -229,7 +230,13 @@ public class GameplayManager : MonoBehaviour
     }
     public IEnumerator SetupMistery()
     {
+        
         player.OnBattleSetup();
+        mysteryPanel.SetActive(true);
+        var random = Random.Range(0, Mistery.Count - 1);
+        Instantiate(Mistery[random], mysteryPanel.transform);
+        Mistery.RemoveAt(random);
+
         yield break;
     }
     IEnumerator OnPlayersTurn()
@@ -495,6 +502,7 @@ public class GameplayManager : MonoBehaviour
 
     {
         treasurePanel.SetActive(false);
+        mysteryPanel.SetActive(false);
     }
     public void DisableRestSitePanel()
 

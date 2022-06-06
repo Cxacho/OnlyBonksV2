@@ -37,7 +37,7 @@ public class BuyCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (gameplayManager.gold >= cardCost)
         {
             gameplayManager.gold -= cardCost;
-            gameplayManager.startingDeck.Add(gameplayManager.allCards[ID]);
+            gameplayManager.drawDeck.Add(gameplayManager.allCards[ID]);
             
             GameObject.Destroy(gameObject);
             

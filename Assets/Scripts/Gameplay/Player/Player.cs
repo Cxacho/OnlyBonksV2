@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     public int mana;
     public GameObject armorImage,buffsAndDebuffs;
     public TMP_Text manaText;
-    public TMP_Text healthText;
+    public TMP_Text healthText,topHp;
     public TMP_Text armorText;
     public SliderHealth sdh;
     public GameObject dmgPopOutBlock;
@@ -247,6 +247,7 @@ public class Player : MonoBehaviour
         }
         sdh.SetHealth(currentHealth);
         healthText.text = currentHealth + "/" + maxHealth;
+        topHp.text = currentHealth + "/" + maxHealth;
     }
     public void ResetPlayerArmor()
     {
@@ -311,14 +312,18 @@ public class Player : MonoBehaviour
     }
     enum buffs
     {
-        brak = 4,
         frail=0,
         vurneable=1,
         poision =2,
-        strengthBuff=3
+        strengthBuff=3,
+        brak = 4
     }
     public void OnBattleSetup()
     {
+        armor = 0;
+        //gm.playerHand.Clear();
+        gm.discardDeck.ForEach(item => gm.drawDeck.Add(item));
+        gm.discardDeck.Clear();
 
         strenght = 0;
         dexterity = 0;
@@ -331,8 +336,6 @@ public class Player : MonoBehaviour
 
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("BuffIndicator"))
         {
-            var some = obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-            int statusAmount;
             Destroy(obj);
         }
     }

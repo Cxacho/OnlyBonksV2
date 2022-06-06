@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 8944058849431826244}
   - component: {fileID: -6665198123650261018}
   m_Layer: 0
-  m_Name: The heart is the strongest muscle
+  m_Name: The heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -361,6 +361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 0
   relicName: 
+  gm: {fileID: 0}
   pl: {fileID: 0}
 --- !u!1 &7032000564725957428
 GameObject:
@@ -438,7 +439,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 09c80eb7a612bc34d9e37b5f98182e65, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e5a490a44e2a3a24a903253e720ebc67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
