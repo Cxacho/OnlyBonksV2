@@ -464,7 +464,8 @@ MonoBehaviour:
   floorThreeEnemies: []
   EliteEnemies: []
   Mistery: []
-  Boss: []
+  Boss:
+  - {fileID: 2867067199404586775, guid: fcb33d1e184448247bdddaa9a6a5dd8f, type: 3}
   delay: 0
   Shopkeep: {fileID: 0}
   enType: []

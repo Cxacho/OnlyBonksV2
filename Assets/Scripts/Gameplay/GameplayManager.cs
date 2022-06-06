@@ -474,7 +474,7 @@ public class GameplayManager : MonoBehaviour
     }
     private void SpawnEnemies(int i)
     {
-        Instantiate(floorOneEnemies[i], enemyBattleStation[i].transform.position, Quaternion.identity, enemyBattleStation[i].transform);
+        Instantiate(Boss[i], enemyBattleStation[i].transform.position, Quaternion.identity, enemyBattleStation[i].transform);
     }
     public void gogo()
     {

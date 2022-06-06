@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GeneralGrievious : Enemy, ITakeTurn
 {
-    int bossDamage = 5;
+    
     private void Start()
     {
         
@@ -30,22 +30,26 @@ public class GeneralGrievious : Enemy, ITakeTurn
             case 1:
 
                 ShieldUp();
-                
+                if (_currentHealth < maxHealth / 2) await attackPhaseTwo(player);
+                else await attackPhaseOne(player);
                 actionsInt++;
                 
                 break;
             case 2:
-                
+                if (_currentHealth < maxHealth / 2) await attackPhaseTwo(player);
+                else await attackPhaseOne(player);
                 actionsInt++;
                 break;
             case 3:
-                
+                if (_currentHealth < maxHealth / 2) await attackPhaseTwo(player);
+                else await attackPhaseOne(player);
                 actionsInt++;
                 
                 break;
             case 4:
-                
-                
+
+                if (_currentHealth < maxHealth / 2) await attackPhaseTwo(player);
+                else await attackPhaseOne(player);
                 actionsInt = 0;
                 
                 break;
@@ -61,29 +65,29 @@ public class GeneralGrievious : Enemy, ITakeTurn
 
     private async Task attackPhaseOne(Player player)
     {
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < 2; i++)
         {
             var checkPlayerHp = player.currentHealth;
-            player.TakeDamage(bossDamage);
+            player.TakeDamage(baseDamage);
             if(checkPlayerHp > player.currentHealth)
             {
-                bossDamage++;
+                baseDamage++;
             }
-            await Task.Yield();
+            await Task.Delay(150);
         }
         
     }
     private async Task attackPhaseTwo(Player player)
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
             var checkPlayerHp = player.currentHealth;
-            player.TakeDamage(bossDamage);
+            player.TakeDamage(damage);
             if (checkPlayerHp > player.currentHealth)
             {
-                bossDamage++;
+                baseDamage++;
             }
-            await Task.Yield();
+            await Task.Delay(150);
         }
 
     }
