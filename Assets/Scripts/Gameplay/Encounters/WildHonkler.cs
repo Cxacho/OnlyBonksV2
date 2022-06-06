@@ -32,7 +32,7 @@ public class WildHonkler : MonoBehaviour
         but2.interactable = false;
         pl.TakeHealthDamage(badJudgement);
         pl.setHP();
-        text.text = "Creature swiftly pulled out knife from other hand, and stabbed you twice in your paw and runs away. Mom always said never trust strangers.";
+        text.text = "Creature swiftly pulled out knife from other hand, stabbing you twice in your paw. Mom always said never trust strangers.";
     }
 
 }

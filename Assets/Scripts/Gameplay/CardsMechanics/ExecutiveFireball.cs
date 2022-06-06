@@ -19,6 +19,7 @@ public class ExecutiveFireball : Card
             {
                 if (en.targeted == true)
                 {
+                    Debug.Log("jba");
                     if (en._currentHealth<(float)(en.maxHealth*0.4))
                     {
                         en.ReceiveDamage(en.maxHealth);

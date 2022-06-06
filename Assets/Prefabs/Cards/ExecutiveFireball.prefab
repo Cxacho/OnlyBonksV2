@@ -263,11 +263,15 @@ MonoBehaviour:
   pl: {fileID: 0}
   gm: {fileID: 0}
   index: 0
-  baseNumOfTargets: 0
+  baseNumOfTargets: 1
   _enemies: []
   exhaustable: 0
   retainable: 0
   attack: 20
+  defaultattack: 0
+  kalkulacja: 0
+  kalkulacjaPrzeciwnik: 0
+  desc: 
   cost: 3
 --- !u!1 &3492690168938492776
 GameObject:

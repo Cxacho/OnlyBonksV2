@@ -16,7 +16,9 @@ public class DogeResidence : MonoBehaviour
     {
         gm = FindObjectOfType<GameplayManager>();
         pl = FindObjectOfType<Player>();
-        eh = GetComponentInParent<EncountersHandler>();
+        eh = FindObjectOfType<EncountersHandler>();
+        relicHolder = GameObject.Find("RelicHolder");
+        mysteryPanel = GameObject.Find("MysteryPanel");
     }
     private void Update()
     {
