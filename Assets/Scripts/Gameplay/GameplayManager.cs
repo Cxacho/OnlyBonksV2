@@ -275,17 +275,20 @@ public class GameplayManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
 
+        if(player.currentHealth == 0)
+        {
+            state = BattleState.LOST;
+            StartCoroutine(OnBattleLost());
+        }
+        else
+        {
+            player.ResetPlayerArmor();
+            player.OnEndTurn();
+            StartCoroutine(OnPlayersTurn());
+        }
         
 
         
-
-        player.ResetPlayerArmor();
-
-        player.OnEndTurn();
-
-        
-
-        StartCoroutine(OnPlayersTurn());
     }
     public IEnumerator OnBattleWin()
     {
@@ -303,7 +306,10 @@ public class GameplayManager : MonoBehaviour
     }
     public IEnumerator OnBattleLost()
     {
-        yield return new WaitForSeconds(2);
+        //animacja œmierci
+        foreach (GameObject en in enemies) Destroy(en);
+        Destroy(GameObject.FindGameObjectWithTag("Player"));
+           yield return new WaitForSeconds(0.5f);
 
 
         StartCoroutine(LoseScreen());
