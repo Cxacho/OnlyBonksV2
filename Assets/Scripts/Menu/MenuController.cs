@@ -126,7 +126,7 @@ public class MenuController : MonoBehaviour
 
     private void Start()
     {
-
+        if (PlayerPrefs.HasKey("Map")) continueButton.SetActive(true);
         buttonsGroupRect = buttonsGroup.GetComponent<RectTransform>();
         buttonsGroupStartPozX = buttonsGroupRect.anchoredPosition.x;
         buttonsGroupStartPozY = buttonsGroupRect.anchoredPosition.y;
@@ -172,13 +172,15 @@ public class MenuController : MonoBehaviour
 
     public void StartNewGame()
     {
+        PlayerPrefs.DeleteKey("Map");
         SceneManager.LoadScene(_newGameLevel);
     }
 
     public void LoadGame()
     {
-        if(PlayerPrefs.HasKey("SavedLevel"))
+        if(PlayerPrefs.HasKey("Map"))
         {
+            
             levelToLoad = PlayerPrefs.GetString("SavedLevel");
             SceneManager.LoadScene(levelToLoad);
         }
