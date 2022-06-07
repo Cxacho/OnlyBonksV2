@@ -248,6 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f26a0f53ba2008343805bf94aa25a863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cost: 2
   cType: 0
   currentCardState: 0
   trail: {fileID: 0}
@@ -258,6 +259,11 @@ MonoBehaviour:
   _enemies: []
   exhaustable: 0
   retainable: 0
+  attack: 0
+  defaultattack: 0
+  kalkulacja: 0
+  kalkulacjaPrzeciwnik: 0
+  desc: 
 --- !u!1 &3868653325569000508
 GameObject:
   m_ObjectHideFlags: 0

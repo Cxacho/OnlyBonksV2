@@ -5,7 +5,6 @@ using UnityEngine;
 public class ExecutiveFireball : Card
 {
 
-    [SerializeField]private int cost = 3;
 
     public override void OnDrop()
     {

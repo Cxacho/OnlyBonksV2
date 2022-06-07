@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class YouHaveNoMana : Card
 {
-    private int cost = 0;
 
 
     public override void OnDrop()

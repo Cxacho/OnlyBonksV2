@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class MassiveBonk : Card
 {
-    private int cost = 3;
     public GameObject bonk;
-
-
 
     public override void OnDrop()
     {

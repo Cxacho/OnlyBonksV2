@@ -5,7 +5,6 @@ using UnityEngine;
 public class BabalityScript : Card
 {
     
-    private int cost = 4;
     
     List<Animator> anim = new List<Animator>(); 
 

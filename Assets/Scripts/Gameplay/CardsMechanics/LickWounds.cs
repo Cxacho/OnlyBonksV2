@@ -5,7 +5,6 @@ using DG.Tweening;
 
 public class LickWounds : Card
 {
-    private int cost = 1;
     public GameObject bonk;
     [SerializeField] int value;
 

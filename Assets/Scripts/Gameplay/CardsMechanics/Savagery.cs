@@ -5,7 +5,6 @@ using DG.Tweening;
 
 public class Savagery : Card
 {
-    private int cost = 0;
     public GameObject bonk;
     [SerializeField]private int value;
 
@@ -21,7 +20,7 @@ public class Savagery : Card
             pl.TakeDamage(value);
             pl.mana += 1;
             StartCoroutine(ExecuteAfterTime(1f));
-            pl.strenght += 2;
+            gm.DrawCards(1);
 
         }
         else

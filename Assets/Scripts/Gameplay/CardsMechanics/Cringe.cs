@@ -5,7 +5,6 @@ using UnityEngine;
 public class Cringe : Card
 {
 
-    private int cost = 1;
     public override void OnDrop()
     {
         gm.checkPlayerMana(cost);

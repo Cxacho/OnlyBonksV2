@@ -257,6 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dda8a2c4e87d75f47a8c3bb71e0f9832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cost: 1
   cType: 0
   currentCardState: 0
   trail: {fileID: 0}
@@ -268,6 +269,10 @@ MonoBehaviour:
   exhaustable: 0
   retainable: 0
   attack: 3
+  defaultattack: 0
+  kalkulacja: 0
+  kalkulacjaPrzeciwnik: 0
+  desc: 
   armor: 3
   shield: {fileID: 5418577385353009714, guid: f0c51d39f8509554490faff2970aa5a7, type: 3}
 --- !u!1 &3611604833376580201

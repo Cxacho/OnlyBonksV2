@@ -6,7 +6,6 @@ using TMPro;
 public class BasicAttack : Card
 {
     
-    private int cost = 1;
     public GameObject bonk;
 
     

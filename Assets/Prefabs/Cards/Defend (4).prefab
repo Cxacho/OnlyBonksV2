@@ -765,6 +765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 798d741f7b30b9345b4ffddef62ad094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cost: 1
   cType: 1
   currentCardState: 0
   trail: {fileID: 0}
@@ -775,6 +776,11 @@ MonoBehaviour:
   _enemies: []
   exhaustable: 0
   retainable: 0
+  attack: 0
+  defaultattack: 0
+  kalkulacja: 0
+  kalkulacjaPrzeciwnik: 0
+  desc: 
   shield: {fileID: 5418577385353009714, guid: f0c51d39f8509554490faff2970aa5a7, type: 3}
 --- !u!96 &-5158187166796976856
 TrailRenderer:

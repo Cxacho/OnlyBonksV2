@@ -8,6 +8,7 @@ using TMPro;
 
 public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public int cost;
     public cardType cType;
     public cardState currentCardState;
     private Vector3 mousePos, posInHand, discDek;
@@ -107,6 +108,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         pos = this.transform.GetComponent<RectTransform>();
         fm = GameObject.Find("Cursor").GetComponent<FollowMouse>();
         defaultattack = attack;
+        this.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = cost.ToString();
     }
     void Update()
     {

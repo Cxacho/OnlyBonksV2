@@ -5,7 +5,6 @@ using UnityEngine;
 public class Sanic : Card
 {
 
-    [SerializeField]private int cost = 2;
 
 
     public override void OnDrop()

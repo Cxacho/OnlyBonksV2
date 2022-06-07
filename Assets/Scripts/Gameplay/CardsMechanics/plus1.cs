@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class plus1 : Card
 {
-    [SerializeField] private int cost = 0;
     public override void OnDrop()
     {
         gm.checkPlayerMana(cost);

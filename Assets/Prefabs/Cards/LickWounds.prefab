@@ -525,6 +525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730138640b02ff949bfe6cb1a18ee950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cost: 1
   cType: 1
   currentCardState: 0
   trail: {fileID: 1740697963139131927}

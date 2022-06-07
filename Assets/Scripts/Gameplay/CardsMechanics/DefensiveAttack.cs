@@ -5,7 +5,7 @@ using UnityEngine;
 public class DefensiveAttack : Card
 {
     public int armor = 3;
-    private int cost = 1;
+
     public GameObject shield;
 
     public override void OnDrop()

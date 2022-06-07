@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FlurryOfBonks : Card
 {
-    private int cost = 2;
+
     public GameObject bonk;
 
 
