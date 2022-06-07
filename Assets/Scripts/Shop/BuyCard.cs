@@ -20,7 +20,8 @@ public class BuyCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private void Awake()
     {
         gameplayManager = GameObject.Find("GameplayManager").GetComponent<GameplayManager>();
-        int.TryParse(this.transform.GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text, out cardCost);
+        //int.TryParse(this.transform.GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text, out cardCost);
+        this.transform.GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text = cardCost.ToString();
         PosY = gameObject.GetComponent<RectTransform>().anchoredPosition.y;
         
     }
@@ -37,7 +38,7 @@ public class BuyCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (gameplayManager.gold >= cardCost)
         {
             gameplayManager.gold -= cardCost;
-            gameplayManager.drawDeck.Add(gameplayManager.allCards[ID]);
+            gameplayManager.drawDeck.Add(gameplayManager.allCardsSHOP[ID]);
             
             GameObject.Destroy(gameObject);
             

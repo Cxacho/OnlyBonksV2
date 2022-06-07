@@ -54,8 +54,11 @@ public class GameplayManager : MonoBehaviour
     public Button mapButton;
     public TextMeshProUGUI darkSoulsText;
     public List<GameObject> allRelicsList = new List<GameObject>();
-    //lista wszystkich kart w grze, wa¿ne ¿eby dodawaæ je po kolei 
+    
     public List<GameObject> allCards = new List<GameObject>();
+
+    //lista wszystkich kart w grze, wa¿ne ¿eby dodawaæ je po kolei 
+    public List<GameObject> allCardsSHOP = new List<GameObject>();
 
     //lista kart ktore posiada gracz na poczatku
     public List<GameObject> startingDeck = new List<GameObject>();

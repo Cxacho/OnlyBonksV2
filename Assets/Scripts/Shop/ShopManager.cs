@@ -13,6 +13,10 @@ public class ShopManager : MonoBehaviour
     //lista kart pojawiaj¹cych siê w sklepie w górnym panelu kart
     public List<GameObject> cards = new List<GameObject>();
 
+    private void Awake()
+    {
+        gameplayManager = GameObject.Find("GameplayManager").GetComponent<GameplayManager>();
+    }
     private void Start()
     {
         SpawnShuffledCards();
