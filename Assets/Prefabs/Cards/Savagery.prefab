@@ -278,9 +278,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Gives 1 mana
+  m_text: 'Take 2 HP,
 
-    Lose 2 hp'
+    Give 1 mana and draw 1 card'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -616,6 +616,11 @@ MonoBehaviour:
   _enemies: []
   exhaustable: 0
   retainable: 0
+  attack: 0
+  defaultattack: 0
+  kalkulacja: 0
+  kalkulacjaPrzeciwnik: 0
+  desc: 
   bonk: {fileID: 0}
   value: 4
 --- !u!1 &8202373392061773434

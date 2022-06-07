@@ -141,7 +141,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Gain 3 Block
+  m_text: Draw 1 card
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -409,7 +409,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Protect Virginity
+  m_text: +1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -664,8 +664,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.86500007}
   m_AnchorMax: {x: 0.17600001, y: 1}
-  m_AnchoredPosition: {x: -0.18707275, y: -0.06317139}
-  m_SizeDelta: {x: -0.36631775, y: 0.12628174}
+  m_AnchoredPosition: {x: -0.18707275, y: 0.8607025}
+  m_SizeDelta: {x: -0.3663, y: -1.7214}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4454298810788644191
 CanvasRenderer:
@@ -695,7 +695,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -722,7 +722,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29.85
+  m_fontSize: 28.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -796,10 +796,10 @@ RectTransform:
   m_Father: {fileID: 6398745874363550123}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.41172624, y: 0.425}
-  m_AnchorMax: {x: 0.59245473, y: 0.46500003}
-  m_AnchoredPosition: {x: -0.04437256, y: 0.3779297}
-  m_SizeDelta: {x: -1.569397, y: -1.2442017}
+  m_AnchorMin: {x: 0.4176276, y: 0.42881855}
+  m_AnchorMax: {x: 0.58655334, y: 0.46500003}
+  m_AnchoredPosition: {x: -0.04437256, y: -0.12207031}
+  m_SizeDelta: {x: 0.43060303, y: -0.24420166}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5298120295155218692
 CanvasRenderer:
@@ -829,7 +829,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Defend
+  m_text: Skill
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
