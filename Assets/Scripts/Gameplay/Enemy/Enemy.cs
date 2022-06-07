@@ -375,6 +375,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     }
     public void OnEndTurn()
     {
+        if(bleed >0)
         ReceiveDamage(bleed);
         if (strength > 0) strength--;
         if (vurneable > 0) vurneable--;
