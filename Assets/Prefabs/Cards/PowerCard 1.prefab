@@ -179,7 +179,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6378627393820948997}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.8678824}
   m_AnchorMax: {x: 0.16900001, y: 1}
@@ -313,7 +313,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6378627393820948997}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.42200002, y: 0.43100002}
   m_AnchorMax: {x: 0.5925453, y: 0.46764693}
@@ -447,7 +447,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6378627393820948997}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.20500001, y: 0.8678824}
   m_AnchorMax: {x: 0.7955453, y: 0.92600006}
@@ -580,10 +580,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 7378655392135895017}
   - {fileID: 3953153988903459137}
   - {fileID: 6146576696045900088}
   - {fileID: 7657327688177141488}
-  - {fileID: 7378655392135895017}
   m_Father: {fileID: 4154305017897078799}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -642,7 +642,7 @@ GameObject:
   - component: {fileID: 8735146951531586623}
   - component: {fileID: 8479757207039664003}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: DESC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -660,12 +660,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6378627393820948997}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.13754524, y: 0.30600002}
-  m_AnchorMax: {x: 0.84200007, y: 0.38700002}
-  m_AnchoredPosition: {x: 2.171875, y: 1.4922485}
-  m_SizeDelta: {x: 17.149994, y: 2.8153992}
+  m_AnchorMin: {x: 0.115, y: 0.045}
+  m_AnchorMax: {x: 0.887, y: 0.42000002}
+  m_AnchoredPosition: {x: -0.328125, y: 0.10308838}
+  m_SizeDelta: {x: 2.1499996, y: -0.18009949}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8735146951531586623
 CanvasRenderer:
@@ -722,7 +722,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12.6
+  m_fontSize: 26.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

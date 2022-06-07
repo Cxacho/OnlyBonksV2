@@ -304,7 +304,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8358991850044514069}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.43400002, y: 0.42700002}
   m_AnchorMax: {x: 0.592, y: 0.46800002}
@@ -438,7 +438,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8358991850044514069}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.022545248, y: 0.87100005}
   m_AnchorMax: {x: 0.18554525, y: 0.994}
@@ -554,7 +554,7 @@ GameObject:
   - component: {fileID: 6178108291855171887}
   - component: {fileID: 6425039479679253139}
   m_Layer: 7
-  m_Name: Text (TMP)
+  m_Name: DESC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -572,12 +572,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8358991850044514069}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.11745476, y: 0.30600002}
   m_AnchorMax: {x: 0.883, y: 0.39758813}
-  m_AnchoredPosition: {x: -0.328125, y: -0.0077209473}
-  m_SizeDelta: {x: 4.149994, y: -0.18460083}
+  m_AnchoredPosition: {x: -0.328125, y: -38.084}
+  m_SizeDelta: {x: 4.15, y: 96.168}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6178108291855171887
 CanvasRenderer:
@@ -607,7 +607,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Deals 3 damage '
+  m_text: 'Deals 25 damage '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -634,10 +634,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.55
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 2
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -706,7 +706,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8358991850044514069}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.19936195, y: 0.87100005}
   m_AnchorMax: {x: 0.80600005, y: 0.92300004}
@@ -839,10 +839,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 5395957634933977849}
   - {fileID: 1898295309307378769}
   - {fileID: 8775672812490634280}
   - {fileID: 5098145058000200672}
-  - {fileID: 5395957634933977849}
   m_Father: {fileID: 1523196864062354719}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -17,20 +17,7 @@ public class BasicAttack : Card
 
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
-    /*public void UpdateAttack()
-    {
-        attack += pl.strenght;
-        if (attack > 3)
-        {
-            desc = $"Deal <color=green>{attack.ToString()}</color> damage";
-            this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
-        }
-        else if (attack < 3)
-        {
-            desc = $"Deal <color=red>{attack.ToString()}</color> damage";
-            this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
-        }
-    }*/
+  
 
     private void FixedUpdate()
     {

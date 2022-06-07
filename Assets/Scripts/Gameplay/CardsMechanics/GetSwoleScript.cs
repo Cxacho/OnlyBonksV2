@@ -16,7 +16,7 @@ public class GetSwoleScript : Card
             base.OnDrop();
 
             pl.GetComponentInChildren<Animator>().SetTrigger("GetSwoleTrigger");
-            Invoke("GainHP", 1f);
+            Invoke("GainStr", 1f);
 
             pl.manaText.text = pl.mana.ToString();
         }
@@ -30,12 +30,10 @@ public class GetSwoleScript : Card
 
 
 
-        public void GainHP()
+        public void GainStr()
         {
-            pl.currentHealth = pl.currentHealth + 10;
-            pl.strenght++;
+            pl.strenght +=3;
             
-            pl.setHP();
         }
 
 }

@@ -108,7 +108,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         pos = this.transform.GetComponent<RectTransform>();
         fm = GameObject.Find("Cursor").GetComponent<FollowMouse>();
         defaultattack = attack;
-        this.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = cost.ToString();
+        this.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = cost.ToString();
     }
     void Update()
     {

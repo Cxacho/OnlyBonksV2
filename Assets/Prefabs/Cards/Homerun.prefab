@@ -30,7 +30,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1700033658214962286}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.19936195, y: 0.87100005}
   m_AnchorMax: {x: 0.80600005, y: 0.92300004}
@@ -163,10 +163,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2987271624520006018}
   - {fileID: 8777155931182724906}
   - {fileID: 1900469269244362579}
   - {fileID: 2690512362352830619}
-  - {fileID: 2987271624520006018}
   m_Father: {fileID: 8553982950230294116}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 3903404355255650900}
   - component: {fileID: 4232523882377114088}
   m_Layer: 7
-  m_Name: Text (TMP)
+  m_Name: DESC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -243,12 +243,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1700033658214962286}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.11745476, y: 0.30600002}
-  m_AnchorMax: {x: 0.883, y: 0.39758813}
-  m_AnchoredPosition: {x: -0.328125, y: -0.0077209473}
-  m_SizeDelta: {x: 4.149994, y: -0.18460083}
+  m_AnchorMin: {x: 0.104, y: 0.051000003}
+  m_AnchorMax: {x: 0.8965453, y: 0.42700002}
+  m_AnchoredPosition: {x: -0.328125, y: 0.38502502}
+  m_SizeDelta: {x: -1.8499999, y: 0.62999725}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3903404355255650900
 CanvasRenderer:
@@ -278,7 +278,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Deals 3 damage '
+  m_text: Deals 9 damage to first enemy and 2 damage to second enemy
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -305,7 +305,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.55
+  m_fontSize: 18.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -651,7 +651,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1700033658214962286}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.43400002, y: 0.42700002}
   m_AnchorMax: {x: 0.58745474, y: 0.46800002}
@@ -785,7 +785,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1700033658214962286}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.022545248, y: 0.87100005}
   m_AnchorMax: {x: 0.18554525, y: 0.994}

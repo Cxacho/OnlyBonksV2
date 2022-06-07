@@ -616,6 +616,9 @@ MonoBehaviour:
   - {fileID: 5573558020044404123, guid: 767ca9364b1d7534998c30d3bc767599, type: 3}
   Boss:
   - {fileID: 2867067199404586775, guid: fcb33d1e184448247bdddaa9a6a5dd8f, type: 3}
+  - {fileID: 6976046563543887958, guid: b6d5dcad738ff994fb904a899b0adbb8, type: 3}
+  - {fileID: 2867067199404586775, guid: bcb86b166b3911642805caddb9c09dc5, type: 3}
+  - {fileID: 2867067199404586775, guid: 605f75cbda1d5f941816f2b9321140d0, type: 3}
   delay: 0
   Shopkeep: {fileID: 0}
   enType: []
@@ -3375,7 +3378,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.30199957, y: 432.19003}
-  m_SizeDelta: {x: 905, y: 50}
+  m_SizeDelta: {x: 1020, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &440315263
 MonoBehaviour:
