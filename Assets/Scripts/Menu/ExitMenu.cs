@@ -6,6 +6,7 @@ public class ExitMenu : MonoBehaviour
 {
     public void Exit()
     {
+        PlayerPrefs.DeleteKey("Map");
         SceneManager.LoadScene(0);
     }
 }
