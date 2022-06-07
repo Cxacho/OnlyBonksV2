@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
     statuses currentStatus;
     public int maxHealth = 70;
     public int armor;
+    [HideInInspector] public int armorAndHp;
     public int strength,vurneable,bleed;
     public float baseDamage,damage;
     public float numberOfAttacks=1;
@@ -19,6 +21,12 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     private Player pl;
     public SliderHealth sdh;
     public RectTransform rect;
+    public GameObject shield;
+    public GameObject fillArmor;
+    public GameObject armorImage;
+    public TextMeshProUGUI textArmor;
+    public GameObject dmgPopOutBlock;
+    public TextMeshProUGUI dmgPopOutTMP;
 
     public GameplayManager gm;
     public TMP_Text healthTxt;
@@ -76,7 +84,6 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     private void Update()
     {
-
         SetAttackString(numberOfAttacks);
 
        if (targeted == true)
@@ -88,9 +95,20 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
             border.SetActive(false);
         }
         
-        mousePos = fm.rectPos.anchoredPosition;
-
-
+        //mousePos = fm.rectPos.anchoredPosition;
+   
+    }
+    private void FixedUpdate()
+    {
+        if (armor > 0)
+        {
+            armorImage.SetActive(true);
+            fillArmor.SetActive(true);
+            textArmor.enabled = true;
+            textArmor.text = armor.ToString();
+        }
+        else
+            ResetImg();
     }
 
     public void OnDeath(int newHealthValue)
@@ -123,23 +141,156 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         int updatedHealth;
         if (pl.frail > 0)
         {
-            updatedHealth = (int)_currentHealth - Mathf.RoundToInt((damage *0.75f));
-            Debug.Log(updatedHealth - _currentHealth);
+            if (armor > 0)
+            {
+                
+                if (armor > damage)
+                {
+                    armor -= Mathf.RoundToInt(damage*0.75f);
+                    textArmor.text = armor.ToString();
+
+                    dmgPopOutTMP.text = "Blocked " + damage + " dmg";
+                    dmgPopOutTMP.color = new Color(0, 0, 255);
+
+                    TextMeshProUGUI dmgText;
+                    dmgText = Instantiate(dmgPopOutTMP, dmgPopOutBlock.transform);
+
+
+                    Sequence dmgTextSeq = DOTween.Sequence();
+                    dmgTextSeq.Append(dmgText.transform.DOMoveY(8f, 1f));
+                    dmgTextSeq.Insert(0, dmgText.transform.DOMoveX(1f, dmgTextSeq.Duration()));
+                    dmgTextSeq.OnComplete(() => { GameObject.Destroy(dmgText); });
+
+                    updatedHealth = _currentHealth;
+                } // enemy ma wiecej armora niz my obrazen
+                else
+                {
+                    armorAndHp = armor + _currentHealth;
+                    armorAndHp -= Mathf.RoundToInt(damage*0.75f);
+                    int dmgarm;
+                    dmgarm = Mathf.RoundToInt(damage*0.75f) - armor;
+                    armor = 0;
+                    updatedHealth = armorAndHp;
+                    ResetImg();
+
+                    dmgPopOutTMP.text = "- " + dmgarm;
+                    dmgPopOutTMP.color = new Color(255, 0, 0);
+
+                    TextMeshProUGUI dmgText;
+                    dmgText = Instantiate(dmgPopOutTMP, dmgPopOutBlock.transform);
+
+                    Sequence dmgTextSeq = DOTween.Sequence();
+                    dmgTextSeq.Append(dmgText.transform.DOMoveY(8f, 0.5f));
+                    dmgTextSeq.Append(dmgText.transform.DOMoveY(-60f, 1f));
+                    dmgTextSeq.Insert(0, dmgText.transform.DOMoveX(1f, dmgTextSeq.Duration()));
+                    dmgTextSeq.OnComplete(() => { GameObject.Destroy(dmgText); });
+                } // enemy ma mniej armora niz my obrazen
+            } //enemy ma armora
+            else 
+            {
+
+                updatedHealth = (int)_currentHealth - Mathf.RoundToInt(damage*0.75f);
+
+                dmgPopOutTMP.text = "- " + damage;
+                dmgPopOutTMP.color = new Color(255, 0, 0);
+                TextMeshProUGUI dmgText;
+                dmgText = Instantiate(dmgPopOutTMP, dmgPopOutBlock.transform);
+
+                Sequence dmgTextSeq = DOTween.Sequence();
+                dmgTextSeq.Append(dmgText.transform.DOMoveY(8f, 0.5f));
+                dmgTextSeq.Append(dmgText.transform.DOMoveY(-60f, 1f));
+                dmgTextSeq.Insert(0, dmgText.transform.DOMoveX(1f, dmgTextSeq.Duration()));
+                dmgTextSeq.OnComplete(() => { GameObject.Destroy(dmgText); });
+            } //enemy nie ma armora
+
+            OnDeath(updatedHealth > 0 ? updatedHealth : 0);
+            healthTxt.text = updatedHealth + "/" + maxHealth;
+            sdh.SetHealth(updatedHealth);
             
-        }
+        } //enemy ma fraila
         else
         {
-           
-            updatedHealth = (int)_currentHealth - Mathf.RoundToInt(damage);
-        }
+            if (armor > 0)
+            {
 
-        OnDeath(updatedHealth > 0 ? updatedHealth : 0);
-        healthTxt.text = updatedHealth + "/" + maxHealth;
-        sdh.SetHealth(updatedHealth);
+                if (armor > damage)
+                {
+                    armor -= Mathf.RoundToInt(damage);
+                    textArmor.text = armor.ToString();
+
+                    dmgPopOutTMP.text = "Blocked " + damage + " dmg";
+                    dmgPopOutTMP.color = new Color(0, 0, 255);
+
+                    TextMeshProUGUI dmgText;
+                    dmgText = Instantiate(dmgPopOutTMP, dmgPopOutBlock.transform);
+
+
+                    Sequence dmgTextSeq = DOTween.Sequence();
+                    dmgTextSeq.Append(dmgText.transform.DOMoveY(8f, 1f));
+                    dmgTextSeq.Insert(0, dmgText.transform.DOMoveX(1f, dmgTextSeq.Duration()));
+                    dmgTextSeq.OnComplete(() => { GameObject.Destroy(dmgText); });
+
+                    updatedHealth = _currentHealth;
+                } // enemy ma wiecej armora niz my obrazen
+                else
+                {
+                    armorAndHp = armor + _currentHealth;
+                    armorAndHp -= Mathf.RoundToInt(damage);
+                    int dmgarm;
+                    dmgarm = Mathf.RoundToInt(damage) - armor;
+                    armor = 0;
+                    updatedHealth = armorAndHp;
+                    ResetImg();
+
+                    dmgPopOutTMP.text = "- " + dmgarm;
+                    dmgPopOutTMP.color = new Color(255, 0, 0);
+
+                    TextMeshProUGUI dmgText;
+                    dmgText = Instantiate(dmgPopOutTMP, dmgPopOutBlock.transform);
+
+                    Sequence dmgTextSeq = DOTween.Sequence();
+                    dmgTextSeq.Append(dmgText.transform.DOMoveY(8f, 0.5f));
+                    dmgTextSeq.Append(dmgText.transform.DOMoveY(-60f, 1f));
+                    dmgTextSeq.Insert(0, dmgText.transform.DOMoveX(1f, dmgTextSeq.Duration()));
+                    dmgTextSeq.OnComplete(() => { GameObject.Destroy(dmgText); });
+                } // enemy ma mniej armora niz my obrazen
+            } //enemy ma armora
+            else
+            {
+
+                updatedHealth = (int)_currentHealth - Mathf.RoundToInt(damage);
+
+                dmgPopOutTMP.text = "- " + damage;
+                dmgPopOutTMP.color = new Color(255, 0, 0);
+                TextMeshProUGUI dmgText;
+                dmgText = Instantiate(dmgPopOutTMP, dmgPopOutBlock.transform);
+
+                Sequence dmgTextSeq = DOTween.Sequence();
+                dmgTextSeq.Append(dmgText.transform.DOMoveY(8f, 0.5f));
+                dmgTextSeq.Append(dmgText.transform.DOMoveY(-60f, 1f));
+                dmgTextSeq.Insert(0, dmgText.transform.DOMoveX(1f, dmgTextSeq.Duration()));
+                dmgTextSeq.OnComplete(() => { GameObject.Destroy(dmgText); });
+            } //enemy nie ma armora
+
+            OnDeath(updatedHealth > 0 ? updatedHealth : 0);
+            healthTxt.text = updatedHealth + "/" + maxHealth;
+            sdh.SetHealth(updatedHealth);
+        }//enemy nie ma fraila
+
         if (gm.enemies.Count == 0)
         {
             StartCoroutine(gm.OnBattleWin());
         }
+    }
+
+    public void GetArmor(int value)
+    {
+        
+        if (armor == 0)
+        {
+            Instantiate(shield, new Vector3(GameObject.FindGameObjectWithTag("Enemy").transform.position.x + 2.5f, GameObject.FindGameObjectWithTag("Enemy").transform.position.y + 2.5f, 0), Quaternion.identity, GameObject.Find("Player").transform);
+        }
+        armor += value;
     }
 
     public void SetIndicator()
@@ -264,5 +415,13 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         strengthBuff =0,
         vurneable =1,
             bleeding = 2
+    }
+
+    public void ResetImg()
+    {
+        armorImage.SetActive(false);
+        fillArmor.SetActive(false);
+        textArmor.enabled = true;
+        textArmor.text = armor.ToString();
     }
 }

@@ -53,13 +53,14 @@ public class Player : MonoBehaviour
         {
             armorImage.SetActive(true);
             fillArmor.SetActive(true);
-            textHealth.SetActive(false);
+            textHealth.SetActive(true);
             textArmor.SetActive(true);
             armorText.text = armor.ToString();
         }
         else
             ResetImg();
     }
+
     public void ResetImg()
     {
         armorImage.SetActive(false);
@@ -127,7 +128,7 @@ public class Player : MonoBehaviour
         {
             if (armor > damage)
             {
-                armor -= (int)damage;
+                armor -= Mathf.RoundToInt(damage);
                 armorText.text = armor.ToString();
 
                 dmgPopOutTMP.text = "Blocked " + damage + " dmg";
@@ -146,9 +147,9 @@ public class Player : MonoBehaviour
             else
             {
                 armorAndHp = armor + currentHealth;
-                armorAndHp -= (int)damage;
+                armorAndHp -= Mathf.RoundToInt(damage);
                 int dmgarm;
-                dmgarm = (int)damage - armor;
+                dmgarm = Mathf.RoundToInt(damage) - armor;
                 armor = 0;
                 currentHealth = armorAndHp;
                 ResetImg();
@@ -171,7 +172,7 @@ public class Player : MonoBehaviour
         }
         else
         {                      
-            currentHealth -= (int)damage;
+            currentHealth -= Mathf.RoundToInt(damage);
             setHP();
 
             dmgPopOutTMP.text = "- " + damage;
@@ -189,7 +190,7 @@ public class Player : MonoBehaviour
     }
     public void TakeHealthDamage(float damage)
     {
-        currentHealth -= (int)damage;
+        currentHealth -= Mathf.RoundToInt(damage);
         setHP();
         dmgPopOutTMP.text = "- " + damage;
         dmgPopOutTMP.color = new Color(255, 0, 0);
@@ -230,10 +231,9 @@ public class Player : MonoBehaviour
 
         if (armor == 0)
         {
-            Instantiate(shield, new Vector3(GameObject.Find("Player").transform.position.x, GameObject.Find("Player").transform.position.y, 0), Quaternion.identity, GameObject.Find("Player").transform);
+            Instantiate(shield, new Vector3(GameObject.Find("Player").transform.position.x+2.5f, GameObject.Find("Player").transform.position.y+2.5f, 0), Quaternion.identity, GameObject.Find("Player").transform);
         }
         armor += value;
-        manaText.text = mana.ToString();
     }
     public void Charmed()
     {

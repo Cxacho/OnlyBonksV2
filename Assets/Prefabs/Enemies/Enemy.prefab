@@ -700,6 +700,7 @@ MonoBehaviour:
   actionsInt: 0
   sdh: {fileID: 8057601061976604046}
   rect: {fileID: 8057601061976604041}
+  shield: {fileID: 5418577385353009714, guid: f0c51d39f8509554490faff2970aa5a7, type: 3}
   gm: {fileID: 0}
   healthTxt: {fileID: 8057601062704595039}
   targeted: 0

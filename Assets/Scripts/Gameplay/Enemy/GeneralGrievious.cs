@@ -8,6 +8,8 @@ public class GeneralGrievious : Enemy, ITakeTurn
     
     private void Start()
     {
+
+        indicatorStringsBool.AddRange(new bool[] { true, true, true, true, true });
         
     }
     // pierwsza faza ataki x2
@@ -15,7 +17,14 @@ public class GeneralGrievious : Enemy, ITakeTurn
     // deflect niektórych obra¿eñ
     private void Update()
     {
-        //logika zmiany phase podmiana sprite
+        if (_currentHealth < maxHealth / 2)
+        {
+            attackIndicatortxt.text = ("4 x " + baseDamage).ToString();
+        }
+        else
+        {
+            attackIndicatortxt.text = ("2 x " + baseDamage).ToString();
+        }
     }
     public async void takeTurn(Player player)
     {
@@ -82,7 +91,7 @@ public class GeneralGrievious : Enemy, ITakeTurn
         for (int i = 0; i < 4; i++)
         {
             var checkPlayerHp = player.currentHealth;
-            player.TakeDamage(damage);
+            player.TakeDamage(baseDamage);
             if (checkPlayerHp > player.currentHealth)
             {
                 baseDamage++;
@@ -93,7 +102,7 @@ public class GeneralGrievious : Enemy, ITakeTurn
     }
     private void ShieldUp()
     {
-        armor = 20;
+        GetArmor(20);
     }
 }
 
