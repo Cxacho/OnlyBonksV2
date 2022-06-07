@@ -103,6 +103,7 @@ public class UiActive : MonoBehaviour
                 discardPile.SetActive(false);
                 settings.SetActive(false);
                 mapScreen.SetActive(false);
+                if(GameObject.Find("Player") != null)
                 fill.SetActive(true);
                 break;
             case 1:

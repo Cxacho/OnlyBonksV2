@@ -173,6 +173,7 @@ public class Player : MonoBehaviour
         else
         {                      
             currentHealth -= Mathf.RoundToInt(damage);
+
             setHP();
 
             dmgPopOutTMP.text = "- " + damage;
@@ -243,7 +244,8 @@ public class Player : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
-            gm.StartCoroutine(gm.OnBattleLost());
+            currentHealth = 0;
+            
         }
         sdh.SetHealth(currentHealth);
         healthText.text = currentHealth + "/" + maxHealth;
