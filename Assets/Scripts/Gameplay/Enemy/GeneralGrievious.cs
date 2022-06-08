@@ -19,11 +19,11 @@ public class GeneralGrievious : Enemy, ITakeTurn
     {
         if (_currentHealth < maxHealth / 2)
         {
-            attackIndicatortxt.text = ("4 x " + baseDamage).ToString();
+            attackIndicatortxt.text = ("4x" + baseDamage).ToString();
         }
         else
         {
-            attackIndicatortxt.text = ("2 x " + baseDamage).ToString();
+            attackIndicatortxt.text = ("2x" + baseDamage).ToString();
         }
     }
     public async void takeTurn(Player player)

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class Cringe : Card
 {
 
@@ -14,27 +14,28 @@ public class Cringe : Card
 
             
             StartCoroutine(ExecuteAfterTime(1f));
-            foreach (Enemy en in _enemies)
+
+            pl.frail = 0;
+            pl.vurneable = 0;
+            pl.poison = 0;
+
+            foreach (GameObject obj in GameObject.FindGameObjectsWithTag("BuffIndicator"))
             {
-                if (en.targeted == true)
-                {
-                    en.SetIndicator();
-                    if (en.indicatorImagesInt[en.actionsInt] == 0)
+                if (obj.name!= "StrengthBuffIndcator(Clone)") {
+                    var some = obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+                    int statusAmount;
+                    int.TryParse(some.text.ToString(), out statusAmount);
+                    statusAmount = 0;
+                    if (statusAmount > 0)
                     {
-                        
-                        en.otherIndicatortxt.enabled = false;
-                        en.attackIndicatortxt.enabled = true;
-                        en.attackIndicatortxt.text = en.indicatorStrings[en.actionsInt];
+                        some.text = statusAmount.ToString();
+
                     }
                     else
                     {
-                        en.otherIndicatortxt.enabled = true;
-                        en.attackIndicatortxt.enabled = false;
-                        en.otherIndicatortxt.text = en.indicatorStrings[en.actionsInt];
-                    }
-                    en.actionsInt++;
-                    
-                    en.targeted = false;
+                        Destroy(obj);
+
+                    } 
                 }
             }
         }
