@@ -23,6 +23,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject panelWin;
     public int currentFloor;
     public UiActive ui;
+    EnemiesSpawner es;
     Button coinButton, healButton;
     public GameObject treasurePanel,restSitePanel,mysteryPanel;
     public GameObject treasurePanelButton;
@@ -115,7 +116,7 @@ public class GameplayManager : MonoBehaviour
     private void Awake()
     {
         cardAlign = GameObject.Find("PlayerHand").GetComponent<CardAlign>();
-        
+        es = FindObjectOfType<EnemiesSpawner>();
         gogo();
 
         
@@ -168,11 +169,25 @@ public class GameplayManager : MonoBehaviour
         exhaustedDeck.Clear();
         player.OnBattleSetup();
         yield return new WaitForSeconds(0.1f);
-
-        for (int i = 0; i < 1; i++)
+        int numOfList;
+        if(currentFloor<4)
         {
-            SpawnEnemies(i);
+            numOfList = Random.Range(0, 3);
+            Debug.Log(numOfList + "  list equals");
+
         }
+        else if(currentFloor<7)
+                {
+            numOfList = Random.Range(3, 6);
+            Debug.Log(numOfList + "  list equals");
+        }
+        else
+                    {
+            numOfList = Random.Range(6, 10);
+            Debug.Log(numOfList + "  list equals");
+        }
+
+        SpawnEnemies(es.floorOneEnemies[numOfList]);
         enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
         foreach (GameObject en in enemies)
             enType.Add(en.GetComponent<Enemy>());
@@ -488,9 +503,10 @@ public class GameplayManager : MonoBehaviour
 
 
     }
-    private void SpawnEnemies(int i)
+    private void SpawnEnemies(List<GameObject> enemies)
     {
-        Instantiate(Boss[i], enemyBattleStation[i].transform.position, Quaternion.identity, enemyBattleStation[i].transform);
+        for (int i = 0;i < enemies.Count;i++)
+        Instantiate(enemies[i], enemyBattleStation[i].transform.position, Quaternion.identity, enemyBattleStation[i].transform);
     }
     public void gogo()
     {
