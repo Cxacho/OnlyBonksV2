@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public float baseDamage,damage;
     public float numberOfAttacks=1;
     public int _currentHealth;
-    public string _name;
+    [HideInInspector]public string _name;
     public int xp;
     [HideInInspector]public int actionsInt = 0;
     private Player pl;
@@ -79,7 +79,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     
     void Start()
     {
-        rect = GetComponent<RectTransform>();     
+        rect = GetComponent<RectTransform>();
     }
 
     private void Update()
@@ -415,14 +415,14 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     {
         strengthBuff =0,
         vurneable =1,
-            bleeding = 2
+        bleeding = 2
     }
 
     public void ResetImg()
     {
         armorImage.SetActive(false);
         fillArmor.SetActive(false);
-        textArmor.enabled = true;
+        textArmor.enabled = false;
         textArmor.text = armor.ToString();
     }
 }
