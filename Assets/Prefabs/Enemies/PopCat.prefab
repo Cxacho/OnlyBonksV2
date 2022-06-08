@@ -763,6 +763,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 31
   armor: 0
+  armorAndHp: 0
   strength: 0
   vurneable: 0
   bleed: 0
@@ -776,6 +777,11 @@ MonoBehaviour:
   sdh: {fileID: 2867067198731004603}
   rect: {fileID: 2867067198731004604}
   shield: {fileID: 5418577385353009714, guid: f0c51d39f8509554490faff2970aa5a7, type: 3}
+  fillArmor: {fileID: 0}
+  armorImage: {fileID: 0}
+  textArmor: {fileID: 0}
+  dmgPopOutBlock: {fileID: 0}
+  dmgPopOutTMP: {fileID: 0}
   gm: {fileID: 0}
   healthTxt: {fileID: 2867067199329441642}
   targeted: 0
@@ -860,7 +866,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1b8b87b1257070743b2381678d8a56aa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 283022454e230254f9f5889b0a08b1e8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
