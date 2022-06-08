@@ -38,7 +38,9 @@ public class BuyCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (gameplayManager.gold >= cardCost)
         {
             gameplayManager.gold -= cardCost;
-            gameplayManager.drawDeck.Add(gameplayManager.allCardsSHOP[ID]);
+            var cardPrefabClone = Instantiate(gameplayManager.allCardsSHOP[ID]);
+            gameplayManager.startingDeck.Add(cardPrefabClone);
+            gameplayManager.drawDeck.Add(cardPrefabClone);
             
             GameObject.Destroy(gameObject);
             
