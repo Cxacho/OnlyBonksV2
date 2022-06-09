@@ -511,6 +511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 1
+  canvas: {fileID: 719975768}
   enemyBattleStation:
   - {fileID: 136007493}
   - {fileID: 363833066}

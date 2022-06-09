@@ -15,7 +15,7 @@ public class GameplayManager : MonoBehaviour
 {
     public BattleState state;
 
-    
+    public GameObject canvas;
     public Transform[] enemyBattleStation = new Transform[3];
     public GameObject drawPile,playersHand;
     public GameObject discardPile;

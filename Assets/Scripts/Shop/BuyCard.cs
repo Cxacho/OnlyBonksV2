@@ -48,8 +48,12 @@ public class BuyCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if(rewardcard == true)
         {
             var cardPrefabClone = Instantiate(gameplayManager.allCardsSHOP[ID]);
+            cardPrefabClone.transform.SetParent(gameplayManager.canvas.transform);
+            cardPrefabClone.transform.localScale = Vector3.one;
+            cardPrefabClone.transform.position = new Vector2(-1000, 0);
             gameplayManager.startingDeck.Add(cardPrefabClone);
             gameplayManager.drawDeck.Add(cardPrefabClone);
+            
             for (int i = 0; i < GameObject.Find("CardHolder").transform.childCount; i++)
             {
                 Destroy(GameObject.Find("CardHolder").transform.GetChild(i).gameObject);
@@ -60,6 +64,9 @@ public class BuyCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             gameplayManager.gold -= cardCost;
             var cardPrefabClone = Instantiate(gameplayManager.allCardsSHOP[ID]);
+            cardPrefabClone.transform.SetParent(gameplayManager.canvas.transform);
+            cardPrefabClone.transform.localScale = Vector3.one;
+            cardPrefabClone.transform.position = new Vector2(-1000, 0);
             gameplayManager.startingDeck.Add(cardPrefabClone);
             gameplayManager.drawDeck.Add(cardPrefabClone);
             
