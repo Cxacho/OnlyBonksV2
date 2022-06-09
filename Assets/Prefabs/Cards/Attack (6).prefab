@@ -79,11 +79,11 @@ MonoBehaviour:
   pl: {fileID: 0}
   gm: {fileID: 0}
   index: 0
-  baseNumOfTargets: 2
+  baseNumOfTargets: 1
   _enemies: []
   exhaustable: 1
   retainable: 0
-  attack: 3
+  attack: 5
   defaultattack: 0
   kalkulacja: 0
   kalkulacjaPrzeciwnik: 0

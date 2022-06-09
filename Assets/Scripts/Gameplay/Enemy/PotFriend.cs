@@ -44,7 +44,7 @@ public class PotFriend : Enemy, ITakeTurn
                 break;
             case 2:
                 //harden
-                armor = armor + 12;
+                GetArmor(12);
                 NextCaseAttack(1.5f);
                 break;
             case 3:

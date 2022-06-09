@@ -278,7 +278,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Gain 5 Block
+  m_text: Gain 6 Block
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -435,7 +435,7 @@ MonoBehaviour:
   kalkulacja: 0
   kalkulacjaPrzeciwnik: 0
   desc: 
-  armor: 5
+  armor: 6
   shield: {fileID: 5418577385353009714, guid: f0c51d39f8509554490faff2970aa5a7, type: 3}
 --- !u!96 &2220253728173418957
 TrailRenderer:

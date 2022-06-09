@@ -36,7 +36,7 @@ public class PopCat : Enemy, ITakeTurn
             case 1:
                 //proteccc
                 charge++;
-                armor += 8;
+                GetArmor(8);
                 NextCaseAttack(0.8f);
 
 
@@ -46,13 +46,13 @@ public class PopCat : Enemy, ITakeTurn
                 
                 charge++;
                 player.TakeDamage(Mathf.RoundToInt(damage * numberOfAttacks));
-                armor += 5;
+                GetArmor(5);
                 NextCaseAttack(charge *1);
                 break;
             case 3:
                 //laser ????
                 
-                player.TakeHealthDamage(charge *damage);
+                player.TakeHealthDamage(Mathf.RoundToInt(charge *damage));
                 NextCaseOther("");
 
 

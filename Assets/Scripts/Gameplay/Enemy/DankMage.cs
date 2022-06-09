@@ -55,7 +55,7 @@ public class DankMage : Enemy, ITakeTurn
             case 3:
                 //Dankness protect you !
                 foreach (Enemy en in FindObjectsOfType<Enemy>())
-                    en.armor = en.armor +7;
+                    en.GetArmor(7);
                 SetIndicator();
                 actionsInt++;
                 otherIndicatortxt.enabled = false;

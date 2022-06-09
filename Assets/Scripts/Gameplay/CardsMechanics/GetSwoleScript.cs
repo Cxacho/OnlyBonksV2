@@ -17,7 +17,7 @@ public class GetSwoleScript : Card
 
             pl.GetComponentInChildren<Animator>().SetTrigger("GetSwoleTrigger");
             Invoke("GainStr", 1f);
-
+            pl.GetArmor(10);
             pl.manaText.text = pl.mana.ToString();
         }
         else
@@ -32,7 +32,7 @@ public class GetSwoleScript : Card
 
         public void GainStr()
         {
-            pl.strenght +=3;
+            pl.strenght +=4;
             
         }
 
