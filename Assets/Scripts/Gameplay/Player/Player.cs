@@ -323,7 +323,8 @@ public class Player : MonoBehaviour
     public void OnBattleSetup()
     {
         armor = 0;
-        //gm.playerHand.Clear();
+        gm.playerHand.Clear();
+        
         gm.discardDeck.ForEach(item => gm.drawDeck.Add(item));
         gm.discardDeck.Clear();
 

@@ -145,10 +145,7 @@ public class GameplayManager : MonoBehaviour
         map.Locked = false;
         ui.OnMapClick();
         yield return new WaitForSeconds(.1f);
-        if (playerHand.Count != 0)
-        {
-            resetDeck();
-        }
+        
         
         scroll = GameObject.Find("MapParentWithAScroll").GetComponent<Map.ScrollNonUI>();
         scroll.freezeX = true;
@@ -156,6 +153,10 @@ public class GameplayManager : MonoBehaviour
     public IEnumerator SetupBattle()
     {
         battleUI.SetActive(true);
+        if (playerHand.Count != 0)
+        {
+            resetDeck();
+        }
         //tu w construktorze trzeba wrzucic liste przeciwnikow na ktorom mozemy trafic, zeby mozna bylo ich roznie spawnic
         exhaustedDeck.Clear();
         player.OnBattleSetup();
@@ -191,8 +192,19 @@ public class GameplayManager : MonoBehaviour
 
     public IEnumerator SetupEliteBattle()
     {
+        battleUI.SetActive(true);
+        exhaustedDeck.Clear();
         player.OnBattleSetup();
-        yield break;
+        yield return new WaitForSeconds(0.1f);
+        SpawnEnemies(es.floorOneElites[0]);
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+        foreach (GameObject en in enemies)
+            enType.Add(en.GetComponent<Enemy>());
+
+
+
+
+        StartCoroutine(OnPlayersTurn());
     }
     public IEnumerator SetupRestSite()
     {
@@ -271,7 +283,7 @@ public class GameplayManager : MonoBehaviour
             indicator.GetComponent<Image>().enabled = true;           
         }
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.5f);
 
     }
     IEnumerator OnEnemiesTurn()
