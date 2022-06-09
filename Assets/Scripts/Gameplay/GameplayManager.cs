@@ -140,6 +140,10 @@ public class GameplayManager : MonoBehaviour
     }
     IEnumerator ChooseNode()
     {
+        if (playerHand.Count != 0)
+        {
+            resetDeck();
+        }
         battleUI.SetActive(false);
         state = BattleState.NODE;
         map.Locked = false;
