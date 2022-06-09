@@ -57,6 +57,7 @@ public class Homerun :  Card
             if (pl.frail > 0) //gracz ma strenght i frail
             {
                 kalkulacja = Mathf.RoundToInt(((attack + pl.strenght) * 0.75f));
+                drugiAtak = Mathf.RoundToInt(kalkulacja * 0.3f);
                 if (kalkulacja > defaultattack) // dmg jest wiekszy niz podstawowy 
                     desc = $"Deal <color=green>{kalkulacja.ToString()}</color> damage to first enemy and <color=green>{drugiAtak.ToString()}</color> to second enemy";
 
@@ -69,6 +70,7 @@ public class Homerun :  Card
             else //gracz ma strenght ale nie ma fraila 
             {
                 kalkulacja = (attack + pl.strenght);
+                drugiAtak = Mathf.RoundToInt(kalkulacja * 0.3f);
                 desc = $"Deal <color=green>{kalkulacja.ToString()}</color> damage to first enemy and <color=green>{drugiAtak.ToString()}</color> to second enemy";
             }
         }
@@ -78,11 +80,13 @@ public class Homerun :  Card
             if (pl.frail > 0) //gracz ma fraila
             {
                 kalkulacja = Mathf.RoundToInt((attack * 0.75f));
+                drugiAtak = Mathf.RoundToInt(kalkulacja * 0.3f);
                 desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage to first enemy and <color=red>{drugiAtak.ToString()}</color> to second enemy";
             }
             else // gracz nie ma fraila 
             {
                 kalkulacja = attack;
+                drugiAtak = Mathf.RoundToInt(kalkulacja * 0.3f);
                 desc = $"Deal <color=white>{kalkulacja.ToString()}</color> damage to first enemy and <color=white>{drugiAtak.ToString()}</color> to second enemy";
             }
         }
@@ -92,11 +96,13 @@ public class Homerun :  Card
             if (pl.frail > 0)    //gracz ma fraila
             {
                 kalkulacja = Mathf.RoundToInt(((attack + pl.strenght) * 0.75f));
+                drugiAtak = Mathf.RoundToInt(kalkulacja * 0.3f);
                 desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage to first enemy and <color=red>{drugiAtak.ToString()}</color> to second enemy";
             }
             else // gracz nie ma fraila 
             {
                 kalkulacja = (attack + pl.strenght);
+                drugiAtak = Mathf.RoundToInt(kalkulacja * 0.3f);
                 desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage to first enemy and <color=red>{drugiAtak.ToString()}</color> to second enemy";
             }
         }
@@ -121,7 +127,7 @@ public class Homerun :  Card
                 }
                 if (en.isSecondTarget == true)
                 {
-                    en.ReceiveDamage(attack * 0.3f + pl.strenght);
+                    en.ReceiveDamage((attack + pl.strenght)*0.3f); // do zmiany po demie
                     en.targeted = false;
                     en.isSecondTarget = false;
                 }
