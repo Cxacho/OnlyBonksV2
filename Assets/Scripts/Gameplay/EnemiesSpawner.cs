@@ -15,12 +15,15 @@ public class EnemiesSpawner : MonoBehaviour
     public List<GameObject> listEight = new List<GameObject>();
     public List<GameObject> listNine = new List<GameObject>();
     public List<GameObject> listTen = new List<GameObject>();
-
+    public List<List<GameObject>> floorOneElites;
+    public List<GameObject> eliteListOne = new List<GameObject>();
     //1-3 slabi przeciwnicy , 4-6 silniejsi przeciwnicy w grupie, 7-10 duza grupa silnych przeciwnikow
     void clueless()
     {
         floorOneEnemies = new List<List<GameObject>>
         { listOne, listTwo, listThree, listFour, listFive,listSix,listSeven,listEight,listNine,listTen};
+        floorOneElites = new List<List<GameObject>>
+        {eliteListOne };
     }
 
     private void Awake()

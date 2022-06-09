@@ -1849,6 +1849,10 @@ MonoBehaviour:
   - {fileID: 2867067199404586775, guid: 12c907216194e2048a9551aecd49e079, type: 3}
   - {fileID: 2867067199404586775, guid: 12c907216194e2048a9551aecd49e079, type: 3}
   - {fileID: 2867067199404586775, guid: 12c907216194e2048a9551aecd49e079, type: 3}
+  eliteListOne:
+  - {fileID: 6976046563543887958, guid: b6d5dcad738ff994fb904a899b0adbb8, type: 3}
+  - {fileID: 8774643004280671396, guid: f5843eca741f0564a81d251e378e3c55, type: 3}
+  - {fileID: 3058587516793177169, guid: ca207495ee3e1c945af652d12efe35d0, type: 3}
 --- !u!4 &245310604
 Transform:
   m_ObjectHideFlags: 0
