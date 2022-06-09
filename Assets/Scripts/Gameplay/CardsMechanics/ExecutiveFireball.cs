@@ -122,7 +122,7 @@ public class ExecutiveFireball : Card
                     }
                     else 
                     {
-                        en.ReceiveDamage(attack);
+                        en.ReceiveDamage(attack+pl.strenght);
                     }
                     en.targeted = false;
                 }
