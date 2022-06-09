@@ -576,7 +576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6994d6bbee4a74b458c26a3c72828b23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardCost: 60
+  cardCost: 65
   ID: 19
 --- !u!114 &-7892406856808740199
 MonoBehaviour:
