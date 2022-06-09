@@ -156,7 +156,6 @@ public class GameplayManager : MonoBehaviour
     public IEnumerator SetupBattle()
     {
         battleUI.SetActive(true);
-        //tu w construktorze trzeba wrzucic liste przeciwnikow na ktorom mozemy trafic, zeby mozna bylo ich roznie spawnic
         exhaustedDeck.Clear();
         player.OnBattleSetup();
         yield return new WaitForSeconds(0.1f);
@@ -191,8 +190,19 @@ public class GameplayManager : MonoBehaviour
 
     public IEnumerator SetupEliteBattle()
     {
+        battleUI.SetActive(true);
+        exhaustedDeck.Clear();
         player.OnBattleSetup();
-        yield break;
+        yield return new WaitForSeconds(0.1f);
+        SpawnEnemies(es.floorOneElites[0]);
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+        foreach (GameObject en in enemies)
+            enType.Add(en.GetComponent<Enemy>());
+
+
+
+
+        StartCoroutine(OnPlayersTurn());
     }
     public IEnumerator SetupRestSite()
     {
