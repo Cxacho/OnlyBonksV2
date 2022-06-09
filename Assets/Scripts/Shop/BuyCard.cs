@@ -10,7 +10,7 @@ public class BuyCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private GameplayManager gameplayManager;
     
     public int cardCost;
-    
+    private bool rewardcard = false;
     [SerializeField]
     private int ID;
 
@@ -21,9 +21,17 @@ public class BuyCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         gameplayManager = GameObject.Find("GameplayManager").GetComponent<GameplayManager>();
         //int.TryParse(this.transform.GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text, out cardCost);
-        this.transform.GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text = cardCost.ToString();
-        PosY = gameObject.GetComponent<RectTransform>().anchoredPosition.y;
-        
+        if (this.transform.IsChildOf(GameObject.Find("CardHolder").transform))
+        {
+            rewardcard = true;
+            cardCost = 0;
+            this.transform.GetChild(4).gameObject.SetActive(false);
+        }
+        else
+        {
+            this.transform.GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text = cardCost.ToString();
+            PosY = gameObject.GetComponent<RectTransform>().anchoredPosition.y;
+        }
     }
 
     private void Update()
@@ -34,8 +42,18 @@ public class BuyCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     //czynnoœci po klikniêciu w kartê, aby j¹ kupiæ
     public void Buy()
     {
-        
-        if (gameplayManager.gold >= cardCost)
+        if(rewardcard == true)
+        {
+            var cardPrefabClone = Instantiate(gameplayManager.allCardsSHOP[ID]);
+            gameplayManager.startingDeck.Add(cardPrefabClone);
+            gameplayManager.drawDeck.Add(cardPrefabClone);
+            for (int i = 0; i < GameObject.Find("CardHolder").transform.childCount; i++)
+            {
+                Destroy(GameObject.Find("CardHolder").transform.GetChild(i).gameObject);
+            }
+            
+        }
+        else if (gameplayManager.gold >= cardCost)
         {
             gameplayManager.gold -= cardCost;
             var cardPrefabClone = Instantiate(gameplayManager.allCardsSHOP[ID]);

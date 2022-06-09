@@ -8,6 +8,6 @@ public class AddGold : MonoBehaviour
     public void addGold()
     {
         gameplayManager.gold += gameplayManager.goldReward;
-        Destroy(gameObject);
+        this.gameObject.SetActive(false);
     }
 }

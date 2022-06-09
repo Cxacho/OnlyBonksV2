@@ -112,7 +112,8 @@ public class GameplayManager : MonoBehaviour
     public Sprite[] indicatorImages;
 
     public Map.ScrollNonUI scroll;
-   
+
+    public GameObject goldRewardGameObject;
     private void Awake()
     {
         cardAlign = GameObject.Find("PlayerHand").GetComponent<CardAlign>();
@@ -161,6 +162,7 @@ public class GameplayManager : MonoBehaviour
         {
             resetDeck();
         }
+        goldReward = 0;
         //tu w construktorze trzeba wrzucic liste przeciwnikow na ktorom mozemy trafic, zeby mozna bylo ich roznie spawnic
         exhaustedDeck.Clear();
         player.OnBattleSetup();
@@ -348,12 +350,13 @@ public class GameplayManager : MonoBehaviour
 
         PanelsOnWin();
         map.Locked = false;
+        goldRewardGameObject.gameObject.SetActive(true);
         GameObject.Find("GoldReward").transform.GetComponentInChildren<TextMeshProUGUI>().text = goldReward.ToString();
         
         for (int i = 0; i < 2; i++)
         {
-            random = Random.Range(0, cards.Count);
-            Instantiate(cards[random], GameObject.FindGameObjectWithTag("cardHolder").transform);
+            random = Random.Range(0, allCardsSHOP.Count);
+            Instantiate(allCardsSHOP[random], GameObject.FindGameObjectWithTag("cardHolder").transform);
         }
         
     }

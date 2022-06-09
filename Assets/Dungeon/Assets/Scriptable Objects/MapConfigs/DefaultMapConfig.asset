@@ -23,8 +23,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e1635866d1c2f154e8c9045bd0e000f2, type: 2}
   - {fileID: 11400000, guid: dfb2651849bbba640970aec1f4b8601f, type: 2}
   numOfPreBossNodes:
-    min: 4
-    max: 5
+    min: 3
+    max: 3
   numOfStartingNodes:
     min: 3
     max: 4
@@ -32,24 +32,54 @@ MonoBehaviour:
     array:
     - nodeType: 0
       numOfNodes:
-        min: 0
-        max: 0
+        min: 1
+        max: 1
       distanceFromPreviousLayer:
         min: 0
         max: 0
       nodesApartDistance: 2
-      randomizePosition: 0
+      randomizePosition: 0.5
       randomizeNodes: 0
     - nodeType: 0
       numOfNodes:
-        min: 0
-        max: 0
+        min: 1
+        max: 1
       distanceFromPreviousLayer:
         min: 2
         max: 3
       nodesApartDistance: 2
-      randomizePosition: 0.587
-      randomizeNodes: 0.728
+      randomizePosition: 0.6
+      randomizeNodes: 0.3
+    - nodeType: 0
+      numOfNodes:
+        min: 1
+        max: 1
+      distanceFromPreviousLayer:
+        min: 2
+        max: 3
+      nodesApartDistance: 2
+      randomizePosition: 0.3
+      randomizeNodes: 0.3
+    - nodeType: 0
+      numOfNodes:
+        min: 1
+        max: 1
+      distanceFromPreviousLayer:
+        min: 2
+        max: 3
+      nodesApartDistance: 2
+      randomizePosition: 0.7
+      randomizeNodes: 0.3
+    - nodeType: 0
+      numOfNodes:
+        min: 1
+        max: 1
+      distanceFromPreviousLayer:
+        min: 2
+        max: 3
+      nodesApartDistance: 2
+      randomizePosition: 0.2
+      randomizeNodes: 0.3
     - nodeType: 0
       numOfNodes:
         min: 0
@@ -58,68 +88,38 @@ MonoBehaviour:
         min: 2
         max: 3
       nodesApartDistance: 2
-      randomizePosition: 0.509
+      randomizePosition: 0.8
+      randomizeNodes: 0.499
+    - nodeType: 1
+      numOfNodes:
+        min: 1
+        max: 1
+      distanceFromPreviousLayer:
+        min: 2
+        max: 3
+      nodesApartDistance: 2
+      randomizePosition: 0.4
+      randomizeNodes: 0.5
+    - nodeType: 0
+      numOfNodes:
+        min: 1
+        max: 1
+      distanceFromPreviousLayer:
+        min: 2
+        max: 3
+      nodesApartDistance: 2
+      randomizePosition: 0.5
+      randomizeNodes: 0.3
+    - nodeType: 0
+      numOfNodes:
+        min: 0
+        max: 0
+      distanceFromPreviousLayer:
+        min: 2
+        max: 3
+      nodesApartDistance: 2
+      randomizePosition: 0.4
       randomizeNodes: 0
-    - nodeType: 3
-      numOfNodes:
-        min: 0
-        max: 0
-      distanceFromPreviousLayer:
-        min: 2
-        max: 3
-      nodesApartDistance: 2
-      randomizePosition: 0.542
-      randomizeNodes: 0.739
-    - nodeType: 0
-      numOfNodes:
-        min: 0
-        max: 0
-      distanceFromPreviousLayer:
-        min: 2
-        max: 3
-      nodesApartDistance: 2
-      randomizePosition: 0.176
-      randomizeNodes: 0.739
-    - nodeType: 0
-      numOfNodes:
-        min: 0
-        max: 0
-      distanceFromPreviousLayer:
-        min: 2
-        max: 3
-      nodesApartDistance: 2
-      randomizePosition: 0.649
-      randomizeNodes: 0.739
-    - nodeType: 0
-      numOfNodes:
-        min: 0
-        max: 0
-      distanceFromPreviousLayer:
-        min: 2
-        max: 3
-      nodesApartDistance: 2
-      randomizePosition: 0.176
-      randomizeNodes: 0.739
-    - nodeType: 0
-      numOfNodes:
-        min: 0
-        max: 0
-      distanceFromPreviousLayer:
-        min: 2
-        max: 3
-      nodesApartDistance: 2
-      randomizePosition: 0.829
-      randomizeNodes: 0.739
-    - nodeType: 0
-      numOfNodes:
-        min: 0
-        max: 0
-      distanceFromPreviousLayer:
-        min: 2
-        max: 3
-      nodesApartDistance: 2
-      randomizePosition: 0.829
-      randomizeNodes: 0.739
     - nodeType: 1
       numOfNodes:
         min: 1
@@ -128,8 +128,8 @@ MonoBehaviour:
         min: 2
         max: 3
       nodesApartDistance: 2
-      randomizePosition: 0.524
-      randomizeNodes: 0.739
+      randomizePosition: 0.6
+      randomizeNodes: 0
     - nodeType: 2
       numOfNodes:
         min: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
         min: 2
         max: 3
       nodesApartDistance: 2
-      randomizePosition: 0.526
+      randomizePosition: 0.3
       randomizeNodes: 0
     - nodeType: 5
       numOfNodes:
@@ -148,5 +148,5 @@ MonoBehaviour:
         min: 4
         max: 5
       nodesApartDistance: 2
-      randomizePosition: 0.194
+      randomizePosition: 0.8
       randomizeNodes: 0
