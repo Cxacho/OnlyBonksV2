@@ -28,7 +28,7 @@ public class BabalityScript : Card
                     */
                     //foreach (Animator an in anim)
                         //an.SetTrigger("BabalityTrigger");
-                    en.damage--;
+                    en.damage-=3;
                     en.targeted = false;
                 }
             //enemyGO.GetComponent<Animator>().SetTrigger("BabalityTrigger");

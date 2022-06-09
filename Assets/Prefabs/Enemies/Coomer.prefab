@@ -730,7 +730,7 @@ MonoBehaviour:
   numberOfAttacks: 1
   _currentHealth: 0
   _name: 
-  xp: 0
+  xp: 100
   actionsInt: 0
   sdh: {fileID: 3892669847874991513}
   rect: {fileID: 3892669847874991518}

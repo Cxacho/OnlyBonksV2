@@ -175,6 +175,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
                     ResetImg();
 
                     dmgPopOutTMP.text = "- " + dmgarm;
+                    Debug.Log("Chuju dzialaj" + dmgarm);
                     dmgPopOutTMP.color = new Color(255, 0, 0);
 
                     TextMeshProUGUI dmgText;
@@ -192,7 +193,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
                 updatedHealth = (int)_currentHealth - Mathf.RoundToInt(damage*0.75f);
 
-                dmgPopOutTMP.text = "- " + Mathf.RoundToInt(damage);
+                dmgPopOutTMP.text = "- " + Mathf.RoundToInt(damage*0.75f);
                 dmgPopOutTMP.color = new Color(255, 0, 0);
                 TextMeshProUGUI dmgText;
                 dmgText = Instantiate(dmgPopOutTMP, dmgPopOutBlock.transform);

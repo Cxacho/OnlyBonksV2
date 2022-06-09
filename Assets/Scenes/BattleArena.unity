@@ -573,6 +573,10 @@ MonoBehaviour:
   - {fileID: 3383854915774529881, guid: bdf64af54e6e0804ca6cc76cd5ac0d99, type: 3}
   - {fileID: 7546190796451804516, guid: 88857b4396b9d284e9464ca71d8ab3ff, type: 3}
   - {fileID: 806097991063666207, guid: a73c570927c6e334d8904b9ea7dc22a2, type: 3}
+  - {fileID: 2858555165568228111, guid: b99a3e91ca181024daf86cbe8fec7cab, type: 3}
+  - {fileID: 2858555165568228111, guid: dadfaf24267f0274bbbed0cbbe3434ad, type: 3}
+  - {fileID: 2858555165568228111, guid: 6bb15ada756cc684b99cb2e08259ad30, type: 3}
+  - {fileID: 2858555165568228111, guid: 34a283a1e53d55b44a66535c8cdff77a, type: 3}
   startingDeck:
   - {fileID: 2858555165568228111, guid: 2d1125c2371a69541bf5264558b09929, type: 3}
   - {fileID: 3383854915774529881, guid: bdf64af54e6e0804ca6cc76cd5ac0d99, type: 3}
@@ -617,6 +621,14 @@ MonoBehaviour:
   - {fileID: 5098153774971749035, guid: 7526105101d0f174bb3358fa0207957a, type: 3}
   - {fileID: 5098153774971749035, guid: 0d7194f8c677c184dacebac1142b53a6, type: 3}
   - {fileID: 5098153774971749035, guid: 6c86da360fd934744b317516d06a79d4, type: 3}
+  - {fileID: 5098153774971749035, guid: 1de2a77a78b42dc449953cbf9b8b2b4a, type: 3}
+  - {fileID: 5098153774971749035, guid: 9b7f9c07c9e03034ba83d40591bd576f, type: 3}
+  - {fileID: 5098153774971749035, guid: 6ed11af34956041429db9395e8fcd0ff, type: 3}
+  - {fileID: 5098153774971749035, guid: 01873060f3e918e46bc1e696cbaae4fb, type: 3}
+  - {fileID: 5098153774971749035, guid: 58e0423414278cf46b57be1544c5c497, type: 3}
+  - {fileID: 5098153774971749035, guid: 082d04a5fc5474843a615b0c0f6049fa, type: 3}
+  - {fileID: 5098153774971749035, guid: e6d613d8cc664f744a50f2bd383a0290, type: 3}
+  - {fileID: 5098153774971749035, guid: a301a8944d5663d4487148b73400f45f, type: 3}
   enemies: []
   floorOneEnemies:
   - {fileID: 2867067199404586775, guid: 12c907216194e2048a9551aecd49e079, type: 3}
@@ -1221,11 +1233,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 719975772}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 298, y: -125.87}
+  m_AnchoredPosition: {x: 568, y: -126.15}
   m_SizeDelta: {x: -1821.8984, y: -979.67334}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &147024516
@@ -1857,6 +1869,8 @@ MonoBehaviour:
   - {fileID: 6976046563543887958, guid: b6d5dcad738ff994fb904a899b0adbb8, type: 3}
   - {fileID: 8774643004280671396, guid: f5843eca741f0564a81d251e378e3c55, type: 3}
   - {fileID: 3058587516793177169, guid: ca207495ee3e1c945af652d12efe35d0, type: 3}
+  bossesListOne:
+  - {fileID: 2867067199404586775, guid: fcb33d1e184448247bdddaa9a6a5dd8f, type: 3}
 --- !u!4 &245310604
 Transform:
   m_ObjectHideFlags: 0
@@ -2506,12 +2520,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 719975772}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 568, y: -126}
-  m_SizeDelta: {x: -1818.6475, y: -979.9315}
+  m_AnchoredPosition: {x: 298, y: -125.87}
+  m_SizeDelta: {x: -1821.8984, y: -979.67334}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &369326702
 GameObject:
@@ -5176,8 +5190,8 @@ RectTransform:
   - {fileID: 993812830}
   - {fileID: 340481520}
   - {fileID: 1667696517}
-  - {fileID: 136007493}
   - {fileID: 363833066}
+  - {fileID: 136007493}
   - {fileID: 1427378371}
   - {fileID: 737091774}
   - {fileID: 624181188}

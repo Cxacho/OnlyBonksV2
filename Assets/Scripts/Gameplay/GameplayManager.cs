@@ -223,8 +223,19 @@ public class GameplayManager : MonoBehaviour
     }
     public IEnumerator SetupBoss()
     {
+        battleUI.SetActive(true);
+        exhaustedDeck.Clear();
         player.OnBattleSetup();
-        yield break;
+        yield return new WaitForSeconds(0.1f);
+        SpawnEnemies(es.floorOneBosses[0]);
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+        foreach (GameObject en in enemies)
+            enType.Add(en.GetComponent<Enemy>());
+
+
+
+
+        StartCoroutine(OnPlayersTurn());
     }
     public IEnumerator SetupStore()
     {
