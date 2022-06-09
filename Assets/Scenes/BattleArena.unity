@@ -639,6 +639,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a86de701ec231e64cb29e52843f0a016, type: 3}
   - {fileID: 21300000, guid: 97f47d07886236e4eb6812dbe2578b58, type: 3}
   - {fileID: 21300000, guid: ad9235a4c25ca994c836a315619dfa83, type: 3}
+  - {fileID: 21300000, guid: e5a490a44e2a3a24a903253e720ebc67, type: 3}
   scroll: {fileID: 0}
   goldRewardGameObject: {fileID: 1264068730}
 --- !u!4 &43265155
@@ -1830,11 +1831,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listOne:
-  - {fileID: 2867067199404586775, guid: 605f75cbda1d5f941816f2b9321140d0, type: 3}
+  - {fileID: 8891453708075795180, guid: 20cff793d411d904cbf54d1f720f6269, type: 3}
   listTwo:
-  - {fileID: 2867067199404586775, guid: bcb86b166b3911642805caddb9c09dc5, type: 3}
+  - {fileID: 8891453708075795180, guid: 20cff793d411d904cbf54d1f720f6269, type: 3}
   listThree:
-  - {fileID: 2867067199404586775, guid: 12c907216194e2048a9551aecd49e079, type: 3}
+  - {fileID: 8891453708075795180, guid: 20cff793d411d904cbf54d1f720f6269, type: 3}
   listFour:
   - {fileID: 2867067199404586775, guid: bcb86b166b3911642805caddb9c09dc5, type: 3}
   - {fileID: 2867067199404586775, guid: 12c907216194e2048a9551aecd49e079, type: 3}

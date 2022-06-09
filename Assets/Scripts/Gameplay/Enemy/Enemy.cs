@@ -378,7 +378,6 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     {
         if(bleed >0)
         ReceiveDamage(bleed);
-        if (strength > 0) strength--;
         if (vurneable > 0) vurneable--;
         if (bleed > 0) bleed--;
         List<GameObject> temp = new List<GameObject>();
