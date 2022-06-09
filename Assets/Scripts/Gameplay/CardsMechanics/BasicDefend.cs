@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class BasicDefend : Card
 {
-
+    public int armor;
     public GameObject shield;
+
+    private void Start()
+    {
+        desc = $"Deal <color=white>{armor.ToString()}</color> damage";
+
+        this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
+    }
 
     public override void OnDrop()
     {
         gm.checkPlayerMana(cost);
         if (gm.canPlayCards == true)
         {
-            pl.GetArmor(5);
+            pl.GetArmor(armor);
 
 
             pl.manaText.text = pl.mana.ToString();

@@ -75,6 +75,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         sdh.SetMaxHealth(maxHealth);
         fm = GameObject.Find("Cursor").GetComponent<FollowMouse>();
         indicatorSpriteRenderer = indicator.GetComponent<Image>();
+        damage = baseDamage;
     }
     
     void Start()

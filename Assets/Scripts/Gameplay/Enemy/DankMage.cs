@@ -37,7 +37,7 @@ public class DankMage : Enemy, ITakeTurn
                 //FeelsDankMan
                 //nalozyc indicator buffa na przeciwnikow
                 foreach (Enemy en in FindObjectsOfType<Enemy>())
-                    en.baseDamage = en.baseDamage + 3;
+                    en.baseDamage += 3;
                 ChangeIndicatorTexts("atak");
                 SetIndicator();
                 actionsInt++;

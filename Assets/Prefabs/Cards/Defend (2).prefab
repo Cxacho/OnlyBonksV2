@@ -435,6 +435,7 @@ MonoBehaviour:
   kalkulacja: 0
   kalkulacjaPrzeciwnik: 0
   desc: 
+  armor: 5
   shield: {fileID: 5418577385353009714, guid: f0c51d39f8509554490faff2970aa5a7, type: 3}
 --- !u!96 &2220253728173418957
 TrailRenderer:

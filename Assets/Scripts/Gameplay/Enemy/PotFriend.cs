@@ -13,7 +13,6 @@ public class PotFriend : Enemy, ITakeTurn
         numberOfAttacks = 1;
         //tutaj wpisujemy Indicator na start (czy jest true/false) i jaki ma napis
         attackIndicatortxt.enabled = false;
-        
         /*
         if (pl.vurneable > 0)
         {
