@@ -25,7 +25,7 @@ public class BuyCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         gameplayManager = GameObject.Find("GameplayManager").GetComponent<GameplayManager>();
         //int.TryParse(this.transform.GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text, out cardCost);
-        if (this.transform.IsChildOf(GameObject.Find("CardHolder").transform))
+        if (gameplayManager.cardHolder.gameObject.activeInHierarchy == true)
         {
             rewardcard = true;
             cardCost = 0;

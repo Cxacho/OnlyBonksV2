@@ -228,6 +228,7 @@ public class GameplayManager : MonoBehaviour
     }
     public IEnumerator SetupStore()
     {
+        
         player.OnBattleSetup();
         ui.panelIndex = 0;
         ui.Check();
@@ -322,7 +323,7 @@ public class GameplayManager : MonoBehaviour
         Debug.Log("Batlle Won");
         state = BattleState.VictoryScreen;
         
-        
+
         StartCoroutine(VictoryScreen());
         yield return new WaitForSeconds(2f);
         //check czy jakiego statusu byl przeciwnik normal/elite/boss
@@ -347,7 +348,6 @@ public class GameplayManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         Debug.Log("Victory Screen");
-
         PanelsOnWin();
         map.Locked = false;
         goldRewardGameObject.gameObject.SetActive(true);
@@ -489,7 +489,7 @@ public class GameplayManager : MonoBehaviour
     private void PanelsOnWin()
     {
         panelWin.SetActive(true);
-        battleUI.SetActive(false);
+        
     }
     public void PanelsOnButtonNext()
     {

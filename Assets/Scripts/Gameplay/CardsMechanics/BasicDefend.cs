@@ -9,7 +9,7 @@ public class BasicDefend : Card
 
     private void Start()
     {
-        desc = $"Deal <color=white>{armor.ToString()}</color> damage";
+        desc = $"Gain <color=white>{armor.ToString()}</color> armor";
 
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }

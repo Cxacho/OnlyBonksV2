@@ -8,7 +8,7 @@ using TMPro;
 public class ShopManager : MonoBehaviour
 {
     public GameObject fiveCardsArea;
-    public GameplayManager gameplayManager;
+    [HideInInspector]public GameplayManager gameplayManager;
 
     //lista kart pojawiaj¹cych siê w sklepie w górnym panelu kart
     public List<GameObject> cards = new List<GameObject>();
@@ -16,6 +16,7 @@ public class ShopManager : MonoBehaviour
     private void Awake()
     {
         gameplayManager = GameObject.Find("GameplayManager").GetComponent<GameplayManager>();
+        cards = gameplayManager.cards;
     }
     private void Start()
     {
