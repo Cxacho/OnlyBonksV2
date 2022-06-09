@@ -48,9 +48,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         if(typ == textType.Str) bs.UpdateAttack();
     }*/
+    
     private void Start()
     {
         currentCardState = cardState.Elsewhere;
+        
     }
     IEnumerator Return()
     {
@@ -96,12 +98,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void Awake()
     {
+
         par = GameObject.Find("PlayerHand");
         cAlign = par.GetComponent<CardAlign>();
         meshes.AddRange(GameObject.FindGameObjectsWithTag("Indicator"));
         pl = GameObject.Find("Player").GetComponent<Player>();
-        //kod do wymiany
-        //wywoluje sie na on dropie i na starcie tury gracza
         discDek = GameObject.Find("DiscardDeckButton").transform.position;
         trail = transform.GetComponent<TrailRenderer>();
         gm = GameObject.Find("GameplayManager").GetComponent<GameplayManager>();
@@ -109,6 +110,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         fm = GameObject.Find("Cursor").GetComponent<FollowMouse>();
         defaultattack = attack;
         this.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = cost.ToString();
+
     }
     void Update()
     {
