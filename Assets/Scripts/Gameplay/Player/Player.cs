@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
                 armor -= Mathf.RoundToInt(damage);
                 armorText.text = armor.ToString();
 
-                dmgPopOutTMP.text = "Blocked " + damage + " dmg";
+                dmgPopOutTMP.text = "Blocked " + Mathf.RoundToInt(damage) + " dmg";
                 dmgPopOutTMP.color = new Color(0, 0, 255);
                 
                 TextMeshProUGUI dmgText;
@@ -176,7 +176,7 @@ public class Player : MonoBehaviour
 
             setHP();
 
-            dmgPopOutTMP.text = "- " + damage;
+            dmgPopOutTMP.text = "- " + Mathf.RoundToInt(damage);
             dmgPopOutTMP.color = new Color(255, 0, 0);
             TextMeshProUGUI dmgText;
             dmgText = Instantiate(dmgPopOutTMP, dmgPopOutBlock.transform);
@@ -193,7 +193,7 @@ public class Player : MonoBehaviour
     {
         currentHealth -= Mathf.RoundToInt(damage);
         setHP();
-        dmgPopOutTMP.text = "- " + damage;
+        dmgPopOutTMP.text = "- " + Mathf.RoundToInt(damage);
         dmgPopOutTMP.color = new Color(255, 0, 0);
         TextMeshProUGUI dmgText;
         dmgText = Instantiate(dmgPopOutTMP, dmgPopOutBlock.transform);

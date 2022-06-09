@@ -150,7 +150,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
                     armor -= Mathf.RoundToInt(damage*0.75f);
                     textArmor.text = armor.ToString();
 
-                    dmgPopOutTMP.text = "Blocked " + damage + " dmg";
+                    dmgPopOutTMP.text = "Blocked " + Mathf.RoundToInt(damage) + " dmg";
                     dmgPopOutTMP.color = new Color(0, 0, 255);
 
                     TextMeshProUGUI dmgText;
@@ -192,7 +192,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
                 updatedHealth = (int)_currentHealth - Mathf.RoundToInt(damage*0.75f);
 
-                dmgPopOutTMP.text = "- " + damage;
+                dmgPopOutTMP.text = "- " + Mathf.RoundToInt(damage);
                 dmgPopOutTMP.color = new Color(255, 0, 0);
                 TextMeshProUGUI dmgText;
                 dmgText = Instantiate(dmgPopOutTMP, dmgPopOutBlock.transform);
@@ -219,7 +219,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
                     armor -= Mathf.RoundToInt(damage);
                     textArmor.text = armor.ToString();
 
-                    dmgPopOutTMP.text = "Blocked " + damage + " dmg";
+                    dmgPopOutTMP.text = "Blocked " + Mathf.RoundToInt(damage) + " dmg";
                     dmgPopOutTMP.color = new Color(0, 0, 255);
 
                     TextMeshProUGUI dmgText;
@@ -261,7 +261,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
                 updatedHealth = (int)_currentHealth - Mathf.RoundToInt(damage);
 
-                dmgPopOutTMP.text = "- " + damage;
+                dmgPopOutTMP.text = "- " + Mathf.RoundToInt(damage);
                 dmgPopOutTMP.color = new Color(255, 0, 0);
                 TextMeshProUGUI dmgText;
                 dmgText = Instantiate(dmgPopOutTMP, dmgPopOutBlock.transform);
