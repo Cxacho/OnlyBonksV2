@@ -46,7 +46,7 @@ public class DankMage : Enemy, ITakeTurn
                 break;
             case 2:
                 //DankWave
-                player.TakeDamage(damage);
+                player.TakeDamage(Mathf.RoundToInt(damage * numberOfAttacks));
                 SetIndicator();
                 actionsInt++;
                 ChangeIndicatorTexts("inny");

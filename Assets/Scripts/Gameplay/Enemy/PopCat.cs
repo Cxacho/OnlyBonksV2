@@ -30,7 +30,7 @@ public class PopCat : Enemy, ITakeTurn
                 //scratch
                 
                 charge++;
-                player.TakeDamage(damage * numberOfAttacks);
+                player.TakeDamage(Mathf.RoundToInt(damage * numberOfAttacks));
                 NextCaseOther("8");
                 break;
             case 1:
@@ -45,7 +45,7 @@ public class PopCat : Enemy, ITakeTurn
                 //proteccc/ataccc
                 
                 charge++;
-                player.TakeDamage(damage * numberOfAttacks);
+                player.TakeDamage(Mathf.RoundToInt(damage * numberOfAttacks));
                 armor += 5;
                 NextCaseAttack(charge *1);
                 break;

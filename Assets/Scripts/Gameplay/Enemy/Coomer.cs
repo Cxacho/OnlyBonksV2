@@ -40,7 +40,7 @@ public class Coomer : Enemy, ITakeTurn
                 break;
             case 1:
                 //my right arm, is much stronger than left arm
-                player.TakeDamage(numberOfAttacks * damage);
+                player.TakeDamage(Mathf.RoundToInt(damage * numberOfAttacks));
                 NextCaseOther("8");
                 break;
             case 2:
@@ -52,12 +52,12 @@ public class Coomer : Enemy, ITakeTurn
                 //heavy punch
                 if (player.armor > damage * numberOfAttacks)
                 {
-                    player.TakeDamage(damage * numberOfAttacks);
+                    player.TakeDamage(Mathf.RoundToInt(damage * numberOfAttacks));
                     ReceiveDamage(player.armor);
                 }
                 else
                 {
-                    player.TakeDamage(damage * numberOfAttacks);
+                    player.TakeDamage(Mathf.RoundToInt(damage * numberOfAttacks));
                 }
                 NextCaseOther(" ");
                 actionsInt = 0;

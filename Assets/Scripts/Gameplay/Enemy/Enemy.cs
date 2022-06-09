@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public GameObject dmgPopOutBlock;
     public TextMeshProUGUI dmgPopOutTMP;
 
-    public GameplayManager gm;
+    [HideInInspector]public GameplayManager gm;
     public TMP_Text healthTxt;
     public int goldValue;
 
@@ -309,7 +309,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     }
     public void SetAttackString(float iloscAtakow)
     {
-        attackIndicatortxt.text = (damage * iloscAtakow).ToString();
+        attackIndicatortxt.text = Mathf.RoundToInt(damage * iloscAtakow).ToString();
     }
     public void ChangeIndicatorTexts(string typ)
     {
@@ -335,7 +335,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         ChangeIndicatorTexts("atak");
         SetIndicator();
         actionsInt++;
-        numberOfAttacks = Mathf.RoundToInt(nrOfAttacks);
+        numberOfAttacks = nrOfAttacks;
     }
     public void NextCaseOther(string value)
     {

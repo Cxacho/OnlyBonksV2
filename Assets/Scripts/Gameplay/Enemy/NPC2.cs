@@ -37,7 +37,7 @@ public class NPC2 : Enemy, ITakeTurn
                 //Anger Issues
                 //naklada indicator poision , o wartosci 4
                 //damage = 7
-                player.TakeDamage(numberOfAttacks * damage);
+                player.TakeDamage(Mathf.RoundToInt(damage * numberOfAttacks));
                 NextCaseOther("4");
                 break;
             case 1:
@@ -56,7 +56,7 @@ public class NPC2 : Enemy, ITakeTurn
                 break;
             case 3:
                 //FollowTheCrowd
-                player.TakeDamage(damage * numberOfAttacks);
+                player.TakeDamage(Mathf.RoundToInt(damage * numberOfAttacks));
                 NextCaseAttack(1);
                 actionsInt = 0;
                 break;
