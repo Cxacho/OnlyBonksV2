@@ -279,14 +279,24 @@ public class UiActive : MonoBehaviour
         Debug.Log("////");
         mapScreen.SetActive(true);
         fill.SetActive(false);
-
+        
         if (panelIndex == 5)
         {
+            gm.battleUI.SetActive(true);
+            for (int i = 0; i < gm.enemyBattleStation.Length; i++)
+            {
+                gm.enemyBattleStation[i].gameObject.SetActive(true);
+            }
             panelIndex = 0;
             //OnDiscardPileDestroy();
         }
         else
         {
+            gm.battleUI.SetActive(false);
+            for (int i = 0; i < gm.enemyBattleStation.Length; i++)
+            {
+                gm.enemyBattleStation[i].gameObject.SetActive(false);
+            }
             panelIndex = 5;
         }
         //Debug.Log(panelIndex);

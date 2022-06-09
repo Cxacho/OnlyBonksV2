@@ -16,7 +16,7 @@ public class GameplayManager : MonoBehaviour
     public BattleState state;
 
     
-    [SerializeField] private Transform[] enemyBattleStation = new Transform[3];
+    public Transform[] enemyBattleStation = new Transform[3];
     public GameObject drawPile,playersHand;
     public GameObject discardPile;
     public GameObject playerHandObject;
@@ -49,7 +49,7 @@ public class GameplayManager : MonoBehaviour
 
     public int gold = 100;
     public int currentXP=0;
-
+    public int goldReward;
     public GameObject textPanel;
     public Button endTurn;
     public Button mapButton;
@@ -128,29 +128,19 @@ public class GameplayManager : MonoBehaviour
     }
     private void Update()
     {
-        if(state == BattleState.PLAYERTURN)
+        
+        if (state == BattleState.PLAYERTURN)
         {
             endTurn.interactable = true;
         }
         else endTurn.interactable = false;
 
-        if(state == BattleState.NODE)
-        {
-            mapButton.interactable = false;
-
-        }
-        else mapButton.interactable = true;
+        
         goldtxt.GetComponent<TextMeshProUGUI>().text = gold.ToString();
-    }
-
-    void Start()
-    {
-        state = BattleState.NODE;
-
     }
     IEnumerator ChooseNode()
     {
-
+        battleUI.SetActive(false);
         state = BattleState.NODE;
         map.Locked = false;
         ui.OnMapClick();
@@ -165,6 +155,7 @@ public class GameplayManager : MonoBehaviour
     }
     public IEnumerator SetupBattle()
     {
+        battleUI.SetActive(true);
         //tu w construktorze trzeba wrzucic liste przeciwnikow na ktorom mozemy trafic, zeby mozna bylo ich roznie spawnic
         exhaustedDeck.Clear();
         player.OnBattleSetup();
@@ -341,6 +332,7 @@ public class GameplayManager : MonoBehaviour
 
         PanelsOnWin();
         map.Locked = false;
+        GameObject.Find("GoldReward").transform.GetComponentInChildren<TextMeshProUGUI>().text = goldReward.ToString();
         
         for (int i = 0; i < 2; i++)
         {

@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     public GameplayManager gm;
     public TMP_Text healthTxt;
-
+    public int goldValue;
 
     public bool targeted, isFirstTarget, isSecondTarget, isThirdTarget;
     [SerializeField] GameObject border;
@@ -116,8 +116,8 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         _currentHealth = newHealthValue;
         if(_currentHealth <= 0)
         {
-            
 
+            gm.goldReward += goldValue;
 
             for(int i = 0; i < gm.enemies.Count; i++)
             {

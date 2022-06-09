@@ -938,6 +938,7 @@ MonoBehaviour:
   dmgPopOutTMP: {fileID: 7633790544151475157, guid: a89a8ec95ceeb6a438e929aa1193104b, type: 3}
   gm: {fileID: 0}
   healthTxt: {fileID: 2867067199329441642}
+  goldValue: 20
   targeted: 0
   isFirstTarget: 0
   isSecondTarget: 0
