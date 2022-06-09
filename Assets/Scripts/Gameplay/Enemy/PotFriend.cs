@@ -39,7 +39,7 @@ public class PotFriend : Enemy, ITakeTurn
                 break;
             case 1:
                 //light Jab
-                player.TakeDamage(numberOfAttacks * damage);
+                player.TakeDamage(Mathf.RoundToInt(damage * numberOfAttacks));
                 NextCaseOther("12");
                 break;
             case 2:
@@ -49,7 +49,7 @@ public class PotFriend : Enemy, ITakeTurn
                 break;
             case 3:
                 //slam
-                player.TakeDamage(damage * numberOfAttacks);
+                player.TakeDamage(Mathf.RoundToInt(damage * numberOfAttacks));
                 NextCaseOther(" ");
                 actionsInt = 0;
                 break;

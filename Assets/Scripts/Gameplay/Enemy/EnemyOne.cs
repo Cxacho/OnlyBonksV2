@@ -25,7 +25,7 @@ public class EnemyOne : Enemy, ITakeTurn
         switch (actionsInt)
         {
             case 0:              
-                player.TakeDamage(damage);
+                player.TakeDamage(Mathf.RoundToInt(damage * numberOfAttacks));
                 //naklada indicator frail, o wartosci 2 
                 player.setDebuffIndicator(2,0,player.buffIndicators[0]);
                 SetIndicator();
@@ -48,7 +48,7 @@ public class EnemyOne : Enemy, ITakeTurn
                 player.setDebuffIndicator(4, 2, player.buffIndicators[2]);
                 if (armor > 0)
                 {
-                    player.TakeDamage(damage * 3);
+                    player.TakeDamage(Mathf.RoundToInt(damage * numberOfAttacks));
                 }
                 else
                 {
@@ -67,7 +67,7 @@ public class EnemyOne : Enemy, ITakeTurn
                 break;
             case 4:
                 player.setDebuffIndicator(3, 1, player.buffIndicators[1]);
-                player.TakeDamage(damage);
+                player.TakeDamage(Mathf.RoundToInt(damage * numberOfAttacks));
                 
                 SetIndicator();
                 actionsInt = 0;

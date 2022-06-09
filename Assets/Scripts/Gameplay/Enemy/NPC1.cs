@@ -38,7 +38,7 @@ public class NPC1 : Enemy, ITakeTurn
                 //naklada indicator poision , o wartosci 4
                 //damage = 7
                 player.setDebuffIndicator(3, 0, player.buffIndicators[0]);
-                Debug.Log(numberOfAttacks * damage);
+                Debug.Log(Mathf.RoundToInt(damage * numberOfAttacks));
                 NextCaseOther("4");
                 break;
             case 1:
@@ -52,12 +52,12 @@ public class NPC1 : Enemy, ITakeTurn
                 break;
             case 2:
                 //Remain PC
-                player.TakeDamage(numberOfAttacks * damage);
+                player.TakeDamage(Mathf.RoundToInt(damage * numberOfAttacks));
                 NextCaseAttack(1f);
                 break;
             case 3:
                 //FollowTheCrowd
-                player.TakeDamage(damage * numberOfAttacks);
+                player.TakeDamage(Mathf.RoundToInt(damage * numberOfAttacks));
                 NextCaseOther("");
                 actionsInt = 0;
                 break;
