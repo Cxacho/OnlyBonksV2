@@ -19,6 +19,10 @@ public class BuyCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     //trzeba ustawiaæ ID w prefabach kart sklepowych
     private void Awake()
     {
+        
+    }
+    private void Start()
+    {
         gameplayManager = GameObject.Find("GameplayManager").GetComponent<GameplayManager>();
         //int.TryParse(this.transform.GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text, out cardCost);
         if (this.transform.IsChildOf(GameObject.Find("CardHolder").transform))
@@ -33,7 +37,6 @@ public class BuyCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             PosY = gameObject.GetComponent<RectTransform>().anchoredPosition.y;
         }
     }
-
     private void Update()
     {
         CheckIfCanBuy();

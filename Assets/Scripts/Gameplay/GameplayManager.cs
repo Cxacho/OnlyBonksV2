@@ -356,7 +356,7 @@ public class GameplayManager : MonoBehaviour
         for (int i = 0; i < 2; i++)
         {
             random = Random.Range(0, allCardsSHOP.Count);
-            Instantiate(allCardsSHOP[random], GameObject.FindGameObjectWithTag("cardHolder").transform);
+            Instantiate(cards[random], GameObject.FindGameObjectWithTag("cardHolder").transform);
         }
         
     }
