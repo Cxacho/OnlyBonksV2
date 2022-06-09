@@ -363,6 +363,7 @@ MonoBehaviour:
   relicName: 
   gm: {fileID: 0}
   pl: {fileID: 0}
+  temp: []
 --- !u!1 &7032000564725957428
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,7 +440,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -555178284065557692, guid: 332427d9cc4ac5c4fab0ffe872c31e2f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fd1be92acaf263942aff75f12bda7708, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
