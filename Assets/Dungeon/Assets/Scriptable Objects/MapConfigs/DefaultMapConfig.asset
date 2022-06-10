@@ -145,8 +145,8 @@ MonoBehaviour:
         min: 0
         max: 0
       distanceFromPreviousLayer:
-        min: 4
-        max: 5
+        min: 1
+        max: 2
       nodesApartDistance: 2
       randomizePosition: 0.8
       randomizeNodes: 0
