@@ -16,7 +16,7 @@ public class GetSwoleScript : Card
             base.OnDrop();
 
             pl.GetComponentInChildren<Animator>().SetTrigger("GetSwoleTrigger");
-            Invoke("GainStr", 1f);
+            pl.setDebuffIndicator(5, 3, pl.buffIndicators[3]);
             pl.GetArmor(10);
             pl.manaText.text = pl.mana.ToString();
         }

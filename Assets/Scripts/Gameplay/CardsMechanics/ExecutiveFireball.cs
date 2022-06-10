@@ -11,7 +11,7 @@ public class ExecutiveFireball : Card
     private void Start()
     {
 
-        desc = $"If enemy has less than 40$ hp execute him <br><br>Else deal <color=white>{attack.ToString()}</color> damage";
+        desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=white>{attack.ToString()}</color> damage";
 
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
@@ -30,21 +30,21 @@ public class ExecutiveFireball : Card
             {
                 kalkulacjaPrzeciwnik = Mathf.RoundToInt(kalkulacja * 1.25f);
                 if (kalkulacjaPrzeciwnik > defaultattack)
-                    desc = $"If enemy has less than 40$ hp execute him <br><br>Else deal <color=green>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
+                    desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=green>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
                 else if (kalkulacjaPrzeciwnik == defaultattack)
-                    desc = $"If enemy has less than 40$ hp execute him <br><br>Else deal <color=white>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
+                    desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=white>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
                 else if (kalkulacjaPrzeciwnik < defaultattack)
-                    desc = $"If enemy has less than 40$ hp execute him <br><br>Else deal <color=red>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
+                    desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=red>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
             }
             else
             {
                 kalkulacjaPrzeciwnik = kalkulacja;
                 if (kalkulacjaPrzeciwnik > defaultattack)
-                    desc = $"If enemy has less than 40$ hp execute him <br><br>Else deal <color=green>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
+                    desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=green>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
                 else if (kalkulacjaPrzeciwnik == defaultattack)
-                    desc = $"If enemy has less than 40$ hp execute him <br><br>Else deal <color=white>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
+                    desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=white>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
                 else if (kalkulacjaPrzeciwnik < defaultattack)
-                    desc = $"If enemy has less than 40$ hp execute him <br><br>Else deal <color=red>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
+                    desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=red>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
             }
         }
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
@@ -58,18 +58,18 @@ public class ExecutiveFireball : Card
             {
                 kalkulacja = Mathf.RoundToInt(((attack + pl.strenght) * 0.75f));
                 if (kalkulacja > defaultattack) // dmg jest wiekszy niz podstawowy 
-                    desc = $"If enemy has less than 40$ hp execute him <br><br>Else deal <color=green>{kalkulacja.ToString()}</color> damage";
+                    desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=green>{kalkulacja.ToString()}</color> damage";
 
                 else if (kalkulacja == defaultattack) //dmg jest taki sam jak podstawowy
-                    desc = $"If enemy has less than 40$ hp execute him <br><br>Else deal <color=white>{kalkulacja.ToString()}</color> damage";
+                    desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=white>{kalkulacja.ToString()}</color> damage";
 
                 else if (kalkulacja < defaultattack) //dmg jest mniejszy niz podstawowy 
-                    desc = $"If enemy has less than 40$ hp execute him <br><br>Else deal <color=red>{kalkulacja.ToString()}</color> damage";
+                    desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=red>{kalkulacja.ToString()}</color> damage";
             }
             else //gracz ma strenght ale nie ma fraila 
             {
                 kalkulacja = (attack + pl.strenght);
-                desc = $"If enemy has less than 40$ hp execute him <br><br>Else deal <color=green>{kalkulacja.ToString()}</color> damage";
+                desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=green>{kalkulacja.ToString()}</color> damage";
             }
         }
         else if (pl.strenght == 0) //gracz ma strenght równy 0
@@ -78,12 +78,12 @@ public class ExecutiveFireball : Card
             if (pl.frail > 0) //gracz ma fraila
             {
                 kalkulacja = Mathf.RoundToInt((attack * 0.75f));
-                desc = $"If enemy has less than 40$ hp execute him <br><br>Else deal <color=red>{kalkulacja.ToString()}</color> damage";
+                desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=red>{kalkulacja.ToString()}</color> damage";
             }
             else // gracz nie ma fraila 
             {
                 kalkulacja = attack;
-                desc = $"If enemy has less than 40$ hp execute him <br><br>Else deal <color=white>{kalkulacja.ToString()}</color> damage";
+                desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=white>{kalkulacja.ToString()}</color> damage";
             }
         }
         else if (pl.strenght < 0) //gracz ma strenght mniejszy od 0
@@ -92,12 +92,12 @@ public class ExecutiveFireball : Card
             if (pl.frail > 0)    //gracz ma fraila
             {
                 kalkulacja = Mathf.RoundToInt(((attack + pl.strenght) * 0.75f));
-                desc = $"If enemy has less than 40$ hp execute him <br><br>Else deal <color=red>{kalkulacja.ToString()}</color> damage";
+                desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=red>{kalkulacja.ToString()}</color> damage";
             }
             else // gracz nie ma fraila 
             {
                 kalkulacja = (attack + pl.strenght);
-                desc = $"If enemy has less than 40$ hp execute him <br><br>Else deal <color=red>{kalkulacja.ToString()}</color> damage";
+                desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=red>{kalkulacja.ToString()}</color> damage";
             }
         }
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
