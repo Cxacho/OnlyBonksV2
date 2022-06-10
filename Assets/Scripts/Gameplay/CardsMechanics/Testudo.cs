@@ -11,12 +11,12 @@ public class Testudo : Card
         if (gm.canPlayCards == true)
         {
             pl.GetArmor(armor);
-            gm.DrawCards(2);
+            
 
             pl.manaText.text = pl.mana.ToString();
 
             base.OnDrop();
-           
+            gm.DrawCards(2);
         }
         else
         {

@@ -1009,13 +1009,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e33b41339046ad543842e933316cf341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 4
+  maxHealth: 28
   armor: 0
   armorAndHp: 0
   strength: 0
   vurneable: 0
   bleed: 0
-  baseDamage: 5
+  baseDamage: 6
   damage: 5
   numberOfAttacks: 1
   _currentHealth: 0

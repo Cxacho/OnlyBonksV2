@@ -20,9 +20,9 @@ public class ShopManager : MonoBehaviour
     }
     private void Start()
     {
-        SpawnShuffledCards();
         //CheckIfCanBuy();
     }
+
 
 
     //shuffle danej listy
@@ -38,21 +38,30 @@ public class ShopManager : MonoBehaviour
     }
 
     //shuffle listy "cards", a póŸniej spawn kart z listy "cards"
-    void SpawnShuffledCards()
+    public void SpawnShuffledCards()
     {
         fiveCardsArea.GetComponent<GridLayoutGroup>().enabled = true;
         Shuffle(cards);
+
         for (int i = 0; i < 5; i++)
         {
             Instantiate(cards[i], fiveCardsArea.transform);
         }
-        Invoke("GridGroupDisable", 0.01f);
+        Invoke("GridGroupDisable", 0.5f);
     }
 
     //wyl¹cza grid layout group, aby po kupieniu karty pozosta³e karty zosta³y na swoich miejscach
     void GridGroupDisable()
     {
         fiveCardsArea.GetComponent<GridLayoutGroup>().enabled = false;
+    }
+    public void plsWork()
+    {
+        for (int i = 0; i < GameObject.Find("5CardsArea").transform.childCount; i++)
+        {
+            var obj = GameObject.Find("5CardsArea").transform.GetChild(i).gameObject;
+            Destroy(obj);
+        }
     }
 }
 

@@ -23,7 +23,6 @@ public class BasicDefend : Card
 
 
             pl.manaText.text = pl.mana.ToString();
-            
             base.OnDrop();
             /*
             foreach (Enemy en in _enemies)
@@ -33,7 +32,6 @@ public class BasicDefend : Card
                     en.setStatusIndicator(3, 2, gm.enemiesIndicators[2]);
             }
             */
-            //gm.DrawCards(6);
             //gm.CreateCard(0);
         }
         else

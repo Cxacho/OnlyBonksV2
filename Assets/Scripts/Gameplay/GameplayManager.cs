@@ -34,7 +34,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject drawButton;
     public LevelProgress levelProgress;
     public GameObject shopPanel;
-    
+    private ShopManager sm;
     [SerializeField] private Player player;
 
     private CardAlign cardAlign;
@@ -119,6 +119,7 @@ public class GameplayManager : MonoBehaviour
         cardAlign = GameObject.Find("PlayerHand").GetComponent<CardAlign>();
         es = FindObjectOfType<EnemiesSpawner>();
         gogo();
+        sm = GetComponent<ShopManager>();
 
         
     }
@@ -166,6 +167,7 @@ public class GameplayManager : MonoBehaviour
         //tu w construktorze trzeba wrzucic liste przeciwnikow na ktorom mozemy trafic, zeby mozna bylo ich roznie spawnic
         exhaustedDeck.Clear();
         player.OnBattleSetup();
+
         yield return new WaitForSeconds(0.1f);
         int numOfList;
         if(currentFloor<4)
@@ -241,9 +243,11 @@ public class GameplayManager : MonoBehaviour
     {
         
         player.OnBattleSetup();
+        
         ui.panelIndex = 0;
         ui.Check();
         shopPanel.SetActive(true);
+        sm.SpawnShuffledCards();
         var fix = GameObject.Find("5CardsArea").GetComponent<GridLayoutGroup>();
         fix.enabled = true;
         yield break;
