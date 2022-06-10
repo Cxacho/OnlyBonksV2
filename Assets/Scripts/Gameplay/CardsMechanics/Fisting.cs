@@ -19,7 +19,7 @@ public class Fisting : Card
             base.OnDrop();
 
             pl.GetComponentInChildren<Animator>().SetTrigger("GetSwoleTrigger");
-            Invoke("GainStr", 1f);
+            pl.setDebuffIndicator(3, 3, pl.buffIndicators[3]);
             gm.DrawCards(3);
             pl.manaText.text = pl.mana.ToString();
         }
