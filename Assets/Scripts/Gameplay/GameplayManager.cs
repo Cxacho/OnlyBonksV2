@@ -114,6 +114,8 @@ public class GameplayManager : MonoBehaviour
     public Map.ScrollNonUI scroll;
 
     public GameObject goldRewardGameObject;
+
+    private bool isAnyoneTargeted;
     private void Awake()
     {
         cardAlign = GameObject.Find("PlayerHand").GetComponent<CardAlign>();
@@ -130,8 +132,12 @@ public class GameplayManager : MonoBehaviour
     }
     private void Update()
     {
-        
-        if (state == BattleState.PLAYERTURN)
+        foreach (Enemy en in enType)
+        {
+            if (en.targeted == true || en.isFirstTarget == true || en.isSecondTarget == true || en.isThirdTarget == true) isAnyoneTargeted = true;
+            else isAnyoneTargeted = false;
+        }
+        if (state == BattleState.PLAYERTURN && isAnyoneTargeted == false)
         {
             endTurn.interactable = true;
         }

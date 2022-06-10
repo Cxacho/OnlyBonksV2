@@ -95,7 +95,8 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         {
             border.SetActive(false);
         }
-        
+        if(damage < 0) damage = 0;
+
         //mousePos = fm.rectPos.anchoredPosition;
    
     }

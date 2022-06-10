@@ -275,6 +275,11 @@ public class Player : MonoBehaviour
         if (poison > 0)
         {
             TakeDamage(poison);
+            if (currentHealth == 0)
+            {
+                gm.state = BattleState.LOST;
+                StartCoroutine(gm.OnBattleLost());
+            }
             poison--;
         }
         //usuniecie indicatora
