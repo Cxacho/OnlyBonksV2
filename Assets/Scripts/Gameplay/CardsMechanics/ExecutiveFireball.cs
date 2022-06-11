@@ -127,6 +127,8 @@ public class ExecutiveFireball : Card
                     en.targeted = false;
                 }
             }
+            resetTargetting();
+
         }
         else
         {

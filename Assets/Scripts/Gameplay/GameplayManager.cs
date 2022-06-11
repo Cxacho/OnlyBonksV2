@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.Events;
@@ -19,6 +20,7 @@ public class GameplayManager : MonoBehaviour
     public Transform[] enemyBattleStation = new Transform[3];
     public GameObject drawPile,playersHand;
     public GameObject discardPile;
+    public GameObject discardDeckButton;
     public GameObject playerHandObject;
     public GameObject panelWin;
     public int currentFloor;
@@ -42,9 +44,9 @@ public class GameplayManager : MonoBehaviour
     public bool canPlayCards = true;
     public bool firstRound = true;
     public int basePlayerDrawAmount;
-    public int playerDrawAmount;
+    [HideInInspector]public int playerDrawAmount;
     public int maxCardDraw = 12;
-    public int drawAmount;
+    [HideInInspector]public int drawAmount;
     private int random;
 
     public int gold = 100;
@@ -101,7 +103,7 @@ public class GameplayManager : MonoBehaviour
 
 
     public List<GameObject> Boss = new List<GameObject>();
-    [HideInInspector] public float delay;
+    //[HideInInspector] public float delay;
     public GameObject Shopkeep;
 
     public List<Enemy> enType = new List<Enemy>();
@@ -436,11 +438,13 @@ public class GameplayManager : MonoBehaviour
     {
         state = BattleState.DRAWING;
         playerDrawAmount = amount;
+        /*
         if (delay == 0)
         {
             //gowniany fix, ale jednak fix
             delay = ((playerDrawAmount + playerHand.Count) * 0.5f) + Time.time;
         }
+        */
         drawAmount++;
         if (playerDrawAmount >= drawAmount)
         {
@@ -481,6 +485,8 @@ public class GameplayManager : MonoBehaviour
     {
         discardDeck.ForEach(item => drawDeck.Add(item));
         discardDeck.Clear();
+        var updateText = discardDeckButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
+        updateText = discardDeck.Count.ToString();
     }
     private void resetDeck()
     {

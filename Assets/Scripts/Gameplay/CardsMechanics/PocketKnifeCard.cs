@@ -119,6 +119,8 @@ public class PocketKnifeCard : Card
                     en.targeted = false;
                 }
             }
+            resetTargetting();
+
         }
         else
         {

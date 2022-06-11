@@ -31,8 +31,9 @@ public class BabalityScript : Card
                     en.damage-=3;
                     en.targeted = false;
                 }
-            //enemyGO.GetComponent<Animator>().SetTrigger("BabalityTrigger");
 
+            //enemyGO.GetComponent<Animator>().SetTrigger("BabalityTrigger");
+            resetTargetting();
 
 
 

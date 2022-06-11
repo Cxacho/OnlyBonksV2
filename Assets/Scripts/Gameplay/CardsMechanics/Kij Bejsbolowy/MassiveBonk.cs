@@ -112,6 +112,7 @@ public class MassiveBonk : Card
             StartCoroutine(ExecuteAfterTime(1f));
             foreach (Enemy en in _enemies)
             {
+                
                 if (en.targeted == true)
                 {
                     en.ReceiveDamage(attack + pl.strenght);
@@ -119,6 +120,7 @@ public class MassiveBonk : Card
                     en.targeted = false;
                 }
             }
+            resetTargetting();
         }
         else
         {

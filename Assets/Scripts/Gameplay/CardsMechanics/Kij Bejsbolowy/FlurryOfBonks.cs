@@ -135,8 +135,10 @@ public class FlurryOfBonks : Card
                     en.targeted = false;
                     en.isFirstTarget = false;
                 }
+                
 
             }
+            resetTargetting();
         }
         
 

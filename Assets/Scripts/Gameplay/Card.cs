@@ -56,12 +56,15 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     IEnumerator Return()
     {
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.15f);
         if (fm.crd == null)
+            cAlign.SetValues();
+            /*
             for (int i = 0; i < cAlign.gameObject.transform.childCount; i++)
             {
                 cAlign.children[i].transform.DOMove(cAlign.positions[i], 0.1f);
             }
+            */
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -77,9 +80,33 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             cAlign.cardIndex = index;
             cAlign.Realign();
             this.transform.SetAsLastSibling();
+            /*
+            foreach(Card crd in FindObjectsOfType<Card>())
+            {
+
+            }
+            */
+            
+        }
+        if (eventData.pointerEnter.transform.parent.GetComponent<Card>() != null)
+            cAlign.pointerHandler = eventData.pointerEnter.transform.parent.GetSiblingIndex();
+        else
+            cAlign.pointerHandler = eventData.pointerEnter.transform.parent.transform.parent.GetSiblingIndex();
+    }
+    public void resetTargetting()
+    {
+        foreach (Enemy en in _enemies)
+        {
+
+            en.targeted = false;
+            en.isFirstTarget = false;
+            en.isSecondTarget = false;
+            en.isThirdTarget = false;
 
         }
+
     }
+
     public void OnPointerExit(PointerEventData eventData)
     {
         if (this.transform.IsChildOf(GameObject.Find("PlayerHand").transform) && gm.playerHand.Count == par.transform.childCount && gm.state == BattleState.PLAYERTURN)
@@ -115,7 +142,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     void Update()
     {
         StateCheck();
-        //mousePos = ui.mousePosition;  
     }
 
     void StateCheck()
@@ -239,6 +265,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         if (exhaustable)
         {
+
             currentCardState = cardState.Elsewhere;
             //play card
             trail.enabled = true;

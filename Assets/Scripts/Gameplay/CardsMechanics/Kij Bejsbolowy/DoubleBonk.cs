@@ -132,6 +132,7 @@ public class DoubleBonk : Card
                 }
 
             }
+            resetTargetting();
         }
 
 

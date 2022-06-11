@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
@@ -12,24 +13,31 @@ public class CardAlign : MonoBehaviour
     public List<Vector3> positions = new List<Vector3>();
     [SerializeField] List<Vector3> rotations = new List<Vector3>();
     [SerializeField] private TMP_Text discardDeck_text, drawDeck_text;
+    float delay;
     [SerializeField] Transform pos1, pos2;
+    PointerEventData ped;
     public int cardIndex;
     [SerializeField] float mnoznik, pierwszyWyraz, cardHeight;
     [SerializeField] private AnimationCurve anCurve;
     //public Transform empty;
     private float twistFirstCard, nTyWyraz, liczbaWyrazow, dist, place;
-
+    public int pointerHandler;
 
     void Update()
     {
         OnHandAmountChange();
+        /*
         if (gm.delay < Time.time && gm.delay != 0)
         {
             gm.state = BattleState.PLAYERTURN;
             gm.delay = 0;
         }
+        */
     }
-
+    private void Awake()
+    {
+       ped = new PointerEventData(EventSystem.current);
+    }
     public void Realign()
     {
         
@@ -222,6 +230,12 @@ public class CardAlign : MonoBehaviour
             children[i].transform.DOMove(positions[i], 0.2f);
         }
     }
+    IEnumerator doDelay()
+    {
+        yield return new WaitForSeconds(0.2f);
+        gameObject.transform.GetChild(pointerHandler).GetComponent<Card>().OnPointerEnter(ped);
+        gameObject.transform.GetChild(pointerHandler).transform.rotation = Quaternion.identity;
+    }
 
     public void Animate()
     {
@@ -239,10 +253,30 @@ public class CardAlign : MonoBehaviour
                     children[i].transform.DOMove(positions[i], 0.2f);
                 }
                 //wywolanie draw'u kolejnych kart
-                if (gm.playerHand.Count < 10)
-                    gm.DrawCards(gm.playerDrawAmount);
+                if (gm.drawAmount == gm.playerDrawAmount)
+                {
+                    gm.state = BattleState.PLAYERTURN;
+
+                    gm.drawAmount=0;
+                    
+                    if (EventSystem.current.IsPointerOverGameObject()&& pointerHandler < 11)
+                    {
+                        Debug.Log("dzialanie rozjebane");
+                        StartCoroutine(doDelay());
+                    }
+                    
+                }
                 else
-                    Debug.Log("Can't draw any further, u have already drawn" + " " + gm.playerHand.Count);
+                {
+                    if (gm.playerHand.Count < 10)
+                        gm.DrawCards(gm.playerDrawAmount);
+                    else
+                    {
+                        gm.state = BattleState.PLAYERTURN;
+                        gm.drawAmount = 0;
+                        Debug.Log("Can't draw any further, u have already drawn" + " " + gm.playerHand.Count);
+                    }
+                }
  
             });
         });

@@ -122,11 +122,14 @@ public class BasicAttack : Card
                     en.targeted = false;
                 }
             }
+            resetTargetting();
         }
+        
         else
         {
             Debug.Log("fajnie dzia³a");
         }
+
     }
 
     IEnumerator ExecuteAfterTime(float time)

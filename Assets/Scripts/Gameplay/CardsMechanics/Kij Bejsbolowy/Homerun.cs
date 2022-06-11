@@ -131,6 +131,7 @@ public class Homerun :  Card
                     en.targeted = false;
                     en.isSecondTarget = false;
                 }
+                resetTargetting();
             }
         }
         else

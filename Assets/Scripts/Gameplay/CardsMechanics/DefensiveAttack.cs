@@ -125,6 +125,8 @@ public class DefensiveAttack : Card
                     pl.armor += armor;
                 }
             }
+            resetTargetting();
+
         }
         else
         {
