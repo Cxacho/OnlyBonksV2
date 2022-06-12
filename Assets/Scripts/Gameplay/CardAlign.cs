@@ -261,7 +261,6 @@ public class CardAlign : MonoBehaviour
                     
                     if (EventSystem.current.IsPointerOverGameObject()&& pointerHandler < 11)
                     {
-                        Debug.Log("dzialanie rozjebane");
                         StartCoroutine(doDelay());
                     }
                     

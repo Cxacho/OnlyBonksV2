@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 
-public enum BattleState { NODE ,START, PLAYERTURN, ENEMYTURN, WON, LOST, VictoryScreen,DRAWING}
+public enum BattleState { NODE ,START, PLAYERTURN, ENEMYTURN, WON, LOST, VictoryScreen,DRAWING,INANIMATION}
 
 [RequireComponent(typeof(AudioListener))]
 [RequireComponent(typeof(AudioSource))]
