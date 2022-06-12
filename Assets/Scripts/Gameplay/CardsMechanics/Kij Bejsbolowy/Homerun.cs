@@ -124,14 +124,16 @@ public class Homerun :  Card
                     en.ReceiveDamage(attack + pl.strenght);
                     en.targeted = false;
                     en.isFirstTarget = false;
+                    Debug.Log("jebanyskryptv2");
                 }
                 if (en.isSecondTarget == true)
                 {
                     en.ReceiveDamage((attack + pl.strenght)*0.3f); // do zmiany po demie
                     en.targeted = false;
                     en.isSecondTarget = false;
+                    Debug.Log("jebanyskrypt");
                 }
-                resetTargetting();
+               // resetTargetting();
             }
         }
         else

@@ -38,7 +38,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject shopPanel;
     private ShopManager sm;
     [SerializeField] private Player player;
-
+    public bool canEndTurn;
     private CardAlign cardAlign;
 
     public bool canPlayCards = true;
@@ -124,7 +124,7 @@ public class GameplayManager : MonoBehaviour
         es = FindObjectOfType<EnemiesSpawner>();
         gogo();
         sm = GetComponent<ShopManager>();
-
+        canEndTurn = true;
         
     }
 
@@ -139,7 +139,7 @@ public class GameplayManager : MonoBehaviour
             if (en.targeted == true || en.isFirstTarget == true || en.isSecondTarget == true || en.isThirdTarget == true) isAnyoneTargeted = true;
             else isAnyoneTargeted = false;
         }
-        if (state == BattleState.PLAYERTURN && isAnyoneTargeted == false)
+        if (state == BattleState.PLAYERTURN && isAnyoneTargeted == false && canEndTurn == true)
         {
             endTurn.interactable = true;
         }

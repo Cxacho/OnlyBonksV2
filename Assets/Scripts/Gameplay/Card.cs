@@ -95,7 +95,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public void resetTargetting()
     {
-        foreach (Enemy en in _enemies)
+        foreach (Enemy en in gm.enType)
         {
 
             en.targeted = false;
@@ -343,7 +343,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 //podniesienie ataku ponad -90, przesuniencie atakku do poz srodka renki
                 EnableIndicator();
                 currentCardState = cardState.Targetable;
-                var phPos = GameObject.Find("PlayerHand").transform.position;
+                gm.canEndTurn = false;
                 pos.anchoredPosition = new Vector3(0, -400, 0);
             }
             if (fm.en != null)
@@ -429,7 +429,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 //play card
                 //trail.enabled = true;
                 //anim
-
+                gm.canEndTurn = true;
             }
             //cofnienicie karty do reki reset indeksu reset targetowania
             if (Input.GetButton("Fire2") && currentCardState == cardState.Targetable)
@@ -437,6 +437,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 ReturnToHand();
                 DisableIndicator();
                 cAlign.SetValues();
+                gm.canEndTurn = true;
                 //move to discard pile || exhaust
 
 
@@ -446,6 +447,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             if (Input.GetButtonUp("Fire1") && pos.anchoredPosition.y > -90)
             {
+                gm.canEndTurn = true;
                 _enemies.Clear();
                 _enemies.AddRange(gm.enType);
                 OnDrop();
@@ -456,6 +458,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         if (fm.viewPortPosition.x < 0 || fm.viewPortPosition.x > 1 || fm.viewPortPosition.y < 0 || fm.viewPortPosition.y > 1)
         {
+            gm.canEndTurn = true;
             ReturnToHand();
             DisableIndicator();
             cAlign.SetValues();
