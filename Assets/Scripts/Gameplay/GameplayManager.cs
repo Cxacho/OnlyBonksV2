@@ -284,7 +284,7 @@ public class GameplayManager : MonoBehaviour
         
         player.OnBattleSetup();
         mysteryPanel.SetActive(true);
-        var random = Random.Range(0, Mistery.Count - 1);
+        var random = Random.Range(0, Mistery.Count);
         Instantiate(Mistery[random], mysteryPanel.transform);
         Mistery.RemoveAt(random);
 

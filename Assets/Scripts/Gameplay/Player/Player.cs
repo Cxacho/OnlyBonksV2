@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     GameObject frailIndicator, vurneableIndicator, poisonIndicator,strengthBuffIndicator;
     TextMeshProUGUI value;
     public int maxHealth = 70;
-    [SerializeField]public int currentHealth {get =>currentHealth; set => Debug.Log("player has been damaged"); }
+    public int currentHealth;
     public int armor;
     public int armorAndHp;
     public int mana;

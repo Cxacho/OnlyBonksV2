@@ -8,9 +8,11 @@ using TMPro;
 
 public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public int cost;
+    public int cost,scaleCardValues;
     public cardType cType;
     public cardState currentCardState;
+    public scalingType cardScalingtype;
+    public scalingType secondaryScalingType;
     private Vector3 mousePos, posInHand, discDek;
     protected FollowMouse fm;
     [SerializeField] TrailRenderer trail;
@@ -30,9 +32,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     float posY;
     [SerializeField]private bool exhaustable;
     public bool retainable;
-
+    public int dealDamage;
     public float attack;
-    [HideInInspector]public float defaultattack;
+    public float defaultattack;
     [HideInInspector] public float kalkulacja;
     [HideInInspector] public float kalkulacjaPrzeciwnik;
 
@@ -169,6 +171,70 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 DropControl();
                 break;
         }
+
+    }
+    public void calc(int baseDamage, scalingType type, scalingType secondType)
+    {
+        switch (type)
+        {
+            case scalingType.strength:
+                if (secondType == scalingType.dexterity)
+                    scaleCardValues = pl.strenght + pl.dexterity;
+                else if (secondType == scalingType.magic)
+                    scaleCardValues = pl.strenght + pl.inteligence;
+                else
+                    scaleCardValues = pl.strenght;
+                break;
+            case scalingType.dexterity:
+                if (secondType == scalingType.strength)
+                    scaleCardValues = pl.strenght + pl.dexterity;
+                else if (secondType == scalingType.magic)
+                    scaleCardValues = pl.dexterity + pl.inteligence;
+                else
+                    scaleCardValues = pl.dexterity;
+                break;
+            case scalingType.magic:
+                if (secondType == scalingType.strength)
+                    scaleCardValues = pl.strenght + pl.inteligence;
+                else if (secondType == scalingType.dexterity)
+                    scaleCardValues = pl.dexterity + pl.inteligence;
+                else
+                    scaleCardValues = pl.inteligence;
+                break;
+        }
+        //na najechaniu na przeciwnika
+        if (fm.en != null)
+        {
+            if (fm.en.vurneable > 0 && pl.frail > 0)
+            {
+                attack = defaultattack + scaleCardValues;
+            }
+            else if (fm.en.vurneable > 0)
+                attack = (defaultattack + scaleCardValues) * 1.25f;
+            else if (pl.frail > 0)
+                attack = (defaultattack + scaleCardValues) * 0.75f;
+            else
+            {
+                attack = defaultattack + scaleCardValues;
+            }
+            
+        }
+        else if (fm.en == null)
+        {
+            if (pl.frail > 0)
+                attack = (defaultattack + scaleCardValues) * 0.75f;
+            else
+                attack = defaultattack + scaleCardValues;
+         }
+        attack = Mathf.RoundToInt(attack);
+    }
+
+    public enum scalingType
+    {
+        brak =0,
+        strength =1,
+        dexterity =2,
+        magic =3
 
     }
     public enum cardState
