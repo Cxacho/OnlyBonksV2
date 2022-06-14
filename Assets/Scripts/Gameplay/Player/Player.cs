@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     public int inteligence = 0;
     public int frail,vurneable,poison;
     public List<GameObject> buffIndicators = new List<GameObject>();
-    buffs currentBuff;
+    playerStatusses currentBuff;
 
 
     
@@ -72,10 +72,10 @@ public class Player : MonoBehaviour
     
     public void setDebuffIndicator(int value,int select,GameObject buffIndicator)
     {
-        currentBuff = (buffs)select;
+        currentBuff = (playerStatusses)select;
         switch(currentBuff)
         {
-            case Player.buffs.frail:
+            case Player.playerStatusses.frail:
                 frail += value;
 
                 if (frailIndicator == null)
@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
                 var buffValue = frailIndicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                 buffValue.text = frail.ToString();
                 break;
-            case Player.buffs.vurneable:
+            case Player.playerStatusses.vurneable:
                 vurneable += value;
                 if (vurneableIndicator == null)
                 {
@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
                 var buffValue1 = vurneableIndicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                 buffValue1.text = vurneable.ToString();
                 break;
-            case Player.buffs.poision:
+            case Player.playerStatusses.poision:
                 poison += value;
                 if (poisonIndicator == null)
                 {
@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
                 var buffValue2 = poisonIndicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                 buffValue2.text = poison.ToString();
                 break;
-            case Player.buffs.strengthBuff:
+            case Player.playerStatusses.strengthBuff:
                 strenght += value;
                 if (strengthBuffIndicator == null)
                 {
@@ -316,8 +316,9 @@ public class Player : MonoBehaviour
         {
             re.OnEndTurn();
         }
+
     }
-    enum buffs
+    enum playerStatusses
     {
         frail=0,
         vurneable=1,

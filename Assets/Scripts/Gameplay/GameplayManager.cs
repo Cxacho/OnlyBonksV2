@@ -14,33 +14,33 @@ public enum BattleState { NODE ,START, PLAYERTURN, ENEMYTURN, WON, LOST, Victory
 [RequireComponent(typeof(AudioSource))]
 public class GameplayManager : MonoBehaviour
 {
+    [HideInInspector]public cardPlayed lastCardPlayed;
     public BattleState state;
-
     public GameObject canvas;
     public Transform[] enemyBattleStation = new Transform[3];
-    public GameObject drawPile,playersHand;
-    public GameObject discardPile;
-    public GameObject discardDeckButton;
-    public GameObject playerHandObject;
+    [HideInInspector] public GameObject drawPile,playersHand;
+    [HideInInspector] public GameObject discardPile;
+    [HideInInspector] public GameObject discardDeckButton;
+    [HideInInspector]public GameObject playerHandObject;
     public GameObject panelWin;
     public int currentFloor;
-    public UiActive ui;
+    [HideInInspector] public UiActive ui;
     EnemiesSpawner es;
     Button coinButton, healButton;
-    public GameObject treasurePanel,restSitePanel,mysteryPanel;
-    public GameObject treasurePanelButton;
-    public GameObject panelLose;
+    [HideInInspector] public GameObject treasurePanel,restSitePanel,mysteryPanel;
+    [HideInInspector] public GameObject treasurePanelButton;
+    [HideInInspector] public GameObject panelLose;
     public GameObject cardHolder;
     public GameObject battleUI;
-    public GameObject goldtxt;
+    [HideInInspector] public GameObject goldtxt;
     public GameObject drawButton;
     public LevelProgress levelProgress;
-    public GameObject shopPanel;
+    [HideInInspector] public GameObject shopPanel;
     private ShopManager sm;
     [SerializeField] private Player player;
-    public bool canEndTurn;
+    [HideInInspector] public bool canEndTurn;
     private CardAlign cardAlign;
-
+    public int cardsPlayed, attackCardsPlayed, skillCardsPlayed, powerCardsPlayed;
     public bool canPlayCards = true;
     public bool firstRound = true;
     public int basePlayerDrawAmount;
@@ -116,16 +116,17 @@ public class GameplayManager : MonoBehaviour
     public Map.ScrollNonUI scroll;
 
     public GameObject goldRewardGameObject;
-
     private bool isAnyoneTargeted;
     private void Awake()
     {
+
         cardAlign = GameObject.Find("PlayerHand").GetComponent<CardAlign>();
         es = FindObjectOfType<EnemiesSpawner>();
         gogo();
         sm = GetComponent<ShopManager>();
         canEndTurn = true;
-        
+
+            
     }
 
     private void OnEnable()
@@ -292,17 +293,19 @@ public class GameplayManager : MonoBehaviour
     }
     IEnumerator OnPlayersTurn()
     {
+        lastCardPlayed = cardPlayed.brak;
+        cardsPlayed = 0;
+        attackCardsPlayed = 0;
+        skillCardsPlayed = 0;
+        powerCardsPlayed = 0;
         //state = BattleState.PLAYERTURN;
-
         drawAmount = 0;
-
         DrawCards(basePlayerDrawAmount);
-
         player.AssignMana();
-
         player.ResetImg();
-
         canPlayCards = true;
+
+
 
 
          List<GameObject> _indicators = new List<GameObject>();
@@ -588,6 +591,12 @@ public class GameplayManager : MonoBehaviour
         coinButton.interactable = false;
         healButton.interactable = false;
     }
-
+    public enum cardPlayed
+    {
+        brak,
+        attack,
+        skill,
+        power
+    }
 }
 

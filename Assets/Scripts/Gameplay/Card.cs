@@ -329,67 +329,86 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public virtual void OnDrop()
     {
-        if (exhaustable)
+        if (cType == cardType.Attack)
         {
+            gm.cardsPlayed++;
+            gm.attackCardsPlayed++;
+            gm.lastCardPlayed = GameplayManager.cardPlayed.attack;
 
-            currentCardState = cardState.Elsewhere;
-            //play card
-            trail.enabled = true;
-            //anim
-            var go = this.gameObject;
-            var nazwaObiektu = go.name.Remove(go.name.Length - 7);
-            for (int i = 0; i < gm.playerHand.Count; i++)
-            {
-                if (nazwaObiektu.Equals(gm.playerHand[i].name))
-                {
-                    temp.Add(gm.playerHand[i]);
-                    gm.exhaustedDeck.Add(temp[0]);
-                    gm.playerHand.RemoveAt(i);
-                    temp.RemoveAt(0);
-                }
-            }
-            transform.DOMove(new Vector3(discDek.x, discDek.y, 0), 1.5f);
-            transform.DOScale(0.25f, 0.5f);
-            transform.DORotate(new Vector3(0, 0, -150f), 1.5f).OnComplete(() =>
-            {
-                trail.enabled = false;
-                this.transform.localScale = Vector3.one;
-                this.transform.rotation = newRot;
-                Destroy(this.gameObject);
-            }
-
-            );
+        }
+        else if (cType == cardType.Skill)
+        {
+            gm.cardsPlayed++;
+            gm.skillCardsPlayed++;
+            gm.lastCardPlayed = GameplayManager.cardPlayed.skill;
         }
         else
         {
-            currentCardState = cardState.Elsewhere;
-            //play card
-            trail.enabled = true;
-            //anim
-            var go = this.gameObject;
-            var nazwaObiektu = go.name.Remove(go.name.Length - 7);
-            for (int i = 0; i < gm.playerHand.Count; i++)
-            {
-                if (nazwaObiektu.Equals(gm.playerHand[i].name))
-                {
-                    temp.Add(gm.playerHand[i]);
-                    gm.discardDeck.Add(temp[0]);
-                    gm.playerHand.RemoveAt(i);
-                    temp.RemoveAt(0);
-                }
-            }
-            transform.DOMove(new Vector3(discDek.x, discDek.y, 0), 1.5f);
-            transform.DOScale(0.25f, 0.5f);
-            transform.DORotate(new Vector3(0, 0, -150f), 1.5f).OnComplete(() =>
-            {
-                trail.enabled = false;
-                this.transform.localScale = Vector3.one;
-                this.transform.rotation = newRot;
-                Destroy(this.gameObject);
-            }
-
-            );
+            gm.cardsPlayed++;
+            gm.powerCardsPlayed++;
+            gm.lastCardPlayed = GameplayManager.cardPlayed.power;
         }
+        if (exhaustable)
+                {
+
+                    currentCardState = cardState.Elsewhere;
+                    //play card
+                    trail.enabled = true;
+                    //anim
+                    var go = this.gameObject;
+                    var nazwaObiektu = go.name.Remove(go.name.Length - 7);
+                    for (int i = 0; i < gm.playerHand.Count; i++)
+                    {
+                        if (nazwaObiektu.Equals(gm.playerHand[i].name))
+                        {
+                            temp.Add(gm.playerHand[i]);
+                            gm.exhaustedDeck.Add(temp[0]);
+                            gm.playerHand.RemoveAt(i);
+                            temp.RemoveAt(0);
+                        }
+                    }
+                    transform.DOMove(new Vector3(discDek.x, discDek.y, 0), 1.5f);
+                    transform.DOScale(0.25f, 0.5f);
+                    transform.DORotate(new Vector3(0, 0, -150f), 1.5f).OnComplete(() =>
+                    {
+                        trail.enabled = false;
+                        this.transform.localScale = Vector3.one;
+                        this.transform.rotation = newRot;
+                        Destroy(this.gameObject);
+                    }
+
+                    );
+                }
+                else
+                {
+                    currentCardState = cardState.Elsewhere;
+                    //play card
+                    trail.enabled = true;
+                    //anim
+                    var go = this.gameObject;
+                    var nazwaObiektu = go.name.Remove(go.name.Length - 7);
+                    for (int i = 0; i < gm.playerHand.Count; i++)
+                    {
+                        if (nazwaObiektu.Equals(gm.playerHand[i].name))
+                        {
+                            temp.Add(gm.playerHand[i]);
+                            gm.discardDeck.Add(temp[0]);
+                            gm.playerHand.RemoveAt(i);
+                            temp.RemoveAt(0);
+                        }
+                    }
+                    transform.DOMove(new Vector3(discDek.x, discDek.y, 0), 1.5f);
+                    transform.DOScale(0.25f, 0.5f);
+                    transform.DORotate(new Vector3(0, 0, -150f), 1.5f).OnComplete(() =>
+                    {
+                        trail.enabled = false;
+                        this.transform.localScale = Vector3.one;
+                        this.transform.rotation = newRot;
+                        Destroy(this.gameObject);
+                    }
+
+                    );
+                }
     }
     public void DropControl()
     {
