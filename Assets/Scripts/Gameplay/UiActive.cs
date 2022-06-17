@@ -14,6 +14,7 @@ public class UiActive : MonoBehaviour
     public GameObject fill;
     [SerializeField] GameObject mapScreen;
     [SerializeField] GameObject settings;
+    [SerializeField] GameObject eqPanel;
     //public Vector3 mousePosition,secPos;
     //RaycastHit hit;
 
@@ -105,6 +106,7 @@ public class UiActive : MonoBehaviour
                 mapScreen.SetActive(false);
                 if(GameObject.Find("Player") != null)
                 fill.SetActive(true);
+                eqPanel.SetActive(false);
                 break;
             case 1:
                 //wlaczenie panelu decklayoutu
@@ -113,6 +115,7 @@ public class UiActive : MonoBehaviour
                 discardPile.SetActive(false);
                 settings.SetActive(false);
                 mapScreen.SetActive(false);
+                eqPanel.SetActive(false);
                 break;
             case 2:
                 //wlaczenie panelu drawpile'u
@@ -121,6 +124,7 @@ public class UiActive : MonoBehaviour
                 discardPile.SetActive(false);
                 settings.SetActive(false);
                 mapScreen.SetActive(false);
+                eqPanel.SetActive(false);
 
                 break;
             case 3:
@@ -130,6 +134,7 @@ public class UiActive : MonoBehaviour
                 discardPile.SetActive(true);
                 settings.SetActive(false);
                 mapScreen.SetActive(false);
+                eqPanel.SetActive(false);
 
                 break;
             case 4:
@@ -139,6 +144,7 @@ public class UiActive : MonoBehaviour
                 discardPile.SetActive(false);
                 settings.SetActive(true);
                 mapScreen.SetActive(false);
+                eqPanel.SetActive(false);
 
                 break;
             case 5:
@@ -148,8 +154,19 @@ public class UiActive : MonoBehaviour
                 discardPile.SetActive(false);
                 settings.SetActive(false);
                 mapScreen.SetActive(true);
+                eqPanel.SetActive(false);
 
                 break;
+                //wlaczenie panelu eq
+            case 6:
+                deckScreen.SetActive(false);
+                drawPile.SetActive(false);
+                discardPile.SetActive(false);
+                settings.SetActive(false);
+                mapScreen.SetActive(false);
+                eqPanel.SetActive(true);
+                break;
+
         }
 
     }
@@ -298,6 +315,20 @@ public class UiActive : MonoBehaviour
                 gm.enemyBattleStation[i].gameObject.SetActive(false);
             }
             panelIndex = 5;
+        }
+        //Debug.Log(panelIndex);
+    }
+    public void OnEqipmentClick()
+    {
+        eqPanel.SetActive(true);
+        if (panelIndex == 6)
+        {
+            panelIndex = 0;
+            //OnDiscardPileDestroy();
+        }
+        else
+        {
+            panelIndex = 6;
         }
         //Debug.Log(panelIndex);
     }

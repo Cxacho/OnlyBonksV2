@@ -182,18 +182,14 @@ public class GameplayManager : MonoBehaviour
         if(currentFloor<4)
         {
             numOfList = Random.Range(0, 3);
-            Debug.Log(numOfList + "  list equals");
-
         }
         else if(currentFloor<7)
                 {
             numOfList = Random.Range(3, 6);
-            Debug.Log(numOfList + "  list equals");
         }
         else
                     {
             numOfList = Random.Range(6, 10);
-            Debug.Log(numOfList + "  list equals");
         }
 
         SpawnEnemies(es.floorOneEnemies[numOfList]);
