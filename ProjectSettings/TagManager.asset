@@ -22,6 +22,7 @@ TagManager:
   - BuffIndicator
   - EnemyStatusIndicator
   - enPermStatus
+  - Inventory
   layers:
   - Default
   - TransparentFX
