@@ -43,7 +43,7 @@ public class JulkaZTwitera : Enemy, ITakeTurn
                 break;
             case 2:
                 //Love for all
-                foreach (Enemy en in gm.enType)
+                foreach (Enemy enemy in gm.enemyType)
                     GetArmor(3);
                 NextCaseOther("10");
                 break;

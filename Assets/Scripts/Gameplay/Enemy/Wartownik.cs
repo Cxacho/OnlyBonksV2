@@ -39,10 +39,10 @@ public class Wartownik : Enemy, ITakeTurn
                 break;
             case 1:
                 //For the queen <3
-                foreach (Enemy en in gm.enType)
+                foreach (Enemy enemy in gm.enemyType)
                 {
-                    en.setStatusIndicator(4, 0, gm.enemiesIndicators[0]);
-                    en.baseDamage += 4;
+                    enemy.setStatusIndicator(4, 0, gm.enemiesIndicators[0]);
+                    enemy.baseDamage += 4;
                 }
                 NextCaseAttack(1.5f);
                 break;

@@ -127,7 +127,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
                 {
                     gm.currentXP += gm.enemies[i].GetComponent<Enemy>().xp; //dodanie xpa za przeciwnika
 
-                    gm.enType.RemoveAt(i);
+                    gm.enemyType.RemoveAt(i);
                     gm.enemies.RemoveAt(i); //usuni?cie danego przeciwnika z listy
                 }
             }

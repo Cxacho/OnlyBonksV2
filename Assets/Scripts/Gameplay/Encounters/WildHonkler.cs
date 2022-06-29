@@ -21,7 +21,7 @@ public class WildHonkler : MonoBehaviour
     public void Run()
     {
         StartCoroutine(eh.DestroyMe());
-        gm.gogo();
+        gm.choosingNode();
     }
     public void Trust(int badJudgement)
     {

@@ -97,13 +97,13 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public void resetTargetting()
     {
-        foreach (Enemy en in gm.enType)
+        foreach (Enemy enemy in gm.enemyType)
         {
 
-            en.targeted = false;
-            en.isFirstTarget = false;
-            en.isSecondTarget = false;
-            en.isThirdTarget = false;
+            enemy.targeted = false;
+            enemy.isFirstTarget = false;
+            enemy.isSecondTarget = false;
+            enemy.isThirdTarget = false;
 
         }
 
@@ -252,7 +252,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         transform.SetParent(GameObject.Find("PlayerHand").transform);
         numOfTargets = baseNumOfTargets;
         _enemies.Clear();
-        _enemies.AddRange(gm.enType);
+        _enemies.AddRange(gm.enemyType);
         foreach (Enemy en in _enemies)
         {
 
@@ -418,7 +418,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             {
                 numOfTargets = baseNumOfTargets;
                 _enemies.Clear();
-                _enemies.AddRange(gm.enType);
+                _enemies.AddRange(gm.enemyType);
                 if (numOfTargets > _enemies.Count)
                 {
                     numOfTargets = _enemies.Count;
@@ -534,7 +534,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             {
                 gm.canEndTurn = true;
                 _enemies.Clear();
-                _enemies.AddRange(gm.enType);
+                _enemies.AddRange(gm.enemyType);
                 OnDrop();
             }
 

@@ -55,7 +55,7 @@ public class DogeResidence : MonoBehaviour
     public void leave()
     {
         StartCoroutine(eh.DestroyMe());
-        gm.gogo();
+        gm.choosingNode();
 
 
         

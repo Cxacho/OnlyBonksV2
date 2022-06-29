@@ -44,9 +44,9 @@ public class NPC : Enemy, ITakeTurn
             case 1:
                 //MassHysteria
                 //getarmor
-                foreach(Enemy en in gm.enType)
+                foreach(Enemy enemy in gm.enemyType)
                 {
-                    en.GetArmor(4);
+                    enemy.GetArmor(4);
                 }
                 NextCaseAttack(1);
                 break;

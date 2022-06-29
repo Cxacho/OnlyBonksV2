@@ -14,48 +14,100 @@ public enum BattleState { NODE ,START, PLAYERTURN, ENEMYTURN, WON, LOST, Victory
 [RequireComponent(typeof(AudioSource))]
 public class GameplayManager : MonoBehaviour
 {
-    [HideInInspector]public cardPlayed lastCardPlayed;
+    public static GameplayManager instance;
+
     public BattleState state;
-    public GameObject canvas;
-    public Transform[] enemyBattleStation = new Transform[3];
+
+    #region GameObjectsHidden
     [HideInInspector] public GameObject drawPile,playersHand;
     [HideInInspector] public GameObject discardPile;
     [HideInInspector] public GameObject discardDeckButton;
-    [HideInInspector]public GameObject playerHandObject;
-    public GameObject panelWin;
-    public int currentFloor;
-    [HideInInspector] public UiActive ui;
-    EnemiesSpawner es;
-    Button coinButton, healButton;
-    [HideInInspector] public GameObject treasurePanel,restSitePanel,mysteryPanel;
+    [HideInInspector] public GameObject playerHandObject;
+    [HideInInspector] public GameObject treasurePanel, restSitePanel, mysteryPanel;
     [HideInInspector] public GameObject treasurePanelButton;
     [HideInInspector] public GameObject panelLose;
+    [HideInInspector] public GameObject goldtxt;
+    [HideInInspector] public GameObject shopPanel;
+    #endregion
+
+    #region GameObjects
+    public GameObject goldRewardGameObject;
+    public GameObject textPanel;
+    public GameObject panelWin;
+    public GameObject canvas;
     public GameObject cardHolder;
     public GameObject battleUI;
-    [HideInInspector] public GameObject goldtxt;
     public GameObject drawButton;
-    public LevelProgress levelProgress;
-    [HideInInspector] public GameObject shopPanel;
-    private ShopManager sm;
-    [SerializeField] private Player player;
-    [HideInInspector] public bool canEndTurn;
-    private CardAlign cardAlign;
-    public int cardsPlayed, attackCardsPlayed, skillCardsPlayed, powerCardsPlayed;
+    #endregion
+
+    #region Ints
+    public int numOfList;
+    public int currentFloor;
+    public int basePlayerDrawAmount;
+    private int random;
+    public int gold = 100;
+    public int currentXP = 0;
+    public int goldReward;
+    public int cardsPlayed;
+    public int attackCardsPlayed;
+    public int skillCardsPlayed;
+    public int powerCardsPlayed;
+    public int maxCardDraw = 12;
+    [HideInInspector] public int playerDrawAmount;
+    [HideInInspector] public int drawAmount;
+    #endregion
+
+    #region Bools
     public bool canPlayCards = true;
     public bool firstRound = true;
-    public int basePlayerDrawAmount;
-    [HideInInspector]public int playerDrawAmount;
-    public int maxCardDraw = 12;
-    [HideInInspector]public int drawAmount;
-    private int random;
+    private bool isAnyoneTargeted;
+    [HideInInspector] public bool canEndTurn;
+    #endregion
 
-    public int gold = 100;
-    public int currentXP=0;
-    public int goldReward;
-    public GameObject textPanel;
+    #region Buttons
+    private Button coinButton;
+    private Button healButton;
     public Button endTurn;
     public Button mapButton;
+    #endregion
+
+    #region TMP
+
     public TextMeshProUGUI darkSoulsText;
+    #endregion
+
+    #region Enemy
+    private EnemiesSpawner enemiesSpawner;
+    public Transform[] enemyBattleStation = new Transform[3];
+    public Sprite[] indicatorImages;
+    #endregion
+
+    #region Player
+    public LevelProgress levelProgress;
+    [SerializeField] private Player player;
+    #endregion
+
+    #region Card
+    private CardAlign cardAlign;
+    [HideInInspector] public cardPlayed lastCardPlayed;
+    #endregion
+
+    #region Ui
+
+    [HideInInspector] public UiActive ui;
+
+    #endregion
+
+    #region Shop
+    private ShopManager shopmanager;
+    #endregion
+
+    #region Map
+    public Map.MapPlayerTracker map;
+    public Map.ScrollNonUI scroll;
+    #endregion
+
+    #region Lists
     public List<GameObject> allRelicsList = new List<GameObject>();
     
     public List<GameObject> allCards = new List<GameObject>();
@@ -106,38 +158,32 @@ public class GameplayManager : MonoBehaviour
     //[HideInInspector] public float delay;
     public GameObject Shopkeep;
 
-    public List<Enemy> enType = new List<Enemy>();
+    public List<Enemy> enemyType = new List<Enemy>();
+    #endregion
 
-
-    public Map.MapPlayerTracker map;
-
-    public Sprite[] indicatorImages;
-
-    public Map.ScrollNonUI scroll;
-
-    public GameObject goldRewardGameObject;
-    private bool isAnyoneTargeted;
     private void Awake()
     {
+        instance = this;
+
+
 
         cardAlign = GameObject.Find("PlayerHand").GetComponent<CardAlign>();
-        es = FindObjectOfType<EnemiesSpawner>();
-        gogo();
-        sm = GetComponent<ShopManager>();
+        enemiesSpawner = FindObjectOfType<EnemiesSpawner>();
+        shopmanager = GetComponent<ShopManager>();
+        
+
+        choosingNode();
+
+
         canEndTurn = true;
 
             
     }
-
-    private void OnEnable()
-    {
-        
-    }
     private void Update()
     {
-        foreach (Enemy en in enType)
+        foreach (Enemy enemy in enemyType)
         {
-            if (en.targeted == true || en.isFirstTarget == true || en.isSecondTarget == true || en.isThirdTarget == true) isAnyoneTargeted = true;
+            if (enemy.targeted == true || enemy.isFirstTarget == true || enemy.isSecondTarget == true || enemy.isThirdTarget == true) isAnyoneTargeted = true;
             else isAnyoneTargeted = false;
         }
         if (state == BattleState.PLAYERTURN && isAnyoneTargeted == false && canEndTurn == true)
@@ -178,7 +224,7 @@ public class GameplayManager : MonoBehaviour
         player.OnBattleSetup();
 
         yield return new WaitForSeconds(0.1f);
-        int numOfList;
+        
         if(currentFloor<4)
         {
             numOfList = Random.Range(0, 3);
@@ -192,27 +238,26 @@ public class GameplayManager : MonoBehaviour
             numOfList = Random.Range(6, 10);
         }
 
-        SpawnEnemies(es.floorOneEnemies[numOfList]);
+        SpawnEnemies(enemiesSpawner.floorOneEnemies[numOfList]);
         enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
-        foreach (GameObject en in enemies)
-            enType.Add(en.GetComponent<Enemy>());
+        foreach (GameObject enemy in enemies)
+            enemyType.Add(enemy.GetComponent<Enemy>());
         
 
 
         
         StartCoroutine(OnPlayersTurn());
     }
-
     public IEnumerator SetupEliteBattle()
     {
         battleUI.SetActive(true);
         exhaustedDeck.Clear();
         player.OnBattleSetup();
         yield return new WaitForSeconds(0.1f);
-        SpawnEnemies(es.floorOneElites[0]);
+        SpawnEnemies(enemiesSpawner.floorOneElites[0]);
         enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
         foreach (GameObject en in enemies)
-            enType.Add(en.GetComponent<Enemy>());
+            enemyType.Add(en.GetComponent<Enemy>());
 
 
 
@@ -234,10 +279,10 @@ public class GameplayManager : MonoBehaviour
         exhaustedDeck.Clear();
         player.OnBattleSetup();
         yield return new WaitForSeconds(0.1f);
-        SpawnEnemies(es.floorOneBosses[0]);
+        SpawnEnemies(enemiesSpawner.floorOneBosses[0]);
         enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
         foreach (GameObject en in enemies)
-            enType.Add(en.GetComponent<Enemy>());
+            enemyType.Add(en.GetComponent<Enemy>());
 
 
 
@@ -252,7 +297,7 @@ public class GameplayManager : MonoBehaviour
         ui.panelIndex = 0;
         ui.Check();
         shopPanel.SetActive(true);
-        sm.SpawnShuffledCards();
+        shopmanager.SpawnShuffledCards();
         var fix = GameObject.Find("5CardsArea").GetComponent<GridLayoutGroup>();
         fix.enabled = true;
         yield break;
@@ -315,31 +360,29 @@ public class GameplayManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
     }
-    IEnumerator OnEnemiesTurn()
+    private async void OnEnemiesTurn()
     {
-        yield return new WaitForSeconds(3f);
-        foreach (var enemy in enemies)
+        foreach (GameObject enemy in enemies)
         {
+            await EnemyTurn(enemy);
+        }
+        player.ResetPlayerArmor();
+        player.OnEndTurn();
+        StartCoroutine(OnPlayersTurn());
+    }
+    public async Task EnemyTurn(GameObject enemy)
+    {
+        
+        
             ITakeTurn takeTurn = enemy.GetComponent<ITakeTurn>();
             takeTurn.takeTurn(player);
-            yield return new WaitForSeconds(1f);
-        }
-
-        if(player.currentHealth == 0)
-        {
-            state = BattleState.LOST;
-            StartCoroutine(OnBattleLost());
-        }
-        else
-        {
-            player.ResetPlayerArmor();
-            player.OnEndTurn();
-            StartCoroutine(OnPlayersTurn());
-        }
-        
-
-        
-    }
+            if (player.currentHealth == 0)
+            {
+                state = BattleState.LOST;
+                StartCoroutine(OnBattleLost());
+            }
+            await Task.Delay(600);
+    }    
     public IEnumerator OnBattleWin()
     {
         Debug.Log("Batlle Won");
@@ -357,7 +400,7 @@ public class GameplayManager : MonoBehaviour
     public IEnumerator OnBattleLost()
     {
         //animacja œmierci
-        foreach (GameObject en in enemies) Destroy(en);
+        foreach (GameObject enemy in enemies) Destroy(enemy);
         Destroy(GameObject.FindGameObjectWithTag("Player"));
            yield return new WaitForSeconds(0.5f);
 
@@ -391,9 +434,7 @@ public class GameplayManager : MonoBehaviour
         panelLose.SetActive(true);
         battleUI.SetActive(false);
     }
- 
-    
-    public void OnClick()
+    public async void OnClick()
     {
         retain.Clear();
         if (playerHand.Count != 0)
@@ -426,11 +467,11 @@ public class GameplayManager : MonoBehaviour
         //cardAlign.SetValues();
 
 
-        ExecuteDarkSoulsText("Enemy Turn");
+        await ExecuteDarkSoulsText("Enemy Turn");
 
         
         state = BattleState.ENEMYTURN;
-        StartCoroutine(OnEnemiesTurn());
+        OnEnemiesTurn();
         
     }
     public void DrawCards(int amount)
@@ -466,7 +507,6 @@ public class GameplayManager : MonoBehaviour
         if (playerDrawAmount < drawAmount)
             drawAmount = 0;
     }
-
     public void CreateCard(int cardIndex)
     {
         //var card = PrefabUtility.InstantiatePrefab(allCards[cardIndex]as GameObject) as GameObject;
@@ -479,7 +519,6 @@ public class GameplayManager : MonoBehaviour
         
         
     }
-    
     private void shuffleDeck()
     {
         discardDeck.ForEach(item => drawDeck.Add(item));
@@ -522,7 +561,7 @@ public class GameplayManager : MonoBehaviour
         panelWin.SetActive(false);
         battleUI.SetActive(true);
     }
-    private void ExecuteDarkSoulsText(string _text)
+    private async Task ExecuteDarkSoulsText(string _text)
     {
         textPanel.SetActive(true);
         darkSoulsText.text = _text;
@@ -535,8 +574,8 @@ public class GameplayManager : MonoBehaviour
             darkSoulsText.transform.DOScale(1f, 0);
             textPanel.SetActive(false);        
         });
+        await Task.Delay(2000);
         
-
 
 
     }
@@ -545,7 +584,7 @@ public class GameplayManager : MonoBehaviour
         for (int i = 0;i < enemies.Count;i++)
         Instantiate(enemies[i], enemyBattleStation[i].transform.position, Quaternion.identity, enemyBattleStation[i].transform);
     }
-    public void gogo()
+    public void choosingNode()
     {
         
         StartCoroutine(ChooseNode());
