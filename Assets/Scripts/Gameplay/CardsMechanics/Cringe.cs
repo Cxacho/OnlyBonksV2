@@ -7,17 +7,17 @@ public class Cringe : Card
 
     public override void OnDrop()
     {
-        gm.checkPlayerMana(cost);
-        if (gm.canPlayCards == true)
+        gameplayManager.checkPlayerMana(cost);
+        if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
 
             
             StartCoroutine(ExecuteAfterTime(1f));
 
-            pl.frail = 0;
-            pl.vurneable = 0;
-            pl.poison = 0;
+            player.frail = 0;
+            player.vurneable = 0;
+            player.poison = 0;
 
             foreach (GameObject obj in GameObject.FindGameObjectsWithTag("BuffIndicator"))
             {
@@ -53,7 +53,7 @@ public class Cringe : Card
         //enemy.ReceiveDamage(attack * pl.strenght);
 
 
-        pl.manaText.text = pl.mana.ToString();
+        player.manaText.text = player.mana.ToString();
 
 
         /* else

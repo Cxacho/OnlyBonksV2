@@ -13,8 +13,8 @@ public class BabalityScript : Card
     public override void OnDrop()
     {
 
-        gm.checkPlayerMana(cost);
-        if (gm.canPlayCards == true)
+        gameplayManager.checkPlayerMana(cost);
+        if (gameplayManager.canPlayCards == true)
         {
             foreach (Enemy en in _enemies)
                 if (en.targeted == true)
@@ -39,7 +39,7 @@ public class BabalityScript : Card
 
 
 
-            pl.manaText.text = pl.mana.ToString();
+            player.manaText.text = player.mana.ToString();
             base.OnDrop();
         }
         else

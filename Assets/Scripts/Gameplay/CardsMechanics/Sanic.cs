@@ -49,11 +49,11 @@ public class Sanic : Card
 
     public void PlayerDamageCalculation()
     {
-        if (pl.strenght > 0) //gracz ma strenght wiekszy od 0
+        if (player.strenght > 0) //gracz ma strenght wiekszy od 0
         {
-            if (pl.frail > 0) //gracz ma strenght i frail
+            if (player.frail > 0) //gracz ma strenght i frail
             {
-                kalkulacja = Mathf.RoundToInt(((attack + pl.strenght) * 0.75f));
+                kalkulacja = Mathf.RoundToInt(((attack + player.strenght) * 0.75f));
                 if (kalkulacja > defaultattack) // dmg jest wiekszy niz podstawowy 
                     desc = $"Deal <color=green>{kalkulacja.ToString()}</color> damage to all enemies";
 
@@ -65,14 +65,14 @@ public class Sanic : Card
             }
             else //gracz ma strenght ale nie ma fraila 
             {
-                kalkulacja = (attack + pl.strenght);
+                kalkulacja = (attack + player.strenght);
                 desc = $"Deal <color=green>{kalkulacja.ToString()}</color> damage to all enemies";
             }
         }
-        else if (pl.strenght == 0) //gracz ma strenght równy 0
+        else if (player.strenght == 0) //gracz ma strenght równy 0
         {
 
-            if (pl.frail > 0) //gracz ma fraila
+            if (player.frail > 0) //gracz ma fraila
             {
                 kalkulacja = Mathf.RoundToInt((attack * 0.75f));
                 desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage to all enemies";
@@ -83,17 +83,17 @@ public class Sanic : Card
                 desc = $"Deal <color=white>{kalkulacja.ToString()}</color> damage to all enemies";
             }
         }
-        else if (pl.strenght < 0) //gracz ma strenght mniejszy od 0
+        else if (player.strenght < 0) //gracz ma strenght mniejszy od 0
         {
 
-            if (pl.frail > 0)    //gracz ma fraila
+            if (player.frail > 0)    //gracz ma fraila
             {
-                kalkulacja = Mathf.RoundToInt(((attack + pl.strenght) * 0.75f));
+                kalkulacja = Mathf.RoundToInt(((attack + player.strenght) * 0.75f));
                 desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage to all enemies";
             }
             else // gracz nie ma fraila 
             {
-                kalkulacja = (attack + pl.strenght);
+                kalkulacja = (attack + player.strenght);
                 desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage to all enemies";
             }
         }
@@ -103,15 +103,15 @@ public class Sanic : Card
     public override void OnDrop()
     {
         
-        gm.checkPlayerMana(cost);
-        if (gm.canPlayCards == true)
+        gameplayManager.checkPlayerMana(cost);
+        if (gameplayManager.canPlayCards == true)
         {
             Debug.Log(_enemies.Count);
             StartCoroutine(ExecuteAfterTime(1f));
             foreach (Enemy en in _enemies)
             {
 
-                en.ReceiveDamage(attack + pl.strenght);
+                en.ReceiveDamage(attack + player.strenght);
                 Debug.Log("wykonaj");
 
             }
@@ -134,7 +134,7 @@ public class Sanic : Card
         //enemy.ReceiveDamage(attack * pl.strenght);
 
 
-        pl.manaText.text = pl.mana.ToString();
+        player.manaText.text = player.mana.ToString();
 
 
         /* else

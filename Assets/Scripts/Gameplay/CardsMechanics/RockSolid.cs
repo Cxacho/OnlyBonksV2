@@ -6,15 +6,15 @@ public class RockSolid : Card
 {
     public override void OnDrop()
     {
-        gm.checkPlayerMana(cost);
-        if (gm.canPlayCards == true)
+        gameplayManager.checkPlayerMana(cost);
+        if (gameplayManager.canPlayCards == true)
         {
-            if (pl.currentHealth < pl.maxHealth*0.3f)
-                pl.GetArmor(10);
+            if (player.currentHealth < player.maxHealth*0.3f)
+                player.GetArmor(10);
             else
-                pl.GetArmor(5);
+                player.GetArmor(5);
 
-            pl.manaText.text = pl.mana.ToString();
+            player.manaText.text = player.mana.ToString();
 
             base.OnDrop();
 

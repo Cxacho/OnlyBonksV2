@@ -21,10 +21,10 @@ public class DoubleBonk : Card
 
         PlayerDamageCalculation();
 
-        if (fm.en != null)
+        if (followMouse.en != null)
         {
 
-            if (fm.en.vurneable > 0)
+            if (followMouse.en.vurneable > 0)
             {
                 kalkulacjaPrzeciwnik = Mathf.RoundToInt(kalkulacja * 1.25f);
                 if (kalkulacjaPrzeciwnik > defaultattack)
@@ -50,11 +50,11 @@ public class DoubleBonk : Card
 
     public void PlayerDamageCalculation()
     {
-        if (pl.strenght > 0) //gracz ma strenght wiekszy od 0
+        if (player.strenght > 0) //gracz ma strenght wiekszy od 0
         {
-            if (pl.frail > 0) //gracz ma strenght i frail
+            if (player.frail > 0) //gracz ma strenght i frail
             {
-                kalkulacja = Mathf.RoundToInt(((attack + pl.strenght) * 0.75f));
+                kalkulacja = Mathf.RoundToInt(((attack + player.strenght) * 0.75f));
                 if (kalkulacja > defaultattack) // dmg jest wiekszy niz podstawowy 
                     desc = $"Deal <color=green>{kalkulacja.ToString()}</color> damage twice";
 
@@ -66,14 +66,14 @@ public class DoubleBonk : Card
             }
             else //gracz ma strenght ale nie ma fraila 
             {
-                kalkulacja = (attack + pl.strenght);
+                kalkulacja = (attack + player.strenght);
                 desc = $"Deal <color=green>{kalkulacja.ToString()}</color> damage twice";
             }
         }
-        else if (pl.strenght == 0) //gracz ma strenght równy 0
+        else if (player.strenght == 0) //gracz ma strenght równy 0
         {
 
-            if (pl.frail > 0) //gracz ma fraila
+            if (player.frail > 0) //gracz ma fraila
             {
                 kalkulacja = Mathf.RoundToInt((attack * 0.75f));
                 desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage twice";
@@ -84,17 +84,17 @@ public class DoubleBonk : Card
                 desc = $"Deal <color=white>{kalkulacja.ToString()}</color> damage twice";
             }
         }
-        else if (pl.strenght < 0) //gracz ma strenght mniejszy od 0
+        else if (player.strenght < 0) //gracz ma strenght mniejszy od 0
         {
 
-            if (pl.frail > 0)    //gracz ma fraila
+            if (player.frail > 0)    //gracz ma fraila
             {
-                kalkulacja = Mathf.RoundToInt(((attack + pl.strenght) * 0.75f));
+                kalkulacja = Mathf.RoundToInt(((attack + player.strenght) * 0.75f));
                 desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage twice";
             }
             else // gracz nie ma fraila 
             {
-                kalkulacja = (attack + pl.strenght);
+                kalkulacja = (attack + player.strenght);
                 desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage twice";
             }
         }
@@ -103,8 +103,8 @@ public class DoubleBonk : Card
 
     public override void OnDrop()
     {
-        gm.checkPlayerMana(cost);
-        if (gm.canPlayCards == true)
+        gameplayManager.checkPlayerMana(cost);
+        if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
 
@@ -118,11 +118,11 @@ public class DoubleBonk : Card
                     {
                         yield return new WaitForSeconds(0.15f);
                         //anim/playsfx
-                        en.ReceiveDamage(attack + pl.strenght);
+                        en.ReceiveDamage(attack + player.strenght);
 
                         yield return new WaitForSeconds(0.2f);
                         //anim/playsfx
-                        en.ReceiveDamage(attack + pl.strenght);
+                        en.ReceiveDamage(attack + player.strenght);
                     }
                     StartCoroutine(Bonking());
                     //InvokeRepeating(en.ReceiveDamage(attack + pl.strenght), 0.1f, 0.3f);
@@ -154,7 +154,7 @@ public class DoubleBonk : Card
         //enemy.ReceiveDamage(attack * pl.strenght);
 
 
-        pl.manaText.text = pl.mana.ToString();
+        player.manaText.text = player.mana.ToString();
 
 
         /* else

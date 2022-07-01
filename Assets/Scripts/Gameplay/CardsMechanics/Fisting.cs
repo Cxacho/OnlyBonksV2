@@ -13,15 +13,15 @@ public class Fisting : Card
     public override void OnDrop()
     {
 
-        gm.checkPlayerMana(cost);
-        if (gm.canPlayCards == true)
+        gameplayManager.checkPlayerMana(cost);
+        if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
 
-            pl.GetComponentInChildren<Animator>().SetTrigger("GetSwoleTrigger");
-            pl.setDebuffIndicator(3, 3, pl.buffIndicators[3]);
-            gm.DrawCards(3);
-            pl.manaText.text = pl.mana.ToString();
+            player.GetComponentInChildren<Animator>().SetTrigger("GetSwoleTrigger");
+            player.setDebuffIndicator(3, 3, player.buffIndicators[3]);
+            gameplayManager.DrawCards(3);
+            player.manaText.text = player.mana.ToString();
         }
         else
         {
@@ -30,7 +30,7 @@ public class Fisting : Card
     }
     public void GainStr()
     {
-        pl.strenght += 2;
+        player.strenght += 2;
 
     }
 }

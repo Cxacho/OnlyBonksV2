@@ -7,16 +7,16 @@ public class Testudo : Card
     public int armor;
     public override void OnDrop()
     {
-        gm.checkPlayerMana(cost);
-        if (gm.canPlayCards == true)
+        gameplayManager.checkPlayerMana(cost);
+        if (gameplayManager.canPlayCards == true)
         {
-            pl.GetArmor(armor);
+            player.GetArmor(armor);
             
 
-            pl.manaText.text = pl.mana.ToString();
+            player.manaText.text = player.mana.ToString();
 
             base.OnDrop();
-            gm.DrawCards(2);
+            gameplayManager.DrawCards(2);
         }
         else
         {

@@ -10,15 +10,15 @@ public class GetSwoleScript : Card
     public override void OnDrop()
     {
 
-        gm.checkPlayerMana(cost);
-        if (gm.canPlayCards == true)
+        gameplayManager.checkPlayerMana(cost);
+        if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
 
-            pl.GetComponentInChildren<Animator>().SetTrigger("GetSwoleTrigger");
-            pl.setDebuffIndicator(5, 3, pl.buffIndicators[3]);
-            pl.GetArmor(10);
-            pl.manaText.text = pl.mana.ToString();
+            player.GetComponentInChildren<Animator>().SetTrigger("GetSwoleTrigger");
+            player.setDebuffIndicator(5, 3, player.buffIndicators[3]);
+            player.GetArmor(10);
+            player.manaText.text = player.mana.ToString();
         }
         else
         {
@@ -32,7 +32,7 @@ public class GetSwoleScript : Card
 
         public void GainStr()
         {
-            pl.strenght +=4;
+            player.strenght +=4;
             
         }
 

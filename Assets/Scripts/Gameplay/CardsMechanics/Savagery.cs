@@ -12,15 +12,15 @@ public class Savagery : Card
 
     public override void OnDrop()
     {
-        gm.checkPlayerMana(cost);
-        if (gm.canPlayCards == true)
+        gameplayManager.checkPlayerMana(cost);
+        if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
-            
-            pl.TakeDamage(value);
-            pl.mana += 1;
+
+            player.TakeDamage(value);
+            player.mana += 1;
             StartCoroutine(ExecuteAfterTime(1f));
-            gm.DrawCards(1);
+            gameplayManager.DrawCards(1);
 
         }
         else
@@ -33,7 +33,7 @@ public class Savagery : Card
     {
         yield return new WaitForSeconds(time);
 
-        pl.manaText.text = pl.mana.ToString();
+        player.manaText.text = player.mana.ToString();
 
 
     }

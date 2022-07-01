@@ -6,15 +6,15 @@ public class LastStand : Card
 {
     public override void OnDrop()
     {
-        gm.checkPlayerMana(cost);
-        if (gm.canPlayCards == true)
+        gameplayManager.checkPlayerMana(cost);
+        if (gameplayManager.canPlayCards == true)
         {
-            if (pl.armor < 4)
-                pl.GetArmor(9);
+            if (player.armor < 4)
+                player.GetArmor(9);
             else
-                pl.GetArmor(6);
+                player.GetArmor(6);
 
-            pl.manaText.text = pl.mana.ToString();
+            player.manaText.text = player.mana.ToString();
 
             base.OnDrop();
 

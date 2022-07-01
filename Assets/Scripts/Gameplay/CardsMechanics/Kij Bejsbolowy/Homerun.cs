@@ -23,10 +23,10 @@ public class Homerun :  Card
 
         PlayerDamageCalculation();
 
-        if (fm.en != null)
+        if (followMouse.en != null)
         {
 
-            if (fm.en.vurneable > 0)
+            if (followMouse.en.vurneable > 0)
             {
                 kalkulacjaPrzeciwnik = Mathf.RoundToInt(kalkulacja * 1.25f);
                 if (kalkulacjaPrzeciwnik > defaultattack)
@@ -52,11 +52,11 @@ public class Homerun :  Card
 
     public void PlayerDamageCalculation()
     {
-        if (pl.strenght > 0) //gracz ma strenght wiekszy od 0
+        if (player.strenght > 0) //gracz ma strenght wiekszy od 0
         {
-            if (pl.frail > 0) //gracz ma strenght i frail
+            if (player.frail > 0) //gracz ma strenght i frail
             {
-                kalkulacja = Mathf.RoundToInt(((attack + pl.strenght) * 0.75f));
+                kalkulacja = Mathf.RoundToInt(((attack + player.strenght) * 0.75f));
                 drugiAtak = Mathf.RoundToInt(kalkulacja * 0.3f);
                 if (kalkulacja > defaultattack) // dmg jest wiekszy niz podstawowy 
                     desc = $"Deal <color=green>{kalkulacja.ToString()}</color> damage to first enemy and <color=green>{drugiAtak.ToString()}</color> to second enemy";
@@ -69,15 +69,15 @@ public class Homerun :  Card
             }
             else //gracz ma strenght ale nie ma fraila 
             {
-                kalkulacja = (attack + pl.strenght);
+                kalkulacja = (attack + player.strenght);
                 drugiAtak = Mathf.RoundToInt(kalkulacja * 0.3f);
                 desc = $"Deal <color=green>{kalkulacja.ToString()}</color> damage to first enemy and <color=green>{drugiAtak.ToString()}</color> to second enemy";
             }
         }
-        else if (pl.strenght == 0) //gracz ma strenght równy 0
+        else if (player.strenght == 0) //gracz ma strenght równy 0
         {
 
-            if (pl.frail > 0) //gracz ma fraila
+            if (player.frail > 0) //gracz ma fraila
             {
                 kalkulacja = Mathf.RoundToInt((attack * 0.75f));
                 drugiAtak = Mathf.RoundToInt(kalkulacja * 0.3f);
@@ -90,18 +90,18 @@ public class Homerun :  Card
                 desc = $"Deal <color=white>{kalkulacja.ToString()}</color> damage to first enemy and <color=white>{drugiAtak.ToString()}</color> to second enemy";
             }
         }
-        else if (pl.strenght < 0) //gracz ma strenght mniejszy od 0
+        else if (player.strenght < 0) //gracz ma strenght mniejszy od 0
         {
 
-            if (pl.frail > 0)    //gracz ma fraila
+            if (player.frail > 0)    //gracz ma fraila
             {
-                kalkulacja = Mathf.RoundToInt(((attack + pl.strenght) * 0.75f));
+                kalkulacja = Mathf.RoundToInt(((attack + player.strenght) * 0.75f));
                 drugiAtak = Mathf.RoundToInt(kalkulacja * 0.3f);
                 desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage to first enemy and <color=red>{drugiAtak.ToString()}</color> to second enemy";
             }
             else // gracz nie ma fraila 
             {
-                kalkulacja = (attack + pl.strenght);
+                kalkulacja = (attack + player.strenght);
                 drugiAtak = Mathf.RoundToInt(kalkulacja * 0.3f);
                 desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage to first enemy and <color=red>{drugiAtak.ToString()}</color> to second enemy";
             }
@@ -111,8 +111,8 @@ public class Homerun :  Card
 
     public override void OnDrop()
     {
-        gm.checkPlayerMana(cost);
-        if (gm.canPlayCards == true)
+        gameplayManager.checkPlayerMana(cost);
+        if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
 
@@ -121,14 +121,14 @@ public class Homerun :  Card
             {
                 if (en.isFirstTarget == true)
                 {
-                    en.ReceiveDamage(attack + pl.strenght);
+                    en.ReceiveDamage(attack + player.strenght);
                     en.targeted = false;
                     en.isFirstTarget = false;
                     Debug.Log("jebanyskryptv2");
                 }
                 if (en.isSecondTarget == true)
                 {
-                    en.ReceiveDamage((attack + pl.strenght)*0.3f); // do zmiany po demie
+                    en.ReceiveDamage((attack + player.strenght)*0.3f); // do zmiany po demie
                     en.targeted = false;
                     en.isSecondTarget = false;
                     Debug.Log("jebanyskrypt");
@@ -150,7 +150,7 @@ public class Homerun :  Card
         //enemy.ReceiveDamage(attack * pl.strenght);
 
 
-        pl.manaText.text = pl.mana.ToString();
+        player.manaText.text = player.mana.ToString();
 
 
         /* else

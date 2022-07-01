@@ -8,12 +8,12 @@ public class YouHaveNoMana : Card
 
     public override void OnDrop()
     {
-        gm.checkPlayerMana(cost);
-        if (gm.canPlayCards == true)
+        gameplayManager.checkPlayerMana(cost);
+        if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
- 
-            pl.mana += 1;
+
+            player.mana += 1;
             StartCoroutine(ExecuteAfterTime(1f));
             
         }
@@ -27,7 +27,7 @@ public class YouHaveNoMana : Card
     {
         yield return new WaitForSeconds(time);
 
-        pl.manaText.text = pl.mana.ToString();
+        player.manaText.text = player.mana.ToString();
 
 
     }

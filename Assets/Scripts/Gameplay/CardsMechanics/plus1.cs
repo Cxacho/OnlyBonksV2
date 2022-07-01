@@ -6,12 +6,12 @@ public class plus1 : Card
 {
     public override void OnDrop()
     {
-        gm.checkPlayerMana(cost);
-        if (gm.canPlayCards == true)
+        gameplayManager.checkPlayerMana(cost);
+        if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
             StartCoroutine(ExecuteAfterTime(1f));
-            gm.DrawCards(1);
+            gameplayManager.DrawCards(1);
         }
         else
         {
@@ -27,7 +27,7 @@ public class plus1 : Card
         //enemy.ReceiveDamage(attack * pl.strenght);
 
 
-        pl.manaText.text = pl.mana.ToString();
+        player.manaText.text = player.mana.ToString();
 
 
         /* else

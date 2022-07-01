@@ -12,12 +12,12 @@ public class LickWounds : Card
 
     public override void OnDrop()
     {
-        gm.checkPlayerMana(cost);
-        if (gm.canPlayCards == true)
+        gameplayManager.checkPlayerMana(cost);
+        if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
             StartCoroutine(ExecuteAfterTime(1f));
-            pl.Heal(value);
+            player.Heal(value);
         }
         else
         {
@@ -33,7 +33,7 @@ public class LickWounds : Card
         //enemy.ReceiveDamage(attack * pl.strenght);
 
 
-        pl.manaText.text = pl.mana.ToString();
+        player.manaText.text = player.mana.ToString();
 
 
         /* else
