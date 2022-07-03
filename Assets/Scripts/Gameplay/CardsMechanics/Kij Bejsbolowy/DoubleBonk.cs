@@ -9,8 +9,7 @@ public class DoubleBonk : Card
 
     private void Start()
     {
-
-        desc = $"Deal <color=white>{attack.ToString()}</color> damage twice";
+        desc = $"Deal <color=white>{attack.ToString()}</color> damage";
 
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
@@ -19,85 +18,14 @@ public class DoubleBonk : Card
     private void FixedUpdate()
     {
 
-        PlayerDamageCalculation();
+        calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
 
-        if (followMouse.en != null)
-        {
-
-            if (followMouse.en.vurneable > 0)
-            {
-                kalkulacjaPrzeciwnik = Mathf.RoundToInt(kalkulacja * 1.25f);
-                if (kalkulacjaPrzeciwnik > defaultattack)
-                    desc = $"Deal <color=green>{kalkulacjaPrzeciwnik.ToString()}</color> damage twice";
-                else if (kalkulacjaPrzeciwnik == defaultattack)
-                    desc = $"Deal <color=white>{kalkulacjaPrzeciwnik.ToString()}</color> damage twice";
-                else if (kalkulacjaPrzeciwnik < defaultattack)
-                    desc = $"Deal <color=red>{kalkulacjaPrzeciwnik.ToString()}</color> damage twice";
-            }
-            else
-            {
-                kalkulacjaPrzeciwnik = kalkulacja;
-                if (kalkulacjaPrzeciwnik > defaultattack)
-                    desc = $"Deal <color=green>{kalkulacjaPrzeciwnik.ToString()}</color> damage twice";
-                else if (kalkulacjaPrzeciwnik == defaultattack)
-                    desc = $"Deal <color=white>{kalkulacjaPrzeciwnik.ToString()}</color> damage twice";
-                else if (kalkulacjaPrzeciwnik < defaultattack)
-                    desc = $"Deal <color=red>{kalkulacjaPrzeciwnik.ToString()}</color> damage twice";
-            }
-        }
-        this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
-    }
-
-    public void PlayerDamageCalculation()
-    {
-        if (player.strenght > 0) //gracz ma strenght wiekszy od 0
-        {
-            if (player.frail > 0) //gracz ma strenght i frail
-            {
-                kalkulacja = Mathf.RoundToInt(((attack + player.strenght) * 0.75f));
-                if (kalkulacja > defaultattack) // dmg jest wiekszy niz podstawowy 
-                    desc = $"Deal <color=green>{kalkulacja.ToString()}</color> damage twice";
-
-                else if (kalkulacja == defaultattack) //dmg jest taki sam jak podstawowy
-                    desc = $"Deal <color=white>{kalkulacja.ToString()}</color> damage twice";
-
-                else if (kalkulacja < defaultattack) //dmg jest mniejszy niz podstawowy 
-                    desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage twice";
-            }
-            else //gracz ma strenght ale nie ma fraila 
-            {
-                kalkulacja = (attack + player.strenght);
-                desc = $"Deal <color=green>{kalkulacja.ToString()}</color> damage twice";
-            }
-        }
-        else if (player.strenght == 0) //gracz ma strenght równy 0
-        {
-
-            if (player.frail > 0) //gracz ma fraila
-            {
-                kalkulacja = Mathf.RoundToInt((attack * 0.75f));
-                desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage twice";
-            }
-            else // gracz nie ma fraila 
-            {
-                kalkulacja = attack;
-                desc = $"Deal <color=white>{kalkulacja.ToString()}</color> damage twice";
-            }
-        }
-        else if (player.strenght < 0) //gracz ma strenght mniejszy od 0
-        {
-
-            if (player.frail > 0)    //gracz ma fraila
-            {
-                kalkulacja = Mathf.RoundToInt(((attack + player.strenght) * 0.75f));
-                desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage twice";
-            }
-            else // gracz nie ma fraila 
-            {
-                kalkulacja = (attack + player.strenght);
-                desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage twice";
-            }
-        }
+        if (attack == defaultattack)
+            desc = $"Deal <color=white>{attack.ToString()}</color> damage twice";
+        else if (attack < defaultattack)
+            desc = $"Deal <color=red>{attack.ToString()}</color> damage twice";
+        else
+            desc = $"Deal <color=green>{attack.ToString()}</color> damage twice";
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
 
@@ -118,11 +46,11 @@ public class DoubleBonk : Card
                     {
                         yield return new WaitForSeconds(0.15f);
                         //anim/playsfx
-                        en.ReceiveDamage(attack + player.strenght);
+                        en.RecieveDamage(attack,this);
 
                         yield return new WaitForSeconds(0.2f);
                         //anim/playsfx
-                        en.ReceiveDamage(attack + player.strenght);
+                        en.RecieveDamage(attack,this);
                     }
                     StartCoroutine(Bonking());
                     //InvokeRepeating(en.ReceiveDamage(attack + pl.strenght), 0.1f, 0.3f);

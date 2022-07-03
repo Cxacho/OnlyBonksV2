@@ -30,6 +30,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6378627393820948997}
   m_Father: {fileID: 0}
@@ -72,6 +73,7 @@ TrailRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -180,20 +182,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
-  cType: 0
-  currentCardState: 0
-  trail: {fileID: 0}
-  pl: {fileID: 0}
-  gm: {fileID: 0}
+  scaleCardValues: 0
   index: 0
   baseNumOfTargets: 1
-  _enemies: []
-  exhaustable: 1
-  retainable: 0
   attack: 3
   defaultattack: 3
   kalkulacja: 0
   kalkulacjaPrzeciwnik: 0
+  cType: 0
+  currentCardState: 0
+  cardScalingtype: 1
+  secondaryScalingType: 0
+  cardDamageType: 0
+  trail: {fileID: 0}
+  player: {fileID: 0}
+  gameplayManager: {fileID: 0}
+  _enemies: []
+  exhaustable: 1
+  retainable: 0
   desc: 
 --- !u!1 &3868653325569000508
 GameObject:
@@ -223,6 +229,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6378627393820948997}
   m_RootOrder: 2
@@ -357,6 +364,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6378627393820948997}
   m_RootOrder: 1
@@ -491,6 +499,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6378627393820948997}
   m_RootOrder: 3
@@ -625,6 +634,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7378655392135895017}
   - {fileID: 3953153988903459137}
@@ -704,6 +714,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6378627393820948997}
   m_RootOrder: 0

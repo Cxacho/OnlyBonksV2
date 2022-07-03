@@ -13,7 +13,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public int index;
     private int numOfTargets;
     public int baseNumOfTargets;
-    public int dealDamage;
 
     private float posY;
     public float attack;
@@ -26,10 +25,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public cardState currentCardState;
     public scalingType cardScalingtype;
     public scalingType secondaryScalingType;
+    public damageType cardDamageType;
 
-
-    private Vector3 mousePos;
-    private Vector3 posInHand;
     private Vector3 discDek;
         
     protected FollowMouse followMouse;
@@ -192,6 +189,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public void calc(int baseDamage, scalingType type, scalingType secondType)
     {
+        if (currentCardState == cardState.Elsewhere) return;
         switch (type)
         {
             case scalingType.strength:
@@ -317,7 +315,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (Input.GetButton("Fire1"))
         {
 
-            posInHand = pos.anchoredPosition;
             oldRot = this.transform.rotation;
             currentCardState = cardState.OnCursor;
             this.transform.rotation = newRot;
@@ -343,6 +340,14 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Attack = 0,
         Skill = 1,
         Power = 2
+    }
+    public enum damageType
+    {
+        physical,
+        cold,
+        fire,
+        earth,
+        wind
     }
     public virtual void OnDrop()
     {
@@ -565,10 +570,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             DisableIndicator();
             cardAlign.SetValues();
         }
-
-
-
-
 
     }
 }

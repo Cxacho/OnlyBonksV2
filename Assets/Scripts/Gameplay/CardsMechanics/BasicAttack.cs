@@ -47,7 +47,7 @@ public class BasicAttack : Card
             {
                 if (en.targeted == true)
                 {
-                    en.ReceiveDamage(attack);
+                    en.RecieveDamage(attack,this);
 
                     en.targeted = false;
                 }

@@ -10,96 +10,23 @@ public class ExecutiveFireball : Card
 
     private void Start()
     {
-
-        desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=white>{attack.ToString()}</color> damage";
+        desc = $"If target is below 40% of their max hp execute them, else deal <color=white>{attack.ToString()}</color> damage";
 
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
-
 
 
     private void FixedUpdate()
     {
 
-        PlayerDamageCalculation();
+        calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
 
-        if (followMouse.en != null)
-        {
-
-            if (followMouse.en.vurneable > 0)
-            {
-                kalkulacjaPrzeciwnik = Mathf.RoundToInt(kalkulacja * 1.25f);
-                if (kalkulacjaPrzeciwnik > defaultattack)
-                    desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=green>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
-                else if (kalkulacjaPrzeciwnik == defaultattack)
-                    desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=white>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
-                else if (kalkulacjaPrzeciwnik < defaultattack)
-                    desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=red>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
-            }
-            else
-            {
-                kalkulacjaPrzeciwnik = kalkulacja;
-                if (kalkulacjaPrzeciwnik > defaultattack)
-                    desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=green>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
-                else if (kalkulacjaPrzeciwnik == defaultattack)
-                    desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=white>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
-                else if (kalkulacjaPrzeciwnik < defaultattack)
-                    desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=red>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
-            }
-        }
-        this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
-    }
-
-    public void PlayerDamageCalculation()
-    {
-        if (player.strenght > 0) //gracz ma strenght wiekszy od 0
-        {
-            if (player.frail > 0) //gracz ma strenght i frail
-            {
-                kalkulacja = Mathf.RoundToInt(((attack + player.strenght) * 0.75f));
-                if (kalkulacja > defaultattack) // dmg jest wiekszy niz podstawowy 
-                    desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=green>{kalkulacja.ToString()}</color> damage";
-
-                else if (kalkulacja == defaultattack) //dmg jest taki sam jak podstawowy
-                    desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=white>{kalkulacja.ToString()}</color> damage";
-
-                else if (kalkulacja < defaultattack) //dmg jest mniejszy niz podstawowy 
-                    desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=red>{kalkulacja.ToString()}</color> damage";
-            }
-            else //gracz ma strenght ale nie ma fraila 
-            {
-                kalkulacja = (attack + player.strenght);
-                desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=green>{kalkulacja.ToString()}</color> damage";
-            }
-        }
-        else if (player.strenght == 0) //gracz ma strenght równy 0
-        {
-
-            if (player.frail > 0) //gracz ma fraila
-            {
-                kalkulacja = Mathf.RoundToInt((attack * 0.75f));
-                desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=red>{kalkulacja.ToString()}</color> damage";
-            }
-            else // gracz nie ma fraila 
-            {
-                kalkulacja = attack;
-                desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=white>{kalkulacja.ToString()}</color> damage";
-            }
-        }
-        else if (player.strenght < 0) //gracz ma strenght mniejszy od 0
-        {
-
-            if (player.frail > 0)    //gracz ma fraila
-            {
-                kalkulacja = Mathf.RoundToInt(((attack + player.strenght) * 0.75f));
-                desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=red>{kalkulacja.ToString()}</color> damage";
-            }
-            else // gracz nie ma fraila 
-            {
-                kalkulacja = (attack + player.strenght);
-                desc = $"If enemy has less than 40% hp execute him <br><br>Else deal <color=red>{kalkulacja.ToString()}</color> damage";
-            }
-        }
+        if (attack == defaultattack)
+            desc = $"If target is below 40% of their max hp execute them, else deal <color=white>{attack.ToString()}</color> damage.";
+        else if (attack < defaultattack)
+            desc = $"If target is below 40% of their max hp execute them, else deal <color=red>{attack.ToString()}</color> damage.";
+        else
+            desc = $"If target is below 40% of their max hp execute them, else deal <color=green>{attack.ToString()}</color> damage.";
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
 
@@ -115,14 +42,13 @@ public class ExecutiveFireball : Card
             {
                 if (en.targeted == true)
                 {
-                    Debug.Log("jba");
                     if (en._currentHealth<(float)(en.maxHealth*0.4))
                     {
-                        en.ReceiveDamage(en.maxHealth);
+                        en.RecieveDamage(en.maxHealth,this);
                     }
                     else 
                     {
-                        en.ReceiveDamage(attack + player.strenght);
+                        en.RecieveDamage(attack,this);
                     }
                     en.targeted = false;
                 }

@@ -5,107 +5,27 @@ using TMPro;
 public class Homerun :  Card
 {
 
-    public GameObject bonk;
-    public int drugiAtak;
     private void Start()
     {
-        drugiAtak = Mathf.RoundToInt(attack * 0.3f);
+        var get03procent = defaultattack * 0.3f;
 
-        desc = $"Deal <color=white>{attack.ToString()}</color> damage to first enemy and <color=white>{drugiAtak.ToString()}</color> to second enemy";
+        desc = $"Deal <color=white>{attack.ToString()}</color> damage to first enemy and <color=white>{get03procent.ToString()}</color> to second enemy";
 
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
-
 
 
     private void FixedUpdate()
     {
 
-        PlayerDamageCalculation();
-
-        if (followMouse.en != null)
-        {
-
-            if (followMouse.en.vurneable > 0)
-            {
-                kalkulacjaPrzeciwnik = Mathf.RoundToInt(kalkulacja * 1.25f);
-                if (kalkulacjaPrzeciwnik > defaultattack)
-                    desc = $"Deal <color=green>{kalkulacjaPrzeciwnik.ToString()}</color> damage to first enemy and <color=green>{drugiAtak.ToString()}</color> to second enemy";
-                else if (kalkulacjaPrzeciwnik == defaultattack)
-                    desc = $"Deal <color=white>{kalkulacjaPrzeciwnik.ToString()}</color> damage to first enemy and <color=white>{drugiAtak.ToString()}</color> to second enemy";
-                else if (kalkulacjaPrzeciwnik < defaultattack)
-                    desc = $"Deal <color=red>{kalkulacjaPrzeciwnik.ToString()}</color> damage to first enemy and <color=red>{drugiAtak.ToString()}</color> to second enemy";
-            }
-            else
-            {
-                kalkulacjaPrzeciwnik = kalkulacja;
-                if (kalkulacjaPrzeciwnik > defaultattack)
-                    desc = $"Deal <color=green>{kalkulacjaPrzeciwnik.ToString()}</color> damage to first enemy and <color=green>{drugiAtak.ToString()}</color> to second enemy";
-                else if (kalkulacjaPrzeciwnik == defaultattack)
-                    desc = $"Deal <color=white>{kalkulacjaPrzeciwnik.ToString()}</color> damage to first enemy and <color=white>{drugiAtak.ToString()}</color> to second enemy";
-                else if (kalkulacjaPrzeciwnik < defaultattack)
-                    desc = $"Deal <color=red>{kalkulacjaPrzeciwnik.ToString()}</color> damage to first enemy and <color=red>{drugiAtak.ToString()}</color> to second enemy";
-            }
-        }
-        this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
-    }
-
-    public void PlayerDamageCalculation()
-    {
-        if (player.strenght > 0) //gracz ma strenght wiekszy od 0
-        {
-            if (player.frail > 0) //gracz ma strenght i frail
-            {
-                kalkulacja = Mathf.RoundToInt(((attack + player.strenght) * 0.75f));
-                drugiAtak = Mathf.RoundToInt(kalkulacja * 0.3f);
-                if (kalkulacja > defaultattack) // dmg jest wiekszy niz podstawowy 
-                    desc = $"Deal <color=green>{kalkulacja.ToString()}</color> damage to first enemy and <color=green>{drugiAtak.ToString()}</color> to second enemy";
-
-                else if (kalkulacja == defaultattack) //dmg jest taki sam jak podstawowy
-                    desc = $"Deal <color=white>{kalkulacja.ToString()}</color> damage to first enemy and <color=white>{drugiAtak.ToString()}</color> to second enemy";
-
-                else if (kalkulacja < defaultattack) //dmg jest mniejszy niz podstawowy 
-                    desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage to first enemy and <color=red>{drugiAtak.ToString()}</color> to second enemy";
-            }
-            else //gracz ma strenght ale nie ma fraila 
-            {
-                kalkulacja = (attack + player.strenght);
-                drugiAtak = Mathf.RoundToInt(kalkulacja * 0.3f);
-                desc = $"Deal <color=green>{kalkulacja.ToString()}</color> damage to first enemy and <color=green>{drugiAtak.ToString()}</color> to second enemy";
-            }
-        }
-        else if (player.strenght == 0) //gracz ma strenght równy 0
-        {
-
-            if (player.frail > 0) //gracz ma fraila
-            {
-                kalkulacja = Mathf.RoundToInt((attack * 0.75f));
-                drugiAtak = Mathf.RoundToInt(kalkulacja * 0.3f);
-                desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage to first enemy and <color=red>{drugiAtak.ToString()}</color> to second enemy";
-            }
-            else // gracz nie ma fraila 
-            {
-                kalkulacja = attack;
-                drugiAtak = Mathf.RoundToInt(kalkulacja * 0.3f);
-                desc = $"Deal <color=white>{kalkulacja.ToString()}</color> damage to first enemy and <color=white>{drugiAtak.ToString()}</color> to second enemy";
-            }
-        }
-        else if (player.strenght < 0) //gracz ma strenght mniejszy od 0
-        {
-
-            if (player.frail > 0)    //gracz ma fraila
-            {
-                kalkulacja = Mathf.RoundToInt(((attack + player.strenght) * 0.75f));
-                drugiAtak = Mathf.RoundToInt(kalkulacja * 0.3f);
-                desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage to first enemy and <color=red>{drugiAtak.ToString()}</color> to second enemy";
-            }
-            else // gracz nie ma fraila 
-            {
-                kalkulacja = (attack + player.strenght);
-                drugiAtak = Mathf.RoundToInt(kalkulacja * 0.3f);
-                desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage to first enemy and <color=red>{drugiAtak.ToString()}</color> to second enemy";
-            }
-        }
+        calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
+        var secondAttack = Mathf.RoundToInt(attack * 0.3f);
+        if (attack == defaultattack)
+            desc = $"Deal <color=white>{attack.ToString()}</color> damage to first enemy and <color=white>{secondAttack.ToString()}</color> to second enemy";
+        else if (attack < defaultattack)
+            desc = $"Deal <color=red>{attack.ToString()}</color> damage to first enemy and <color=red>{secondAttack.ToString()}</color> to second enemy";
+        else
+            desc = $"Deal <color=green>{attack.ToString()}</color> damage to first enemy and <color=green>{secondAttack.ToString()}</color> to second enemy";
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
 
@@ -121,17 +41,15 @@ public class Homerun :  Card
             {
                 if (en.isFirstTarget == true)
                 {
-                    en.ReceiveDamage(attack + player.strenght);
+                    en.RecieveDamage(attack,this);
                     en.targeted = false;
                     en.isFirstTarget = false;
-                    Debug.Log("jebanyskryptv2");
                 }
                 if (en.isSecondTarget == true)
                 {
-                    en.ReceiveDamage((attack + player.strenght)*0.3f); // do zmiany po demie
+                    en.RecieveDamage(Mathf.RoundToInt((attack)*0.3f),this); // do zmiany po demie
                     en.targeted = false;
                     en.isSecondTarget = false;
-                    Debug.Log("jebanyskrypt");
                 }
                // resetTargetting();
             }

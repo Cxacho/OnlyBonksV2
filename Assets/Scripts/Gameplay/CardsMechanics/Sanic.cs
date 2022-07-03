@@ -7,96 +7,23 @@ public class Sanic : Card
 
     private void Start()
     {
-
-        desc = $"Deal <color=white>{attack.ToString()}</color> damage to all enemies";
+        desc = $"Deal <color=white>{attack.ToString()}</color> damage";
 
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
-
 
 
     private void FixedUpdate()
     {
 
-        PlayerDamageCalculation();
-        /* 
-        if (fm.en != null)
-        {
+        calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
 
-            if (fm.en.vurneable > 0)
-            {
-                kalkulacjaPrzeciwnik = Mathf.RoundToInt(kalkulacja * 1.25f);
-                if (kalkulacjaPrzeciwnik > defaultattack)
-                    desc = $"Deal <color=green>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
-                else if (kalkulacjaPrzeciwnik == defaultattack)
-                    desc = $"Deal <color=white>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
-                else if (kalkulacjaPrzeciwnik < defaultattack)
-                    desc = $"Deal <color=red>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
-            }
-            else
-            {
-                kalkulacjaPrzeciwnik = kalkulacja;
-                if (kalkulacjaPrzeciwnik > defaultattack)
-                    desc = $"Deal <color=green>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
-                else if (kalkulacjaPrzeciwnik == defaultattack)
-                    desc = $"Deal <color=white>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
-                else if (kalkulacjaPrzeciwnik < defaultattack)
-                    desc = $"Deal <color=red>{kalkulacjaPrzeciwnik.ToString()}</color> damage";
-            }
-        }*/
-        this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
-    }
-
-    public void PlayerDamageCalculation()
-    {
-        if (player.strenght > 0) //gracz ma strenght wiekszy od 0
-        {
-            if (player.frail > 0) //gracz ma strenght i frail
-            {
-                kalkulacja = Mathf.RoundToInt(((attack + player.strenght) * 0.75f));
-                if (kalkulacja > defaultattack) // dmg jest wiekszy niz podstawowy 
-                    desc = $"Deal <color=green>{kalkulacja.ToString()}</color> damage to all enemies";
-
-                else if (kalkulacja == defaultattack) //dmg jest taki sam jak podstawowy
-                    desc = $"Deal <color=white>{kalkulacja.ToString()}</color> damage to all enemies";
-
-                else if (kalkulacja < defaultattack) //dmg jest mniejszy niz podstawowy 
-                    desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage to all enemies";
-            }
-            else //gracz ma strenght ale nie ma fraila 
-            {
-                kalkulacja = (attack + player.strenght);
-                desc = $"Deal <color=green>{kalkulacja.ToString()}</color> damage to all enemies";
-            }
-        }
-        else if (player.strenght == 0) //gracz ma strenght równy 0
-        {
-
-            if (player.frail > 0) //gracz ma fraila
-            {
-                kalkulacja = Mathf.RoundToInt((attack * 0.75f));
-                desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage to all enemies";
-            }
-            else // gracz nie ma fraila 
-            {
-                kalkulacja = attack;
-                desc = $"Deal <color=white>{kalkulacja.ToString()}</color> damage to all enemies";
-            }
-        }
-        else if (player.strenght < 0) //gracz ma strenght mniejszy od 0
-        {
-
-            if (player.frail > 0)    //gracz ma fraila
-            {
-                kalkulacja = Mathf.RoundToInt(((attack + player.strenght) * 0.75f));
-                desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage to all enemies";
-            }
-            else // gracz nie ma fraila 
-            {
-                kalkulacja = (attack + player.strenght);
-                desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage to all enemies";
-            }
-        }
+        if (attack == defaultattack)
+            desc = $"Deal <color=white>{attack.ToString()}</color> damage to every enemy";
+        else if (attack < defaultattack)
+            desc = $"Deal <color=red>{attack.ToString()}</color> damage to every enemy";
+        else
+            desc = $"Deal <color=green>{attack.ToString()}</color> damage to every enemy";
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
 
@@ -111,7 +38,7 @@ public class Sanic : Card
             foreach (Enemy en in _enemies)
             {
 
-                en.ReceiveDamage(attack + player.strenght);
+                en.RecieveDamage(attack,this);
                 Debug.Log("wykonaj");
 
             }

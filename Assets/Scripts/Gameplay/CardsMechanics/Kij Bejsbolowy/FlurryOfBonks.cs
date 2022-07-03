@@ -10,94 +10,23 @@ public class FlurryOfBonks : Card
 
     private void Start()
     {
-
-        desc = $"Deal <color=white>{attack.ToString()}</color> damage three times";
+        desc = $"Unleash flurry of attacks dealing <color=white>{attack.ToString()}</color> damage three times.";
 
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
+
 
     private void FixedUpdate()
     {
 
-        PlayerDamageCalculation();
+        calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
 
-        if (followMouse.en != null)
-        {
-
-            if (followMouse.en.vurneable > 0)
-            {
-                kalkulacjaPrzeciwnik = Mathf.RoundToInt(kalkulacja * 1.25f);
-                if (kalkulacjaPrzeciwnik > defaultattack)
-                    desc = $"Deal <color=green>{kalkulacjaPrzeciwnik.ToString()}</color> damage three times";
-                else if (kalkulacjaPrzeciwnik == defaultattack)
-                    desc = $"Deal <color=white>{kalkulacjaPrzeciwnik.ToString()}</color> damage three times";
-                else if (kalkulacjaPrzeciwnik < defaultattack)
-                    desc = $"Deal <color=red>{kalkulacjaPrzeciwnik.ToString()}</color> damage three times";
-            }
-            else
-            {
-                kalkulacjaPrzeciwnik = kalkulacja;
-                if (kalkulacjaPrzeciwnik > defaultattack)
-                    desc = $"Deal <color=green>{kalkulacjaPrzeciwnik.ToString()}</color> damage three times";
-                else if (kalkulacjaPrzeciwnik == defaultattack)
-                    desc = $"Deal <color=white>{kalkulacjaPrzeciwnik.ToString()}</color> damage three times";
-                else if (kalkulacjaPrzeciwnik < defaultattack)
-                    desc = $"Deal <color=red>{kalkulacjaPrzeciwnik.ToString()}</color> damage three times";
-            }
-        }
-        this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
-    }
-
-    public void PlayerDamageCalculation()
-    {
-        if (player.strenght > 0) //gracz ma strenght wiekszy od 0
-        {
-            if (player.frail > 0) //gracz ma strenght i frail
-            {
-                kalkulacja = Mathf.RoundToInt(((attack + player.strenght) * 0.75f));
-                if (kalkulacja > defaultattack) // dmg jest wiekszy niz podstawowy 
-                    desc = $"Deal <color=green>{kalkulacja.ToString()}</color> damage three times";
-
-                else if (kalkulacja == defaultattack) //dmg jest taki sam jak podstawowy
-                    desc = $"Deal <color=white>{kalkulacja.ToString()}</color> damage three times";
-
-                else if (kalkulacja < defaultattack) //dmg jest mniejszy niz podstawowy 
-                    desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage three times";
-            }
-            else //gracz ma strenght ale nie ma fraila 
-            {
-                kalkulacja = (attack + player.strenght);
-                desc = $"Deal <color=green>{kalkulacja.ToString()}</color> damage three times";
-            }
-        }
-        else if (player.strenght == 0) //gracz ma strenght równy 0
-        {
-
-            if (player.frail > 0) //gracz ma fraila
-            {
-                kalkulacja = Mathf.RoundToInt((attack * 0.75f));
-                desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage three times";
-            }
-            else // gracz nie ma fraila 
-            {
-                kalkulacja = attack;
-                desc = $"Deal <color=white>{kalkulacja.ToString()}</color> damage three times";
-            }
-        }
-        else if (player.strenght < 0) //gracz ma strenght mniejszy od 0
-        {
-
-            if (player.frail > 0)    //gracz ma fraila
-            {
-                kalkulacja = Mathf.RoundToInt(((attack + player.strenght) * 0.75f));
-                desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage three times";
-            }
-            else // gracz nie ma fraila 
-            {
-                kalkulacja = (attack + player.strenght);
-                desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage three times";
-            }
-        }
+        if (attack == defaultattack)
+            desc = $"Unleash flurry of attacks dealing <color=white>{attack.ToString()}</color> damage three times.";
+        else if (attack < defaultattack)
+            desc = $"Unleash flurry of attacks dealing <color=red>{attack.ToString()}</color> damage three times.";
+        else
+            desc = $"Unleash flurry of attacks dealing <color=green>{attack.ToString()}</color> damage three times.";
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
 
@@ -118,15 +47,15 @@ public class FlurryOfBonks : Card
                     {
                         yield return new WaitForSeconds(0.15f);
                         //anim/playsfx
-                        en.ReceiveDamage(attack + player.strenght);
+                        en.RecieveDamage(attack,this);
                         
                         yield return new WaitForSeconds(0.3f);
                         //anim/playsfx
-                        en.ReceiveDamage(attack + player.strenght);
+                        en.RecieveDamage(attack,this);
                         
                         yield return new WaitForSeconds(0.3f);
                         //anim/playsfx
-                        en.ReceiveDamage(attack + player.strenght);
+                        en.RecieveDamage(attack,this);
                         
                     }
                     StartCoroutine(Flurry());

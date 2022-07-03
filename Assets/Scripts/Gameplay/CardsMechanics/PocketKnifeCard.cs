@@ -8,96 +8,23 @@ public class PocketKnifeCard : Card
 
     private void Start()
     {
-
-        desc = $"Deal<color=white>{attack.ToString()}</color> damage and applies 3 bleed";
+        desc = $"Deal <color=white>{attack.ToString()}</color> damage";
 
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
-
 
 
     private void FixedUpdate()
     {
 
-        PlayerDamageCalculation();
+        calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
 
-        if (followMouse.en != null)
-        {
-
-            if (followMouse.en.vurneable > 0)
-            {
-                kalkulacjaPrzeciwnik = Mathf.RoundToInt(kalkulacja * 1.25f);
-                if (kalkulacjaPrzeciwnik > defaultattack)
-                    desc = $"Deal <color=green>{kalkulacjaPrzeciwnik.ToString()}</color> damage and applies 3 bleed";
-                else if (kalkulacjaPrzeciwnik == defaultattack)
-                    desc = $"Deal <color=white>{kalkulacjaPrzeciwnik.ToString()}</color> damage and applies 3 bleed";
-                else if (kalkulacjaPrzeciwnik < defaultattack)
-                    desc = $"Deal<color=red>{kalkulacjaPrzeciwnik.ToString()}</color> damage and applies 3 bleed";
-            }
-            else
-            {
-                kalkulacjaPrzeciwnik = kalkulacja;
-                if (kalkulacjaPrzeciwnik > defaultattack)
-                    desc = $"Deal <color=green>{kalkulacjaPrzeciwnik.ToString()}</color> damage and applies 3 bleed";
-                else if (kalkulacjaPrzeciwnik == defaultattack)
-                    desc = $"Deal <color=white>{kalkulacjaPrzeciwnik.ToString()}</color> damage and applies 3 bleed";
-                else if (kalkulacjaPrzeciwnik < defaultattack)
-                    desc = $"Deal <color=red>{kalkulacjaPrzeciwnik.ToString()}</color> damage and applies 3 bleed";
-            }
-        }
-        this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
-    }
-
-    public void PlayerDamageCalculation()
-    {
-        if (player.strenght > 0) //gracz ma strenght wiekszy od 0
-        {
-            if (player.frail > 0) //gracz ma strenght i frail
-            {
-                kalkulacja = Mathf.RoundToInt(((attack + player.strenght) * 0.75f));
-                if (kalkulacja > defaultattack) // dmg jest wiekszy niz podstawowy 
-                    desc = $"Deal <color=green>{kalkulacja.ToString()}</color> damage and applies 3 bleed";
-
-                else if (kalkulacja == defaultattack) //dmg jest taki sam jak podstawowy
-                    desc = $"Deal <color=white>{kalkulacja.ToString()}</color> damage and applies 3 bleed";
-
-                else if (kalkulacja < defaultattack) //dmg jest mniejszy niz podstawowy 
-                    desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage and applies 3 bleed";
-            }
-            else //gracz ma strenght ale nie ma fraila 
-            {
-                kalkulacja = (attack + player.strenght);
-                desc = $"Deal <color=green>{kalkulacja.ToString()}</color> damage and applies 3 bleed";
-            }
-        }
-        else if (player.strenght == 0) //gracz ma strenght równy 0
-        {
-
-            if (player.frail > 0) //gracz ma fraila
-            {
-                kalkulacja = Mathf.RoundToInt((attack * 0.75f));
-                desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage and applies 3 bleed";
-            }
-            else // gracz nie ma fraila 
-            {
-                kalkulacja = attack;
-                desc = $"Deal <color=white>{kalkulacja.ToString()}</color> damage and applies 3 bleed";
-            }
-        }
-        else if (player.strenght < 0) //gracz ma strenght mniejszy od 0
-        {
-
-            if (player.frail > 0)    //gracz ma fraila
-            {
-                kalkulacja = Mathf.RoundToInt(((attack + player.strenght) * 0.75f));
-                desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage and applies 3 bleed";
-            }
-            else // gracz nie ma fraila 
-            {
-                kalkulacja = (attack + player.strenght);
-                desc = $"Deal <color=red>{kalkulacja.ToString()}</color> damage and applies 3 bleed";
-            }
-        }
+        if (attack == defaultattack)
+            desc = $"Deal <color=white>{attack.ToString()}</color> damage, and apply 3 bleed";
+        else if (attack < defaultattack)
+            desc = $"Deal <color=red>{attack.ToString()}</color> damage and apply 3 bleed";
+        else
+            desc = $"Deal <color=green>{attack.ToString()}</color> damage and apply 3 bleed";
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
 
@@ -114,7 +41,7 @@ public class PocketKnifeCard : Card
             {
                 if (en.targeted == true)
                 {
-                    en.ReceiveDamage(attack + player.strenght);
+                    en.RecieveDamage(attack,this);
                     en.setStatusIndicator(3, 2, gameplayManager.enemiesIndicators[2]);
                     en.targeted = false;
                 }

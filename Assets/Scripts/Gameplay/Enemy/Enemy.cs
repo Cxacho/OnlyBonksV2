@@ -138,9 +138,29 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         
     }
 
-    public void ReceiveDamage(float damage)
+    public void RecieveDamage(float damage,Card card)
     {
-        int updatedHealth;
+        if (card != null)
+
+        {
+            switch (card.cardDamageType)
+            {
+                case Card.damageType.cold:
+                    //kolor wyskakujoncego okna
+                    break;
+                case Card.damageType.fire:
+                    break;
+                case Card.damageType.wind:
+                    break;
+                case Card.damageType.earth:
+                    break;
+                case Card.damageType.physical:
+                    break;
+            }
+        }
+        card = null;
+
+            int updatedHealth;
         if (pl.frail > 0)
         {
             if (armor > 0)
@@ -348,6 +368,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     }
     public void setStatusIndicator(int value,int select,GameObject statusIndicator)
     {
+        //'///' + "1 = bleed ";
         currentStatus = (statuses)select;
         switch(currentStatus)
         {
@@ -379,7 +400,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public void OnEndTurn()
     {
         if(bleed >0)
-        ReceiveDamage(bleed);
+        RecieveDamage(bleed,null);
         if (vurneable > 0) vurneable--;
         if (bleed > 0) bleed--;
         List<GameObject> temp = new List<GameObject>();

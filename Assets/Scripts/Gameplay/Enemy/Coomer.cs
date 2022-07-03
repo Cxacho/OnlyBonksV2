@@ -53,7 +53,7 @@ public class Coomer : Enemy, ITakeTurn
                 if (player.armor > damage * numberOfAttacks)
                 {
                     player.TakeDamage(Mathf.RoundToInt(damage * numberOfAttacks));
-                    ReceiveDamage(player.armor);
+                    RecieveDamage(player.armor,null);
                 }
                 else
                 {
