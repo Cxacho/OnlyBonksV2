@@ -29,10 +29,10 @@ public class Inventory : MonoBehaviour
     [SerializeField] int spaceUsage;
     Transform canvasTransform;
     string getSlotName,getSecondSlot;
+    GameplayManager gm;
 
     private void Awake()
     {
-        
         ui = FindObjectOfType<UiActive>();
         gameObject.name = ui.inventoryPanel.name;
         inventoryPanel = ui.inventoryPanel;
@@ -40,11 +40,10 @@ public class Inventory : MonoBehaviour
         spaceUsage = _inventoryItem.spaceUsage;
         this.name = _inventoryItem.name;
         cards = _inventoryItem._cards;
-        Debug.Log("fash");
-        Debug.Log(GameplayManager.instance.player.gameObject.name);
-        //pl = GameplayManager.instance.player;
+        gm = GameObject.FindObjectOfType<GameplayManager>();
+        pl = gm.player;
         //uimanager
-        /*
+        
         for (int i = 0; i < 90; i++)
         {
             allSpaces.Add(inventoryPanel.transform.GetChild(0).gameObject.transform.GetChild(i).GetComponent<inventorySpace>());
@@ -53,14 +52,13 @@ public class Inventory : MonoBehaviour
         {
             eqSlots.Add(eqPanel.transform.GetChild(i).gameObject);
         }
-        */
+        
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = _inventoryItem.sprite;
         canvasTransform = FindObjectOfType<Canvas>().transform;
         originalPosition = this.transform.position;
         fm = GameObject.Find("Cursor").GetComponent<FollowMouse>();
         rect = GetComponent<RectTransform>();
-        Debug.Log("ssada");
         switch(_inventoryItem.myItemType)
         {
             case InventoryItem.ItemType.Head:
@@ -80,7 +78,6 @@ public class Inventory : MonoBehaviour
                 getSecondSlot = "SecondaryWeapon";
                 break;
         }
-        Debug.Log("gadshsdhdsf");
     }
     public void OnInvPanelEnable()
     {
@@ -365,11 +362,30 @@ public class Inventory : MonoBehaviour
     }
     public virtual void RemoveCards()
     {
+        int remove = 0;
         //GameplayManager.instance.startingDeck.remove(cards);
+        for(int i =0;i< gm.startingDeck.Count;i++)
+        {
+            for(int j = 0; j < _inventoryItem._cards.Count; j++)
+            {
+                if (gm.startingDeck[i] == _inventoryItem._cards[j])
+                {
+                    Debug.Log("check if this is the same item");
+                    gm.startingDeck.RemoveAt(i);
+                    remove++;
+                    continue;
+                }
+                if (_inventoryItem._cards.Count == remove)
+                {
+                    Debug.Log(remove + " rahosad");
+                    return;
+                }
+            }
+        }
     }
     public virtual void AddCards()
     {
-        GameplayManager.instance.startingDeck.AddRange(cards);
+        gm.startingDeck.AddRange(_inventoryItem._cards);
     }
     public virtual void AddStats()
     {
