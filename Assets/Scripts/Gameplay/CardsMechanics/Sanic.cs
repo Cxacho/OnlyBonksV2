@@ -37,7 +37,6 @@ public class Sanic : Card
             StartCoroutine(ExecuteAfterTime(1f));
             foreach (Enemy en in _enemies)
             {
-
                 en.RecieveDamage(attack,this);
                 Debug.Log("wykonaj");
 

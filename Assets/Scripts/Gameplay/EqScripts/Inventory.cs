@@ -8,32 +8,43 @@ using DG.Tweening;
 public class Inventory : MonoBehaviour
 {
     RectTransform rect;
-    [SerializeField]ItemType _ItemType;
     [SerializeField]WhereAmI currentOccupation;
+    public InventoryItem _inventoryItem;
     public List<GameObject> cards;
-    public Player pl;
+    private Player pl;
     FollowMouse fm;
-    ItemSlots _itemSlots;
     bool dragged;
+    public UiActive ui;
     Vector2 originalPosition;
     [SerializeField] List<inventorySpace> allSpaces = new List<inventorySpace>();
     [SerializeField]List<GameObject> eqSlots = new List<GameObject>();
     [SerializeField] List<float> eqSlotsPositions = new List<float>();
     [SerializeField] List<GameObject> Squares = new List<GameObject>();
     [SerializeField]List<inventorySpace> invSpace = new List<inventorySpace>();
-    
     GameObject currentSlot;
     SpriteRenderer sr;
-    [SerializeField] GameObject inventoryPanel,eqPanel;
+    [SerializeField] GameObject inventoryPanel,eqPanel;//
     Vector3 objCentre,_objectCentre;
-    int useMe;
+    private int useMe;
     [SerializeField] int spaceUsage;
     Transform canvasTransform;
     string getSlotName,getSecondSlot;
-    [SerializeField]GameObject shade;
 
     private void Awake()
     {
+        
+        ui = FindObjectOfType<UiActive>();
+        gameObject.name = ui.inventoryPanel.name;
+        inventoryPanel = ui.inventoryPanel;
+        eqPanel = ui.eqPanel;
+        spaceUsage = _inventoryItem.spaceUsage;
+        this.name = _inventoryItem.name;
+        cards = _inventoryItem._cards;
+        Debug.Log("fash");
+        Debug.Log(GameplayManager.instance.player.gameObject.name);
+        //pl = GameplayManager.instance.player;
+        //uimanager
+        /*
         for (int i = 0; i < 90; i++)
         {
             allSpaces.Add(inventoryPanel.transform.GetChild(0).gameObject.transform.GetChild(i).GetComponent<inventorySpace>());
@@ -42,34 +53,34 @@ public class Inventory : MonoBehaviour
         {
             eqSlots.Add(eqPanel.transform.GetChild(i).gameObject);
         }
-        var getShadeSR = shade.GetComponent<SpriteRenderer>();
-        pl = FindObjectOfType<Player>();
+        */
         sr = GetComponent<SpriteRenderer>();
-        getShadeSR.sprite = sr.sprite;
-        getShadeSR.color = new Color(getShadeSR.color.r, getShadeSR.color.g, getShadeSR.color.b, 0.5f);
+        sr.sprite = _inventoryItem.sprite;
         canvasTransform = FindObjectOfType<Canvas>().transform;
         originalPosition = this.transform.position;
         fm = GameObject.Find("Cursor").GetComponent<FollowMouse>();
         rect = GetComponent<RectTransform>();
-        switch(_ItemType)
+        Debug.Log("ssada");
+        switch(_inventoryItem.myItemType)
         {
-            case Inventory.ItemType.head:
+            case InventoryItem.ItemType.Head:
                 getSlotName = "HeadItemSlot";
                 break;
-            case Inventory.ItemType.chest:
+            case InventoryItem.ItemType.Chest:
                 getSlotName = "ChestItemSlot";
                 break;
-            case Inventory.ItemType.legs:
+            case InventoryItem.ItemType.Legs:
                 getSlotName = "LegsItemSlot";
                 break;
-            case Inventory.ItemType.boots:
+            case InventoryItem.ItemType.Boots:
                 getSlotName = "BootsItemSlot";
                 break;
-            case Inventory.ItemType.weapon:
+            case InventoryItem.ItemType.Weapon:
                 getSlotName = "PrimaryWeapon";
                 getSecondSlot = "SecondaryWeapon";
                 break;
         }
+        Debug.Log("gadshsdhdsf");
     }
     public void OnInvPanelEnable()
     {
@@ -354,24 +365,17 @@ public class Inventory : MonoBehaviour
     }
     public virtual void RemoveCards()
     {
-
+        //GameplayManager.instance.startingDeck.remove(cards);
     }
     public virtual void AddCards()
     {
-        
+        GameplayManager.instance.startingDeck.AddRange(cards);
     }
     public virtual void AddStats()
     {
         pl.armor += 2;
     }
-    enum ItemType
-    {
-        head,
-            chest,
-            legs,
-            boots,
-            weapon
-    }
+
     enum WhereAmI
     {
         elsewhere,

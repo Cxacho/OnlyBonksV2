@@ -366,6 +366,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         ChangeIndicatorTexts("inny");
         otherIndicatortxt.text = value;
     }
+    
     public void setStatusIndicator(int value,int select,GameObject statusIndicator)
     {
         //'///' + "1 = bleed ";

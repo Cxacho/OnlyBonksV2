@@ -84,7 +84,7 @@ public class GameplayManager : MonoBehaviour
 
     #region Player
     public LevelProgress levelProgress;
-    [SerializeField] private Player player;
+    [HideInInspector] public Player player;
     #endregion
 
     #region Card
@@ -222,7 +222,7 @@ public class GameplayManager : MonoBehaviour
         //tu w construktorze trzeba wrzucic liste przeciwnikow na ktorom mozemy trafic, zeby mozna bylo ich roznie spawnic
         exhaustedDeck.Clear();
         player.OnBattleSetup();
-
+        
         yield return new WaitForSeconds(0.1f);
         
         if(currentFloor<4)
