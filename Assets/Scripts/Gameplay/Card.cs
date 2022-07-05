@@ -27,7 +27,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public damageType cardDamageType;
 
     private Vector3 discDek;
-        
+
     protected FollowMouse followMouse;
 
 
@@ -44,46 +44,47 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [HideInInspector] public GameplayManager gameplayManager;
     private RectTransform pos;
     private GameObject par;
-    
-    
+
+
     //private float clickDelay;
     private List<GameObject> meshes = new List<GameObject>();
 
-    [HideInInspector]public List<Enemy> _enemies = new List<Enemy>();
+    [HideInInspector] public List<Enemy> _enemies = new List<Enemy>();
 
     private List<GameObject> temp = new List<GameObject>();
-    
 
-    [SerializeField]private bool exhaustable;
+
+    [SerializeField] private bool exhaustable;
+    [SerializeField] bool isNeutral;
     public bool retainable;
-    
-    
 
-    [HideInInspector]public string desc;
+
+
+    [HideInInspector] public string desc;
 
     private BasicAttack bs;
 
-    
+
     private void Start()
     {
         currentCardState = cardState.Elsewhere;
-        
+
     }
     IEnumerator Return()
     {
         yield return new WaitForSeconds(0.15f);
         if (followMouse.crd == null)
             cardAlign.SetValues();
-            /*
-            for (int i = 0; i < cardAlign.gameObject.transform.childCount; i++)
-            {
-                cardAlign.children[i].transform.DOMove(cardAlign.positions[i], 0.1f);
-            }
-            */
+        /*
+        for (int i = 0; i < cardAlign.gameObject.transform.childCount; i++)
+        {
+            cardAlign.children[i].transform.DOMove(cardAlign.positions[i], 0.1f);
+        }
+        */
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (this.transform.IsChildOf(GameObject.Find("PlayerHand").transform) && gameplayManager.playerHand.Count == par.transform.childCount && gameplayManager.state== BattleState.PLAYERTURN)
+        if (this.transform.IsChildOf(GameObject.Find("PlayerHand").transform) && gameplayManager.playerHand.Count == par.transform.childCount && gameplayManager.state == BattleState.PLAYERTURN)
         {
             followMouse.crd = GetComponent<Card>();
             hoverRotation = this.transform.rotation;
@@ -101,7 +102,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
             }
             */
-            
+
         }
         if (eventData.pointerEnter.transform.parent.GetComponent<Card>() != null)
             cardAlign.pointerHandler = eventData.pointerEnter.transform.parent.GetSiblingIndex();
@@ -136,7 +137,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
     }
 
-    
+
 
     void Awake()
     {
@@ -231,7 +232,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             {
                 attack = defaultattack + scaleCardValues;
             }
-            
+
         }
         else if (followMouse.en == null)
         {
@@ -239,16 +240,16 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 attack = (defaultattack + scaleCardValues) * 0.75f;
             else
                 attack = defaultattack + scaleCardValues;
-         }
+        }
         attack = Mathf.RoundToInt(attack);
     }
 
     public enum scalingType
     {
-        brak =0,
-        strength =1,
-        dexterity =2,
-        magic =3
+        brak = 0,
+        strength = 1,
+        dexterity = 2,
+        magic = 3
 
     }
     public enum cardState
@@ -270,11 +271,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         foreach (Enemy en in _enemies)
         {
 
-                en.targeted = false;
-                en.isFirstTarget = false;
-                en.isSecondTarget = false;
-                en.isThirdTarget = false;
-            
+            en.targeted = false;
+            en.isFirstTarget = false;
+            en.isSecondTarget = false;
+            en.isThirdTarget = false;
+
         }
         this.transform.position = cardAlign.positions[index];
         this.transform.rotation = hoverRotation;
@@ -283,15 +284,15 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     void DisableIndicator()
     {
         Cursor.visible = true;
-        foreach(RectTransform obj in followMouse.rect)
+        foreach (RectTransform obj in followMouse.rect)
         {
-            obj.DOScale(Vector3.zero, 0.2f).OnComplete (()=>
-            {
-                foreach (GameObject obj in meshes)
-                {
-                    obj.GetComponent<SpriteRenderer>().enabled = false;
-                }
-            });
+            obj.DOScale(Vector3.zero, 0.2f).OnComplete(() =>
+           {
+               foreach (GameObject obj in meshes)
+               {
+                   obj.GetComponent<SpriteRenderer>().enabled = false;
+               }
+           });
         }
 
 
@@ -303,7 +304,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             obj.GetComponent<SpriteRenderer>().enabled = true;
         }
-        
+
         for (int i = 0; i < followMouse.objs.Count; i++)
         {
             followMouse.rect[i].DOScale(followMouse.spriteScale[i], 0.5f);
@@ -311,8 +312,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     void OnClick()
     {
-        //if (myWeaponType != gameplayManager.primaryWeapon)
-        // Debug.Log("cant play due to card to weapon type difference");
+        if (myWeaponType != gameplayManager.primaryWeapon && isNeutral ==false)
+        Debug.Log("cant play due to card to weapon type difference");
+        //return;
         if (player.mana - cost < 0)
             return;
 

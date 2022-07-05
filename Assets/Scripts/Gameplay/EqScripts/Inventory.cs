@@ -80,21 +80,6 @@ public class Inventory : MonoBehaviour
                 break;
         }
     }
-    public void OnInvPanelEnable()
-    {
-        //przy zmianie liczby spejsow w inv, zmienic 90 na iina liczbe
-        allSpaces.Clear();
-        eqSlots.Clear();
-        for (int i = 0; i < 90; i++)
-        {
-            allSpaces.Add(inventoryPanel.transform.GetChild(0).gameObject.transform.GetChild(i).GetComponent<inventorySpace>());
-        }
-        for (int i = 0; i < 6; i++)
-        {
-            eqSlots.Add(eqPanel.transform.GetChild(i).gameObject);
-        }
-        //trzeba otworzyc panel z eq zanim wywola sie awake
-    }
 
     private void Update()
     {
@@ -122,13 +107,21 @@ public class Inventory : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        dragged = true;
+        //zrobic dzialanie ze mozna ruszac itemami tylko na mapie, i poza walka
+        if (gm.state != BattleState.PLAYERTURN && gm.state != BattleState.ENEMYTURN)
+            dragged = true;
+        else
+            return;
 
         if (currentOccupation==WhereAmI.onPlayer)
         {
             RemoveCards();
             RemoveStats();
             currentSlot.GetComponent<ItemSlots>().occupied = false;
+            if (currentSlot.GetComponent<ItemSlots>().slot == ItemSlots.mySlotType.primaryWeapon)
+                gm.primaryWeapon = GameplayManager.Weapon.Brak;
+            else if (currentSlot.GetComponent<ItemSlots>().slot == ItemSlots.mySlotType.secondaryWeapon)
+                gm.secondaryWeapon = GameplayManager.Weapon.Brak;
             //currentSlot = null; 
         }
         if(currentOccupation == WhereAmI.inInventory)
@@ -141,7 +134,10 @@ public class Inventory : MonoBehaviour
     }
     private void OnMouseUp()
     {
-        dragged = false;
+        if (gm.state != BattleState.PLAYERTURN && gm.state != BattleState.ENEMYTURN)
+            dragged = false;
+        else
+            return;
         var checkDistance = Vector3.Distance(this.transform.position, currentSlot.transform.position);
         var isOccupied = currentSlot.GetComponent<ItemSlots>().occupied;
         
@@ -150,6 +146,10 @@ public class Inventory : MonoBehaviour
         {
             if (isOccupied)
             {
+                if (currentSlot.GetComponent<ItemSlots>().slot == ItemSlots.mySlotType.primaryWeapon)
+                    gm.primaryWeapon = myWeaponType;
+                else if (currentSlot.GetComponent<ItemSlots>().slot == ItemSlots.mySlotType.secondaryWeapon)
+                    gm.secondaryWeapon = myWeaponType;
                 Debug.Log("switch item slots");
                 currentSlot.GetComponent<ItemSlots>().currentItem.GetComponent<Inventory>().RemoveStats();
                 currentSlot.GetComponent<ItemSlots>().currentItem.GetComponent<Inventory>().RemoveCards();
@@ -166,6 +166,10 @@ public class Inventory : MonoBehaviour
 
             else
             {
+                if (currentSlot.GetComponent<ItemSlots>().slot == ItemSlots.mySlotType.primaryWeapon)
+                    gm.primaryWeapon = myWeaponType;
+                else if (currentSlot.GetComponent<ItemSlots>().slot == ItemSlots.mySlotType.secondaryWeapon)
+                    gm.secondaryWeapon = myWeaponType;
                 currentSlot.GetComponent<ItemSlots>().currentItem = this.gameObject;
                 this.transform.SetParent(currentSlot.transform);
                 this.transform.position = currentSlot.transform.position;
@@ -354,8 +358,6 @@ public class Inventory : MonoBehaviour
 
     void OnPickup()
     {
-        gm.primaryWeapon = myWeaponType;
-        //dowymiany kod, trzeba sprawidzic do ktorego slota wrzucasz bron etc
         AddStats();
         AddCards();
     }

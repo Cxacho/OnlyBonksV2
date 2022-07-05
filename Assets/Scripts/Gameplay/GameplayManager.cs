@@ -168,7 +168,8 @@ public class GameplayManager : MonoBehaviour
         instance = this;
 
 
-
+        primaryWeapon = Weapon.Brak;
+        secondaryWeapon = Weapon.Brak;
         cardAlign = GameObject.Find("PlayerHand").GetComponent<CardAlign>();
         enemiesSpawner = FindObjectOfType<EnemiesSpawner>();
         shopmanager = GetComponent<ShopManager>();
@@ -642,11 +643,18 @@ public class GameplayManager : MonoBehaviour
         Ksiazka,
         Alchemia,
         Topor,
-        Katana
+        Katana,
+        Brak
     }
     public void SwitchWeapons()
     {
+
         //koszt many dodac
+        //dodac switch miejsc w ktorych siedza itemy w eq.
+        if (state == BattleState.ENEMYTURN)
+            return;
+        if (secondaryWeapon == Weapon.Brak)
+            return;
         var getEnum = primaryWeapon;
         primaryWeapon = secondaryWeapon;
         secondaryWeapon = getEnum;
