@@ -311,10 +311,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     void OnClick()
     {
+        //if (myWeaponType != gameplayManager.primaryWeapon)
+        // Debug.Log("cant play due to card to weapon type difference");
         if (player.mana - cost < 0)
             return;
-        //if (myWeaponType != gameplayManager.primaryWeapon)
-           // Debug.Log("cant play due to card to weapon type difference");
+
 
         //dodac visual effect, lub tmp, ze nie masz wystarczajaco duzo many
 

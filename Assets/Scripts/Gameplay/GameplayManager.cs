@@ -646,6 +646,7 @@ public class GameplayManager : MonoBehaviour
     }
     public void SwitchWeapons()
     {
+        //koszt many dodac
         var getEnum = primaryWeapon;
         primaryWeapon = secondaryWeapon;
         secondaryWeapon = getEnum;
