@@ -124,9 +124,12 @@ public class Inventory : MonoBehaviour
                 gm.secondaryWeapon = GameplayManager.Weapon.Brak;
             //currentSlot = null; 
         }
-        if(currentOccupation == WhereAmI.inInventory)
-        foreach (inventorySpace inv in invSpace)
-            inv.occupied = false;
+        if (currentOccupation == WhereAmI.inInventory)
+        {
+            foreach (inventorySpace inv in invSpace)
+                inv.occupied = false;
+            gm.ItemsInInventory.Remove(this.gameObject);
+        }
         currentOccupation = WhereAmI.elsewhere;
         objCentre = Vector3.zero;
         gameObject.transform.SetParent(canvasTransform);
@@ -153,6 +156,7 @@ public class Inventory : MonoBehaviour
                 Debug.Log("switch item slots");
                 currentSlot.GetComponent<ItemSlots>().currentItem.GetComponent<Inventory>().RemoveStats();
                 currentSlot.GetComponent<ItemSlots>().currentItem.GetComponent<Inventory>().RemoveCards();
+                //gm.ItemsInInventory.Add(this.gameObject);
                 moveToFirstOpenSpace(currentSlot.GetComponent<ItemSlots>().currentItem, currentSlot.GetComponent<ItemSlots>().currentItem.GetComponent<Inventory>().spaceUsage);
                 currentSlot.GetComponent<ItemSlots>().currentItem = this.gameObject;
                 this.transform.SetParent(currentSlot.transform);
@@ -170,6 +174,7 @@ public class Inventory : MonoBehaviour
                     gm.primaryWeapon = myWeaponType;
                 else if (currentSlot.GetComponent<ItemSlots>().slot == ItemSlots.mySlotType.secondaryWeapon)
                     gm.secondaryWeapon = myWeaponType;
+                //gm.ItemsInInventory.Add(this.gameObject);
                 currentSlot.GetComponent<ItemSlots>().currentItem = this.gameObject;
                 this.transform.SetParent(currentSlot.transform);
                 this.transform.position = currentSlot.transform.position;
@@ -197,6 +202,7 @@ public class Inventory : MonoBehaviour
                     this.transform.position = originalPosition;
                     currentOccupation = WhereAmI.inInventory;
                     this.transform.SetParent(inventoryPanel.transform);
+                        gm.ItemsInInventory.Add(this.gameObject);
                     StartCoroutine(delay());
                     Debug.Log("you are placing item on occupied spot");
                     return;
@@ -210,6 +216,7 @@ public class Inventory : MonoBehaviour
             _objectCentre = new Vector3 (objCentre.x / Squares.Count,objCentre.y/Squares.Count,objCentre.z/Squares.Count);
             this.transform.SetParent(inventoryPanel.transform);
             this.transform.position = _objectCentre;
+            gm.ItemsInInventory.Add(this.gameObject);
             originalPosition = _objectCentre;
             if(invSpace.Count >0)
             foreach (inventorySpace inv in invSpace)

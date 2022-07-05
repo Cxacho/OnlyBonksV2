@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class UiActive : MonoBehaviour
@@ -17,6 +18,8 @@ public class UiActive : MonoBehaviour
      public GameObject eqPanel;
      public GameObject inventoryPanel;
      public GameObject eqParentObject;
+    List<TextMeshProUGUI> values = new List<TextMeshProUGUI>();
+    [SerializeField] GameObject valuePanel;
     //public Vector3 mousePosition,secPos;
     //RaycastHit hit;
 
@@ -323,6 +326,7 @@ public class UiActive : MonoBehaviour
     public void OnEqipmentClick()
     {
         eqParentObject.SetActive(true);
+        UpdateStatValues();
         if (panelIndex == 6)
         {
             panelIndex = 0;
@@ -333,6 +337,22 @@ public class UiActive : MonoBehaviour
             panelIndex = 6;
         }
         //Debug.Log(panelIndex);
+    }
+    void UpdateStatValues()
+    {
+        values.Clear();
+        for (int i = 0; i < valuePanel.transform.childCount; i++)
+            values.Add(valuePanel.transform.GetChild(i).GetComponent<TextMeshProUGUI>());
+        values[0].text = gm.player.currentHealth.ToString() + " / " + gm.player.maxHealth.ToString();
+        //dodac armor rating
+        //moznabylo dac for loopke tu
+        values[1].text = 0.ToString();
+        values[2].text = gm.player.strenght.ToString();
+        values[3].text = gm.player.dexterity.ToString();
+        values[4].text = gm.player.inteligence.ToString();
+        values[5].text = gm.gold.ToString();
+            values[6].text = gm.startingDeck.Count.ToString();
+            values[7].text = gm.currentFloor.ToString();
     }
 }
 

@@ -110,6 +110,7 @@ public class GameplayManager : MonoBehaviour
     #endregion
 
     #region Lists
+    public List<GameObject> ItemsInInventory = new List<GameObject>();
     public List<GameObject> allRelicsList = new List<GameObject>();
     
     public List<GameObject> allCards = new List<GameObject>();
