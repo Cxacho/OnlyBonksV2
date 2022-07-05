@@ -17,10 +17,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private float posY;
     public float attack;
     public float defaultattack;
-    [HideInInspector] public float kalkulacja;
-    [HideInInspector] public float kalkulacjaPrzeciwnik;
 
 
+    public GameplayManager.Weapon myWeaponType;
     public cardType cType;
     public cardState currentCardState;
     public scalingType cardScalingtype;
@@ -312,6 +311,13 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     void OnClick()
     {
+        if (player.mana - cost < 0)
+            return;
+        //if (myWeaponType != gameplayManager.primaryWeapon)
+           // Debug.Log("cant play due to card to weapon type difference");
+
+        //dodac visual effect, lub tmp, ze nie masz wystarczajaco duzo many
+
         if (Input.GetButton("Fire1"))
         {
 

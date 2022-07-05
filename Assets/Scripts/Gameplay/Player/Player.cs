@@ -330,10 +330,11 @@ public class Player : MonoBehaviour
     {
         armor = 0;
         gm.playerHand.Clear();
-        
-        gm.discardDeck.ForEach(item => gm.drawDeck.Add(item));
-        gm.discardDeck.Clear();
 
+        //gm.discardDeck.ForEach(item => gm.drawDeck.Add(item));
+        gm.drawDeck.Clear();
+        gm.discardDeck.Clear();
+        gm.drawDeck.AddRange(gm.startingDeck);
         strenght = 0;
         dexterity = 0;
         inteligence = 0;

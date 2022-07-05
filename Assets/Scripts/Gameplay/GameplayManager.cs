@@ -15,8 +15,10 @@ public enum BattleState { NODE ,START, PLAYERTURN, ENEMYTURN, WON, LOST, Victory
 public class GameplayManager : MonoBehaviour
 {
     public static GameplayManager instance;
-
+    //Card 
     public BattleState state;
+    public Weapon primaryWeapon;
+    public Weapon secondaryWeapon;
 
     #region GameObjectsHidden
     [HideInInspector] public GameObject drawPile,playersHand;
@@ -632,6 +634,21 @@ public class GameplayManager : MonoBehaviour
         attack,
         skill,
         power
+    }
+    public enum Weapon
+    {
+        Palka,
+        Kostur,
+        Ksiazka,
+        Alchemia,
+        Topor,
+        Katana
+    }
+    public void SwitchWeapons()
+    {
+        var getEnum = primaryWeapon;
+        primaryWeapon = secondaryWeapon;
+        secondaryWeapon = getEnum;
     }
 }
 

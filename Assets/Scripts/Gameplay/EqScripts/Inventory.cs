@@ -30,6 +30,7 @@ public class Inventory : MonoBehaviour
     Transform canvasTransform;
     string getSlotName,getSecondSlot;
     GameplayManager gm;
+    public GameplayManager.Weapon myWeaponType;
 
     private void Awake()
     {
@@ -353,6 +354,8 @@ public class Inventory : MonoBehaviour
 
     void OnPickup()
     {
+        gm.primaryWeapon = myWeaponType;
+        //dowymiany kod, trzeba sprawidzic do ktorego slota wrzucasz bron etc
         AddStats();
         AddCards();
     }
@@ -377,7 +380,6 @@ public class Inventory : MonoBehaviour
                 }
                 if (_inventoryItem._cards.Count == remove)
                 {
-                    Debug.Log(remove + " rahosad");
                     return;
                 }
             }
@@ -397,8 +399,6 @@ public class Inventory : MonoBehaviour
         elsewhere,
         inInventory,
         onPlayer
-
-
     }
 
 }

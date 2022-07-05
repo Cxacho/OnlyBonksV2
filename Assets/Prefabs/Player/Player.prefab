@@ -66,7 +66,7 @@ MonoBehaviour:
   textHealth: {fileID: 7250239851331932354}
   textArmor: {fileID: 7250239851747945482}
   shield: {fileID: 5418577385353009714, guid: f0c51d39f8509554490faff2970aa5a7, type: 3}
-  maxHealth: 70
+  maxHealth: 100
   currentHealth: 0
   armor: 0
   armorAndHp: 0
