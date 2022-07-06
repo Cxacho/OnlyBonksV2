@@ -73,14 +73,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f52490be9f3528c479aad215175e0bb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseCost: 1
   cost: 1
   scaleCardValues: 0
   index: 0
   baseNumOfTargets: 1
   attack: 5
   defaultattack: 0
-  kalkulacja: 0
-  kalkulacjaPrzeciwnik: 0
+  myWeaponType: 0
   cType: 0
   currentCardState: 0
   cardScalingtype: 1
@@ -91,6 +91,7 @@ MonoBehaviour:
   gameplayManager: {fileID: 0}
   _enemies: []
   exhaustable: 0
+  isNeutral: 0
   retainable: 0
   desc: 
   bonk: {fileID: 3356155904159209368, guid: 86afabfc67905044dbfa62c0b45cf989, type: 3}

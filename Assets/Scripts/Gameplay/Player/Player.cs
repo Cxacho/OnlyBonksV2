@@ -32,7 +32,6 @@ public class Player : MonoBehaviour
     public List<GameObject> buffIndicators = new List<GameObject>();
     playerStatusses currentBuff;
 
-
     
 
     private void Awake()

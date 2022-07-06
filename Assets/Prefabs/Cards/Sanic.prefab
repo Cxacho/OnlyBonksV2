@@ -28,6 +28,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2564407014244332751}
   m_RootOrder: 0
@@ -162,6 +163,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2122825700872263971}
   - {fileID: 5606869238784071563}
@@ -241,6 +243,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2564407014244332751}
   m_RootOrder: 3
@@ -375,6 +378,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2564407014244332751}
   m_RootOrder: 1
@@ -509,6 +513,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2564407014244332751}
   m_RootOrder: 2
@@ -645,6 +650,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2564407014244332751}
   m_Father: {fileID: 0}
@@ -687,6 +693,7 @@ TrailRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -794,19 +801,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2ebaeaf4f260e540932c917f9a5e5d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseCost: 2
   cost: 2
-  cType: 1
-  currentCardState: 0
-  trail: {fileID: 0}
-  pl: {fileID: 0}
-  gm: {fileID: 0}
+  scaleCardValues: 0
   index: 0
   baseNumOfTargets: 0
-  _enemies: []
-  exhaustable: 0
-  retainable: 0
   attack: 5
   defaultattack: 0
-  kalkulacja: 0
-  kalkulacjaPrzeciwnik: 0
+  myWeaponType: 0
+  cType: 1
+  currentCardState: 0
+  cardScalingtype: 0
+  secondaryScalingType: 0
+  cardDamageType: 0
+  trail: {fileID: 0}
+  player: {fileID: 0}
+  gameplayManager: {fileID: 0}
+  _enemies: []
+  exhaustable: 0
+  isNeutral: 0
+  retainable: 0
   desc: 

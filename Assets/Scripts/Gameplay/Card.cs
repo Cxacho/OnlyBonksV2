@@ -8,6 +8,7 @@ using TMPro;
 
 public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public int baseCost;
     public int cost;
     public int scaleCardValues;
     public int index;
@@ -141,7 +142,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void Awake()
     {
-
+        cost = baseCost;
         par = GameObject.Find("PlayerHand");
         cardAlign = par.GetComponent<CardAlign>();
         meshes.AddRange(GameObject.FindGameObjectsWithTag("Indicator"));
@@ -158,6 +159,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     void Update()
     {
         StateCheck();
+
     }
 
     void StateCheck()
@@ -312,6 +314,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     void OnClick()
     {
+
         if (myWeaponType != gameplayManager.primaryWeapon && isNeutral ==false)
         Debug.Log("cant play due to card to weapon type difference");
         //return;
@@ -319,14 +322,15 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             return;
 
 
+
         //dodac visual effect, lub tmp, ze nie masz wystarczajaco duzo many
 
         if (Input.GetButton("Fire1"))
         {
-
+            
             oldRot = this.transform.rotation;
             currentCardState = cardState.OnCursor;
-            this.transform.rotation = newRot;
+                this.transform.rotation = newRot;
             this.transform.SetParent(GameObject.Find("Canvas").transform);
 
         }
