@@ -10,7 +10,8 @@ public class Player : MonoBehaviour
     public GameObject textHealth;
     public GameObject textArmor;
     public GameObject shield;
-    GameObject frailIndicator, vurneableIndicator, poisonIndicator,strengthBuffIndicator;
+    GameObject frailIndicator, vurneableIndicator, poisonIndicator, strengthBuffIndicator;
+    [HideInInspector]public GameObject energizeIndicator;
     TextMeshProUGUI value;
     public int maxHealth = 70;
     public int currentHealth;
@@ -28,7 +29,7 @@ public class Player : MonoBehaviour
     public int strenght = 0;
     public int dexterity = 0;
     public int inteligence = 0;
-    public int frail,vurneable,poison;
+    public int frail,vurneable,poison,energize;
     public List<GameObject> buffIndicators = new List<GameObject>();
     playerStatusses currentBuff;
 
@@ -68,8 +69,13 @@ public class Player : MonoBehaviour
         textArmor.SetActive(false);
         armorText.text = armor.ToString();
     }
-    
-    public void setDebuffIndicator(int value,int select,GameObject buffIndicator)
+    /// <summary>
+    ///         frail=0,vurneable=1, poision =2,strengthBuff=3,energize=4,
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="select"></param>
+    /// <param name="buffIndicator"></param>
+    public void setStatusIndicator(int value,int select,GameObject buffIndicator)
     {
         currentBuff = (playerStatusses)select;
         switch(currentBuff)
@@ -115,6 +121,20 @@ public class Player : MonoBehaviour
                 var buffValue3 = strengthBuffIndicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                 buffValue3.text = strenght.ToString();
                 break;
+            case Player.playerStatusses.energize:
+                energize += value;
+                if (strengthBuffIndicator == null)
+                {
+                    energizeIndicator = Instantiate(buffIndicator, buffsAndDebuffs.transform);
+
+                }
+                foreach (Card obj in FindObjectsOfType<Card>())
+                    if(obj.cost >0)
+                    obj.cost -= 1; 
+                var buffValue4 = energizeIndicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+                buffValue4.text = energize.ToString();
+                break;
+
 
         }
 
@@ -323,7 +343,8 @@ public class Player : MonoBehaviour
         vurneable=1,
         poision =2,
         strengthBuff=3,
-        brak = 4
+        energize=4,
+        brak = 10
     }
     public void OnBattleSetup()
     {

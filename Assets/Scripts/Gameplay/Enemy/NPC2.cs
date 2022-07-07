@@ -51,7 +51,7 @@ public class NPC2 : Enemy, ITakeTurn
                 break;
             case 2:
                 //Remain PC
-                player.setDebuffIndicator(2, 1, player.buffIndicators[1]);
+                player.setStatusIndicator(2, 1, player.buffIndicators[1]);
                 NextCaseAttack(1f);
                 break;
             case 3:

@@ -45,6 +45,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [HideInInspector] public GameplayManager gameplayManager;
     private RectTransform pos;
     private GameObject par;
+    TextMeshProUGUI manaCostTxt;
+    [SerializeField] bool interactible;
 
 
     //private float clickDelay;
@@ -83,8 +85,24 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
         */
     }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (this.transform.IsChildOf(GameObject.Find("PlayerHand").transform) && gameplayManager.playerHand.Count == par.transform.childCount && gameplayManager.state == BattleState.PLAYERTURN)
+        {
+            followMouse.crd = null;
+            this.transform.localScale = Vector3.one;
+            transform.rotation = hoverRotation;
+            transform.position = new Vector3(this.transform.position.x, posY, this.transform.position.z);
+            this.transform.SetSiblingIndex(index);
+            StartCoroutine(Return());
+            currentCardState = cardState.InHand;
+
+        }
+        cardAlign.helpingGO = null;
+    }
     public void OnPointerEnter(PointerEventData eventData)
     {
+        cardAlign.helpingGO = this.gameObject;
         if (this.transform.IsChildOf(GameObject.Find("PlayerHand").transform) && gameplayManager.playerHand.Count == par.transform.childCount && gameplayManager.state == BattleState.PLAYERTURN)
         {
             followMouse.crd = GetComponent<Card>();
@@ -97,18 +115,12 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             cardAlign.cardIndex = index;
             cardAlign.Realign();
             this.transform.SetAsLastSibling();
-            /*
-            foreach(Card crd in FindObjectsOfType<Card>())
-            {
-
-            }
-            */
-
         }
         if (eventData.pointerEnter.transform.parent.GetComponent<Card>() != null)
             cardAlign.pointerHandler = eventData.pointerEnter.transform.parent.GetSiblingIndex();
         else
             cardAlign.pointerHandler = eventData.pointerEnter.transform.parent.transform.parent.GetSiblingIndex();
+        
     }
     public void resetTargetting()
     {
@@ -124,24 +136,15 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     }
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (this.transform.IsChildOf(GameObject.Find("PlayerHand").transform) && gameplayManager.playerHand.Count == par.transform.childCount && gameplayManager.state == BattleState.PLAYERTURN)
-        {
-            followMouse.crd = null;
-            this.transform.localScale = Vector3.one;
-            transform.rotation = hoverRotation;
-            transform.position = new Vector3(this.transform.position.x, posY, this.transform.position.z);
-            this.transform.SetSiblingIndex(index);
-            StartCoroutine(Return());
-            currentCardState = cardState.InHand;
-        }
-    }
+
 
 
 
     void Awake()
     {
+
+        manaCostTxt = transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>();
+        manaCostTxt.text = baseCost.ToString();
         cost = baseCost;
         par = GameObject.Find("PlayerHand");
         cardAlign = par.GetComponent<CardAlign>();
@@ -159,7 +162,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     void Update()
     {
         StateCheck();
-
+        manaCostTxt.text = cost.ToString();
     }
 
     void StateCheck()
@@ -185,6 +188,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 break;
             case cardState.Targetable:
                 DropControl();
+                break;
+            case cardState.Interactible:
+                InteractWithOther();
                 break;
         }
 
@@ -252,7 +258,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         strength = 1,
         dexterity = 2,
         magic = 3
-
     }
     public enum cardState
     {
@@ -260,10 +265,12 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         OnMouse = 1,
         OnCursor = 2,
         Elsewhere = 3,
-        Targetable = 4
+        Targetable = 4,
+        Interactible
     }
     void ReturnToHand()
     {
+        followMouse.rect[0].anchoredPosition = new Vector3(0, -400, 0);
         this.transform.localScale = Vector3.one;
         currentCardState = cardState.InHand;
         transform.SetParent(GameObject.Find("PlayerHand").transform);
@@ -382,6 +389,18 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             gameplayManager.cardsPlayed++;
             gameplayManager.powerCardsPlayed++;
             gameplayManager.lastCardPlayed = GameplayManager.cardPlayed.power;
+        }
+        //mechanika energize
+        if (player.energize > 0)
+        {
+            player.energize -= 1;
+            player.energizeIndicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = player.energize.ToString();
+            if (player.energize == 0)
+            {
+                Destroy(player.energizeIndicator);
+                foreach (Card obj in FindObjectsOfType<Card>())
+                    obj.cost = obj.baseCost;
+            }
         }
         if (exhaustable)
                 {
@@ -570,7 +589,16 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 gameplayManager.canEndTurn = true;
                 _enemies.Clear();
                 _enemies.AddRange(gameplayManager.enemyType);
-                OnDrop();
+                if (interactible == false)
+                    OnDrop();
+                else
+                {
+                    currentCardState = cardState.Interactible;
+                    transform.DOMove(Vector3.zero, 1);
+                    followMouse.rect[0].anchoredPosition = Vector3.zero;
+                    EnableIndicator();
+                    //przeniesc pierwzsy element indicatora na srodek gry
+                }
             }
 
 
@@ -583,6 +611,26 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             DisableIndicator();
             cardAlign.SetValues();
         }
+
+    }
+    void InteractWithOther()
+    {
+        //show text explaining action to take np choose target card
+
+        if (Input.GetButton("Fire1") && cardAlign.helpingGO !=null && cardAlign.helpingGO !=gameObject)
+        {
+            DisableIndicator();
+            followMouse.rect[0].anchoredPosition = new Vector3(0, -400, 0);
+            gameplayManager.ApplyEffectToCard(3, 1, cardAlign.helpingGO.GetComponent<Card>());
+            cardAlign.helpingGO = null;
+            OnDrop();
+        }
+        if(Input.GetButton("Fire2"))
+        {
+            ReturnToHand();
+            DisableIndicator();
+        }
+
 
     }
 }

@@ -6,7 +6,7 @@ public class ScoobySnax : Relic
 {
 public override void OnEndTurn()
     {
-        pl.setDebuffIndicator(2, 3, pl.buffIndicators[3]);
+        pl.setStatusIndicator(2, 3, pl.buffIndicators[3]);
         base.OnEndTurn();
         
         //pl.strenght += 

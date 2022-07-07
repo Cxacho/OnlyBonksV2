@@ -37,7 +37,7 @@ public class NPC1 : Enemy, ITakeTurn
                 //Anger Issues
                 //naklada indicator poision , o wartosci 4
                 //damage = 7
-                player.setDebuffIndicator(3, 0, player.buffIndicators[0]);
+                player.setStatusIndicator(3, 0, player.buffIndicators[0]);
                 Debug.Log(Mathf.RoundToInt(damage * numberOfAttacks));
                 NextCaseOther("4");
                 break;

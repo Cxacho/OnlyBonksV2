@@ -16,7 +16,7 @@ public class GetSwoleScript : Card
             base.OnDrop();
 
             player.GetComponentInChildren<Animator>().SetTrigger("GetSwoleTrigger");
-            player.setDebuffIndicator(5, 3, player.buffIndicators[3]);
+            player.setStatusIndicator(5, 3, player.buffIndicators[3]);
             player.GetArmor(10);
             player.manaText.text = player.mana.ToString();
         }

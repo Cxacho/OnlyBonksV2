@@ -28,7 +28,7 @@ public class DankMage : Enemy, ITakeTurn
             case 0:
                 //Dankening
                 //naklada indicator frail , o wartosci 3
-                player.setDebuffIndicator(3, 0, player.buffIndicators[0]);
+                player.setStatusIndicator(3, 0, player.buffIndicators[0]);
                 
                 SetIndicator();
                 actionsInt++;

@@ -467,7 +467,10 @@ public class GameplayManager : MonoBehaviour
             playerHand.AddRange(retain);
             temp.ForEach(obj => obj.transform.SetParent(playerHandObject.transform));
         }
-
+        player.energize = 0;
+        Destroy(player.energizeIndicator);
+        foreach (Card obj in FindObjectsOfType<Card>())
+            obj.cost = obj.baseCost;
         //cardAlign.SetValues();
 
 
@@ -511,11 +514,30 @@ public class GameplayManager : MonoBehaviour
         if (playerDrawAmount < drawAmount)
             drawAmount = 0;
     }
-    public void CreateCard(int cardIndex)
+    /// <summary>
+    /// type = rodzaj buffa, np koszt zmniejsza koszt wybranej karty, attack zwieksza atak danej karty
+    /// 0 koszt, 1 atak
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="type"></param>
+    public void ApplyEffectToCard(int value,int type,Card obj)
+    {
+        if (type == 0)
+            if (value > obj.cost)
+                obj.cost = 0;
+            else
+                obj.cost -= value;
+        else if (type == 1)
+            if (obj.cType == Card.cardType.Attack)
+                obj.defaultattack += value;
+            else
+                Debug.Log("cant apply attack to skill");
+    }
+    public void CreateCard(GameObject obj)
     {
         //var card = PrefabUtility.InstantiatePrefab(allCards[cardIndex]as GameObject) as GameObject;
-        playerHand.Add(allCards[cardIndex]);
-        var card = Instantiate(allCards[cardIndex], Vector3.zero, Quaternion.identity);
+        playerHand.Add(obj);
+        var card = Instantiate(obj, Vector3.zero, Quaternion.identity);
         card.transform.SetParent(cardAlign.gameObject.transform);
         card.transform.localScale = Vector3.one;
         

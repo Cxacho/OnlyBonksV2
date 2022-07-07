@@ -8,6 +8,7 @@ using DG.Tweening;
 public class CardAlign : MonoBehaviour
 {
     public GameplayManager gm;
+    [HideInInspector]public GameObject helpingGO;
     public float cardsInHand, moveCardUp, totalTwist, twistPerCard, startTwist, drawTime;
     public List<RectTransform> children = new List<RectTransform>();
     public List<Vector3> positions = new List<Vector3>();
@@ -26,13 +27,6 @@ public class CardAlign : MonoBehaviour
     void Update()
     {
         OnHandAmountChange();
-        /*
-        if (gm.delay < Time.time && gm.delay != 0)
-        {
-            gm.state = BattleState.PLAYERTURN;
-            gm.delay = 0;
-        }
-        */
     }
     private void Awake()
     {

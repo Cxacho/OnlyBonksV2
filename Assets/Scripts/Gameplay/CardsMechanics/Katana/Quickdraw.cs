@@ -2,16 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-public class Homerun :  Card
+public class Quickdraw : Card
 {
 
     private void Start()
     {
-        var get03procent = defaultattack * 0.3f;
-
-        desc = $"Deal <color=white>{attack.ToString()}</color> damage to first enemy and <color=white>{get03procent.ToString()}</color> to second enemy";
-
-        this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
+        desc = $"Deal <color=white>{attack.ToString()}</color> damage to first enemy";
     }
 
 
@@ -21,11 +17,11 @@ public class Homerun :  Card
         calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
         var secondAttack = Mathf.RoundToInt(attack * 0.3f);
         if (attack == defaultattack)
-            desc = $"Deal <color=white>{attack.ToString()}</color> damage to first enemy and <color=white>{secondAttack.ToString()}</color> to second enemy";
+            desc = $"Deal <color=white>{attack.ToString()}</color> and apply 2 energize";
         else if (attack < defaultattack)
-            desc = $"Deal <color=red>{attack.ToString()}</color> damage to first enemy and <color=red>{secondAttack.ToString()}</color> to second enemy";
+            desc = $"Deal <color=red>{attack.ToString()}</color> and apply 2 energize";
         else
-            desc = $"Deal <color=green>{attack.ToString()}</color> damage to first enemy and <color=green>{secondAttack.ToString()}</color> to second enemy";
+            desc = $"Deal <color=green>{attack.ToString()}</color> and apply 2 energize";
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
 
@@ -35,24 +31,18 @@ public class Homerun :  Card
         if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
-
-            StartCoroutine(ExecuteAfterTime(1f));
+            player.setStatusIndicator(2, 4, player.buffIndicators[0]);
+            gameplayManager.CreateCard(gameplayManager.allCards[0]);
             foreach (Enemy en in _enemies)
             {
-                if (en.isFirstTarget == true)
+                if (en.targeted == true)
                 {
-                    en.RecieveDamage(attack,this);
+                    en.RecieveDamage(attack, this);
+
                     en.targeted = false;
-                    en.isFirstTarget = false;
                 }
-                if (en.isSecondTarget == true)
-                {
-                    en.RecieveDamage(Mathf.RoundToInt((attack)*0.3f),this); // do zmiany po demie
-                    en.targeted = false;
-                    en.isSecondTarget = false;
-                }
-               resetTargetting();
             }
+            resetTargetting();
         }
         else
         {

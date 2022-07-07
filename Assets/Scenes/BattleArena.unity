@@ -1126,6 +1126,7 @@ MonoBehaviour:
   - {fileID: 8375890335322642537, guid: d0e0311802861924b9ae71e6d10dd032, type: 3}
   - {fileID: 3278963245332868438, guid: 051a2292f88cf3245aadece428e909f6, type: 3}
   - {fileID: 3383854915774529881, guid: bdf64af54e6e0804ca6cc76cd5ac0d99, type: 3}
+  - {fileID: 2858555165568228111, guid: 102c29a2564968041b8c1a1c8584015e, type: 3}
   exhaustedDeck: []
   drawDeck: []
   enemiesIndicators:
@@ -31633,6 +31634,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gm: {fileID: 43265154}
+  helpingGO: {fileID: 0}
   cardsInHand: 0
   moveCardUp: 0
   totalTwist: 40
@@ -34951,6 +34953,22 @@ PrefabInstance:
     - target: {fileID: 7250239851331932356, guid: 29fcb356a0a4b95478b18586d4dde005, type: 3}
       propertyPath: m_text
       value: 100/100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250239851331932356, guid: 29fcb356a0a4b95478b18586d4dde005, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250239851331932356, guid: 29fcb356a0a4b95478b18586d4dde005, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250239851331932356, guid: 29fcb356a0a4b95478b18586d4dde005, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250239851331932356, guid: 29fcb356a0a4b95478b18586d4dde005, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7250239851331932357, guid: 29fcb356a0a4b95478b18586d4dde005, type: 3}
       propertyPath: m_SizeDelta.x
