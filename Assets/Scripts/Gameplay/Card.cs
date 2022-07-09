@@ -33,7 +33,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
 
     [SerializeField] TrailRenderer trail;
-
+    public UiActive ui;
     [HideInInspector] public Player player;
 
 
@@ -41,7 +41,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private Quaternion newRot;
     private Quaternion hoverRotation = new Quaternion(0, 0, 0, 0);
 
-    private CardAlign cardAlign;
+    [HideInInspector]public CardAlign cardAlign;
     [HideInInspector] public GameplayManager gameplayManager;
     private RectTransform pos;
     private GameObject par;
@@ -99,6 +99,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         }
         cardAlign.helpingGO = null;
+        if (currentCardState == cardState.Creatable)
+        {
+            currentCardState = cardState.Elsewhere;
+            gameplayManager.cardToCreate = null;
+        }
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -120,7 +125,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             cardAlign.pointerHandler = eventData.pointerEnter.transform.parent.GetSiblingIndex();
         else
             cardAlign.pointerHandler = eventData.pointerEnter.transform.parent.transform.parent.GetSiblingIndex();
-        
+        if (currentCardState == cardState.Elsewhere)
+        {
+            currentCardState = cardState.Creatable;
+            gameplayManager.cardToCreate = this.gameObject;
+        }
     }
     public void resetTargetting()
     {
@@ -142,7 +151,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void Awake()
     {
-
+        ui = GameObject.FindObjectOfType<UiActive>();
         manaCostTxt = transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>();
         manaCostTxt.text = baseCost.ToString();
         cost = baseCost;
@@ -191,6 +200,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 break;
             case cardState.Interactible:
                 InteractWithOther();
+                break;
+            case cardState.Creatable:
+                ChooseOfCreationMenu();
                 break;
         }
 
@@ -266,7 +278,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         OnCursor = 2,
         Elsewhere = 3,
         Targetable = 4,
-        Interactible
+        Interactible =5,
+        Creatable
     }
     void ReturnToHand()
     {
@@ -432,7 +445,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                     }
 
                     );
-                }
+            cardAlign.SetValues();
+        }
                 else
                 {
                     currentCardState = cardState.Elsewhere;
@@ -462,7 +476,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                     }
 
                     );
-                }
+                cardAlign.SetValues();
+        }
     }
     public void DropControl()
     {
@@ -528,7 +543,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                     numOfTargets -= 1;
                     if (numOfTargets == 0)
                         DisableIndicator();
-                    //clickDelay = Time.time + 0.3f;
                 }
                 else if (Input.GetButtonUp("Fire1") && followMouse.en.targeted == true && numOfTargets >= 0)
                 {
@@ -556,7 +570,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
                     if (numOfTargets == 1)
                         EnableIndicator();
-                    //clickDelay = Time.time + 0.3f;
                 }
 
             }
@@ -621,7 +634,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             DisableIndicator();
             followMouse.rect[0].anchoredPosition = new Vector3(0, -400, 0);
-            gameplayManager.ApplyEffectToCard(3, 1, cardAlign.helpingGO.GetComponent<Card>());
+            CastOnPlay();
             cardAlign.helpingGO = null;
             OnDrop();
         }
@@ -629,6 +642,81 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             ReturnToHand();
             DisableIndicator();
+        }
+    }
+    /// <summary>
+    /// type = rodzaj buffa, np koszt zmniejsza koszt wybranej karty, attack zwieksza atak danej karty
+    /// 0 koszt, 1 atak,2 discard
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="type"></param>
+    public void ApplyEffectToCard(int value, int type, Card obj)
+    {
+        if (type == 0)
+            if (value > obj.cost)
+                obj.cost = 0;
+            else
+                obj.cost -= value;
+        else if (type == 1)
+            if (obj.cType == Card.cardType.Attack)
+                obj.defaultattack += value;
+            else
+                Debug.Log("cant apply attack to skill");
+        else if (type == 2)
+        {
+
+            //discard anim
+            currentCardState = cardState.Elsewhere;
+            //play card
+            trail.enabled = true;
+            //anim
+            var go = cardAlign.helpingGO;
+            var nazwaObiektu = go.name.Remove(go.name.Length - 7);
+            for (int i = 0; i < gameplayManager.playerHand.Count; i++)
+            {
+                if (nazwaObiektu.Equals(gameplayManager.playerHand[i].name))
+                {
+                    temp.Add(gameplayManager.playerHand[i]);
+                    gameplayManager.discardDeck.Add(temp[0]);
+                    gameplayManager.playerHand.RemoveAt(i);
+                    temp.RemoveAt(0);
+                }
+            }
+            gameplayManager.state = BattleState.DRAWING;
+            go.transform.SetParent(FindObjectOfType<Canvas>().transform);
+            go.transform.DOMove(new Vector3(discDek.x, discDek.y, 0), 1.5f);
+            go.transform.DOScale(0.25f, 0.5f);
+            go.transform.DORotate(new Vector3(0, 0, -150f), 1.5f).OnComplete(() =>
+            {
+                gameplayManager.state = BattleState.PLAYERTURN;
+                trail.enabled = false;
+                this.transform.localScale = Vector3.one;
+                this.transform.rotation = newRot;
+                Destroy(go);
+                
+            }
+
+            );
+        }
+    }
+    public virtual void CastOnPlay()
+    {
+
+    }
+    /// <summary>
+    /// int select oznacza wybor ktory panel otwieramy 0=discarddeck,1=drawddeck,2 exhaust???
+    /// </summary>
+    /// <param name=""></param>
+    /// <param name=""></param>
+    public void ChooseOfCreationMenu()
+    {
+        
+        if (Input.GetButton("Fire1"))
+        {
+            // czy nie pociagnie karty przy klikniecniu jej
+            gameplayManager.CreateCard(gameplayManager.cardToCreate);
+            //ui zamknac panele i 
+            ui.EnableButtons(0);
         }
 
 

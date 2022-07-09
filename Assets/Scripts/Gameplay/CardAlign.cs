@@ -70,15 +70,6 @@ public class CardAlign : MonoBehaviour
         float twistForThisCard = startTwist + twistPerCard;
         Quaternion rotZero = new Quaternion();
         rotZero.eulerAngles = Vector3.zero;
-        /*
-        foreach (RectTransform child in transform)
-        {
-            children.Add(child);
-            child.transform.rotation = rotZero;
-        }
-        */
-        //foreach (RectTransform pog in children)
-        //height.Add(pog);
         switch (cardsInHand)
         {
             case 1:
@@ -119,12 +110,14 @@ public class CardAlign : MonoBehaviour
 
                 break;
         }
-
+        if(children.Count >0)
         children[0].transform.Rotate(0f, 0f, twistFirstCard);
         Quaternion rotForFirst = new Quaternion();
-        rotForFirst = children[0].transform.rotation;
+        if (children.Count > 0)
+            rotForFirst = children[0].transform.rotation;
         var rot = rotForFirst.eulerAngles.z;
-        rotations[0] = rotForFirst.eulerAngles;
+        if (children.Count > 0)
+            rotations[0] = rotForFirst.eulerAngles;
         for (int i = 1; i < gm.playerHand.Count; i++)
         {
             //children[i].transform.Rotate(0f, 0f, rot + (twistPerCard * (-i)));
@@ -132,7 +125,7 @@ public class CardAlign : MonoBehaviour
         }
     }
 
-    void FitCards()
+    public void FitCards()
     {
         liczbaWyrazow = gm.playerHand.Count - 1;
         nTyWyraz = pierwszyWyraz * Mathf.Pow(mnoznik, liczbaWyrazow - 1);
@@ -189,10 +182,6 @@ public class CardAlign : MonoBehaviour
 
         if (cardsInHand != gm.playerHand.Count)
         {
-            if (gm.playerHand.Count != 0)
-            {
-                SetValues();
-            }
             Invoke("ValueUpdate", 0.02f);
         }
         cardsInHand = gm.playerHand.Count;
@@ -207,12 +196,13 @@ public class CardAlign : MonoBehaviour
     }
     public void SetValues()
     {
-
         positions.Clear();
         children.Clear();
         rotations.Clear();
         foreach (RectTransform child in transform)
         {
+            child.GetComponent<Card>().index = child.GetSiblingIndex();
+
             children.Add(child);
             rotations.Add(child.rotation.eulerAngles);
         }
@@ -243,6 +233,7 @@ public class CardAlign : MonoBehaviour
 
                 for (int i = 0; i < this.transform.childCount; i++)
                 {
+                    
                     children[i].transform.DORotate(rotations[i], 0.2f);
                     children[i].transform.DOMove(positions[i], 0.2f);
                 }

@@ -20,6 +20,7 @@ public class UiActive : MonoBehaviour
      public GameObject eqParentObject;
     List<TextMeshProUGUI> values = new List<TextMeshProUGUI>();
     [SerializeField] GameObject valuePanel;
+    [SerializeField] private List<Button> buttons = new List<Button>();
     //public Vector3 mousePosition,secPos;
     //RaycastHit hit;
 
@@ -353,6 +354,37 @@ public class UiActive : MonoBehaviour
         values[5].text = gm.gold.ToString();
             values[6].text = gm.startingDeck.Count.ToString();
             values[7].text = gm.currentFloor.ToString();
+    }
+    public void DisableButtons(int select)
+    {
+        for(int i=0;i<buttons.Count;i++)
+        {
+                buttons[i].interactable = false;
+        }
+        if (select == 0)
+        {
+            OnDiscardPile();
+            OnDiscardPileClick();
+        }
+        else
+            OnDrawPile();
+        OnDrawPileClick();
+
+    }
+    public void EnableButtons(int select)
+    {
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            buttons[i].interactable = true;
+        }
+        if (select == 0)
+        {
+            OnDiscardPile();
+            OnDiscardPileClick();
+        }
+        else
+            OnDrawPile();
+        OnDrawPileClick();
     }
 }
 

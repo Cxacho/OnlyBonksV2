@@ -33,6 +33,7 @@ public class BasicDefend : Card
             }
             */
             //gm.CreateCard(0);
+            
         }
         else
         {
@@ -40,6 +41,13 @@ public class BasicDefend : Card
         }
         
     }
+    public override void CastOnPlay()
+    {
 
-    
+        
+        base.CastOnPlay();
+        ApplyEffectToCard(3, 2, cardAlign.helpingGO.GetComponent<Card>());
+    }
+
+
 }

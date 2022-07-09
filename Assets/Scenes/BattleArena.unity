@@ -1047,6 +1047,7 @@ MonoBehaviour:
   cardHolder: {fileID: 709109347}
   battleUI: {fileID: 737091773}
   drawButton: {fileID: 939817791}
+  cardToCreate: {fileID: 0}
   numOfList: 0
   currentFloor: 0
   basePlayerDrawAmount: 5
@@ -2604,11 +2605,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 719975772}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 568, y: -126.15}
+  m_AnchoredPosition: {x: 298, y: -126.15}
   m_SizeDelta: {x: -1821.8984, y: -979.67334}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &136007494
@@ -5711,11 +5712,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 719975772}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 298, y: -125.87}
+  m_AnchoredPosition: {x: 570, y: -125.869995}
   m_SizeDelta: {x: -1821.8984, y: -979.67334}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &363833067
@@ -12018,8 +12019,8 @@ RectTransform:
   - {fileID: 993812830}
   - {fileID: 340481520}
   - {fileID: 1667696517}
-  - {fileID: 363833066}
   - {fileID: 136007493}
+  - {fileID: 363833066}
   - {fileID: 1427378371}
   - {fileID: 737091774}
   - {fileID: 624181188}
@@ -15394,6 +15395,15 @@ MonoBehaviour:
   inventoryPanel: {fileID: 1809365275}
   eqParentObject: {fileID: 913396149}
   valuePanel: {fileID: 735855629}
+  buttons:
+  - {fileID: 1625672511}
+  - {fileID: 939817793}
+  - {fileID: 418357490}
+  - {fileID: 1881951421}
+  - {fileID: 1846959155}
+  - {fileID: 1091676186}
+  - {fileID: 147024519}
+  - {fileID: 1064762559}
 --- !u!1 &932731407
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 
-public enum BattleState { NODE ,START, PLAYERTURN, ENEMYTURN, WON, LOST, VictoryScreen,DRAWING,INANIMATION}
+public enum BattleState { NODE ,START, PLAYERTURN, ENEMYTURN, WON, LOST, VictoryScreen,DRAWING,INANIMATION,CREATING}
 
 [RequireComponent(typeof(AudioListener))]
 [RequireComponent(typeof(AudioSource))]
@@ -21,7 +21,7 @@ public class GameplayManager : MonoBehaviour
     public Weapon secondaryWeapon;
 
     #region GameObjectsHidden
-    [HideInInspector] public GameObject drawPile,playersHand;
+    [HideInInspector] public GameObject drawPile, playersHand;
     [HideInInspector] public GameObject discardPile;
     [HideInInspector] public GameObject discardDeckButton;
     [HideInInspector] public GameObject playerHandObject;
@@ -30,6 +30,7 @@ public class GameplayManager : MonoBehaviour
     [HideInInspector] public GameObject panelLose;
     [HideInInspector] public GameObject goldtxt;
     [HideInInspector] public GameObject shopPanel;
+    
     #endregion
 
     #region GameObjects
@@ -40,6 +41,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject cardHolder;
     public GameObject battleUI;
     public GameObject drawButton;
+    [HideInInspector]public GameObject cardToCreate;
     #endregion
 
     #region Ints
@@ -112,7 +114,7 @@ public class GameplayManager : MonoBehaviour
     #region Lists
     public List<GameObject> ItemsInInventory = new List<GameObject>();
     public List<GameObject> allRelicsList = new List<GameObject>();
-    
+
     public List<GameObject> allCards = new List<GameObject>();
 
     //lista wszystkich kart w grze, wa¿ne ¿eby dodawaæ je po kolei 
@@ -174,14 +176,14 @@ public class GameplayManager : MonoBehaviour
         cardAlign = GameObject.Find("PlayerHand").GetComponent<CardAlign>();
         enemiesSpawner = FindObjectOfType<EnemiesSpawner>();
         shopmanager = GetComponent<ShopManager>();
-        
+
 
         choosingNode();
 
 
         canEndTurn = true;
 
-            
+
     }
     private void Update()
     {
@@ -196,7 +198,7 @@ public class GameplayManager : MonoBehaviour
         }
         else endTurn.interactable = false;
 
-        
+
         goldtxt.GetComponent<TextMeshProUGUI>().text = gold.ToString();
     }
     IEnumerator ChooseNode()
@@ -210,8 +212,8 @@ public class GameplayManager : MonoBehaviour
         map.Locked = false;
         ui.OnMapClick();
         yield return new WaitForSeconds(.1f);
-        
-        
+
+
         scroll = GameObject.Find("MapParentWithAScroll").GetComponent<Map.ScrollNonUI>();
         scroll.freezeX = true;
     }
@@ -226,19 +228,19 @@ public class GameplayManager : MonoBehaviour
         //tu w construktorze trzeba wrzucic liste przeciwnikow na ktorom mozemy trafic, zeby mozna bylo ich roznie spawnic
         exhaustedDeck.Clear();
         player.OnBattleSetup();
-        
+
         yield return new WaitForSeconds(0.1f);
-        
-        if(currentFloor<4)
+
+        if (currentFloor < 4)
         {
             numOfList = Random.Range(0, 3);
         }
-        else if(currentFloor<7)
-                {
+        else if (currentFloor < 7)
+        {
             numOfList = Random.Range(3, 6);
         }
         else
-                    {
+        {
             numOfList = Random.Range(6, 10);
         }
 
@@ -246,10 +248,10 @@ public class GameplayManager : MonoBehaviour
         enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
         foreach (GameObject enemy in enemies)
             enemyType.Add(enemy.GetComponent<Enemy>());
-        
 
 
-        
+
+
         StartCoroutine(OnPlayersTurn());
     }
     public IEnumerator SetupEliteBattle()
@@ -295,9 +297,9 @@ public class GameplayManager : MonoBehaviour
     }
     public IEnumerator SetupStore()
     {
-        
+
         player.OnBattleSetup();
-        
+
         ui.panelIndex = 0;
         ui.Check();
         shopPanel.SetActive(true);
@@ -318,7 +320,7 @@ public class GameplayManager : MonoBehaviour
                 Destroy(treasurePanel.transform.GetChild(i).gameObject);
             }
             var random = Random.Range(1, allRelicsList.Count - 1);
-            Instantiate(allRelicsList[random],treasurePanel.transform);
+            Instantiate(allRelicsList[random], treasurePanel.transform);
             allRelicsList.RemoveAt(random);
             treasurePanelButton.transform.SetAsLastSibling();
             //GetMoneyButton Instantiate(GetMoneyButtonczycos, treasurePanel.transform);
@@ -327,7 +329,7 @@ public class GameplayManager : MonoBehaviour
     }
     public IEnumerator SetupMistery()
     {
-        
+
         player.OnBattleSetup();
         mysteryPanel.SetActive(true);
         var random = Random.Range(0, Mistery.Count);
@@ -353,12 +355,12 @@ public class GameplayManager : MonoBehaviour
 
 
 
-         List<GameObject> _indicators = new List<GameObject>();
+        List<GameObject> _indicators = new List<GameObject>();
         _indicators.AddRange(GameObject.FindGameObjectsWithTag("EnemyIndicator"));
-        
-        foreach(var indicator in _indicators)
+
+        foreach (var indicator in _indicators)
         {
-            indicator.GetComponent<Image>().enabled = true;           
+            indicator.GetComponent<Image>().enabled = true;
         }
 
         yield return new WaitForSeconds(0.5f);
@@ -376,22 +378,22 @@ public class GameplayManager : MonoBehaviour
     }
     public async Task EnemyTurn(GameObject enemy)
     {
-        
-        
-            ITakeTurn takeTurn = enemy.GetComponent<ITakeTurn>();
-            takeTurn.takeTurn(player);
-            if (player.currentHealth == 0)
-            {
-                state = BattleState.LOST;
-                StartCoroutine(OnBattleLost());
-            }
-            await Task.Delay(600);
-    }    
+
+
+        ITakeTurn takeTurn = enemy.GetComponent<ITakeTurn>();
+        takeTurn.takeTurn(player);
+        if (player.currentHealth == 0)
+        {
+            state = BattleState.LOST;
+            StartCoroutine(OnBattleLost());
+        }
+        await Task.Delay(600);
+    }
     public IEnumerator OnBattleWin()
     {
         Debug.Log("Batlle Won");
         state = BattleState.VictoryScreen;
-        
+
 
         StartCoroutine(VictoryScreen());
         yield return new WaitForSeconds(2f);
@@ -406,11 +408,11 @@ public class GameplayManager : MonoBehaviour
         //animacja œmierci
         foreach (GameObject enemy in enemies) Destroy(enemy);
         Destroy(GameObject.FindGameObjectWithTag("Player"));
-           yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f);
 
 
         StartCoroutine(LoseScreen());
-        
+
     }
     IEnumerator VictoryScreen()
     {
@@ -421,13 +423,13 @@ public class GameplayManager : MonoBehaviour
         map.Locked = false;
         goldRewardGameObject.gameObject.SetActive(true);
         GameObject.Find("GoldReward").transform.GetComponentInChildren<TextMeshProUGUI>().text = goldReward.ToString();
-        
+
         for (int i = 0; i < 2; i++)
         {
             random = Random.Range(0, allCardsSHOP.Count);
             Instantiate(cards[random], GameObject.FindGameObjectWithTag("cardHolder").transform);
         }
-        
+
     }
     IEnumerator LoseScreen()
     {
@@ -455,12 +457,12 @@ public class GameplayManager : MonoBehaviour
                     //zbierz index player handu.
                     temp.Add(card.gameObject);
                     card.transform.SetParent(battleUI.transform);
-                    
+
                 }
             var phCount = playerHand.Count;
             playerHand.ForEach(item => discardDeck.Add(item));
             playerHand.Clear();
-            for(var i = phCount-1;i>=0;i--)
+            for (var i = phCount - 1; i >= 0; i--)
             {
                 Destroy(playerHandObject.transform.GetChild(i).gameObject);
             }
@@ -471,15 +473,14 @@ public class GameplayManager : MonoBehaviour
         Destroy(player.energizeIndicator);
         foreach (Card obj in FindObjectsOfType<Card>())
             obj.cost = obj.baseCost;
-        //cardAlign.SetValues();
-
 
         await ExecuteDarkSoulsText("Enemy Turn");
+        cardAlign.SetValues();
 
-        
+
         state = BattleState.ENEMYTURN;
         OnEnemiesTurn();
-        
+
     }
     public void DrawCards(int amount)
     {
@@ -504,35 +505,17 @@ public class GameplayManager : MonoBehaviour
             card.transform.SetParent(cardAlign.gameObject.transform);
             card.GetComponent<Card>().index = card.transform.GetSiblingIndex();
             var updateValue = drawButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-            updateValue.text = (drawDeck.Count -1).ToString();
+            updateValue.text = (drawDeck.Count - 1).ToString();
             card.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             playerHand.Add(drawDeck[random]);
             drawDeck.RemoveAt(random);
             cardAlign.Animate();
-            
+
         }
         if (playerDrawAmount < drawAmount)
             drawAmount = 0;
     }
-    /// <summary>
-    /// type = rodzaj buffa, np koszt zmniejsza koszt wybranej karty, attack zwieksza atak danej karty
-    /// 0 koszt, 1 atak
-    /// </summary>
-    /// <param name="value"></param>
-    /// <param name="type"></param>
-    public void ApplyEffectToCard(int value,int type,Card obj)
-    {
-        if (type == 0)
-            if (value > obj.cost)
-                obj.cost = 0;
-            else
-                obj.cost -= value;
-        else if (type == 1)
-            if (obj.cType == Card.cardType.Attack)
-                obj.defaultattack += value;
-            else
-                Debug.Log("cant apply attack to skill");
-    }
+
     public void CreateCard(GameObject obj)
     {
         //var card = PrefabUtility.InstantiatePrefab(allCards[cardIndex]as GameObject) as GameObject;
@@ -540,10 +523,10 @@ public class GameplayManager : MonoBehaviour
         var card = Instantiate(obj, Vector3.zero, Quaternion.identity);
         card.transform.SetParent(cardAlign.gameObject.transform);
         card.transform.localScale = Vector3.one;
-        
+
         cardAlign.SetValues();
-        
-        
+
+
     }
     private void shuffleDeck()
     {
@@ -560,14 +543,14 @@ public class GameplayManager : MonoBehaviour
         {
             Destroy(hand.transform.GetChild(i).gameObject);
         }
-        
+
         playerHand.Clear();
     }
     public void checkPlayerMana(int cost)
     {
         if (cost > player.mana || player.mana == 0)
         {
-            if(cost == 0) canPlayCards = true;
+            if (cost == 0) canPlayCards = true;
 
             else canPlayCards = false;
         }
@@ -580,7 +563,7 @@ public class GameplayManager : MonoBehaviour
     private void PanelsOnWin()
     {
         panelWin.SetActive(true);
-        
+
     }
     public void PanelsOnButtonNext()
     {
@@ -593,28 +576,31 @@ public class GameplayManager : MonoBehaviour
         darkSoulsText.text = _text;
         Sequence sequence = DOTween.Sequence();
         sequence.Append(darkSoulsText.DOFade(1, 1.5f));
-        sequence.Insert(0,darkSoulsText.transform.DOScale(1.5f, 3f));
-        sequence.OnComplete(()=>
+        sequence.Insert(0, darkSoulsText.transform.DOScale(1.5f, 3f));
+        sequence.OnComplete(() =>
         {
             darkSoulsText.DOFade(0, 0);
             darkSoulsText.transform.DOScale(1f, 0);
-            textPanel.SetActive(false);        
+            textPanel.SetActive(false);
         });
         await Task.Delay(2000);
-        
+
 
 
     }
     private void SpawnEnemies(List<GameObject> enemies)
     {
-        for (int i = 0;i < enemies.Count;i++)
-        Instantiate(enemies[i], enemyBattleStation[i].transform.position, Quaternion.identity, enemyBattleStation[i].transform);
+        for (int i = 0; i < enemies.Count; i++)
+            if (enemies.Count > 1)
+                Instantiate(enemies[i], enemyBattleStation[i].transform.position, Quaternion.identity, enemyBattleStation[i].transform);
+            else
+                Instantiate(enemies[i], enemyBattleStation[i + 1].transform.position, Quaternion.identity, enemyBattleStation[i + 1].transform);
     }
     public void choosingNode()
     {
-        
+
         StartCoroutine(ChooseNode());
-        
+
     }
     public void DestroyChilds() // MUHAHAHHA DIE STUPID CHILDS
     {
@@ -623,7 +609,7 @@ public class GameplayManager : MonoBehaviour
         {
             Destroy(GameObject.FindGameObjectWithTag("cardHolder").transform.GetChild(i).gameObject);
         }
-        
+
     }
     public void DisableTreasureNodePanel()
 
@@ -640,7 +626,7 @@ public class GameplayManager : MonoBehaviour
     }
     public void GetGold()
     {
-        gold = Mathf.RoundToInt(gold*1.3f);
+        gold = Mathf.RoundToInt(gold * 1.3f);
         goldtxt.GetComponent<TextMeshProUGUI>().text = gold.ToString();
         coinButton.interactable = false;
         healButton.interactable = false;
