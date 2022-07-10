@@ -14,12 +14,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public int index;
     private int numOfTargets;
     public int baseNumOfTargets;
-
+    bool canCreate;
     private float posY;
     public float attack;
     public float defaultattack;
-
-
+    public int getPanel;
     public GameplayManager.Weapon myWeaponType;
     public cardType cType;
     public cardState currentCardState;
@@ -101,6 +100,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         cardAlign.helpingGO = null;
         if (currentCardState == cardState.Creatable)
         {
+            canCreate = false;
+            gameplayManager.cardToCreateInt = -1;
             currentCardState = cardState.Elsewhere;
             gameplayManager.cardToCreate = null;
         }
@@ -127,6 +128,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             cardAlign.pointerHandler = eventData.pointerEnter.transform.parent.transform.parent.GetSiblingIndex();
         if (currentCardState == cardState.Elsewhere)
         {
+            canCreate = true;
+            gameplayManager.cardToCreateInt = transform.GetSiblingIndex();
             currentCardState = cardState.Creatable;
             gameplayManager.cardToCreate = this.gameObject;
         }
@@ -710,13 +713,18 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     /// <param name=""></param>
     public void ChooseOfCreationMenu()
     {
-        
-        if (Input.GetButton("Fire1"))
+
+        if (Input.GetButton("Fire1") && canCreate == true &&gameplayManager.state == BattleState.CREATING)
         {
             // czy nie pociagnie karty przy klikniecniu jej
-            gameplayManager.CreateCard(gameplayManager.cardToCreate);
-            //ui zamknac panele i 
+            Debug.Log(gameplayManager.cardToCreate.transform.GetSiblingIndex());
+            Debug.Log(gameplayManager.cardToCreate.name);
+            gameplayManager.CreateCard(gameplayManager.cardToCreate,gameplayManager.cardToCreateInt,getPanel);
+            //zaleznie od panelu z ktorego ciagniemy
+            gameplayManager.discardDeck.RemoveAt(gameplayManager.cardToCreateInt);
             ui.EnableButtons(0);
+            gameplayManager.state = BattleState.PLAYERTURN;
+            canCreate = false;
         }
 
 

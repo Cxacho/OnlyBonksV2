@@ -11,7 +11,7 @@ public class PocketKnife : Relic
         temp.AddRange(gm.drawDeck);
         temp.AddRange(gm.discardDeck);
         if(temp.Contains(gm.allCards[0]) == false)
-        gm.CreateCard(gm.allCards[0]);
+        gm.CreateCard(gm.allCards[0],-1,66);
         base.OnEndTurn();
 
         //pl.strenght += 

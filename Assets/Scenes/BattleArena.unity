@@ -1048,6 +1048,7 @@ MonoBehaviour:
   battleUI: {fileID: 737091773}
   drawButton: {fileID: 939817791}
   cardToCreate: {fileID: 0}
+  cardToCreateInt: 0
   numOfList: 0
   currentFloor: 0
   basePlayerDrawAmount: 5

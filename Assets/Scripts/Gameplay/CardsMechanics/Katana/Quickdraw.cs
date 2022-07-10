@@ -32,7 +32,7 @@ public class Quickdraw : Card
         {
             base.OnDrop();
             player.setStatusIndicator(2, 4, player.buffIndicators[0]);
-            ui.DisableButtons(0);
+            ui.DisableButtons(getPanel);
             foreach (Enemy en in _enemies)
             {
                 if (en.targeted == true)

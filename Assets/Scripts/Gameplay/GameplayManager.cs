@@ -42,6 +42,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject battleUI;
     public GameObject drawButton;
     [HideInInspector]public GameObject cardToCreate;
+    public int cardToCreateInt;
     #endregion
 
     #region Ints
@@ -460,6 +461,8 @@ public class GameplayManager : MonoBehaviour
 
                 }
             var phCount = playerHand.Count;
+            foreach (Card obj in FindObjectsOfType<Card>())
+                obj.currentCardState = Card.cardState.Elsewhere;
             playerHand.ForEach(item => discardDeck.Add(item));
             playerHand.Clear();
             for (var i = phCount - 1; i >= 0; i--)
@@ -515,17 +518,38 @@ public class GameplayManager : MonoBehaviour
         if (playerDrawAmount < drawAmount)
             drawAmount = 0;
     }
-
-    public void CreateCard(GameObject obj)
+    /// <summary>
+    /// select wybor = wybor z ktorego decku bedziemy dociagac karte 0=discard, 1 = drawdeck,2=exhaust deck
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <param name="num"></param>
+    /// <param name="select"></param>
+    public void CreateCard(GameObject obj,int num,int select)
     {
         //var card = PrefabUtility.InstantiatePrefab(allCards[cardIndex]as GameObject) as GameObject;
-        playerHand.Add(obj);
-        var card = Instantiate(obj, Vector3.zero, Quaternion.identity);
-        card.transform.SetParent(cardAlign.gameObject.transform);
-        card.transform.localScale = Vector3.one;
-
+        if (num < 0)
+        {
+            var card = Instantiate(obj, Vector3.zero, Quaternion.identity);
+            playerHand.Add(obj);
+            card.transform.SetParent(cardAlign.gameObject.transform);
+            card.transform.localScale = Vector3.one;
+        }
+        else
+        {
+            GameObject instance;
+            //check z ktorej listy ma byc obiekt
+            if (select == 0)
+                instance = Instantiate(discardDeck[num], Vector3.zero, Quaternion.identity);
+            else if (select == 1)
+                instance = Instantiate(drawDeck[num], Vector3.zero, Quaternion.identity);
+            else instance = Instantiate(exhaustedDeck[num], Vector3.zero, Quaternion.identity);
+            //playerHand.Add(instance);
+            playerHand.Add(discardDeck[num]);
+            instance.transform.SetParent(cardAlign.gameObject.transform);
+            instance.transform.localScale = Vector3.one;
+            
+        }
         cardAlign.SetValues();
-
 
     }
     private void shuffleDeck()

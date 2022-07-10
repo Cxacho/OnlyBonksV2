@@ -357,6 +357,32 @@ public class UiActive : MonoBehaviour
     }
     public void DisableButtons(int select)
     {
+        switch (select)
+        {
+            case 0:
+                if (gm.discardDeck.Count == 0)
+                {
+                    Debug.Log("no card to choose from");
+                    return;
+                }
+                break;
+            case 1:
+                if (gm.drawDeck.Count == 0)
+                {
+                    Debug.Log("no card to choose from");
+                    return;
+                }
+                break;
+            case 2:
+                if (gm.exhaustedDeck.Count == 0)
+                {
+                    Debug.Log("no card to choose from");
+                    return;
+                }
+                break;
+        }
+
+        gm.state = BattleState.CREATING;
         for(int i=0;i<buttons.Count;i++)
         {
                 buttons[i].interactable = false;
@@ -366,9 +392,15 @@ public class UiActive : MonoBehaviour
             OnDiscardPile();
             OnDiscardPileClick();
         }
-        else
+        else if(select == 1)
+        {
             OnDrawPile();
-        OnDrawPileClick();
+            OnDrawPileClick();
+        }
+        else
+        {
+
+        }
 
     }
     public void EnableButtons(int select)
@@ -382,9 +414,15 @@ public class UiActive : MonoBehaviour
             OnDiscardPile();
             OnDiscardPileClick();
         }
-        else
+        else if (select == 1)
+        {
             OnDrawPile();
-        OnDrawPileClick();
+            OnDrawPileClick();
+        }
+        else
+        {
+
+        }
     }
 }
 

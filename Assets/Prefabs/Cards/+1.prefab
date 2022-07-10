@@ -30,6 +30,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8131779891813354372}
   m_Father: {fileID: 0}
@@ -72,6 +73,7 @@ TrailRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -179,21 +181,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1289b3d9d71da4bb3c4321cf241870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseCost: 0
   cost: 0
-  cType: 1
-  currentCardState: 0
-  trail: {fileID: 0}
-  pl: {fileID: 0}
-  gm: {fileID: 0}
+  scaleCardValues: 0
   index: 0
   baseNumOfTargets: 0
-  _enemies: []
-  exhaustable: 0
-  retainable: 0
   attack: 0
   defaultattack: 0
-  kalkulacja: 0
-  kalkulacjaPrzeciwnik: 0
+  myWeaponType: 0
+  cType: 1
+  currentCardState: 3
+  cardScalingtype: 0
+  secondaryScalingType: 0
+  cardDamageType: 0
+  trail: {fileID: 0}
+  ui: {fileID: 0}
+  player: {fileID: 0}
+  cardAlign: {fileID: 0}
+  gameplayManager: {fileID: 0}
+  interactible: 0
+  _enemies: []
+  exhaustable: 0
+  isNeutral: 0
+  retainable: 0
   desc: 
 --- !u!1 &1182447153954796977
 GameObject:
@@ -223,6 +233,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8131779891813354372}
   m_RootOrder: 1
@@ -357,6 +368,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8131779891813354372}
   m_RootOrder: 2
@@ -491,6 +503,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8131779891813354372}
   m_RootOrder: 0
@@ -625,6 +638,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8131779891813354372}
   m_RootOrder: 3
@@ -759,6 +773,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5637014248307631720}
   - {fileID: 2198005040331139264}
