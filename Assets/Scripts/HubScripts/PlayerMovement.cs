@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     NavMeshAgent nav;
     Vector3 mousePos;
+    public PlayerState state;
     TerrainCollider terrainCollider;
     void Awake()
     {
@@ -26,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
             //gameObject.layer 
             mousePos = hitData.point;
         }
-        if(Input.GetButtonUp("Fire1"))
+        if(Input.GetButtonUp("Fire1") && state == PlayerState.wandering)
         {
             if (hitData.collider.gameObject.layer == 5)
                 return;
@@ -35,5 +36,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
+    public enum PlayerState
+    {
+        wandering,
+        PanelActive
+    }
 }
