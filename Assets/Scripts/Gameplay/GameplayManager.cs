@@ -30,7 +30,8 @@ public class GameplayManager : MonoBehaviour
     [HideInInspector] public GameObject panelLose;
     [HideInInspector] public GameObject goldtxt;
     [HideInInspector] public GameObject shopPanel;
-    
+    [HideInInspector] public GameObject cardToCreate;
+
     #endregion
 
     #region GameObjects
@@ -41,7 +42,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject cardHolder;
     public GameObject battleUI;
     public GameObject drawButton;
-    [HideInInspector]public GameObject cardToCreate;
+    
     public int cardToCreateInt;
     #endregion
 
@@ -226,7 +227,7 @@ public class GameplayManager : MonoBehaviour
             resetDeck();
         }
         goldReward = 0;
-        //tu w construktorze trzeba wrzucic liste przeciwnikow na ktorom mozemy trafic, zeby mozna bylo ich roznie spawnic
+        
         exhaustedDeck.Clear();
         player.OnBattleSetup();
 
