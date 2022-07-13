@@ -188,15 +188,20 @@ MonoBehaviour:
   baseNumOfTargets: 1
   attack: 4
   defaultattack: 0
+  getPanel: 0
   myWeaponType: 0
   cType: 0
-  currentCardState: 0
+  currentCardState: 3
   cardScalingtype: 1
   secondaryScalingType: 0
   cardDamageType: 0
+  exitButton: {fileID: 1019920095713079653, guid: 999738602cea97c4882ce11df42f5f38, type: 3}
   trail: {fileID: 0}
+  ui: {fileID: 0}
   player: {fileID: 0}
+  cardAlign: {fileID: 0}
   gameplayManager: {fileID: 0}
+  interactible: 0
   _enemies: []
   exhaustable: 0
   isNeutral: 0

@@ -46,7 +46,7 @@ public class BasicDefend : Card
 
         
         base.CastOnPlay();
-        ApplyEffectToCard(3, 2, cardAlign.helpingGO.GetComponent<Card>());
+        ApplyEffectToCard(3, 1, cardAlign.helpingGO.GetComponent<Card>());
     }
 
 

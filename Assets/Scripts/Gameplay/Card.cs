@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 using TMPro;
@@ -25,14 +26,13 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public scalingType cardScalingtype;
     public scalingType secondaryScalingType;
     public damageType cardDamageType;
-
     private Vector3 discDek;
-
+    public GameObject exitButton;
     protected FollowMouse followMouse;
 
 
-    [SerializeField] TrailRenderer trail;
-    public UiActive ui;
+    TrailRenderer trail;
+    [HideInInspector]public UiActive ui;
     [HideInInspector] public Player player;
 
 
@@ -40,7 +40,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private Quaternion newRot;
     private Quaternion hoverRotation = new Quaternion(0, 0, 0, 0);
 
-    [HideInInspector]public CardAlign cardAlign;
+    [HideInInspector] public CardAlign cardAlign;
     [HideInInspector] public GameplayManager gameplayManager;
     private RectTransform pos;
     private GameObject par;
@@ -59,7 +59,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] private bool exhaustable;
     [SerializeField] bool isNeutral;
     public bool retainable;
-
+    UnityEngine.Object pPrefab;
 
 
     [HideInInspector] public string desc;
@@ -97,6 +97,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             currentCardState = cardState.InHand;
 
         }
+
         cardAlign.helpingGO = null;
         if (currentCardState == cardState.Creatable)
         {
@@ -196,7 +197,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 DropControl();
                 break;
             case cardState.Elsewhere:
-                //???
                 break;
             case cardState.Targetable:
                 DropControl();
@@ -281,8 +281,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         OnCursor = 2,
         Elsewhere = 3,
         Targetable = 4,
-        Interactible =5,
-        Creatable
+        Interactible = 5,
+        Creatable,
     }
     void ReturnToHand()
     {
@@ -338,8 +338,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     void OnClick()
     {
 
-        if (myWeaponType != gameplayManager.primaryWeapon && isNeutral ==false)
-        Debug.Log("cant play due to card to weapon type difference");
+        if (myWeaponType != gameplayManager.primaryWeapon && isNeutral == false)
+            Debug.Log("cant play due to card to weapon type difference");
         //return;
         if (player.mana - cost < 0)
             return;
@@ -350,10 +350,10 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         if (Input.GetButton("Fire1"))
         {
-            
+
             oldRot = this.transform.rotation;
             currentCardState = cardState.OnCursor;
-                this.transform.rotation = newRot;
+            this.transform.rotation = newRot;
             this.transform.SetParent(GameObject.Find("Canvas").transform);
 
         }
@@ -419,67 +419,64 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             }
         }
         if (exhaustable)
+        {
+
+            currentCardState = cardState.Elsewhere;
+            //play card
+            trail.enabled = true;
+            //anim
+            var go = this.gameObject;
+            var nazwaObiektu = go.name.Remove(go.name.Length - 7);
+            for (int i = 0; i < gameplayManager.playerHand.Count; i++)
+            {
+                if (nazwaObiektu.Equals(gameplayManager.playerHand[i].name))
                 {
+                    temp.Add(gameplayManager.playerHand[i]);
+                    gameplayManager.exhaustedDeck.Add(temp[0]);
+                    gameplayManager.playerHand.RemoveAt(i);
+                    temp.RemoveAt(0);
+                }
+            }
+            transform.DOMove(new Vector3(discDek.x, discDek.y, 0), 1.5f);
+            transform.DOScale(0.25f, 0.5f);
+            transform.DORotate(new Vector3(0, 0, -150f), 1.5f).OnComplete(() =>
+            {
+                trail.enabled = false;
+                this.transform.localScale = Vector3.one;
+                this.transform.rotation = newRot;
+                Destroy(this.gameObject);
+            }
 
-                    currentCardState = cardState.Elsewhere;
-                    //play card
-                    trail.enabled = true;
-                    //anim
-                    var go = this.gameObject;
-                    var nazwaObiektu = go.name.Remove(go.name.Length - 7);
-                    for (int i = 0; i < gameplayManager.playerHand.Count; i++)
-                    {
-                        if (nazwaObiektu.Equals(gameplayManager.playerHand[i].name))
-                        {
-                            temp.Add(gameplayManager.playerHand[i]);
-                            gameplayManager.exhaustedDeck.Add(temp[0]);
-                            gameplayManager.playerHand.RemoveAt(i);
-                            temp.RemoveAt(0);
-                        }
-                    }
-                    transform.DOMove(new Vector3(discDek.x, discDek.y, 0), 1.5f);
-                    transform.DOScale(0.25f, 0.5f);
-                    transform.DORotate(new Vector3(0, 0, -150f), 1.5f).OnComplete(() =>
-                    {
-                        trail.enabled = false;
-                        this.transform.localScale = Vector3.one;
-                        this.transform.rotation = newRot;
-                        Destroy(this.gameObject);
-                    }
-
-                    );
+            );
             cardAlign.SetValues();
         }
-                else
+        else
+        {
+            currentCardState = cardState.Elsewhere;
+            //play card
+            trail.enabled = true;
+            //anim
+            var go = this.gameObject;
+            var nazwaObiektu = go.name.Remove(go.name.Length - 7);
+            for (int i = 0; i < gameplayManager.playerHand.Count; i++)
+            {
+                if (nazwaObiektu.Equals(gameplayManager.playerHand[i].name))
                 {
-                    currentCardState = cardState.Elsewhere;
-                    //play card
-                    trail.enabled = true;
-                    //anim
-                    var go = this.gameObject;
-                    var nazwaObiektu = go.name.Remove(go.name.Length - 7);
-                    for (int i = 0; i < gameplayManager.playerHand.Count; i++)
-                    {
-                        if (nazwaObiektu.Equals(gameplayManager.playerHand[i].name))
-                        {
-                            temp.Add(gameplayManager.playerHand[i]);
-                            gameplayManager.discardDeck.Add(temp[0]);
-                            gameplayManager.playerHand.RemoveAt(i);
-                            temp.RemoveAt(0);
-                        }
-                    }
-                    transform.DOMove(new Vector3(discDek.x, discDek.y, 0), 1.5f);
-                    transform.DOScale(0.25f, 0.5f);
-                    transform.DORotate(new Vector3(0, 0, -150f), 1.5f).OnComplete(() =>
-                    {
-                        trail.enabled = false;
-                        this.transform.localScale = Vector3.one;
-                        this.transform.rotation = newRot;
-                        Destroy(this.gameObject);
-                    }
+                    temp.Add(gameplayManager.playerHand[i]);
+                    gameplayManager.discardDeck.Add(temp[0]);
+                    gameplayManager.playerHand.RemoveAt(i);
+                    temp.RemoveAt(0);
+                }
+            }
+            transform.DOMove(new Vector3(discDek.x, discDek.y, 0), 1.5f);
+            transform.DOScale(0.25f, 0.5f);
+            transform.DORotate(new Vector3(0, 0, -150f), 1.5f).OnComplete(() =>
+            {
+                Destroy(this.gameObject);
+            }
 
-                    );
-                cardAlign.SetValues();
+            );
+            cardAlign.SetValues();
         }
     }
     public void DropControl()
@@ -519,14 +516,14 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                         else if (numOfTargets == baseNumOfTargets - 2)
                             followMouse.en.isThirdTarget = true;
                     }
-                    
-                    else if (baseNumOfTargets <=3  & _enemies.Count == 1)
+
+                    else if (baseNumOfTargets <= 3 & _enemies.Count == 1)
                         followMouse.en.isFirstTarget = true;
                     else
 
                     {
                         //warunek dla 3 przeciwnikow
-                        if (_enemies.Count ==3)
+                        if (_enemies.Count == 3)
                         {
                             if (numOfTargets == baseNumOfTargets - 1)
                                 followMouse.en.isFirstTarget = true;
@@ -541,7 +538,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                                 followMouse.en.isSecondTarget = true;
                         }
                     }
-                    
+
                     followMouse.en.targeted = true;
                     numOfTargets -= 1;
                     if (numOfTargets == 0)
@@ -633,7 +630,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         //show text explaining action to take np choose target card
 
-        if (Input.GetButton("Fire1") && cardAlign.helpingGO !=null && cardAlign.helpingGO !=gameObject)
+        if (Input.GetButton("Fire1") && cardAlign.helpingGO != null && cardAlign.helpingGO != gameObject)
         {
             DisableIndicator();
             followMouse.rect[0].anchoredPosition = new Vector3(0, -400, 0);
@@ -641,7 +638,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             cardAlign.helpingGO = null;
             OnDrop();
         }
-        if(Input.GetButton("Fire2"))
+        if (Input.GetButton("Fire2"))
         {
             ReturnToHand();
             DisableIndicator();
@@ -692,11 +689,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             go.transform.DORotate(new Vector3(0, 0, -150f), 1.5f).OnComplete(() =>
             {
                 gameplayManager.state = BattleState.PLAYERTURN;
-                trail.enabled = false;
-                this.transform.localScale = Vector3.one;
-                this.transform.rotation = newRot;
                 Destroy(go);
-                
+
             }
 
             );
@@ -713,20 +707,65 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     /// <param name=""></param>
     public void ChooseOfCreationMenu()
     {
-
-        if (Input.GetButton("Fire1") && canCreate == true &&gameplayManager.state == BattleState.CREATING)
+        if (gameplayManager.state != BattleState.CREATING)
         {
-            // czy nie pociagnie karty przy klikniecniu jej
-            Debug.Log(gameplayManager.cardToCreate.transform.GetSiblingIndex());
-            Debug.Log(gameplayManager.cardToCreate.name);
-            gameplayManager.CreateCard(gameplayManager.cardToCreate,gameplayManager.cardToCreateInt,getPanel);
-            //zaleznie od panelu z ktorego ciagniemy
-            gameplayManager.discardDeck.RemoveAt(gameplayManager.cardToCreateInt);
-            ui.EnableButtons(0);
-            gameplayManager.state = BattleState.PLAYERTURN;
-            canCreate = false;
+
+
+            if (Input.GetButton("Fire1") && canCreate == true && gameplayManager.state == BattleState.PLAYERTURN && ui.cardToInspect == null)
+            {
+                GameObject inspected = null;
+                Button currentButton = null;
+                if (ui.panelIndex != 2 && ui.panelIndex != 3 && ui.panelIndex !=1)
+                    return;
+                canCreate = false;
+                switch (ui.panelIndex)
+                {
+                    //deck layout
+                    case 1:
+                        currentButton=ui.deckScreen.transform.GetChild(1).GetComponent<Button>();
+                        inspected = Instantiate(gameplayManager.startingDeck[gameplayManager.cardToCreateInt], Vector3.zero, Quaternion.identity);
+                        break;
+                    //deck
+                    case 2:
+                        currentButton = ui.drawPile.transform.GetChild(1).GetComponent<Button>();
+                        inspected = Instantiate(gameplayManager.drawDeck[gameplayManager.cardToCreateInt], Vector3.zero, Quaternion.identity);
+                        break;
+                        //discard
+                    case 3:
+                        currentButton=ui.discardPile.transform.GetChild(1).GetComponent<Button>();
+                        inspected = Instantiate(gameplayManager.discardDeck[gameplayManager.cardToCreateInt], Vector3.zero, Quaternion.identity);
+                        break;
+                        //exhaustdeck
+                }
+
+
+                currentButton.interactable = false;
+                inspected.transform.SetParent(gameplayManager.canvas.transform);
+                inspected.transform.localScale = Vector3.one;
+                inspected.transform.DOScale(new Vector3(2.5f, 2.5f, 2.5f), 0.5f);
+                ui.cardToInspect = inspected;
+                var obj = Instantiate(exitButton, new Vector3(0, -30, 0), Quaternion.identity);
+
+                obj.transform.SetParent(gameplayManager.canvas.transform);
+                obj.transform.localScale = Vector3.one;
+                obj.GetComponent<exitButton>().cardToDestroy =inspected;
+                obj.GetComponent<exitButton>().button = currentButton;
+                ui.SetButtonsNonInterractible();
+                //instantiate button ktory usuwa wszystko i resetuje buttony
+            }
         }
-
-
+        else
+        {
+            if (Input.GetButton("Fire1") && canCreate == true)
+            {
+                // czy nie pociagnie karty przy klikniecniu jej
+                gameplayManager.CreateCard(gameplayManager.cardToCreate, gameplayManager.cardToCreateInt, getPanel);
+                //zaleznie od panelu z ktorego ciagniemy
+                gameplayManager.discardDeck.RemoveAt(gameplayManager.cardToCreateInt);
+                ui.EnableButtons(0);
+                gameplayManager.state = BattleState.PLAYERTURN;
+                canCreate = false;
+            }
+        }
     }
 }

@@ -43,7 +43,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject battleUI;
     public GameObject drawButton;
     
-    public int cardToCreateInt;
+    [HideInInspector]public int cardToCreateInt;
     #endregion
 
     #region Ints

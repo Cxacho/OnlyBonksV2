@@ -18,6 +18,7 @@ public class UiActive : MonoBehaviour
      public GameObject eqPanel;
      public GameObject inventoryPanel;
      public GameObject eqParentObject;
+    [HideInInspector] public GameObject cardToInspect;
     List<TextMeshProUGUI> values = new List<TextMeshProUGUI>();
     [SerializeField] GameObject valuePanel;
     [SerializeField] private List<Button> buttons = new List<Button>();
@@ -383,10 +384,7 @@ public class UiActive : MonoBehaviour
         }
 
         gm.state = BattleState.CREATING;
-        for(int i=0;i<buttons.Count;i++)
-        {
-                buttons[i].interactable = false;
-        }
+        SetButtonsNonInterractible();
         if (select == 0)
         {
             OnDiscardPile();
@@ -403,12 +401,24 @@ public class UiActive : MonoBehaviour
         }
 
     }
-    public void EnableButtons(int select)
+    public void SetButtonsInterractible()
     {
         for (int i = 0; i < buttons.Count; i++)
         {
             buttons[i].interactable = true;
         }
+    }
+    public void SetButtonsNonInterractible()
+    {
+
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            buttons[i].interactable = false;
+        }
+    }
+    public void EnableButtons(int select)
+    {
+        SetButtonsInterractible();
         if (select == 0)
         {
             OnDiscardPile();
