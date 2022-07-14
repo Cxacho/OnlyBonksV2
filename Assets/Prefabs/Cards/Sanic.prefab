@@ -816,7 +816,6 @@ MonoBehaviour:
   secondaryScalingType: 0
   cardDamageType: 0
   exitButton: {fileID: 1019920095713079653, guid: 999738602cea97c4882ce11df42f5f38, type: 3}
-  trail: {fileID: 0}
   ui: {fileID: 0}
   player: {fileID: 0}
   cardAlign: {fileID: 0}
@@ -827,3 +826,37 @@ MonoBehaviour:
   isNeutral: 0
   retainable: 0
   desc: 
+  anCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.07720621
+      outSlope: 0.07720621
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.41945505
+      value: 0.032384533
+      inSlope: 0.13675873
+      outSlope: 0.13675873
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.20405151
+      outWeight: 0.29811174
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.6667366
+      outSlope: 1.6667366
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  trail: {fileID: 5105018118489598477, guid: 2a577e8604c89c545a1fdf0952fc5973, type: 3}

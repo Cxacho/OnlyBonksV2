@@ -209,6 +209,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8908353703065827776}
     m_Modifications:
+    - target: {fileID: 1747571583741718800, guid: 15e3ba2b88af35e4a81ca670206d1070, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2611757255047955684, guid: 15e3ba2b88af35e4a81ca670206d1070, type: 3}
       propertyPath: m_Name
       value: HitBlast

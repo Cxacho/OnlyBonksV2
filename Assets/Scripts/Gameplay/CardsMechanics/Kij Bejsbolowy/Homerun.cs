@@ -45,7 +45,7 @@ public class Homerun :  Card
         if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
-            Baseball = Instantiate(ball, player.transform.position + new Vector3(), Quaternion.identity);
+            Baseball = Instantiate(ball, player.transform.position + new Vector3(4,7,0), Quaternion.identity);
             Baseball.transform.SetParent(gameplayManager.canvas.transform);
             Baseball.transform.localScale = new Vector3(15,15,15);
             StartCoroutine(ExecuteAfterTime(1f));

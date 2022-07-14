@@ -161,78 +161,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         card = null;
 
             int updatedHealth;
-        if (pl.frail > 0)
-        {
-            if (armor > 0)
-            {
-                
-                if (armor > damage)
-                {
-                    armor -= Mathf.RoundToInt(damage*0.75f);
-                    textArmor.text = armor.ToString();
 
-                    dmgPopOutTMP.text = "Blocked " + Mathf.RoundToInt(damage) + " dmg";
-                    dmgPopOutTMP.color = new Color(0, 0, 255);
-
-                    TextMeshProUGUI dmgText;
-                    dmgText = Instantiate(dmgPopOutTMP, dmgPopOutBlock.transform);
-
-
-                    Sequence dmgTextSeq = DOTween.Sequence();
-                    dmgTextSeq.Append(dmgText.transform.DOMoveY(8f, 1f));
-                    dmgTextSeq.Insert(0, dmgText.transform.DOMoveX(1f, dmgTextSeq.Duration()));
-                    dmgTextSeq.OnComplete(() => { GameObject.Destroy(dmgText); });
-
-                    updatedHealth = _currentHealth;
-                } // enemy ma wiecej armora niz my obrazen
-                else
-                {
-                    armorAndHp = armor + _currentHealth;
-                    armorAndHp -= Mathf.RoundToInt(damage*0.75f);
-                    int dmgarm;
-                    dmgarm = Mathf.RoundToInt(damage*0.75f) - armor;
-                    armor = 0;
-                    updatedHealth = armorAndHp;
-                    ResetImg();
-
-                    dmgPopOutTMP.text = "- " + dmgarm;
-                    Debug.Log("Chuju dzialaj" + dmgarm);
-                    dmgPopOutTMP.color = new Color(255, 0, 0);
-
-                    TextMeshProUGUI dmgText;
-                    dmgText = Instantiate(dmgPopOutTMP, dmgPopOutBlock.transform);
-
-                    Sequence dmgTextSeq = DOTween.Sequence();
-                    dmgTextSeq.Append(dmgText.transform.DOMoveY(8f, 0.5f));
-                    dmgTextSeq.Append(dmgText.transform.DOMoveY(-60f, 1f));
-                    dmgTextSeq.Insert(0, dmgText.transform.DOMoveX(1f, dmgTextSeq.Duration()));
-                    dmgTextSeq.OnComplete(() => { GameObject.Destroy(dmgText); });
-                } // enemy ma mniej armora niz my obrazen
-            } //enemy ma armora
-            else 
-            {
-
-                updatedHealth = (int)_currentHealth - Mathf.RoundToInt(damage*0.75f);
-
-                dmgPopOutTMP.text = "- " + Mathf.RoundToInt(damage*0.75f);
-                dmgPopOutTMP.color = new Color(255, 0, 0);
-                TextMeshProUGUI dmgText;
-                dmgText = Instantiate(dmgPopOutTMP, dmgPopOutBlock.transform);
-
-                Sequence dmgTextSeq = DOTween.Sequence();
-                dmgTextSeq.Append(dmgText.transform.DOMoveY(8f, 0.5f));
-                dmgTextSeq.Append(dmgText.transform.DOMoveY(-60f, 1f));
-                dmgTextSeq.Insert(0, dmgText.transform.DOMoveX(1f, dmgTextSeq.Duration()));
-                dmgTextSeq.OnComplete(() => { GameObject.Destroy(dmgText); });
-            } //enemy nie ma armora
-
-            OnDeath(updatedHealth > 0 ? updatedHealth : 0);
-            healthTxt.text = updatedHealth + "/" + maxHealth;
-            sdh.SetHealth(updatedHealth);
-            
-        } //enemy ma fraila
-        else
-        {
             if (armor > 0)
             {
 
@@ -298,7 +227,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
             OnDeath(updatedHealth > 0 ? updatedHealth : 0);
             healthTxt.text = updatedHealth + "/" + maxHealth;
             sdh.SetHealth(updatedHealth);
-        }//enemy nie ma fraila
+
 
         if (gm.enemies.Count == 0)
         {

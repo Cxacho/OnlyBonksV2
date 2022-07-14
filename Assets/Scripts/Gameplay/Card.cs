@@ -711,7 +711,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
 
 
-            if (Input.GetButton("Fire1") && canCreate == true && gameplayManager.state == BattleState.PLAYERTURN && ui.cardToInspect == null)
+            if (Input.GetButtonUp("Fire1") && canCreate == true && gameplayManager.state == BattleState.PLAYERTURN && ui.cardToInspect == null)
             {
                 GameObject inspected = null;
                 Button currentButton = null;

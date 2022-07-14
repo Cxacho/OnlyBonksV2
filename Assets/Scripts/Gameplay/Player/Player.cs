@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     public int frail,vurneable,poison,energize;
     public List<GameObject> buffIndicators = new List<GameObject>();
     playerStatusses currentBuff;
+    public Vector3 myOriginalPosition;
 
     
 
@@ -40,7 +41,7 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
         armor = 0;
         mana = 3;
-
+        myOriginalPosition = this.transform.position;
     }
 
     void Start()
@@ -49,6 +50,10 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetKeyUp("p"))
+        {
+            Walk(myOriginalPosition);
+        }
         if (armor > 0)
         {
             armorImage.SetActive(true);
@@ -368,5 +373,19 @@ public class Player : MonoBehaviour
         {
             Destroy(obj);
         }
+    }
+    public void Walk(Vector3 destination)
+    {
+        //check jak daleka jest odleglosc
+        transform.DORotate(new Vector3(0, 180, -40), 0.4f).OnComplete(() =>
+        {
+            transform.DORotate(new Vector3(0, 180, 40), 0.4f, RotateMode.Fast).SetLoops(3, LoopType.Yoyo).OnComplete(() =>
+           {
+               transform.DORotate(new Vector3(0, 180, 0), 0.4f);
+           });
+        });
+        
+        transform.DOMove(destination, 1.2f); 
+        //na dotarciu przerwac rotacje
     }
 }
