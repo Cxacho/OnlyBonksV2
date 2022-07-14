@@ -3,7 +3,13 @@ guid: 28e27e0abe6ad38499a5950dcf1de238
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - exitButton: {instanceID: 0}
+  - ui: {instanceID: 0}
+  - player: {instanceID: 0}
+  - cardAlign: {instanceID: 0}
+  - gameplayManager: {instanceID: 0}
+  - ball: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

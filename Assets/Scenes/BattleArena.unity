@@ -1050,7 +1050,7 @@ MonoBehaviour:
   drawButton: {fileID: 939817791}
   cardToCreateInt: 0
   numOfList: 0
-  currentFloor: 0
+  currentFloor: 8
   basePlayerDrawAmount: 5
   gold: 100
   currentXP: 0
@@ -1129,6 +1129,7 @@ MonoBehaviour:
   - {fileID: 3278963245332868438, guid: 051a2292f88cf3245aadece428e909f6, type: 3}
   - {fileID: 3383854915774529881, guid: bdf64af54e6e0804ca6cc76cd5ac0d99, type: 3}
   - {fileID: 2858555165568228111, guid: 102c29a2564968041b8c1a1c8584015e, type: 3}
+  - {fileID: 7546190796451804516, guid: 88857b4396b9d284e9464ca71d8ab3ff, type: 3}
   exhaustedDeck: []
   drawDeck: []
   enemiesIndicators:
