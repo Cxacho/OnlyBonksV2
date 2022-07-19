@@ -21,9 +21,10 @@ public class BasicDefend : Card
         {
             player.GetArmor(armor);
 
-
+            
             player.manaText.text = player.mana.ToString();
             base.OnDrop();
+            ui.DisableButtons(0);
             /*
             foreach (Enemy en in _enemies)
             {
@@ -33,7 +34,7 @@ public class BasicDefend : Card
             }
             */
             //gm.CreateCard(0);
-            
+
         }
         else
         {

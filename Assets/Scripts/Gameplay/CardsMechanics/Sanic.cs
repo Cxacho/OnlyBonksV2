@@ -7,7 +7,8 @@ public class Sanic : Card
 {
     [SerializeField] AnimationCurve anCurve;
     [SerializeField] GameObject trail;
-
+    [SerializeField] GameObject sanicRings;
+    List<GameObject> distances = new List<GameObject>();
     private void Start()
     {
         desc = $"Deal <color=white>{attack.ToString()}</color> damage";
@@ -18,6 +19,20 @@ public class Sanic : Card
 
     private void FixedUpdate()
     {
+        //if (player.transform.position.dista)
+        if (gameplayManager.state != BattleState.PLAYERTURN)
+            return;
+        distances.Clear();
+        for (int i = 0; i < gameplayManager.enemyBattleStation.Length; i++)
+            if (gameplayManager.enemyBattleStation[i].transform.childCount == 0) continue;
+            else
+            {
+                distances.Add(gameplayManager.enemyBattleStation[i].gameObject);
+            }
+        for (int j = 0; j < distances.Count; j++)
+            if (Vector3.Distance(distances[j].transform.position, player.transform.position) < 8)
+                Instantiate(sanicRings, player.transform.position, Quaternion.identity);
+
 
         calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
 
@@ -35,8 +50,8 @@ public class Sanic : Card
         gameplayManager.checkPlayerMana(cost);
         if (gameplayManager.canPlayCards == true)
         {
-            Debug.Log(_enemies.Count);
-            StartCoroutine(ExecuteAfterTime(1f));
+           
+            StartCoroutine(ExecuteAfterTime());
             //enable trail
             var sanTrail = Instantiate(trail, player.transform.position, Quaternion.identity);
             sanTrail.transform.SetParent(player.transform);
@@ -49,7 +64,8 @@ public class Sanic : Card
                }
                player.transform.position = new Vector3(-80, player.transform.position.y, player.transform.position.z);
                player.Walk(player.myOriginalPosition);
-               Destroy(sanTrail,0.1f);
+               sanTrail.transform.SetParent(gameplayManager.canvas.transform);
+               Destroy(sanTrail,1f);
                //disbaletrail
            });
 
@@ -64,24 +80,16 @@ public class Sanic : Card
         }
     }
 
-    IEnumerator ExecuteAfterTime(float time)
+    IEnumerator ExecuteAfterTime()
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(0);
+       // Instantiate(sanicRings, player.transform.position, Quaternion.identity);
+        //yield return new WaitForSeconds(0.2f);
+        //Instantiate(sanicRings, player.transform.position, Quaternion.identity);
 
-
-        //enemy.ReceiveDamage(attack * pl.strenght);
-
-
+       // yield return new WaitForSeconds(0.5f);
+       // Instantiate(sanicRings, player.transform.position, Quaternion.identity);
         player.manaText.text = player.mana.ToString();
-
-
-        /* else
-         {
-             // enemy.currentHealth = 0;
-             gm.state = BattleState.WON;
-             StartCoroutine(gm.OnBattleWin());
-
-         }*/
 
 
 

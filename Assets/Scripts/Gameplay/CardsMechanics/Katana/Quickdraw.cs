@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 public class Quickdraw : Card
 {
-
+    [SerializeField]GameObject cutVfx;
     private void Start()
     {
         desc = $"Deal <color=white>{attack.ToString()}</color> damage to first enemy";
@@ -32,14 +33,17 @@ public class Quickdraw : Card
         {
             base.OnDrop();
             player.setStatusIndicator(2, 4, player.buffIndicators[0]);
-            ui.DisableButtons(getPanel);
+
+            //ui.DisableButtons(getPanel);
             foreach (Enemy en in _enemies)
             {
                 if (en.targeted == true)
                 {
-                    en.RecieveDamage(attack, this);
+                    {
+                        en.RecieveDamage(attack, this);
+                        en.targeted = false;
+                    }
 
-                    en.targeted = false;
                 }
             }
             resetTargetting();

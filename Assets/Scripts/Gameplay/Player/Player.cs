@@ -376,7 +376,12 @@ public class Player : MonoBehaviour
     }
     public void Walk(Vector3 destination)
     {
-        //check jak daleka jest odleglosc
+        //check jak daleka jest odleglosc poprzez lerp
+        float velocity = 34;
+
+        float distance = Mathf.Abs(destination.x - this.transform.position.x);
+        var time = distance / velocity;
+        //ruch wylancznie sprajtem, bez paska i innych dupereli
         transform.DORotate(new Vector3(0, 180, -40), 0.4f).OnComplete(() =>
         {
             transform.DORotate(new Vector3(0, 180, 40), 0.4f, RotateMode.Fast).SetLoops(3, LoopType.Yoyo).OnComplete(() =>
@@ -385,7 +390,7 @@ public class Player : MonoBehaviour
            });
         });
         
-        transform.DOMove(destination, 1.2f); 
+        transform.DOMove(destination, time); 
         //na dotarciu przerwac rotacje
     }
 }

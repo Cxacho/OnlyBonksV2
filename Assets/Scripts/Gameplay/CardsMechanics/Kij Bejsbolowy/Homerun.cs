@@ -12,6 +12,7 @@ public class Homerun :  Card
     [SerializeField] AnimationCurve secondaryCurve;
     [SerializeField]Vector3 offset;
     VisualEffect hitBlastEffect;
+    [SerializeField] GameObject hitBlast;
     private void Start()
     {
         var get03procent = defaultattack * 0.3f;
@@ -19,8 +20,7 @@ public class Homerun :  Card
         desc = $"Deal <color=white>{attack.ToString()}</color> damage to first enemy and <color=white>{get03procent.ToString()}</color> to second enemy";
 
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
-        hitBlastEffect = ball.transform.GetChild(1).GetComponent<VisualEffect>();
-        hitBlastEffect.enabled = false;
+
     }
 
 
@@ -60,7 +60,9 @@ public class Homerun :  Card
                 Baseball.transform.DOMove(firstEnemy.transform.position+ offset, 0.5f).SetEase(anCurve).OnComplete(() =>
                 {
                     //play vfx uderzenia
-                    hitBlastEffect.enabled = true;
+                    var blast = Instantiate(hitBlast, Baseball.transform.position, Quaternion.identity);
+                    blast.transform.SetParent(gameplayManager.canvas.transform);
+                    Destroy(blast, 0.3f);
                     firstEnemy.RecieveDamage(attack, this);
                     firstEnemy.targeted = false;
                     firstEnemy.isFirstTarget = false;
@@ -70,7 +72,6 @@ public class Homerun :  Card
                     }
                     else
                     {
-                        hitBlastEffect.enabled = false;
                         var mean =Mathf.Abs(secondEnemy.transform.position.x - firstEnemy.transform.position.x);
                         Debug.Log(secondEnemy.transform.position);
                         Debug.Log(firstEnemy.transform.position);
@@ -80,7 +81,10 @@ public class Homerun :  Card
                             Baseball.transform.DOMove(secondEnemy.transform.position + offset, 0.7f).SetEase(anCurve).OnComplete(() =>
                             {
                                 //play vfx uderzenia
-                                hitBlastEffect.enabled = true;
+
+                                var blast2 = Instantiate(hitBlast, Baseball.transform.position, Quaternion.identity);
+                                blast2.transform.SetParent(gameplayManager.canvas.transform);
+                                Destroy(blast2, 0.3f);
                                 secondEnemy.RecieveDamage(Mathf.RoundToInt((attack) * 0.3f), this); // do zmiany po demie
                                 secondEnemy.targeted = false;
                                 secondEnemy.isSecondTarget = false;

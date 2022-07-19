@@ -860,3 +860,4 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   trail: {fileID: 5105018118489598477, guid: 2a577e8604c89c545a1fdf0952fc5973, type: 3}
+  sanicRings: {fileID: 3409254526250721755, guid: a88af9b82c6a67242af4ed8d3f48475a, type: 3}

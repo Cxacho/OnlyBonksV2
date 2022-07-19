@@ -642,6 +642,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   offset: {x: 0, y: 3, z: 0}
+  hitBlast: {fileID: 2611757255047955684, guid: 15e3ba2b88af35e4a81ca670206d1070, type: 3}
 --- !u!1 &8585756771313445467
 GameObject:
   m_ObjectHideFlags: 0

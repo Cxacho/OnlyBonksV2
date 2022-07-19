@@ -76,7 +76,10 @@ VisualEffect:
     m_Gradient:
       m_Array: []
     m_NamedObject:
-      m_Array: []
+      m_Array:
+      - m_Value: {fileID: 2800000, guid: 2e66c93241d203548b44d8bac04e8284, type: 3}
+        m_Name: MainTexutre
+        m_Overridden: 1
     m_Bool:
       m_Array: []
 --- !u!73398921 &2105026253938286435
