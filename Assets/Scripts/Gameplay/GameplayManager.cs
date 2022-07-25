@@ -28,7 +28,7 @@ public class GameplayManager : MonoBehaviour
     [HideInInspector] public GameObject treasurePanel, restSitePanel, mysteryPanel;
     [HideInInspector] public GameObject treasurePanelButton;
     [HideInInspector] public GameObject panelLose;
-    [HideInInspector] public GameObject goldtxt;
+    public GameObject goldtxt;
     [HideInInspector] public GameObject shopPanel;
     [HideInInspector] public GameObject cardToCreate;
 
@@ -36,12 +36,12 @@ public class GameplayManager : MonoBehaviour
 
     #region GameObjects
     public GameObject goldRewardGameObject;
-    public GameObject textPanel;
+    public GameObject enemyTurnTextPanel;
     public GameObject panelWin;
     public GameObject canvas;
     public GameObject cardHolder;
     public GameObject battleUI;
-    public GameObject drawButton;
+    public GameObject drawDeckButton;
     
     [HideInInspector]public int cardToCreateInt;
     #endregion
@@ -505,10 +505,10 @@ public class GameplayManager : MonoBehaviour
                 shuffleDeck();
             }
             var random = Random.Range(0, drawDeck.Count);
-            GameObject card = Instantiate(drawDeck[random], drawButton.transform.position, transform.rotation);
+            GameObject card = Instantiate(drawDeck[random], drawDeckButton.transform.position, transform.rotation);
             card.transform.SetParent(cardAlign.gameObject.transform);
             card.GetComponent<Card>().index = card.transform.GetSiblingIndex();
-            var updateValue = drawButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+            var updateValue = drawDeckButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
             updateValue.text = (drawDeck.Count - 1).ToString();
             card.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             playerHand.Add(drawDeck[random]);
@@ -597,7 +597,7 @@ public class GameplayManager : MonoBehaviour
     }
     private async Task ExecuteDarkSoulsText(string _text)
     {
-        textPanel.SetActive(true);
+        enemyTurnTextPanel.SetActive(true);
         darkSoulsText.text = _text;
         Sequence sequence = DOTween.Sequence();
         sequence.Append(darkSoulsText.DOFade(1, 1.5f));
@@ -606,7 +606,7 @@ public class GameplayManager : MonoBehaviour
         {
             darkSoulsText.DOFade(0, 0);
             darkSoulsText.transform.DOScale(1f, 0);
-            textPanel.SetActive(false);
+            enemyTurnTextPanel.SetActive(false);
         });
         await Task.Delay(2000);
 
