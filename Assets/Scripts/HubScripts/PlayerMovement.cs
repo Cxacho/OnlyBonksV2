@@ -20,6 +20,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if(DialogueManager.GetInstance().dialogueIsPlaying)
+        {
+            return;
+        }
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitData;
         if (terrainCollider.Raycast(ray, out hitData, 1000))
