@@ -23,6 +23,7 @@ TagManager:
   - EnemyStatusIndicator
   - enPermStatus
   - Inventory
+  - NPCDialogue
   layers:
   - Default
   - TransparentFX
