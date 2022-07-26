@@ -11643,7 +11643,6 @@ MonoBehaviour:
   mysteryPanel: {fileID: 0}
   treasurePanelButton: {fileID: 0}
   panelLose: {fileID: 0}
-  goldtxt: {fileID: 1690326925}
   shopPanel: {fileID: 0}
   cardToCreate: {fileID: 0}
   goldRewardGameObject: {fileID: 313249706}
@@ -11653,6 +11652,7 @@ MonoBehaviour:
   cardHolder: {fileID: 1827321655}
   battleUI: {fileID: 210205111}
   drawDeckButton: {fileID: 962190024}
+  goldTxtTopUI: {fileID: 1690326925}
   cardToCreateInt: 0
   numOfList: 0
   currentFloor: 0
@@ -25165,6 +25165,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7250239850451499556, guid: 29fcb356a0a4b95478b18586d4dde005, type: 3}
+      propertyPath: gm
+      value: 
+      objectReference: {fileID: 926630957}
+    - target: {fileID: 7250239850451499556, guid: 29fcb356a0a4b95478b18586d4dde005, type: 3}
+      propertyPath: topHp
+      value: 
+      objectReference: {fileID: 1031003178}
+    - target: {fileID: 7250239850451499556, guid: 29fcb356a0a4b95478b18586d4dde005, type: 3}
+      propertyPath: manaText
+      value: 
+      objectReference: {fileID: 1695051792}
     - target: {fileID: 7250239850451499557, guid: 29fcb356a0a4b95478b18586d4dde005, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

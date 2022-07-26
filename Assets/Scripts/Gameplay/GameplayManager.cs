@@ -28,7 +28,6 @@ public class GameplayManager : MonoBehaviour
     [HideInInspector] public GameObject treasurePanel, restSitePanel, mysteryPanel;
     [HideInInspector] public GameObject treasurePanelButton;
     [HideInInspector] public GameObject panelLose;
-    public GameObject goldtxt;
     [HideInInspector] public GameObject shopPanel;
     [HideInInspector] public GameObject cardToCreate;
 
@@ -42,7 +41,8 @@ public class GameplayManager : MonoBehaviour
     public GameObject cardHolder;
     public GameObject battleUI;
     public GameObject drawDeckButton;
-    
+    public GameObject goldTxtTopUI;
+
     [HideInInspector]public int cardToCreateInt;
     #endregion
 
@@ -201,7 +201,7 @@ public class GameplayManager : MonoBehaviour
         else endTurn.interactable = false;
 
 
-        goldtxt.GetComponent<TextMeshProUGUI>().text = gold.ToString();
+        goldTxtTopUI.GetComponent<TextMeshProUGUI>().text = gold.ToString();
     }
     IEnumerator ChooseNode()
     {
@@ -652,7 +652,7 @@ public class GameplayManager : MonoBehaviour
     public void GetGold()
     {
         gold = Mathf.RoundToInt(gold * 1.3f);
-        goldtxt.GetComponent<TextMeshProUGUI>().text = gold.ToString();
+        goldTxtTopUI.GetComponent<TextMeshProUGUI>().text = gold.ToString();
         coinButton.interactable = false;
         healButton.interactable = false;
     }

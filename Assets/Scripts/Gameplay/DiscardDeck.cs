@@ -5,19 +5,19 @@ using UnityEngine;
 public class DiscardDeck : MonoBehaviour
 {
 
-    public Transform discardDeckScreen;
+    public Transform discardDeckTransform;
     public GameObject discardPanel;
 
-    public GameplayManager gm;
+    public GameplayManager gameplayManager;
 
 
     public void DisplayDiscardPile()   //Pokazanie DrawPile
     {
         
-            for (int i = 0; i < gm.discardDeck.Count; i++)
+            for (int i = 0; i < gameplayManager.discardDeck.Count; i++)
             {
                 if (discardPanel.activeSelf)
-                    Instantiate(gm.discardDeck[i], GameObject.FindGameObjectWithTag("DiscardDeck").transform);
+                    Instantiate(gameplayManager.discardDeck[i], GameObject.FindGameObjectWithTag("DiscardDeck").transform);
             }
         
     }

@@ -28,12 +28,12 @@ public class BasicDefend : Card
             /*
             foreach (Enemy en in _enemies)
             {
-                en.setStatusIndicator(3, 0, gm.enemiesIndicators[0]);
-                en.setStatusIndicator(3, 1, gm.enemiesIndicators[1]);
-                    en.setStatusIndicator(3, 2, gm.enemiesIndicators[2]);
+                en.setStatusIndicator(3, 0, gameplayManager.enemiesIndicators[0]);
+                en.setStatusIndicator(3, 1, gameplayManager.enemiesIndicators[1]);
+                    en.setStatusIndicator(3, 2, gameplayManager.enemiesIndicators[2]);
             }
             */
-            //gm.CreateCard(0);
+            //gameplayManager.CreateCard(0);
 
         }
         else

@@ -156,7 +156,7 @@ public class Inventory : MonoBehaviour
                 Debug.Log("switch item slots");
                 currentSlot.GetComponent<ItemSlots>().currentItem.GetComponent<Inventory>().RemoveStats();
                 currentSlot.GetComponent<ItemSlots>().currentItem.GetComponent<Inventory>().RemoveCards();
-                //gm.ItemsInInventory.Add(this.gameObject);
+                //gameplayManager.ItemsInInventory.Add(this.gameObject);
                 moveToFirstOpenSpace(currentSlot.GetComponent<ItemSlots>().currentItem, currentSlot.GetComponent<ItemSlots>().currentItem.GetComponent<Inventory>().spaceUsage);
                 currentSlot.GetComponent<ItemSlots>().currentItem = this.gameObject;
                 this.transform.SetParent(currentSlot.transform);
@@ -174,7 +174,7 @@ public class Inventory : MonoBehaviour
                     gm.primaryWeapon = myWeaponType;
                 else if (currentSlot.GetComponent<ItemSlots>().slot == ItemSlots.mySlotType.secondaryWeapon)
                     gm.secondaryWeapon = myWeaponType;
-                //gm.ItemsInInventory.Add(this.gameObject);
+                //gameplayManager.ItemsInInventory.Add(this.gameObject);
                 currentSlot.GetComponent<ItemSlots>().currentItem = this.gameObject;
                 this.transform.SetParent(currentSlot.transform);
                 this.transform.position = currentSlot.transform.position;

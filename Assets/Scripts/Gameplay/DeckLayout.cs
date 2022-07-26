@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class DeckLayout : MonoBehaviour
 {
-    public Transform deckScreen;
+    public Transform deckPanelTransform;
 
-    public GameplayManager gm;
+    public GameplayManager gameplayManager;
 
     public GameObject deckPanel;
-    public GameObject drawPanel;
+    public GameObject drawDeckPanel;
     
     void Start()
     {
@@ -19,10 +19,10 @@ public class DeckLayout : MonoBehaviour
     {
 
         //spawn kart do decku
-        for (int i = 0; i < gm.startingDeck.Count; i++)
+        for (int i = 0; i < gameplayManager.startingDeck.Count; i++)
         {
             if(deckPanel.activeSelf)
-            Instantiate(gm.startingDeck[i], GameObject.FindGameObjectWithTag("Panel").transform);
+            Instantiate(gameplayManager.startingDeck[i], GameObject.FindGameObjectWithTag("Panel").transform);
             
             
         }

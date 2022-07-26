@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class DropZone : MonoBehaviour
 {
     /*
-    [SerializeField] private GameplayManager gm;
+    [SerializeField] private GameplayManager gameplayManager;
     
 
     private GameObject go;
@@ -18,16 +18,16 @@ public class DropZone : MonoBehaviour
         go = eventData.pointerDrag;
         udasie = go.name.Remove(go.name.Length - 7);
         Debug.Log(udasie);
-        for (int i = 0; i < gm.playerHand.Count; i++)
+        for (int i = 0; i < gameplayManager.playerHand.Count; i++)
         {
             
             
-            if (udasie.Equals(gm.playerHand[i].name))
+            if (udasie.Equals(gameplayManager.playerHand[i].name))
             {
-                temp.Add(gm.playerHand[i]);
+                temp.Add(gameplayManager.playerHand[i]);
 
-                gm.discardDeck.Add(temp[0]);
-                gm.playerHand.RemoveAt(i);
+                gameplayManager.discardDeck.Add(temp[0]);
+                gameplayManager.playerHand.RemoveAt(i);
                 temp.RemoveAt(0);
             }
         }

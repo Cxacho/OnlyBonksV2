@@ -21,7 +21,7 @@ public class BabalityScript : Card
                 {
                     anim.Add(en.gameObject.GetComponent<Animator>());
                     /*
-                    foreach (GameObject enm in gm.enemies)
+                    foreach (GameObject enm in gameplayManager.enemies)
                     {
                         anim.Add(enm.GetComponent<Animator>());
                     }

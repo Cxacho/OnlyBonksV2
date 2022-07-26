@@ -76,8 +76,8 @@ public class DefensiveAttack : Card
         /* else
          {
              // enemy.currentHealth = 0;
-             gm.state = BattleState.WON;
-             StartCoroutine(gm.OnBattleWin());
+             gameplayManager.state = BattleState.WON;
+             StartCoroutine(gameplayManager.OnBattleWin());
 
          }*/
 

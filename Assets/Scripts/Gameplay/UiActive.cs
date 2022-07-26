@@ -190,7 +190,7 @@ public class UiActive : MonoBehaviour
             var clones = GameObject.FindGameObjectsWithTag("Card");
             foreach (var clone in clones)
             {
-                if (clone.transform.IsChildOf(deckScreen.transform))
+                if (clone.transform.IsChildOf(deckPanelTransform.transform))
                 {
                     Destroy(clone);
                 }

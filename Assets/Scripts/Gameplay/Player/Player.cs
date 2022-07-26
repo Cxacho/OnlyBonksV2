@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     public SliderHealth sdh;
     public GameObject dmgPopOutBlock;
     public TextMeshProUGUI dmgPopOutTMP;
-    public GameplayManager gm;
+    public GameplayManager gameplayManager;
     public int strenght = 0;
     public int dexterity = 0;
     public int inteligence = 0;
@@ -301,8 +301,8 @@ public class Player : MonoBehaviour
             TakeDamage(poison);
             if (currentHealth == 0)
             {
-                gm.state = BattleState.LOST;
-                StartCoroutine(gm.OnBattleLost());
+                gameplayManager.state = BattleState.LOST;
+                StartCoroutine(gameplayManager.OnBattleLost());
             }
             poison--;
         }
@@ -354,12 +354,12 @@ public class Player : MonoBehaviour
     public void OnBattleSetup()
     {
         armor = 0;
-        gm.playerHand.Clear();
+        gameplayManager.playerHand.Clear();
 
-        //gm.discardDeck.ForEach(item => gm.drawDeck.Add(item));
-        gm.drawDeck.Clear();
-        gm.discardDeck.Clear();
-        gm.drawDeck.AddRange(gm.startingDeck);
+        //gameplayManager.discardDeck.ForEach(item => gameplayManager.drawDeck.Add(item));
+        gameplayManager.drawDeck.Clear();
+        gameplayManager.discardDeck.Clear();
+        gameplayManager.drawDeck.AddRange(gameplayManager.startingDeck);
         strenght = 0;
         dexterity = 0;
         inteligence = 0;
