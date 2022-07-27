@@ -9,6 +9,10 @@ public class DialogueManager : MonoBehaviour
 {
     private static DialogueManager instance;
 
+    [Header("GameObjects")]
+    public GameObject cardShopPanel;
+
+
     [Header("Params")]
     [SerializeField] private float typingSpeed = 0.04f;
 
@@ -39,6 +43,7 @@ public class DialogueManager : MonoBehaviour
 
     private const string LAYOUT_TAG = "layout";
 
+    private string tagPanel;
     private void Awake()
     {
         if(instance != null)
@@ -86,6 +91,7 @@ public class DialogueManager : MonoBehaviour
             submitButtonPressedThisFrame = false;
             ContinueStory();
         }
+        Debug.Log(tagPanel);
     }
     private IEnumerator Wait()
     {
@@ -95,11 +101,11 @@ public class DialogueManager : MonoBehaviour
     {
         StartCoroutine(Wait());
         submitButtonPressedThisFrame = true;
-        Debug.Log("meh?");
+        
         currentStory = new Story(inkJSON.text);
         
         dialogueIsPlaying = true;
-        //displayingLine = true;
+        
         dialoguePanel.SetActive(true);
 
         ContinueStory();
@@ -182,12 +188,14 @@ public class DialogueManager : MonoBehaviour
             string tagKey = splitTag[0].Trim();
             string tagValue = splitTag[1].Trim();
 
+            
 
             switch(tagKey)
             {
                 case SPEAKER_TAG:
                     Debug.Log("speaker = " + tagValue);
                     displayNameText.text = tagValue;
+                    tagPanel = tagValue;
                     break ;
                 case PORTRAIT_TAG:
                     Debug.Log("portrait = " + tagValue);
@@ -239,7 +247,10 @@ public class DialogueManager : MonoBehaviour
         if(canContinueToNextLine)
         {
             currentStory.ChooseChoiceIndex(choiceIndex);
-
+            if (choiceIndex == 0 && tagPanel == "CardMerchant")
+            { 
+                cardShopPanel.SetActive(true);
+            }
             ContinueStory();
 
         }
