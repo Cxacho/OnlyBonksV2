@@ -12419,17 +12419,17 @@ MonoBehaviour:
   state: 1
   primaryWeapon: 0
   secondaryWeapon: 0
-  drawPile: {fileID: 0}
-  playersHand: {fileID: 0}
-  discardPile: {fileID: 0}
-  discardDeckButton: {fileID: 0}
-  playerHandObject: {fileID: 0}
-  treasurePanel: {fileID: 0}
-  restSitePanel: {fileID: 0}
-  mysteryPanel: {fileID: 0}
-  treasurePanelButton: {fileID: 0}
-  panelLose: {fileID: 0}
-  shopPanel: {fileID: 0}
+  drawPile: {fileID: 1622854053}
+  playersHand: {fileID: 1310104815}
+  discardPile: {fileID: 2026730967}
+  discardDeckButton: {fileID: 837637163}
+  playerHandObject: {fileID: 1310104815}
+  treasurePanel: {fileID: 1287760267}
+  restSitePanel: {fileID: 1644193924}
+  mysteryPanel: {fileID: 1629538655}
+  treasurePanelButton: {fileID: 1993292537}
+  panelLose: {fileID: 1363493068}
+  shopPanel: {fileID: 445590572}
   cardToCreate: {fileID: 0}
   goldRewardGameObject: {fileID: 313249706}
   enemyTurnTextPanel: {fileID: 1927864200}
@@ -14345,7 +14345,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 999/999
+  m_text: 100/100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -26577,7 +26577,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1775797812}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 1, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26789,6 +26789,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7250239850451499554, guid: 29fcb356a0a4b95478b18586d4dde005, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250239850451499554, guid: 29fcb356a0a4b95478b18586d4dde005, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7250239850451499556, guid: 29fcb356a0a4b95478b18586d4dde005, type: 3}

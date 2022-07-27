@@ -21,15 +21,15 @@ public class GameplayManager : MonoBehaviour
     public Weapon secondaryWeapon;
 
     #region GameObjectsHidden
-    [HideInInspector] public GameObject drawPile, playersHand;
-    [HideInInspector] public GameObject discardPile;
-    [HideInInspector] public GameObject discardDeckButton;
-    [HideInInspector] public GameObject playerHandObject;
-    [HideInInspector] public GameObject treasurePanel, restSitePanel, mysteryPanel;
-    [HideInInspector] public GameObject treasurePanelButton;
-    [HideInInspector] public GameObject panelLose;
-    [HideInInspector] public GameObject shopPanel;
-    [HideInInspector] public GameObject cardToCreate;
+    public GameObject drawPile, playersHand;
+    public GameObject discardPile;
+    public GameObject discardDeckButton;
+    public GameObject playerHandObject;
+    public GameObject treasurePanel, restSitePanel, mysteryPanel;
+    public GameObject treasurePanelButton;
+    public GameObject panelLose;
+    public GameObject shopPanel;
+    public GameObject cardToCreate;
 
     #endregion
 

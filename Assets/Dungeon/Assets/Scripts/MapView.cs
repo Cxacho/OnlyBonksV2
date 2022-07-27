@@ -97,7 +97,7 @@ namespace Map
             SetAttainableNodes();
 
             SetLineColors();
-            mapParent.transform.localScale = new Vector2(4, 4);
+            mapParent.transform.localScale = new Vector2(6, 6);
             CreateMapBackground(m);
 
             
@@ -118,7 +118,7 @@ namespace Map
             sr.color = backgroundColor;
             sr.drawMode = SpriteDrawMode.Sliced;
             sr.sprite = background;
-            sr.size = new Vector2(xSize+15f, span + yOffset * 16f);
+            sr.size = new Vector2(xSize, span + yOffset);
             sr.sortingOrder = 1;
         }
 
