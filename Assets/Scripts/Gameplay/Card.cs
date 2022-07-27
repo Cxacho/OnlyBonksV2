@@ -722,17 +722,17 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 {
                     //deck layout
                     case 1:
-                        currentButton=ui.deckScreen.transform.GetChild(1).GetComponent<Button>();
+                        currentButton=ui.deckPanel.transform.GetChild(1).GetComponent<Button>();
                         inspected = Instantiate(gameplayManager.startingDeck[gameplayManager.cardToCreateInt], Vector3.zero, Quaternion.identity);
                         break;
                     //deck
                     case 2:
-                        currentButton = ui.drawPile.transform.GetChild(1).GetComponent<Button>();
+                        currentButton = ui.drawDeckPanel.transform.GetChild(1).GetComponent<Button>();
                         inspected = Instantiate(gameplayManager.drawDeck[gameplayManager.cardToCreateInt], Vector3.zero, Quaternion.identity);
                         break;
                         //discard
                     case 3:
-                        currentButton=ui.discardPile.transform.GetChild(1).GetComponent<Button>();
+                        currentButton=ui.discardDeckPanel.transform.GetChild(1).GetComponent<Button>();
                         inspected = Instantiate(gameplayManager.discardDeck[gameplayManager.cardToCreateInt], Vector3.zero, Quaternion.identity);
                         break;
                         //exhaustdeck

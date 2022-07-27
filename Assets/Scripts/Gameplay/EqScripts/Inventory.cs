@@ -35,9 +35,9 @@ public class Inventory : MonoBehaviour
     private void Awake()
     {
         ui = FindObjectOfType<UiActive>();
-        gameObject.name = ui.inventoryPanel.name;
-        inventoryPanel = ui.inventoryPanel;
-        eqPanel = ui.eqPanel;
+        gameObject.name = ui.eqBackpackPanel.name;
+        inventoryPanel = ui.eqBackpackPanel;
+        eqPanel = ui.eqSlotsPanel;
         spaceUsage = _inventoryItem.spaceUsage;
         this.name = _inventoryItem.name;
         cards = _inventoryItem._cards;

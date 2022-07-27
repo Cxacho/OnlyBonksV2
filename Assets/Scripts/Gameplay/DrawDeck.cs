@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DrawDeck : MonoBehaviour
 {
-    public Transform drawDeckScreen;
-    public GameplayManager gm;
-    public GameObject drawPanel;
+    public Transform drawDeckPanelTransform;
+    public GameplayManager gameplayManager;
+    public GameObject drawDeckPanel;
     
 
     private void Start()
@@ -19,16 +19,16 @@ public class DrawDeck : MonoBehaviour
         void DrawPile()
         {
         //wykona sie tylko dla pierwszej rundy
-        if(gm.firstRound == true)
+        if(gameplayManager.firstRound == true)
         {
 
 
             
-            gm.drawDeck = new List<GameObject>(gm.startingDeck);
+            gameplayManager.drawDeck = new List<GameObject>(gameplayManager.startingDeck);
             
             
             
-            gm.firstRound = false;
+            gameplayManager.firstRound = false;
         }
     }
 

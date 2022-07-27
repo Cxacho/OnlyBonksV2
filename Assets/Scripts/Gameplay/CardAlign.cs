@@ -7,13 +7,13 @@ using DG.Tweening;
 
 public class CardAlign : MonoBehaviour
 {
-    public GameplayManager gm;
+    public GameplayManager gameplayManager;
     [HideInInspector]public GameObject helpingGO;
     public float cardsInHand, moveCardUp, totalTwist, twistPerCard, startTwist, drawTime;
     public List<RectTransform> children = new List<RectTransform>();
     public List<Vector3> positions = new List<Vector3>();
     [SerializeField] List<Vector3> rotations = new List<Vector3>();
-    [SerializeField] private TMP_Text discardDeck_text, drawDeck_text;
+    [SerializeField] private TMP_Text discardDeckText, drawDeckText;
     float delay;
     [SerializeField] Transform pos1, pos2;
     PointerEventData ped;
@@ -64,7 +64,7 @@ public class CardAlign : MonoBehaviour
             child.transform.rotation = Quaternion.identity;
         }
 
-        cardsInHand = gm.playerHand.Count;
+        cardsInHand = gameplayManager.playerHand.Count;
         twistPerCard = totalTwist / cardsInHand;
         startTwist = -1f * (totalTwist / 2f);
         float twistForThisCard = startTwist + twistPerCard;
@@ -118,7 +118,7 @@ public class CardAlign : MonoBehaviour
         var rot = rotForFirst.eulerAngles.z;
         if (children.Count > 0)
             rotations[0] = rotForFirst.eulerAngles;
-        for (int i = 1; i < gm.playerHand.Count; i++)
+        for (int i = 1; i < gameplayManager.playerHand.Count; i++)
         {
             //children[i].transform.Rotate(0f, 0f, rot + (twistPerCard * (-i)));
             rotations[i] = new Vector3(0f, 0f, rot + (twistPerCard * (-i)));
@@ -127,7 +127,7 @@ public class CardAlign : MonoBehaviour
 
     public void FitCards()
     {
-        liczbaWyrazow = gm.playerHand.Count - 1;
+        liczbaWyrazow = gameplayManager.playerHand.Count - 1;
         nTyWyraz = pierwszyWyraz * Mathf.Pow(mnoznik, liczbaWyrazow - 1);
         var multiplier = cardsInHand;
         if (cardsInHand == 10)
@@ -146,7 +146,7 @@ public class CardAlign : MonoBehaviour
         var howManyGapsBetweenItems = howMany - 1;
         var theHighestIndex = howMany;
         var gapFromOneItemToTheNextOne = delta / howManyGapsBetweenItems;
-        dist = 1.0f / (gm.playerHand.Count - 1);
+        dist = 1.0f / (gameplayManager.playerHand.Count - 1);
 
 
         for (int i = 0; i < theHighestIndex; i++)
@@ -180,19 +180,19 @@ public class CardAlign : MonoBehaviour
     void OnHandAmountChange()
     {
 
-        if (cardsInHand != gm.playerHand.Count)
+        if (cardsInHand != gameplayManager.playerHand.Count)
         {
             Invoke("ValueUpdate", 0.02f);
         }
-        cardsInHand = gm.playerHand.Count;
+        cardsInHand = gameplayManager.playerHand.Count;
     }
 
     void ValueUpdate()
     {
-        string dek = gm.drawDeck.Count.ToString();
-        string dis = gm.discardDeck.Count.ToString();
-        discardDeck_text.SetText(dis);
-        drawDeck_text.SetText(dek);
+        string dek = gameplayManager.drawDeck.Count.ToString();
+        string dis = gameplayManager.discardDeck.Count.ToString();
+        discardDeckText.SetText(dis);
+        drawDeckText.SetText(dek);
     }
     public void SetValues()
     {
@@ -238,11 +238,11 @@ public class CardAlign : MonoBehaviour
                     children[i].transform.DOMove(positions[i], 0.2f);
                 }
                 //wywolanie draw'u kolejnych kart
-                if (gm.drawAmount == gm.playerDrawAmount)
+                if (gameplayManager.drawAmount == gameplayManager.playerDrawAmount)
                 {
-                    gm.state = BattleState.PLAYERTURN;
+                    gameplayManager.state = BattleState.PLAYERTURN;
 
-                    gm.drawAmount=0;
+                    gameplayManager.drawAmount=0;
                     
                     if (EventSystem.current.IsPointerOverGameObject()&& pointerHandler < 11)
                     {
@@ -252,13 +252,13 @@ public class CardAlign : MonoBehaviour
                 }
                 else
                 {
-                    if (gm.playerHand.Count < 10)
-                        gm.DrawCards(gm.playerDrawAmount);
+                    if (gameplayManager.playerHand.Count < 10)
+                        gameplayManager.DrawCards(gameplayManager.playerDrawAmount);
                     else
                     {
-                        gm.state = BattleState.PLAYERTURN;
-                        gm.drawAmount = 0;
-                        Debug.Log("Can't draw any further, u have already drawn" + " " + gm.playerHand.Count);
+                        gameplayManager.state = BattleState.PLAYERTURN;
+                        gameplayManager.drawAmount = 0;
+                        Debug.Log("Can't draw any further, u have already drawn" + " " + gameplayManager.playerHand.Count);
                     }
                 }
  

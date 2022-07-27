@@ -100,7 +100,7 @@ public class GameplayManager : MonoBehaviour
 
     #region Ui
 
-    [HideInInspector] public UiActive ui;
+    public UiActive ui;
 
     #endregion
 

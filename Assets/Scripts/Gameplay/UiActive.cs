@@ -7,25 +7,27 @@ using TMPro;
 
 public class UiActive : MonoBehaviour
 {
-    public GameObject deckScreen;
-    public GameObject drawPile;
-    public GameObject discardPile;
-    public int panelIndex = 0;
-    public GameplayManager gm;
-    public GameObject fill;
-    [SerializeField] GameObject mapScreen;
-    [SerializeField] GameObject settings;
-     public GameObject eqPanel;
-     public GameObject inventoryPanel;
-     public GameObject eqParentObject;
-    [HideInInspector] public GameObject cardToInspect;
+    
+    public GameObject deckPanel;
+    public GameObject drawDeckPanel;
+    public GameObject discardDeckPanel;
+    
+    public GameplayManager gameplayManager;
+    public GameObject playerHealthBar;
+    [SerializeField] GameObject mapPanel;
+    [SerializeField] GameObject settingsPanel;
+    public GameObject eqPanel;
+    public GameObject eqSlotsPanel;
+    public GameObject eqBackpackPanel;
+    
+    
     List<TextMeshProUGUI> values = new List<TextMeshProUGUI>();
-    [SerializeField] GameObject valuePanel;
+    [SerializeField] GameObject eqValuesPanel;
     [SerializeField] private List<Button> buttons = new List<Button>();
     //public Vector3 mousePosition,secPos;
     //RaycastHit hit;
-
-
+    [HideInInspector] public GameObject cardToInspect;
+    [HideInInspector] public int panelIndex = 0;
     // Update is called once per frame
 
     public void ClosePanel()
@@ -33,11 +35,11 @@ public class UiActive : MonoBehaviour
         panelIndex = 0;
 
     }
-    public void OnDeckScreen()
+    public void OnDeckPanelClick()
     {
 
-        deckScreen.SetActive(true);
-        if (deckScreen.activeSelf == true)
+        deckPanel.SetActive(true);
+        if (deckPanel.activeSelf == true)
         {
             OnDeckLayoutDestroy();
         }
@@ -55,13 +57,13 @@ public class UiActive : MonoBehaviour
 
 
     }
-    public void OnDrawPile()
+    public void OnDrawDeckClick()
     {
 
-        drawPile.SetActive(true);
-        if (drawPile.activeSelf == true)
+        drawDeckPanel.SetActive(true);
+        if (drawDeckPanel.activeSelf == true)
         {
-            OnDrawPileDestroy();
+            OnDrawDeckDestroy();
         }
         if (panelIndex == 2)
         {
@@ -73,17 +75,17 @@ public class UiActive : MonoBehaviour
         }
         //Debug.Log(panelIndex);
     }
-    public void OnDiscardPile()
+    public void OnDiscardDeckClick()
     {
-        discardPile.SetActive(true);
-        if (discardPile.activeSelf == true)
+        discardDeckPanel.SetActive(true);
+        if (discardDeckPanel.activeSelf == true)
         {
-            OnDiscardPileDestroy();
+            OnDiscardDeckDestroy();
         }
         if (panelIndex == 3)
         {
             panelIndex = 0;
-            //OnDiscardPileDestroy();
+            //OnDiscardDeckDestroy();
         }
         else
         {
@@ -106,72 +108,72 @@ public class UiActive : MonoBehaviour
         {
             case 0:
                 //wylaczenie wszystkich panelow
-                deckScreen.SetActive(false);
-                drawPile.SetActive(false);
-                discardPile.SetActive(false);
-                settings.SetActive(false);
-                mapScreen.SetActive(false);
+                deckPanel.SetActive(false);
+                drawDeckPanel.SetActive(false);
+                discardDeckPanel.SetActive(false);
+                settingsPanel.SetActive(false);
+                mapPanel.SetActive(false);
                 if(GameObject.Find("Player") != null)
-                fill.SetActive(true);
-                eqParentObject.SetActive(false);
+                playerHealthBar.SetActive(true);
+                eqPanel.SetActive(false);
                 break;
             case 1:
                 //wlaczenie panelu decklayoutu
-                deckScreen.SetActive(true);
-                drawPile.SetActive(false);
-                discardPile.SetActive(false);
-                settings.SetActive(false);
-                mapScreen.SetActive(false);
-                eqParentObject.SetActive(false);
+                deckPanel.SetActive(true);
+                drawDeckPanel.SetActive(false);
+                discardDeckPanel.SetActive(false);
+                settingsPanel.SetActive(false);
+                mapPanel.SetActive(false);
+                eqPanel.SetActive(false);
                 break;
             case 2:
                 //wlaczenie panelu drawpile'u
-                deckScreen.SetActive(false);
-                drawPile.SetActive(true);
-                discardPile.SetActive(false);
-                settings.SetActive(false);
-                mapScreen.SetActive(false);
-                eqParentObject.SetActive(false);
+                deckPanel.SetActive(false);
+                drawDeckPanel.SetActive(true);
+                discardDeckPanel.SetActive(false);
+                settingsPanel.SetActive(false);
+                mapPanel.SetActive(false);
+                eqPanel.SetActive(false);
 
                 break;
             case 3:
                 //wlaczenie panelu discardu
-                deckScreen.SetActive(false);
-                drawPile.SetActive(false);
-                discardPile.SetActive(true);
-                settings.SetActive(false);
-                mapScreen.SetActive(false);
-                eqParentObject.SetActive(false);
+                deckPanel.SetActive(false);
+                drawDeckPanel.SetActive(false);
+                discardDeckPanel.SetActive(true);
+                settingsPanel.SetActive(false);
+                mapPanel.SetActive(false);
+                eqPanel.SetActive(false);
 
                 break;
             case 4:
                 //wlaczenie panelu ustawien
-                deckScreen.SetActive(false);
-                drawPile.SetActive(false);
-                discardPile.SetActive(false);
-                settings.SetActive(true);
-                mapScreen.SetActive(false);
-                eqParentObject.SetActive(false);
+                deckPanel.SetActive(false);
+                drawDeckPanel.SetActive(false);
+                discardDeckPanel.SetActive(false);
+                settingsPanel.SetActive(true);
+                mapPanel.SetActive(false);
+                eqPanel.SetActive(false);
 
                 break;
             case 5:
                 //wlaczenie panelu mapy
-                deckScreen.SetActive(false);
-                drawPile.SetActive(false);
-                discardPile.SetActive(false);
-                settings.SetActive(false);
-                mapScreen.SetActive(true);
-                eqParentObject.SetActive(false);
+                deckPanel.SetActive(false);
+                drawDeckPanel.SetActive(false);
+                discardDeckPanel.SetActive(false);
+                settingsPanel.SetActive(false);
+                mapPanel.SetActive(true);
+                eqPanel.SetActive(false);
 
                 break;
                 //wlaczenie panelu eq
             case 6:
-                deckScreen.SetActive(false);
-                drawPile.SetActive(false);
-                discardPile.SetActive(false);
-                settings.SetActive(false);
-                mapScreen.SetActive(false);
-                eqParentObject.SetActive(true);
+                deckPanel.SetActive(false);
+                drawDeckPanel.SetActive(false);
+                discardDeckPanel.SetActive(false);
+                settingsPanel.SetActive(false);
+                mapPanel.SetActive(false);
+                eqPanel.SetActive(true);
                 break;
 
         }
@@ -179,7 +181,7 @@ public class UiActive : MonoBehaviour
     }
     public void OnDeckLayoutClick()
     {
-        if (deckScreen.activeSelf)
+        if (deckPanel.activeSelf)
         {
             DisplayDeck();
             //Debug.Log("faken");
@@ -207,7 +209,7 @@ public class UiActive : MonoBehaviour
             var clones = GameObject.FindGameObjectsWithTag("Card");
             foreach (var clone in clones)
             {
-                if (clone.transform.IsChildOf(deckScreen.transform))
+                if (clone.transform.IsChildOf(deckPanel.transform))
                 {
                     Destroy(clone);
                 }
@@ -218,79 +220,79 @@ public class UiActive : MonoBehaviour
     {
 
         //spawn kart do decku
-        for (int i = 0; i < gm.startingDeck.Count; i++)
+        for (int i = 0; i < gameplayManager.startingDeck.Count; i++)
         {
-            if (deckScreen.activeSelf)
-                Instantiate(gm.startingDeck[i], GameObject.FindGameObjectWithTag("Panel").transform);
+            if (deckPanel.activeSelf)
+                Instantiate(gameplayManager.startingDeck[i], GameObject.FindGameObjectWithTag("Panel").transform);
         }
     }
 
-    public void OnDrawPileClick()
+    public void OnDrawDeckCheck()
     {
-        if (drawPile.activeSelf)
+        if (drawDeckPanel.activeSelf)
         {
-            DisplayDrawPile();
+            DisplayDrawDeck();
         }
     }
-    void OnDrawPileDestroy()
+    void OnDrawDeckDestroy()
     {
         var clones = GameObject.FindGameObjectsWithTag("Card");
         if (panelIndex != 2)
         {
             foreach (var clone in clones)
             {
-                if (clone.transform.IsChildOf(drawPile.transform))
+                if (clone.transform.IsChildOf(drawDeckPanel.transform))
                 {
                     Destroy(clone);
                 }
             }
         }
     }
-    public void DisplayDrawPile()   //Pokazanie DrawPile
+    public void DisplayDrawDeck()   //Pokazanie DrawDeck
     {
 
-        for (int i = 0; i < gm.drawDeck.Count; i++)
+        for (int i = 0; i < gameplayManager.drawDeck.Count; i++)
         {
-            if (drawPile.activeSelf)
-                Instantiate(gm.drawDeck[i], GameObject.FindGameObjectWithTag("DrawPanel").transform);
+            if (drawDeckPanel.activeSelf)
+                Instantiate(gameplayManager.drawDeck[i], GameObject.FindGameObjectWithTag("DrawPanel").transform);
         }
 
     }
-    public void OnDiscardPileClick()
+    public void OnDiscardDeckCheck()
     {
-        if (discardPile.activeSelf)
-            DisplayDiscardPile();
+        if (discardDeckPanel.activeSelf)
+            DisplayDiscardDeck();
     }
-    void OnDiscardPileDestroy()
+    void OnDiscardDeckDestroy()
     {
         var clones = GameObject.FindGameObjectsWithTag("Card");
 
         foreach (var clone in clones)
         {
 
-            if (clone.transform.IsChildOf(discardPile.transform))
+            if (clone.transform.IsChildOf(discardDeckPanel.transform))
             {
                 Destroy(clone);
             }
         }
 
     }
-    void DisplayDiscardPile()
+    void DisplayDiscardDeck()
     {
-        for (int i = 0; i < gm.discardDeck.Count; i++)
+        for (int i = 0; i < gameplayManager.discardDeck.Count; i++)
         {
-            if (discardPile.activeSelf)
-                Instantiate(gm.discardDeck[i], GameObject.FindGameObjectWithTag("DiscardDeck").transform);
+            if (discardDeckPanel.activeSelf)
+                Instantiate(gameplayManager.discardDeck[i], GameObject.FindGameObjectWithTag("DiscardDeck").transform);
         }
     }
     public void OnSettingsClick()
     {
         Debug.Log("???");
-        settings.SetActive(true);
+        settingsPanel.SetActive(true);
         if (panelIndex == 4)
         {
             panelIndex = 0;
-            //OnDiscardPileDestroy();
+            //OnDiscardDeckDestroy();
         }
         else
         {
@@ -301,25 +303,25 @@ public class UiActive : MonoBehaviour
     public void OnMapClick()
     {
         Debug.Log("////");
-        mapScreen.SetActive(true);
-        fill.SetActive(false);
+        mapPanel.SetActive(true);
+        playerHealthBar.SetActive(false);
         
         if (panelIndex == 5)
         {
-            gm.battleUI.SetActive(true);
-            for (int i = 0; i < gm.enemyBattleStation.Length; i++)
+            gameplayManager.battleUI.SetActive(true);
+            for (int i = 0; i < gameplayManager.enemyBattleStation.Length; i++)
             {
-                gm.enemyBattleStation[i].gameObject.SetActive(true);
+                gameplayManager.enemyBattleStation[i].gameObject.SetActive(true);
             }
             panelIndex = 0;
-            //OnDiscardPileDestroy();
+            //OnDiscardDeckDestroy();
         }
         else
         {
-            gm.battleUI.SetActive(false);
-            for (int i = 0; i < gm.enemyBattleStation.Length; i++)
+            gameplayManager.battleUI.SetActive(false);
+            for (int i = 0; i < gameplayManager.enemyBattleStation.Length; i++)
             {
-                gm.enemyBattleStation[i].gameObject.SetActive(false);
+                gameplayManager.enemyBattleStation[i].gameObject.SetActive(false);
             }
             panelIndex = 5;
         }
@@ -327,12 +329,12 @@ public class UiActive : MonoBehaviour
     }
     public void OnEqipmentClick()
     {
-        eqParentObject.SetActive(true);
+        eqPanel.SetActive(true);
         UpdateStatValues();
         if (panelIndex == 6)
         {
             panelIndex = 0;
-            //OnDiscardPileDestroy();
+            //OnDiscardDeckDestroy();
         }
         else
         {
@@ -343,39 +345,39 @@ public class UiActive : MonoBehaviour
     void UpdateStatValues()
     {
         values.Clear();
-        for (int i = 0; i < valuePanel.transform.childCount; i++)
-            values.Add(valuePanel.transform.GetChild(i).GetComponent<TextMeshProUGUI>());
-        values[0].text = gm.player.currentHealth.ToString() + " / " + gm.player.maxHealth.ToString();
+        for (int i = 0; i < eqValuesPanel.transform.childCount; i++)
+            values.Add(eqValuesPanel.transform.GetChild(i).GetComponent<TextMeshProUGUI>());
+        values[0].text = gameplayManager.player.currentHealth.ToString() + " / " + gameplayManager.player.maxHealth.ToString();
         //dodac armor rating
         //moznabylo dac for loopke tu
         values[1].text = 0.ToString();
-        values[2].text = gm.player.strenght.ToString();
-        values[3].text = gm.player.dexterity.ToString();
-        values[4].text = gm.player.inteligence.ToString();
-        values[5].text = gm.gold.ToString();
-            values[6].text = gm.startingDeck.Count.ToString();
-            values[7].text = gm.currentFloor.ToString();
+        values[2].text = gameplayManager.player.strenght.ToString();
+        values[3].text = gameplayManager.player.dexterity.ToString();
+        values[4].text = gameplayManager.player.inteligence.ToString();
+        values[5].text = gameplayManager.gold.ToString();
+            values[6].text = gameplayManager.startingDeck.Count.ToString();
+            values[7].text = gameplayManager.currentFloor.ToString();
     }
     public void DisableButtons(int select)
     {
         switch (select)
         {
             case 0:
-                if (gm.discardDeck.Count == 0)
+                if (gameplayManager.discardDeck.Count == 0)
                 {
                     Debug.Log("no card to choose from");
                     return;
                 }
                 break;
             case 1:
-                if (gm.drawDeck.Count == 0)
+                if (gameplayManager.drawDeck.Count == 0)
                 {
                     Debug.Log("no card to choose from");
                     return;
                 }
                 break;
             case 2:
-                if (gm.exhaustedDeck.Count == 0)
+                if (gameplayManager.exhaustedDeck.Count == 0)
                 {
                     Debug.Log("no card to choose from");
                     return;
@@ -383,17 +385,17 @@ public class UiActive : MonoBehaviour
                 break;
         }
 
-        gm.state = BattleState.CREATING;
+        gameplayManager.state = BattleState.CREATING;
         SetButtonsNonInterractible();
         if (select == 0)
         {
-            OnDiscardPile();
-            OnDiscardPileClick();
+            OnDiscardDeckClick();
+            OnDiscardDeckCheck();
         }
         else if(select == 1)
         {
-            OnDrawPile();
-            OnDrawPileClick();
+            OnDrawDeckClick();
+            OnDrawDeckCheck();
         }
         else
         {
@@ -421,13 +423,13 @@ public class UiActive : MonoBehaviour
         SetButtonsInterractible();
         if (select == 0)
         {
-            OnDiscardPile();
-            OnDiscardPileClick();
+            OnDiscardDeckClick();
+            OnDiscardDeckCheck();
         }
         else if (select == 1)
         {
-            OnDrawPile();
-            OnDrawPileClick();
+            OnDrawDeckClick();
+            OnDrawDeckCheck();
         }
         else
         {

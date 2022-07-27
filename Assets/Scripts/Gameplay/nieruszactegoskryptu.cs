@@ -5,14 +5,14 @@ using UnityEngine.EventSystems;
 
 public class nieruszactegoskryptu : MonoBehaviour, IPointerEnterHandler
 {
-    [SerializeField]private CardAlign cAlign;
+    [SerializeField]private CardAlign cardAlign;
     public void OnPointerEnter(PointerEventData eventData)
     {
-        cAlign.pointerHandler = 100;
+        cardAlign.pointerHandler = 100;
     }
     private void Awake()
     {
-        //cAlign = GameObject.Find("PlayerHand").GetComponent<CardAlign>();
+        //cardAlign = GameObject.Find("PlayerHand").GetComponent<CardAlign>();
     }
 
 
