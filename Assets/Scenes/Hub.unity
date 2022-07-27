@@ -389,7 +389,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visualCue: {fileID: 918792585}
   inkJson: {fileID: 4900000, guid: 21a7c79dc90cb6742b9b41e12f2f55d8, type: 3}
-  npc: {fileID: 0}
 --- !u!65 &130524192
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -504,7 +503,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visualCue: {fileID: 2001709356}
   inkJson: {fileID: 4900000, guid: d6c2cb45969388047b973fd3a6683bb4, type: 3}
-  npc: {fileID: 0}
 --- !u!65 &162992201
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2727,7 +2725,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1041489478}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1319886607}
+        m_TargetAssemblyTypeName: SelectRun, Assembly-CSharp
+        m_MethodName: ChooseRun
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1041489478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3168,8 +3178,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1319886606}
+  - component: {fileID: 1319886607}
   m_Layer: 0
-  m_Name: InputManager
+  m_Name: RunManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3190,6 +3201,18 @@ Transform:
   m_Father: {fileID: 772822625}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1319886607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319886605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ab29685e9e7afa48baa76da6892a1ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1372266327
 GameObject:
   m_ObjectHideFlags: 0
@@ -3273,7 +3296,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1372266330}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1319886607}
+        m_TargetAssemblyTypeName: SelectRun, Assembly-CSharp
+        m_MethodName: ChooseRun
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1372266330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3765,7 +3800,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1675721406}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1319886607}
+        m_TargetAssemblyTypeName: SelectRun, Assembly-CSharp
+        m_MethodName: ChooseRun
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1675721406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4175,9 +4222,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9165884b001366d479f6aa398e43d6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardShopPanel: {fileID: 1002784674}
+  typingSpeed: 0.04
   dialoguePanel: {fileID: 1827576617}
   dialogueText: {fileID: 742114723}
   displayNameText: {fileID: 222573260}
+  submitButtonPressedThisFrame: 0
   choices:
   - {fileID: 215812092}
   - {fileID: 1215476110}
@@ -4216,7 +4266,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visualCue: {fileID: 1450156987}
   inkJson: {fileID: 4900000, guid: af91d476ab6f8784a9eabf9fc0330aa2, type: 3}
-  npc: {fileID: 0}
 --- !u!65 &1815219577
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4603,7 +4652,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visualCue: {fileID: 320292177}
   inkJson: {fileID: 4900000, guid: dcec8f5083d87314198f46d7934e38a7, type: 3}
-  npc: {fileID: 0}
 --- !u!1 &1873821881
 GameObject:
   m_ObjectHideFlags: 0
@@ -4758,7 +4806,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1883671146}
-  m_LocalRotation: {x: 0.39653316, y: 0.00050846796, z: -0.00021962957, w: 0.91802025}
+  m_LocalRotation: {x: 0.39653316, y: 0.0005084995, z: -0.00021964322, w: 0.91802025}
   m_LocalPosition: {x: 499.7, y: 301.1, z: 346.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4971,7 +5019,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1954573141}
-  m_LocalRotation: {x: 0.39653316, y: 0.00050846796, z: -0.00021962957, w: 0.91802025}
+  m_LocalRotation: {x: 0.39653316, y: 0.0005084995, z: -0.00021964322, w: 0.91802025}
   m_LocalPosition: {x: 499.7, y: 301.1, z: 346.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
