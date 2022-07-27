@@ -90,7 +90,7 @@ public class GameplayManager : MonoBehaviour
 
     #region Player
     public LevelProgress levelProgress;
-    [HideInInspector] public Player player;
+    public Player player;
     #endregion
 
     #region Card
