@@ -508,7 +508,7 @@ public class GameplayManager : MonoBehaviour
             GameObject card = Instantiate(drawDeck[random], drawDeckButton.transform.position, transform.rotation);
             card.transform.SetParent(cardAlign.gameObject.transform);
             card.GetComponent<Card>().index = card.transform.GetSiblingIndex();
-            var updateValue = drawDeckButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+            var updateValue = drawDeckButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
             updateValue.text = (drawDeck.Count - 1).ToString();
             card.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             playerHand.Add(drawDeck[random]);
