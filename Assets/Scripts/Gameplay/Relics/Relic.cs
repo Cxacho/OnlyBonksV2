@@ -9,19 +9,20 @@ public class Relic : MonoBehaviour
     public string relicName;
     GameObject relicHolder;
     [HideInInspector]public GameplayManager gm;
-    Canvas canvas;
+    public string description;
+    Transform canvasTransform;
     GridLayout gl;
     RectTransform rect;
     public Player pl;
     Button button;
-    private void Awake()
+    public virtual void Awake()
     {
         rect = GetComponent<RectTransform>();
         gl = GetComponent<GridLayout>();
         relicHolder = GameObject.Find("RelicHolder");
         pl = GameObject.Find("Player").GetComponent<Player>();
         gm = GameObject.Find("GameplayManager").GetComponent<GameplayManager>();
-        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        canvasTransform = gm.canvas.transform;
         relicName = gameObject.name;
         button = GetComponent<Button>();
     }
@@ -31,7 +32,7 @@ public class Relic : MonoBehaviour
         //disolve button 
         Destroy(gameObject.transform.GetChild(0).gameObject);
         button.interactable = false;
-        this.transform.SetParent(canvas.transform);
+        this.transform.SetParent(canvasTransform);
         this.transform.DOMove(relicHolder.transform.position, 1).OnComplete(() => 
         {
             gameObject.transform.SetParent(relicHolder.transform);

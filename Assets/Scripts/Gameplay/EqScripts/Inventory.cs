@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-public class Inventory : MonoBehaviour
+public class Inventory : MonoBehaviour ,IPointerEnterHandler ,IPointerExitHandler
 {
     RectTransform rect;
     [SerializeField]WhereAmI currentOccupation;
@@ -16,6 +16,7 @@ public class Inventory : MonoBehaviour
     bool dragged;
     public UiActive ui;
     Vector2 originalPosition;
+    List<GameObject> temporary = new List<GameObject>();
     [SerializeField] List<inventorySpace> allSpaces = new List<inventorySpace>();
     [SerializeField]List<GameObject> eqSlots = new List<GameObject>();
     [SerializeField] List<float> eqSlotsPositions = new List<float>();
@@ -401,6 +402,27 @@ public class Inventory : MonoBehaviour
     public virtual void AddStats()
     {
         pl.armor += 2;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        temporary.Clear();
+        for (int i=0;i<cards.Count;i++)
+        {
+            temporary.Add(Instantiate(cards[i], new Vector2(this.transform.position.x - (i + 1) * 8, this.transform.position.y), Quaternion.identity));
+
+            temporary[i].transform.SetParent(gm.canvas.transform);
+            temporary[i].transform.localScale = Vector3.one;
+            temporary[i].GetComponent<Card>().enabled = false;
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        foreach(GameObject obj in temporary)
+        {
+            Destroy(obj);
+        }
     }
 
     enum WhereAmI

@@ -1,15 +1,15 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
-using System;
-public class BasicAttack : Card
+public class StackingBlades : Card
 {
-    
+
     public GameObject bonk;
 
-    
+
     private TextMeshPro textMeshPro;
 
     private void Start()
@@ -17,17 +17,18 @@ public class BasicAttack : Card
         desc = $"Deal <color=white>{attack.ToString()}</color> damage";
 
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
+        gameplayManager.OnDraw += ApplyOnDraw;
     }
-  
+
 
     private void FixedUpdate()
     {
-        
-         calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
-        
-        if(attack == defaultattack)
-        desc = $"Deal <color=white>{attack.ToString()}</color> damage";
-        else if(attack < defaultattack)
+
+        calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
+
+        if (attack == defaultattack)
+            desc = $"Deal <color=white>{attack.ToString()}</color> damage";
+        else if (attack < defaultattack)
             desc = $"Deal <color=red>{attack.ToString()}</color> damage";
         else
             desc = $"Deal <color=green>{attack.ToString()}</color> damage";
@@ -41,35 +42,28 @@ public class BasicAttack : Card
         if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
-
-            Instantiate(bonk, new Vector3(0, -10, 0), Quaternion.identity, GameObject.Find("Player").transform);
             StartCoroutine(ExecuteAfterTime(1f));
             foreach (Enemy en in _enemies)
             {
                 if (en.targeted == true)
                 {
-                    //gameplayManager.OnEnemyKilled += AddMeSomeMana;
-                    en.RecieveDamage(attack,this);
-                    
+                    en.RecieveDamage(attack, this);
+
                     en.targeted = false;
                 }
             }
             resetTargetting();
         }
-        
+
         else
         {
             Debug.Log("fajnie dzia³a");
         }
 
     }
-    void AddMeSomeMana(object sender, EventArgs e)
+    void ApplyOnDraw(object sender,EventArgs e)
     {
-        player.mana += 4;
-    }
-    private void OnDestroy()
-    {
-       // gameplayManager.OnEnemyKilled -= AddMeSomeMana;   
+        this.defaultattack += 3;
     }
 
     IEnumerator ExecuteAfterTime(float time)
@@ -78,6 +72,10 @@ public class BasicAttack : Card
 
         player.manaText.text = player.mana.ToString();
 
+    }
+    private void OnDestroy()
+    {
+        gameplayManager.OnDraw -= ApplyOnDraw;
     }
 
 

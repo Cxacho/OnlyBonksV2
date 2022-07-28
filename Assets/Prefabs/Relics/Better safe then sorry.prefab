@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 8944058849431826244}
   - component: {fileID: -6665198123650261018}
   m_Layer: 0
-  m_Name: The heart
+  m_Name: Better safe then sorry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
