@@ -7,6 +7,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using System;
 
 public enum BattleState { NODE ,START, PLAYERTURN, ENEMYTURN, WON, LOST, VictoryScreen,DRAWING,INANIMATION,CREATING}
 
@@ -19,6 +20,16 @@ public class GameplayManager : MonoBehaviour
     public BattleState state;
     public Weapon primaryWeapon;
     public Weapon secondaryWeapon;
+
+    #region Events
+    public event EventHandler OnDraw;
+    public event EventHandler OnTurnStart;
+    public event EventHandler OnTurnEnd;
+    public EventHandler OnCardPlayed;
+    public EventHandler OnCardExhausted;
+    public EventHandler OnEnemyKilled;
+    public EventHandler OnDamageTaken;
+    #endregion
 
     #region GameObjectsHidden
     public GameObject drawPile, playersHand;
@@ -235,15 +246,15 @@ public class GameplayManager : MonoBehaviour
 
         if (currentFloor < 4)
         {
-            numOfList = Random.Range(0, 3);
+            numOfList = UnityEngine.Random.Range(0, 3);
         }
         else if (currentFloor < 7)
         {
-            numOfList = Random.Range(3, 6);
+            numOfList = UnityEngine.Random.Range(3, 6);
         }
         else
         {
-            numOfList = Random.Range(6, 10);
+            numOfList = UnityEngine.Random.Range(6, 10);
         }
 
         SpawnEnemies(enemiesSpawner.floorOneEnemies[numOfList]);
@@ -321,7 +332,7 @@ public class GameplayManager : MonoBehaviour
             {
                 Destroy(treasurePanel.transform.GetChild(i).gameObject);
             }
-            var random = Random.Range(1, allRelicsList.Count - 1);
+            var random = UnityEngine.Random.Range(1, allRelicsList.Count - 1);
             Instantiate(allRelicsList[random], treasurePanel.transform);
             allRelicsList.RemoveAt(random);
             treasurePanelButton.transform.SetAsLastSibling();
@@ -334,7 +345,7 @@ public class GameplayManager : MonoBehaviour
 
         player.OnBattleSetup();
         mysteryPanel.SetActive(true);
-        var random = Random.Range(0, Mistery.Count);
+        var random = UnityEngine.Random.Range(0, Mistery.Count);
         Instantiate(Mistery[random], mysteryPanel.transform);
         Mistery.RemoveAt(random);
 
@@ -347,6 +358,8 @@ public class GameplayManager : MonoBehaviour
         attackCardsPlayed = 0;
         skillCardsPlayed = 0;
         powerCardsPlayed = 0;
+        if(OnTurnStart!=null)
+        OnTurnStart(this, EventArgs.Empty);
         //state = BattleState.PLAYERTURN;
         drawAmount = 0;
         DrawCards(basePlayerDrawAmount);
@@ -428,7 +441,7 @@ public class GameplayManager : MonoBehaviour
 
         for (int i = 0; i < 2; i++)
         {
-            random = Random.Range(0, allCardsSHOP.Count);
+            random = UnityEngine.Random.Range(0, allCardsSHOP.Count);
             Instantiate(cards[random], GameObject.FindGameObjectWithTag("cardHolder").transform);
         }
 
@@ -480,7 +493,8 @@ public class GameplayManager : MonoBehaviour
 
         await ExecuteDarkSoulsText("Enemy Turn");
         cardAlign.SetValues();
-
+        if(OnTurnEnd!=null)
+        OnTurnEnd(this, EventArgs.Empty);
 
         state = BattleState.ENEMYTURN;
         OnEnemiesTurn();
@@ -500,11 +514,13 @@ public class GameplayManager : MonoBehaviour
         drawAmount++;
         if (playerDrawAmount >= drawAmount)
         {
+            if (OnDraw != null)
+                OnDraw(this, EventArgs.Empty);
             if (drawDeck.Count == 0)
             {
                 shuffleDeck();
             }
-            var random = Random.Range(0, drawDeck.Count);
+            var random = UnityEngine.Random.Range(0, drawDeck.Count);
             GameObject card = Instantiate(drawDeck[random], drawDeckButton.GetComponent<RectTransform>().anchoredPosition, transform.rotation);
             //Debug.Log(drawDeckButton.GetComponent<RectTransform>().anchoredPosition);
             card.transform.SetParent(cardAlign.gameObject.transform);
@@ -694,6 +710,9 @@ public class GameplayManager : MonoBehaviour
         var getEnum = primaryWeapon;
         primaryWeapon = secondaryWeapon;
         secondaryWeapon = getEnum;
+    }
+    public void UpdateSomeValues(object sender, EventArgs e)
+    {
     }
 }
 

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 using DG.Tweening;
+using System;
 public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
     statuses currentStatus;
@@ -126,7 +127,8 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
                 if(gm.enemies[i].name == _name)
                 {
                     gm.currentXP += gm.enemies[i].GetComponent<Enemy>().xp; //dodanie xpa za przeciwnika
-
+                    if (gm.OnEnemyKilled != null)
+                        gm.OnEnemyKilled(this, EventArgs.Empty);
                     gm.enemyType.RemoveAt(i);
                     gm.enemies.RemoveAt(i); //usuni?cie danego przeciwnika z listy
                 }

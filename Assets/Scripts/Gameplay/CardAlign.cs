@@ -132,7 +132,7 @@ public class CardAlign : MonoBehaviour
     public void FitCards()
     {
         liczbaWyrazow = gameplayManager.playerHand.Count - 1;
-        nTyWyraz = pierwszyWyraz * Mathf.Pow(mnoznik, liczbaWyrazow - 1);
+        nTyWyraz = pierwszyWyraz + (liczbaWyrazow * mnoznik);
         var multiplier = cardsInHand;
         if (cardsInHand == 10)
         {

@@ -24,7 +24,7 @@ public class BasicDefend : Card
             
             player.manaText.text = player.mana.ToString();
             base.OnDrop();
-            ui.DisableButtons(0);
+            //ui.DisableButtons(0);
             /*
             foreach (Enemy en in _enemies)
             {

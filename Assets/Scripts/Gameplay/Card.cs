@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 using TMPro;
+using System;
 
 
 public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -337,8 +338,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     void OnClick()
     {
 
-        if (myWeaponType != gameplayManager.primaryWeapon && isNeutral == false)
-            Debug.Log("cant play due to card to weapon type difference");
+        //if (myWeaponType != gameplayManager.primaryWeapon && isNeutral == false)
+           // Debug.Log("cant play due to card to weapon type difference");
         //return;
         if (player.mana - cost < 0)
             return;
@@ -421,6 +422,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
 
             currentCardState = cardState.Elsewhere;
+            gameplayManager.OnCardExhausted += gameplayManager.UpdateSomeValues;
+            if (gameplayManager.OnCardExhausted != null)
+                gameplayManager.OnCardExhausted(this, EventArgs.Empty);
             //play card
             trail.enabled = true;
             //anim
@@ -451,6 +455,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
         else
         {
+            gameplayManager.OnCardPlayed += gameplayManager.UpdateSomeValues;
+            if (gameplayManager.OnCardPlayed != null)
+                gameplayManager.OnCardPlayed(this, EventArgs.Empty);
             currentCardState = cardState.Elsewhere;
             //play card
             trail.enabled = true;
@@ -766,5 +773,12 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 canCreate = false;
             }
         }
+    }
+    private void OnDestroy()
+    {
+        if (gameplayManager.OnCardExhausted != null)
+            gameplayManager.OnCardExhausted -= gameplayManager.UpdateSomeValues;
+        if (gameplayManager.OnCardPlayed != null)
+            gameplayManager.OnCardPlayed -= gameplayManager.UpdateSomeValues;
     }
 }
