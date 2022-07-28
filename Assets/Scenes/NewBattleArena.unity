@@ -3467,7 +3467,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7332083, y: 0.09570907}
   m_AnchorMax: {x: 0.97200006, y: 0.209}
-  m_AnchoredPosition: {x: -6, y: -16.499878}
+  m_AnchoredPosition: {x: -6, y: -16.499756}
   m_SizeDelta: {x: 7, y: -57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &280100947
@@ -5802,7 +5802,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7332083, y: 0.09570907}
   m_AnchorMax: {x: 0.97200006, y: 0.209}
-  m_AnchoredPosition: {x: -6, y: -16.499878}
+  m_AnchoredPosition: {x: -6, y: -16.499756}
   m_SizeDelta: {x: 7, y: -57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &420198795
@@ -11099,7 +11099,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.171, y: 0.462}
   m_AnchorMax: {x: 0.28500003, y: 0.71400005}
-  m_AnchoredPosition: {x: 0.50006104, y: -1}
+  m_AnchoredPosition: {x: 0.5001221, y: -1}
   m_SizeDelta: {x: 1, y: -2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &811051728
@@ -18733,7 +18733,7 @@ MonoBehaviour:
   pos1: {fileID: 703616856}
   pos2: {fileID: 2051114491}
   cardIndex: 3
-  mnoznik: 2.4
+  mnoznik: 37.5
   pierwszyWyraz: 10.11
   cardHeight: 25
   anCurve:
