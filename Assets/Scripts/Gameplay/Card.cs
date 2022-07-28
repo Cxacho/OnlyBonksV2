@@ -163,7 +163,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         cardAlign = par.GetComponent<CardAlign>();
         meshes.AddRange(GameObject.FindGameObjectsWithTag("Indicator"));
         player = GameObject.Find("Player").GetComponent<Player>();
-        discDek = GameObject.Find("DiscardDeckButton").transform.position;
+        discDek = GameObject.Find("Discard_Deck_Button").transform.position;
         trail = transform.GetComponent<TrailRenderer>();
         gameplayManager = GameObject.Find("GameplayManager").GetComponent<GameplayManager>();
         pos = this.transform.GetComponent<RectTransform>();
@@ -315,7 +315,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
            {
                foreach (GameObject obj in meshes)
                {
-                   obj.GetComponent<SpriteRenderer>().enabled = false;
+                   obj.GetComponent<Image>().enabled = false;
                }
            });
         }
@@ -327,7 +327,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Cursor.visible = false;
         foreach (GameObject obj in meshes)
         {
-            obj.GetComponent<SpriteRenderer>().enabled = true;
+            obj.GetComponent<Image>().enabled = true;
         }
 
         for (int i = 0; i < followMouse.objs.Count; i++)
@@ -354,7 +354,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             oldRot = this.transform.rotation;
             currentCardState = cardState.OnCursor;
             this.transform.rotation = newRot;
-            this.transform.SetParent(GameObject.Find("Canvas").transform);
+            this.transform.SetParent(gameplayManager.canvas.transform);
 
         }
     }
