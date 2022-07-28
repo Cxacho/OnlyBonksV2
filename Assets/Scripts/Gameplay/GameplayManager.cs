@@ -171,7 +171,7 @@ public class GameplayManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        Debug.Log(drawDeckButton.GetComponent<RectTransform>().anchoredPosition);
+        Debug.Log(playerHandObject.GetComponent<RectTransform>().anchoredPosition);
 
         primaryWeapon = Weapon.Brak;
         secondaryWeapon = Weapon.Brak;
@@ -506,9 +506,10 @@ public class GameplayManager : MonoBehaviour
             }
             var random = Random.Range(0, drawDeck.Count);
             GameObject card = Instantiate(drawDeck[random], drawDeckButton.GetComponent<RectTransform>().anchoredPosition, transform.rotation);
-            Debug.Log(drawDeckButton.GetComponent<RectTransform>().anchoredPosition);
+            //Debug.Log(drawDeckButton.GetComponent<RectTransform>().anchoredPosition);
             card.transform.SetParent(cardAlign.gameObject.transform);
             card.GetComponent<Card>().index = card.transform.GetSiblingIndex();
+            //Debug.Log(card.GetComponent<RectTransform>().anchoredPosition);
             var updateValue = drawDeckButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
             updateValue.text = (drawDeck.Count - 1).ToString();
             card.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);

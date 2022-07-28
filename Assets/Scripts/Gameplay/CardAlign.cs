@@ -11,6 +11,7 @@ public class CardAlign : MonoBehaviour
     [HideInInspector]public GameObject helpingGO;
     public float cardsInHand, moveCardUp, totalTwist, twistPerCard, startTwist, drawTime;
     public List<RectTransform> children = new List<RectTransform>();
+    private RectTransform parRecttransform;
     public List<Vector3> positions = new List<Vector3>();
     [SerializeField] List<Vector3> rotations = new List<Vector3>();
     [SerializeField] private TMP_Text discardDeckText, drawDeckText;
@@ -23,6 +24,8 @@ public class CardAlign : MonoBehaviour
     //public Transform empty;
     private float twistFirstCard, nTyWyraz, liczbaWyrazow, dist, place;
     public int pointerHandler;
+    public float selectedHeight;
+    public float moveHorizontalyDistance;
 
     void Update()
     {
@@ -30,6 +33,7 @@ public class CardAlign : MonoBehaviour
     }
     private void Awake()
     {
+        parRecttransform = transform.parent.GetComponent<RectTransform>();
        ped = new PointerEventData(EventSystem.current);
     }
     public void Realign()
@@ -44,14 +48,14 @@ public class CardAlign : MonoBehaviour
                 children[i].transform.DOMove(positions[i], 0.1f).OnComplete(() =>
                 {
                     if (cardIndex - 1 >= 0)
-                        children[cardIndex - 1].DOMoveX(children[cardIndex - 1].position.x - 2.5f, 0.2f);
+                        children[cardIndex - 1].DOMoveX(children[cardIndex - 1].position.x - (moveHorizontalyDistance *1.5f), 0.2f);
                     if (cardIndex + 1 < children.Count)
-                        children[cardIndex + 1].DOMoveX(children[cardIndex + 1].position.x + 2.5f, 0.2f);
-                    children[cardIndex].DOMove(new Vector3(children[cardIndex].position.x, -23, children[cardIndex].position.z), 0.05f);
+                        children[cardIndex + 1].DOMoveX(children[cardIndex + 1].position.x + (moveHorizontalyDistance*1.5f), 0.2f);
+                    children[cardIndex].DOMove(new Vector3(children[cardIndex].position.x, selectedHeight, children[cardIndex].position.z), 0.05f);;
                     if (cardIndex - 2 >= 0)
-                        children[cardIndex - 2].DOMoveX(children[cardIndex - 2].position.x - 1.5f, 0.2f);
+                        children[cardIndex - 2].DOMoveX(children[cardIndex - 2].position.x - moveHorizontalyDistance, 0.2f);
                     if (cardIndex + 2 < children.Count)
-                        children[cardIndex + 2].DOMoveX(children[cardIndex + 2].position.x + 1.5f, 0.2f);
+                        children[cardIndex + 2].DOMoveX(children[cardIndex + 2].position.x + moveHorizontalyDistance, 0.2f);
                 });
             }
                 
@@ -160,13 +164,13 @@ public class CardAlign : MonoBehaviour
             if (i == 0)
             {
                 place = anCurve.Evaluate(0);
-                positions[i] = new Vector3(positions[i].x, place + cardHeight, positions[i].z);
+                positions[i] = new Vector3(positions[i].x +parRecttransform.anchoredPosition.x, place + cardHeight, positions[i].z);
 
             }
             else
             {
                 place = anCurve.Evaluate(i * dist);
-                positions[i] = new Vector3(positions[i].x, place + cardHeight, positions[i].z);
+                positions[i] = new Vector3(positions[i].x + parRecttransform.anchoredPosition.x, place + cardHeight, positions[i].z);
             }
         }
         if (theHighestIndex <= 1)

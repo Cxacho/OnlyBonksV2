@@ -30,7 +30,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public GameObject exitButton;
     protected FollowMouse followMouse;
 
-
     TrailRenderer trail;
     [HideInInspector]public UiActive ui;
     [HideInInspector] public Player player;
@@ -313,9 +312,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             obj.DOScale(Vector3.zero, 0.2f).OnComplete(() =>
            {
-               foreach (GameObject obj in meshes)
+               for (int i = 0; i < meshes.Count-1; i++)
                {
-                   obj.GetComponent<Image>().enabled = false;
+                   meshes[i].GetComponent<Image>().enabled = false;
                }
            });
         }
@@ -325,9 +324,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     void EnableIndicator()
     {
         Cursor.visible = false;
-        foreach (GameObject obj in meshes)
+        for (int i =0;i<meshes.Count-1;i++)
         {
-            obj.GetComponent<Image>().enabled = true;
+            meshes[i].GetComponent<Image>().enabled = true;
         }
 
         for (int i = 0; i < followMouse.objs.Count; i++)
