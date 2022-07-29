@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     public GameObject dmgPopOutBlock;
     public TextMeshProUGUI dmgPopOutTMP;
     public GameplayManager gameplayManager;
+    public float velocity;
     public int strenght = 0;
     public int dexterity = 0;
     public int inteligence = 0;
@@ -41,7 +42,7 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
         armor = 0;
         mana = 3;
-        myOriginalPosition = this.transform.position;
+        myOriginalPosition = GetComponent<RectTransform>().anchoredPosition3D;
     }
 
     void Start()
@@ -377,7 +378,7 @@ public class Player : MonoBehaviour
     public void Walk(Vector3 destination)
     {
         //check jak daleka jest odleglosc poprzez lerp
-        float velocity = 34;
+        velocity = 34;
 
         float distance = Mathf.Abs(destination.x - this.transform.position.x);
         var time = distance / velocity;
@@ -389,8 +390,8 @@ public class Player : MonoBehaviour
                transform.DORotate(new Vector3(0, 180, 0), 0.4f);
            });
         });
-        
-        transform.DOMove(destination, time); 
+        RectTransform rect = GetComponent<RectTransform>();
+        rect.DOAnchorPos3D(destination,0.4f); 
         //na dotarciu przerwac rotacje
     }
 }

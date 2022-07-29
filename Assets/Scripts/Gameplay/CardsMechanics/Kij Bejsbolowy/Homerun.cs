@@ -13,10 +13,12 @@ public class Homerun :  Card
     [SerializeField]Vector3 offset;
     VisualEffect hitBlastEffect;
     [SerializeField] GameObject hitBlast;
+    RectTransform ballRect;
+    [SerializeField]Vector3 playerPos;
     private void Start()
     {
         var get03procent = defaultattack * 0.3f;
-
+        playerPos = new Vector3(-40, -17, 0);
         desc = $"Deal <color=white>{attack.ToString()}</color> damage to first enemy and <color=white>{get03procent.ToString()}</color> to second enemy";
 
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
@@ -45,9 +47,9 @@ public class Homerun :  Card
         if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
-            Baseball = Instantiate(ball, player.transform.position + new Vector3(4,7,0), Quaternion.identity);
-            Baseball.transform.SetParent(gameplayManager.canvas.transform);
-            Baseball.transform.localScale = new Vector3(15,15,15);
+            Baseball = Instantiate(ball, playerPos, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+            Debug.Log(player.GetComponent<RectTransform>().anchoredPosition);
+            ballRect = Baseball.GetComponent<RectTransform>();
             StartCoroutine(ExecuteAfterTime(1f));
             Enemy firstEnemy = null;
             Enemy secondEnemy = null;
@@ -57,11 +59,11 @@ public class Homerun :  Card
                 if (en.isSecondTarget) secondEnemy = en;
             }
 
-                Baseball.transform.DOMove(firstEnemy.transform.position+ offset, 0.5f).SetEase(anCurve).OnComplete(() =>
+                ballRect.DOAnchorPos3D(firstEnemy.transform.parent.GetComponent<RectTransform>().anchoredPosition3D + offset, 0.7f).SetEase(anCurve).OnComplete(() =>
                 {
                     //play vfx uderzenia
-                    var blast = Instantiate(hitBlast, Baseball.transform.position, Quaternion.identity);
-                    blast.transform.SetParent(gameplayManager.canvas.transform);
+                    var blast = Instantiate(hitBlast, firstEnemy.transform.parent.GetComponent<RectTransform>().anchoredPosition3D, Quaternion.identity);
+                    blast.transform.SetParent(gameplayManager.vfxCanvas.transform);
                     Destroy(blast, 0.3f);
                     firstEnemy.RecieveDamage(attack, this);
                     firstEnemy.targeted = false;
@@ -73,16 +75,14 @@ public class Homerun :  Card
                     else
                     {
                         var mean =Mathf.Abs(secondEnemy.transform.position.x - firstEnemy.transform.position.x);
-                        Debug.Log(secondEnemy.transform.position);
-                        Debug.Log(firstEnemy.transform.position);
                         Baseball.transform.DORotate(new Vector3(0, 0, 360), 0.6f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
-                        Baseball.transform.DOMove(new Vector3(mean,offset.y*4, secondEnemy.transform.position.z), 1.2f).SetEase(Ease.Linear).OnComplete(() =>
+                        ballRect.DOAnchorPos3D(new Vector3(mean,offset.y*4, secondEnemy.transform.parent.GetComponent<RectTransform>().anchoredPosition3D.z), 1.2f).SetEase(Ease.Linear).OnComplete(() =>
                         {
-                            Baseball.transform.DOMove(secondEnemy.transform.position + offset, 0.7f).SetEase(anCurve).OnComplete(() =>
+                            ballRect.DOAnchorPos(secondEnemy.transform.parent.GetComponent<RectTransform>().anchoredPosition3D + offset, 0.7f).SetEase(anCurve).OnComplete(() =>
                             {
                                 //play vfx uderzenia
 
-                                var blast2 = Instantiate(hitBlast, Baseball.transform.position, Quaternion.identity);
+                                var blast2 = Instantiate(hitBlast, ballRect.anchoredPosition, Quaternion.identity);
                                 blast2.transform.SetParent(gameplayManager.canvas.transform);
                                 Destroy(blast2, 0.3f);
                                 secondEnemy.RecieveDamage(Mathf.RoundToInt((attack) * 0.3f), this); // do zmiany po demie

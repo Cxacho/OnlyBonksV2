@@ -48,6 +48,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject goldRewardGameObject;
     public GameObject enemyTurnTextPanel;
     public GameObject panelWin;
+    public GameObject vfxCanvas;
     public GameObject canvas;
     public GameObject cardHolder;
     public GameObject battleUI;

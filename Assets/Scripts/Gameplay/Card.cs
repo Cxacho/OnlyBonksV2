@@ -49,7 +49,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
 
     //private float clickDelay;
-    private List<GameObject> meshes = new List<GameObject>();
+    public  List<GameObject> meshes = new List<GameObject>();
 
     [HideInInspector] public List<Enemy> _enemies = new List<Enemy>();
 

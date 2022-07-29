@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ba9fcb052f21e41af98c051e3ac846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timePeriod: 0.5
+  timePeriod: 0.2
   Shockwave: {fileID: 2213794876329513961, guid: 68f8dcb60040c8744a7f3dc1beba2db4, type: 3}

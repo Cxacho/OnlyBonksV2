@@ -9,8 +9,10 @@ public class Sanic : Card
     [SerializeField] GameObject trail;
     [SerializeField] GameObject sanicRings;
     List<GameObject> distances = new List<GameObject>();
+    bool inAnim;
     private void Start()
     {
+        inAnim = false;
         desc = $"Deal <color=white>{attack.ToString()}</color> damage";
 
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
@@ -29,8 +31,9 @@ public class Sanic : Card
             {
                 distances.Add(gameplayManager.enemyBattleStation[i].gameObject);
             }
+        if(inAnim)
         for (int j = 0; j < distances.Count; j++)
-            if (Vector3.Distance(distances[j].transform.position, player.transform.position) < 8)
+            if (Vector3.Distance(distances[j].transform.position, player.transform.position) < 20)
                 Instantiate(sanicRings, player.transform.position, Quaternion.identity);
 
 
@@ -47,6 +50,7 @@ public class Sanic : Card
 
     public override void OnDrop()
     {
+        inAnim = true;
         gameplayManager.checkPlayerMana(cost);
         if (gameplayManager.canPlayCards == true)
         {
@@ -55,14 +59,14 @@ public class Sanic : Card
             //enable trail
             var sanTrail = Instantiate(trail, player.transform.position, Quaternion.identity);
             sanTrail.transform.SetParent(player.transform);
-            player.transform.DOMove(new Vector3(80, player.transform.position.y, player.transform.position.z), 0.4f).SetEase(anCurve).OnComplete(() =>
+            player.transform.DOMove(new Vector3(90, player.transform.position.y, player.transform.position.z), 0.4f).SetEase(anCurve).OnComplete(() =>
            {
                foreach (Enemy en in _enemies)
                {
                    en.RecieveDamage(attack, this);
 
                }
-               player.transform.position = new Vector3(-80, player.transform.position.y, player.transform.position.z);
+               player.transform.position = new Vector3(-90, player.transform.position.y, player.transform.position.z);
                player.Walk(player.myOriginalPosition);
                sanTrail.transform.SetParent(gameplayManager.canvas.transform);
                Destroy(sanTrail,1f);
