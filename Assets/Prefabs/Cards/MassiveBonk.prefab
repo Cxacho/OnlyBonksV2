@@ -196,18 +196,47 @@ MonoBehaviour:
   secondaryScalingType: 0
   cardDamageType: 0
   exitButton: {fileID: 1019920095713079653, guid: 999738602cea97c4882ce11df42f5f38, type: 3}
-  trail: {fileID: 0}
   ui: {fileID: 0}
   player: {fileID: 0}
   cardAlign: {fileID: 0}
   gameplayManager: {fileID: 0}
   interactible: 0
+  meshes: []
   _enemies: []
   exhaustable: 0
   isNeutral: 0
   retainable: 0
   desc: 
   bonk: {fileID: 0}
+  eruption: {fileID: 2213794876329513961, guid: 68f8dcb60040c8744a7f3dc1beba2db4, type: 3}
+  bigBonk: {fileID: 5094995433526758241, guid: e7c7f73649e9e1149bc37e26b36dd273, type: 3}
+  anCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  offset: {x: 0, y: 50, z: 0}
+  eruptionOffset: {x: 0, y: 28, z: 0}
+  fallingOffset: {x: 0, y: 0}
 --- !u!1 &1490723487258468640
 GameObject:
   m_ObjectHideFlags: 0

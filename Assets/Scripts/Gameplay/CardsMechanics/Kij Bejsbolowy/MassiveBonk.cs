@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 public class MassiveBonk : Card
 {
     public GameObject bonk;
-
+    [SerializeField] private GameObject eruption;
+    [SerializeField] private GameObject bigBonk;
+    [SerializeField] private AnimationCurve anCurve;
+    [SerializeField]Vector3 offset, eruptionOffset;
+    [SerializeField] Vector2  fallingOffset;
     private void Start()
     {
         desc = $"Summon a huge bat dealing <color=white>{attack.ToString()}</color> damage to targetted enemy";
@@ -37,12 +42,25 @@ public class MassiveBonk : Card
             base.OnDrop();
 
             StartCoroutine(ExecuteAfterTime(1f));
+            
             foreach (Enemy en in _enemies)
             {
-                
+
                 if (en.targeted == true)
                 {
-                    en.RecieveDamage(attack,this);
+                    var hit = Instantiate(bigBonk, en.transform.parent.transform.position + offset, Quaternion.identity);
+                    hit.transform.SetParent(gameplayManager.vfxCanvas.transform);
+                    hit.transform.localScale = Vector3.one;
+                    var rect = hit.GetComponent<RectTransform>();
+                    rect.DOAnchorPos(en.transform.parent.GetComponent<RectTransform>().anchoredPosition + fallingOffset, 1f).SetEase(anCurve).OnComplete(() =>
+                    {
+                        var blow = Instantiate(eruption, rect.transform.position + eruptionOffset, Quaternion.identity ,gameplayManager.vfxCanvas.transform);
+                        en.RecieveDamage(attack, this);
+                        Destroy(blow, 1f);
+                        Destroy(hit, 1f);
+                    });
+                    
+                    
 
                     en.targeted = false;
                 }
