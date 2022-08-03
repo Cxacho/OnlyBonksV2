@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4154305017897078799}
   - component: {fileID: 4195082560769264694}
   - component: {fileID: -6022969762265394306}
+  - component: {fileID: -6351299408824284749}
   - component: {fileID: -6658897165955588903}
   m_Layer: 7
   m_Name: Backstab
