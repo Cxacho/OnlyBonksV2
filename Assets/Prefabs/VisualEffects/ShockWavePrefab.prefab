@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5469463251423792699}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46,3 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timePeriod: 0.2
   Shockwave: {fileID: 2213794876329513961, guid: 68f8dcb60040c8744a7f3dc1beba2db4, type: 3}
+  multiplyScale: 1.1
+  range: 14
+  vfxTargetScale: {x: 20, y: 20, z: 20}
+  heightOffset: -8
