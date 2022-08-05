@@ -64,6 +64,7 @@ public class ShockWave : MonoBehaviour
         {
             Destroy(obj);
         }
+        Destroy(this.gameObject);
     }
     async Task DoAnimateLeft()
     {
@@ -84,5 +85,6 @@ public class ShockWave : MonoBehaviour
         {
             Destroy(obj);
         }
+        Destroy(this.gameObject);
     }
 }

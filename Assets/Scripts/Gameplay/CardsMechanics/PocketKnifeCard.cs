@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 public class PocketKnifeCard : Card
 {
     //Deals 3 damage and applies 3 bleed
-
+    [SerializeField] private GameObject knifeAnimPrefab;
+    [SerializeField] private GameObject bleedVfx;
+    [SerializeField] private Vector3 offset;
     private void Start()
     {
         desc = $"Deal <color=white>{attack.ToString()}</color> damage";
@@ -34,16 +37,29 @@ public class PocketKnifeCard : Card
         if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
-
+            var knifeObj = Instantiate(knifeAnimPrefab, gameplayManager.player.transform.position + offset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+            knifeObj.transform.localScale = new Vector3(45, 45, 1);
+            var getRect = knifeObj.GetComponent<RectTransform>();
+            
             //Instantiate(bonk, new Vector3(0, -10, 0), Quaternion.identity, GameObject.Find("Player").transform);
             StartCoroutine(ExecuteAfterTime(1f));
             foreach (Enemy en in _enemies)
             {
                 if (en.targeted == true)
                 {
-                    en.RecieveDamage(attack,this);
-                    en.setStatusIndicator(3, 2, gameplayManager.enemiesIndicators[2]);
-                    en.targeted = false;
+                    var enRect = en.GetComponent<RectTransform>();
+                    getRect.DORotate(new Vector3(0, 0, 360), 0.6f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
+                    getRect.DOAnchorPos(enRect.transform.parent.GetComponent<RectTransform>().anchoredPosition, 0.7f).OnComplete(() =>
+                    {
+                        var vfxToDestroy=Instantiate(bleedVfx, en.transform.parent.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+                        //rescale ??
+                        en.RecieveDamage(attack, this);
+                        en.setStatusIndicator(3, 2, gameplayManager.enemiesIndicators[2]);
+                        en.targeted = false;
+                        Destroy(knifeObj,0.2f);
+                        Destroy(vfxToDestroy,1.5f);
+                    });
+
                 }
             }
             resetTargetting();
