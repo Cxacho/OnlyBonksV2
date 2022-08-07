@@ -187,17 +187,22 @@ MonoBehaviour:
   secondaryScalingType: 0
   cardDamageType: 0
   exitButton: {fileID: 1019920095713079653, guid: 999738602cea97c4882ce11df42f5f38, type: 3}
-  trail: {fileID: 0}
   ui: {fileID: 0}
   player: {fileID: 0}
   cardAlign: {fileID: 0}
   gameplayManager: {fileID: 0}
   interactible: 0
+  meshes: []
   _enemies: []
   exhaustable: 0
   isNeutral: 0
   retainable: 0
   desc: 
+  shieldVFX: {fileID: 3012403007239066207, guid: ed4cc8b0547090a4284f9554f057f0a7, type: 3}
+  smokeVFX: {fileID: 2551491812487652311, guid: 3b12db6bc6164c64b87cdcd5929d263d, type: 3}
+  offset: {x: 35, y: 0, z: 0}
+  anim: {x: 0, y: 10, z: 0}
+  smokOffset: {x: 0, y: -8, z: 0}
 --- !u!1 &3868653325569000508
 GameObject:
   m_ObjectHideFlags: 0
