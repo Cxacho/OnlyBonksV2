@@ -53,7 +53,16 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyUp("p"))
         {
-            Walk(myOriginalPosition);
+            Time.timeScale = 2f;
+        }
+        if (Input.GetKeyUp("l"))
+        {
+            Time.timeScale = 0.5f;
+
+        }
+        if (Input.GetKeyUp("m"))
+        {
+            Time.timeScale = 1f;
         }
         if (armor > 0)
         {

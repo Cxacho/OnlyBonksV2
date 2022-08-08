@@ -74,7 +74,7 @@ public class Homerun :  Card
                     }
                     else
                     {
-                        var mean =Mathf.Abs(secondEnemy.transform.position.x - firstEnemy.transform.position.x);
+                        var mean =Mathf.Abs(secondEnemy.transform.parent.GetComponent<RectTransform>().anchoredPosition.x - firstEnemy.transform.parent.GetComponent<RectTransform>().anchoredPosition.x);
                         Baseball.transform.DORotate(new Vector3(0, 0, 360), 0.6f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
                         ballRect.DOAnchorPos3D(new Vector3(mean,offset.y*4, secondEnemy.transform.parent.GetComponent<RectTransform>().anchoredPosition3D.z), 1.2f).SetEase(Ease.Linear).OnComplete(() =>
                         {
