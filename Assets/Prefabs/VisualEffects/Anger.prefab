@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6417215641609916164
+--- !u!1 &2274306941664742617
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8323039131099836001}
-  - component: {fileID: 2449707347679720846}
-  - component: {fileID: 9194929992441122600}
+  - component: {fileID: 6657949029500718854}
+  - component: {fileID: 6435232295639026371}
+  - component: {fileID: 5471648161946610397}
   m_Layer: 0
-  m_Name: Shatter
+  m_Name: Anger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8323039131099836001
+--- !u!4 &6657949029500718854
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6417215641609916164}
+  m_GameObject: {fileID: 2274306941664742617}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 1}
+  m_LocalScale: {x: 400, y: 400, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!2083052967 &2449707347679720846
+--- !u!2083052967 &6435232295639026371
 VisualEffect:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6417215641609916164}
+  m_GameObject: {fileID: 2274306941664742617}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: ed414e3f9f69b444aaf628da5296f527, type: 3}
+  m_Asset: {fileID: 8926484042661614526, guid: 750387c42f211a64399c657a76429d63, type: 3}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
@@ -50,42 +50,21 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: -6.78
-        m_Name: GravityForce
+      - m_Value: 3
+        m_Name: Size
         m_Overridden: 1
-      - m_Value: 35
-        m_Name: Rate
+      - m_Value: 1.1
+        m_Name: MulitplyValue
         m_Overridden: 1
-      - m_Value: 15
-        m_Name: Rate 1
-        m_Overridden: 1
-      - m_Value: 1.46
-        m_Name: outerTrailMulitply
-        m_Overridden: 1
-      - m_Value: 0.52
-        m_Name: StripLifetime
-        m_Overridden: 1
-    m_Vector2f:
-      m_Array:
-      - m_Value: {x: 2, y: 3}
+      - m_Value: 5
         m_Name: Lifetime
         m_Overridden: 1
-      - m_Value: {x: 0.8, y: 0.49}
-        m_Name: particleSize
-        m_Overridden: 1
+    m_Vector2f:
+      m_Array: []
     m_Vector3f:
       m_Array:
-      - m_Value: {x: 2, y: 6.64, z: 0}
-        m_Name: maxVelocity
-        m_Overridden: 1
-      - m_Value: {x: -2, y: 4.71, z: 0}
-        m_Name: minVelocity
-        m_Overridden: 1
-      - m_Value: {x: 1, y: 1, z: 1}
-        m_Name: Scale
-        m_Overridden: 1
-      - m_Value: {x: 1.3, y: 1, z: 1}
-        m_Name: box_size
+      - m_Value: {x: 0.84, y: 0.85, z: 1}
+        m_Name: OuterScales
         m_Overridden: 1
     m_Vector4f:
       m_Array: []
@@ -101,113 +80,109 @@ VisualEffect:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
-            time: 0
-            value: 0.5
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
+            time: -0.009216577
+            value: 0.38679245
+            inSlope: 1.862741
+            outSlope: 1.862741
+            tangentMode: 34
             weightedMode: 0
             inWeight: 0
-            outWeight: 0
+            outWeight: 0.33333334
           - serializedVersion: 3
-            time: 1
-            value: 0.2
-            inSlope: 0
-            outSlope: 0
+            time: 0.10165191
+            value: 0.5933117
+            inSlope: 0.052149933
+            outSlope: 0.052149933
             tangentMode: 0
             weightedMode: 0
-            inWeight: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.24344748
+            value: 0.48283857
+            inSlope: -0.27310035
+            outSlope: -0.27310035
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.702345
+            value: 0.70285785
+            inSlope: -0.007330408
+            outSlope: -0.007330408
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.36220962
+          - serializedVersion: 3
+            time: 0.9953613
+            value: 0.7020755
+            inSlope: -0.002670058
+            outSlope: -0.002670058
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
             outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        m_Name: SizeCurve
+        m_Name: SizeAnimCurve
         m_Overridden: 1
     m_Gradient:
       m_Array:
       - m_Value:
           serializedVersion: 2
-          key0: {r: 1, g: 1, b: 1, a: 1}
-          key1: {r: 1, g: 1, b: 1, a: 1}
-          key2: {r: 0.80772674, g: 4, b: 0.05660367, a: 0}
-          key3: {r: 0.062113423, g: 0.3041965, b: 0.0047779554, a: 0}
-          key4: {r: 1.4980392, g: 0.09411765, b: 0.039215688, a: 0}
-          key5: {r: 11.984314, g: 0.7529412, b: 0.3137255, a: 0}
-          key6: {r: 1.4980392, g: 0.09411765, b: 0.039215688, a: 0}
-          key7: {r: 0, g: 0, b: 0, a: 0}
-          ctime0: 0
-          ctime1: 65535
-          ctime2: 44911
-          ctime3: 58982
-          ctime4: 43947
-          ctime5: 53199
-          ctime6: 60138
-          ctime7: 0
-          atime0: 0
-          atime1: 65535
-          atime2: 56476
-          atime3: 65535
-          atime4: 65535
-          atime5: 0
-          atime6: 0
-          atime7: 0
-          m_Mode: 0
-          m_NumColorKeys: 2
-          m_NumAlphaKeys: 2
-        m_Name: Colour
-        m_Overridden: 1
-      - m_Value:
-          serializedVersion: 2
-          key0: {r: 0.007223963, g: 0.0059105153, b: 0.0059105153, a: 0}
-          key1: {r: 0.024692819, g: 0.021540545, b: 0.021540545, a: 1}
-          key2: {r: 0.16981131, g: 0.15299037, b: 0.15299037, a: 1}
+          key0: {r: 0, g: 0, b: 0, a: 0}
+          key1: {r: 0, g: 0, b: 0, a: 1}
+          key2: {r: 1.6139647, g: 0, b: 0, a: 1}
           key3: {r: 0, g: 0, b: 0, a: 0}
           key4: {r: 0, g: 0, b: 0, a: 0}
           key5: {r: 0, g: 0, b: 0, a: 0}
           key6: {r: 0, g: 0, b: 0, a: 0}
           key7: {r: 0, g: 0, b: 0, a: 0}
           ctime0: 0
-          ctime1: 34117
-          ctime2: 65535
+          ctime1: 65535
+          ctime2: 64957
           ctime3: 0
           ctime4: 0
           ctime5: 0
           ctime6: 0
           ctime7: 0
           atime0: 0
-          atime1: 5012
-          atime2: 60524
+          atime1: 5590
+          atime2: 60138
           atime3: 65535
           atime4: 0
           atime5: 0
           atime6: 0
           atime7: 0
           m_Mode: 0
-          m_NumColorKeys: 3
-          m_NumAlphaKeys: 4
-        m_Name: outerTrailColor
+          m_NumColorKeys: 2
+          m_NumAlphaKeys: 3
+        m_Name: Color
         m_Overridden: 1
       - m_Value:
           serializedVersion: 2
-          key0: {r: 0.13449706, g: 1.1432251, b: 0.06724853, a: 1}
-          key1: {r: 0.15289457, g: 0.76447284, b: 0, a: 1}
-          key2: {r: 0.15289457, g: 0.76447284, b: 0, a: 0}
+          key0: {r: 16.94838, g: 0.17746994, b: 0.17746994, a: 0}
+          key1: {r: 4.707397, g: 0.06724853, b: 0.06724853, a: 1}
+          key2: {r: 1.6139647, g: 0, b: 0, a: 1}
           key3: {r: 0, g: 0, b: 0, a: 0}
           key4: {r: 0, g: 0, b: 0, a: 0}
           key5: {r: 0, g: 0, b: 0, a: 0}
           key6: {r: 0, g: 0, b: 0, a: 0}
           key7: {r: 0, g: 0, b: 0, a: 0}
-          ctime0: 10023
-          ctime1: 44911
-          ctime2: 58982
+          ctime0: 386
+          ctime1: 35273
+          ctime2: 64957
           ctime3: 0
           ctime4: 0
           ctime5: 0
           ctime6: 0
           ctime7: 0
-          atime0: 10216
-          atime1: 54548
-          atime2: 56476
+          atime0: 0
+          atime1: 10216
+          atime2: 56861
           atime3: 65535
           atime4: 0
           atime5: 0
@@ -216,32 +191,23 @@ VisualEffect:
           m_Mode: 0
           m_NumColorKeys: 3
           m_NumAlphaKeys: 3
-        m_Name: innerTrailColor
+        m_Name: OuterColor
         m_Overridden: 1
     m_NamedObject:
       m_Array:
-      - m_Value: {fileID: 2800000, guid: 1112076277e719e429f74f739aad44ec, type: 3}
+      - m_Value: {fileID: 2800000, guid: e3e0dfbed113d2b48b93cc69f84c6f01, type: 3}
         m_Name: mainTex
         m_Overridden: 1
-      - m_Value: {fileID: 2800000, guid: 2e66c93241d203548b44d8bac04e8284, type: 3}
-        m_Name: SecondaryTexture
-        m_Overridden: 1
-      - m_Value: {fileID: 2800000, guid: 2e66c93241d203548b44d8bac04e8284, type: 3}
-        m_Name: MainTexutre
-        m_Overridden: 1
     m_Bool:
-      m_Array:
-      - m_Value: 0
-        m_Name: Bool
-        m_Overridden: 1
---- !u!73398921 &9194929992441122600
+      m_Array: []
+--- !u!73398921 &5471648161946610397
 VFXRenderer:
   serializedVersion: 1
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6417215641609916164}
+  m_GameObject: {fileID: 2274306941664742617}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0

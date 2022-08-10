@@ -92,64 +92,64 @@ VisualEffect:
       m_Array:
       - m_Value:
           serializedVersion: 2
-          key0: {r: 7.9066987, g: 2.152609, b: 0.5795486, a: 0}
-          key1: {r: 33.89676, g: 10.115787, b: 4.2592783, a: 1}
-          key2: {r: 19.468573, g: 5.809993, b: 2.5482426, a: 1}
-          key3: {r: 33.89676, g: 7.2762675, b: 2.484579, a: 0}
-          key4: {r: 0, g: 0, b: 0, a: 0}
-          key5: {r: 0, g: 0, b: 0, a: 0}
-          key6: {r: 0, g: 0, b: 0, a: 0}
+          key0: {r: 1.4980392, g: 0.09411765, b: 0.039215688, a: 0}
+          key1: {r: 11.984314, g: 0.7529412, b: 0.3137255, a: 1}
+          key2: {r: 1.4980392, g: 0.09411765, b: 0.039215688, a: 1}
+          key3: {r: 11.984314, g: 0.7529412, b: 0.3137255, a: 1}
+          key4: {r: 1.4980392, g: 0.09411765, b: 0.039215688, a: 0}
+          key5: {r: 11.984314, g: 0.7529412, b: 0.3137255, a: 0.8863636}
+          key6: {r: 1.4980392, g: 0.09411765, b: 0.039215688, a: 0}
           key7: {r: 0, g: 0, b: 0, a: 0}
-          ctime0: 0
-          ctime1: 20046
-          ctime2: 43947
-          ctime3: 56861
-          ctime4: 0
-          ctime5: 0
-          ctime6: 0
+          ctime0: 5590
+          ctime1: 12722
+          ctime2: 23516
+          ctime3: 32768
+          ctime4: 43947
+          ctime5: 53199
+          ctime6: 60138
           ctime7: 0
           atime0: 0
-          atime1: 4433
-          atime2: 49922
-          atime3: 65535
-          atime4: 0
-          atime5: 0
-          atime6: 0
+          atime1: 10794
+          atime2: 33346
+          atime3: 54548
+          atime4: 65535
+          atime5: 60524
+          atime6: 65535
           atime7: 0
           m_Mode: 0
-          m_NumColorKeys: 4
-          m_NumAlphaKeys: 4
+          m_NumColorKeys: 7
+          m_NumAlphaKeys: 5
         m_Name: InnerGradient
         m_Overridden: 1
       - m_Value:
           serializedVersion: 2
-          key0: {r: 7.9066987, g: 2.152609, b: 0.5795486, a: 0}
-          key1: {r: 33.89676, g: 10.115787, b: 4.2592783, a: 1}
-          key2: {r: 19.468573, g: 5.809993, b: 2.5482426, a: 1}
-          key3: {r: 33.89676, g: 7.2762675, b: 2.484579, a: 0}
-          key4: {r: 1.9042312, g: 1.3246826, b: 1.2418898, a: 0}
-          key5: {r: 0, g: 0, b: 0, a: 0}
-          key6: {r: 0, g: 0, b: 0, a: 0}
+          key0: {r: 1.4980392, g: 0.09411765, b: 0.039215688, a: 0}
+          key1: {r: 11.984314, g: 0.7529412, b: 0.3137255, a: 1}
+          key2: {r: 1.4980392, g: 0.09411765, b: 0.039215688, a: 1}
+          key3: {r: 11.984314, g: 0.7529412, b: 0.3137255, a: 1}
+          key4: {r: 1.4980392, g: 0.09411765, b: 0.039215688, a: 0}
+          key5: {r: 11.984314, g: 0.7529412, b: 0.3137255, a: 0}
+          key6: {r: 1.4980392, g: 0.09411765, b: 0.039215688, a: 0}
           key7: {r: 0, g: 0, b: 0, a: 0}
-          ctime0: 0
-          ctime1: 20046
-          ctime2: 43947
-          ctime3: 56861
-          ctime4: 56861
-          ctime5: 0
-          ctime6: 0
+          ctime0: 5590
+          ctime1: 12722
+          ctime2: 23516
+          ctime3: 32768
+          ctime4: 43947
+          ctime5: 53199
+          ctime6: 60138
           ctime7: 0
           atime0: 0
-          atime1: 4433
-          atime2: 49922
-          atime3: 65535
-          atime4: 0
+          atime1: 10794
+          atime2: 33346
+          atime3: 54548
+          atime4: 65535
           atime5: 0
           atime6: 0
           atime7: 0
           m_Mode: 0
-          m_NumColorKeys: 4
-          m_NumAlphaKeys: 4
+          m_NumColorKeys: 7
+          m_NumAlphaKeys: 5
         m_Name: OuterGradient
         m_Overridden: 1
       - m_Value:
@@ -185,7 +185,7 @@ VisualEffect:
         m_Overridden: 1
     m_NamedObject:
       m_Array:
-      - m_Value: {fileID: -811388818298654543, guid: 0d1acd6f6edbe2f4286de6f7c16dc30b, type: 3}
+      - m_Value: {fileID: 2800000, guid: 68669a3450aa47d4abc8e8a61b4122e5, type: 3}
         m_Name: MainTex
         m_Overridden: 1
       - m_Value: {fileID: 2800000, guid: f2c5d7b580025e64a8b351a1d1798910, type: 3}

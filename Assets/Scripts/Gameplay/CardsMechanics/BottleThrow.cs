@@ -54,14 +54,14 @@ public class BottleThrow : Card
         var getRect= bottleObj.GetComponent<RectTransform>();
         var enIndex = en.transform.parent.GetSiblingIndex();
         //zrobic liste ze wzsystkich enemy battlestations
-        getRect.DORotate(new Vector3(0, 0, -360), 0.5f);
+        getRect.DORotate(new Vector3(0, 0, -360), 1f,RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
         getRect.DOAnchorPos(en.transform.parent.GetComponent<RectTransform>().anchoredPosition, 0.7f).SetEase(anCurve).OnComplete(() =>
         {
             Destroy(bottleObj,0.3f);
-            if (enIndex < 1)
+            if (enIndex == 0)
                 objToDestroy = Instantiate(shardsVFXRight, bottleObj.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
             
-            else if (enIndex > _enemies.Count-2)
+            else if (enIndex == _enemies.Count-1)
                 objToDestroy= Instantiate(shardsVFXLeft, bottleObj.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
                     else
                 objToDestroy = Instantiate(shardsVFX, bottleObj.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);

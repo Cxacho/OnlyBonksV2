@@ -6534,7 +6534,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 4
   m_TargetDisplay: 0
@@ -11914,7 +11914,7 @@ MonoBehaviour:
   - {fileID: 2858555165568228111, guid: 6bb15ada756cc684b99cb2e08259ad30, type: 3}
   - {fileID: 2858555165568228111, guid: 34a283a1e53d55b44a66535c8cdff77a, type: 3}
   startingDeck:
-  - {fileID: 2858555165568228111, guid: 91863920655f72f47a456fa5c34d3c77, type: 3}
+  - {fileID: 2858555165568228111, guid: cbe71c4c30231a64599e63f128999ab9, type: 3}
   - {fileID: 2858555165568228111, guid: 18f9c84fc6de7634895b5c16eab423b3, type: 3}
   - {fileID: 2858555165568228111, guid: dadfaf24267f0274bbbed0cbbe3434ad, type: 3}
   - {fileID: 2858555165568228111, guid: 77f03727ae969454bb2565421c2d2487, type: 3}
@@ -11924,6 +11924,7 @@ MonoBehaviour:
   - {fileID: 806097991063666207, guid: a73c570927c6e334d8904b9ea7dc22a2, type: 3}
   - {fileID: 2858555165568228111, guid: bc6f0096eb3e4614caf373cb9b6a75c5, type: 3}
   - {fileID: 2858555165568228111, guid: 34a283a1e53d55b44a66535c8cdff77a, type: 3}
+  - {fileID: 2858555165568228111, guid: bd949b9cacf4dbb408fc479bc5658854, type: 3}
   exhaustedDeck: []
   drawDeck: []
   enemiesIndicators:
