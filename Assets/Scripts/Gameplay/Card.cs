@@ -31,7 +31,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public GameObject exitButton;
     protected FollowMouse followMouse;
 
-    TrailRenderer trail;
+    [HideInInspector] public TrailRenderer trail;
     [HideInInspector]public UiActive ui;
     [HideInInspector] public Player player;
 
@@ -135,6 +135,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             gameplayManager.cardToCreate = this.gameObject;
         }
     }
+
     public void resetTargetting()
     {
         foreach (Enemy enemy in gameplayManager.enemyType)

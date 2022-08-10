@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 using System;
+using System.Linq;
 
 public enum BattleState { NODE ,START, PLAYERTURN, ENEMYTURN, WON, LOST, VictoryScreen,DRAWING,INANIMATION,CREATING}
 
@@ -467,7 +468,6 @@ public class GameplayManager : MonoBehaviour
                 if (card.retainable == true)
                 {
                     var cardIndex = card.gameObject.transform.GetSiblingIndex();
-                    Debug.Log(cardIndex);
                     retain.Add(playerHand[cardIndex]);
                     playerHand.RemoveAt(cardIndex);
                     //zbierz index player handu.
@@ -476,14 +476,25 @@ public class GameplayManager : MonoBehaviour
 
                 }
             var phCount = playerHand.Count;
-            foreach (Card obj in FindObjectsOfType<Card>())
+            var cards = FindObjectsOfType<Card>().ToList<Card>() ;
+            
+            foreach (Card obj in cards)
                 obj.currentCardState = Card.cardState.Elsewhere;
             playerHand.ForEach(item => discardDeck.Add(item));
             playerHand.Clear();
-            for (var i = phCount - 1; i >= 0; i--)
+            cards.Reverse();
+            for (var i =phCount -1;i>=0;i--)
             {
+                //cards[i].GetComponent<RectTransform>().DOAnchorPos(discardDeckButton.GetComponent<RectTransform>().anchoredPosition,0.2f);
+                cards[i].trail.enabled = true;
+                cards[i].transform.DORotate(new Vector3(0, 0, -90),0.2f);
+                cards[i].transform.DOScale(new Vector3(0.2f, 0.2f, 0.2f),0.2f);
+                await Task.Delay(100);
+                cards[i].transform.DOMove(discardDeckButton.transform.position, 0.2f);
+                await Task.Delay(200);
                 Destroy(playerHandObject.transform.GetChild(i).gameObject);
             }
+
             playerHand.AddRange(retain);
             temp.ForEach(obj => obj.transform.SetParent(playerHandObject.transform));
         }

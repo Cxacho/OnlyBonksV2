@@ -181,12 +181,13 @@ MonoBehaviour:
   defaultattack: 0
   getPanel: 0
   myWeaponType: 0
-  cType: 0
+  cType: 1
   currentCardState: 0
   cardScalingtype: 0
   secondaryScalingType: 0
   cardDamageType: 0
   exitButton: {fileID: 1019920095713079653, guid: 999738602cea97c4882ce11df42f5f38, type: 3}
+  trail: {fileID: 0}
   ui: {fileID: 0}
   player: {fileID: 0}
   cardAlign: {fileID: 0}

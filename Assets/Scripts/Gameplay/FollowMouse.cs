@@ -14,6 +14,7 @@ public class FollowMouse : MonoBehaviour
     public List<RectTransform> rect = new List<RectTransform>();
     [SerializeField] float multipiler;
     public List<Vector3> spriteScale = new List<Vector3>();
+    public float damping;
     public Card crd;
     bool onStart;
     private void Awake()
@@ -23,7 +24,6 @@ public class FollowMouse : MonoBehaviour
             rect.Add(obj.GetComponent<RectTransform>());
         rect[0].anchoredPosition = new Vector3(0, -400, 0);
         onStart = true;
-
     }
     
     void Update()
@@ -32,7 +32,9 @@ public class FollowMouse : MonoBehaviour
         for (int i = 0; i < objs.Count; i++)
         {
             if (i != 0)
+            {
                 rect[i].anchoredPosition = Vector3.LerpUnclamped(rect[0].anchoredPosition, rect[objs.Count - 1].anchoredPosition, test * i);
+            }
             if (onStart == true)
             {
                 spriteScale.Add(new Vector3(i * multipiler, i * multipiler, 1));

@@ -12,6 +12,7 @@ public class Upgrade : Card
     [SerializeField] private GameObject hammerVFX,smokeVFX;
     [SerializeField] private Vector3 hammerOffset, smokeOffset,batOffset;
     List<GameObject> vfxses = new List<GameObject>();
+    private Rigidbody2D rb;
 
     public override async void OnDrop()
     {
