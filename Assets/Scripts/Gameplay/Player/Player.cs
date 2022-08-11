@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public GameObject textHealth;
     public GameObject textArmor;
     public GameObject shield;
-    GameObject frailIndicator, vurneableIndicator, poisonIndicator, strengthBuffIndicator;
+    GameObject frailIndicator, vurneableIndicator, poisonIndicator, strengthBuffIndicator,pierceIndicator;
     [HideInInspector]public GameObject energizeIndicator;
     TextMeshProUGUI value;
     public int maxHealth = 70;
@@ -150,7 +150,13 @@ public class Player : MonoBehaviour
                 buffValue4.text = energize.ToString();
                 break;
 
-
+            case Player.playerStatusses.pierce:
+                if (pierceIndicator == null)
+                {
+                    pierceIndicator = Instantiate(buffIndicator, buffsAndDebuffs.transform);
+                    //onturnend destroy indicator/effect
+                }
+                break;
         }
 
     }
@@ -336,7 +342,7 @@ public class Player : MonoBehaviour
 
              }
         }
-        
+        //dowymiany
         foreach(Enemy en in FindObjectsOfType<Enemy>())
         {
             en.OnEndTurn();
@@ -345,10 +351,6 @@ public class Player : MonoBehaviour
                 en.damage = Mathf.RoundToInt(en.baseDamage * 1.25f);
             else
                 en.damage = en.baseDamage;
-        }
-        foreach(Relic re in FindObjectsOfType<Relic>())
-        {
-            re.OnEndTurn();
         }
 
     }
@@ -359,6 +361,7 @@ public class Player : MonoBehaviour
         poision =2,
         strengthBuff=3,
         energize=4,
+        pierce = 5,
         brak = 10
     }
     public void OnBattleSetup()

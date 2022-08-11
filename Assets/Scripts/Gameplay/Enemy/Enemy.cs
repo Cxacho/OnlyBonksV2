@@ -49,7 +49,8 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     [HideInInspector]
     public Image indicatorSpriteRenderer;
     [SerializeField] GameObject  statusEffectsTransform;
-
+    
+    public Action<Card,float,Enemy> OnDamageRecieved;
 
 
     public void OnPointerExit(PointerEventData eventData)
@@ -142,6 +143,8 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     public void RecieveDamage(float damage,Card card)
     {
+        if(OnDamageRecieved !=null)
+        OnDamageRecieved(card,damage,this);
         if (card != null)
 
         {
