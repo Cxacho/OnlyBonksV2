@@ -476,27 +476,32 @@ public class GameplayManager : MonoBehaviour
 
                 }
             var phCount = playerHand.Count;
-            var cards = FindObjectsOfType<Card>().ToList<Card>() ;
-            
-            foreach (Card obj in cards)
-                obj.currentCardState = Card.cardState.Elsewhere;
+            var cardsToTransform = new List<GameObject>();
+            foreach(Transform obj in playerHandObject.transform)
+            {
+                cardsToTransform.Add(obj.gameObject);
+            }
+
+
+
             playerHand.ForEach(item => discardDeck.Add(item));
             playerHand.Clear();
-            cards.Reverse();
             for (var i =phCount -1;i>=0;i--)
             {
                 //cards[i].GetComponent<RectTransform>().DOAnchorPos(discardDeckButton.GetComponent<RectTransform>().anchoredPosition,0.2f);
-                cards[i].trail.enabled = true;
-                cards[i].transform.DORotate(new Vector3(0, 0, -90),0.2f);
-                cards[i].transform.DOScale(new Vector3(0.2f, 0.2f, 0.2f),0.2f);
+                cardsToTransform[i].transform.DORotate(new Vector3(0, 0, -90),0.2f);
+                cardsToTransform[i].transform.DOScale(new Vector3(0.2f, 0.2f, 0.2f),0.2f);
                 await Task.Delay(100);
-                cards[i].transform.DOMove(discardDeckButton.transform.position, 0.2f);
+                cardsToTransform[i].transform.DOMove(discardDeckButton.transform.position, 0.2f);
                 await Task.Delay(200);
-                Destroy(playerHandObject.transform.GetChild(i).gameObject);
+                //var cardToDestroyIndex=cardsToTransform[i].transform.GetSiblingIndex();
+                //Destroy(playerHandObject.transform.GetChild(i).gameObject);
+                DestroyObject(cardsToTransform[i].gameObject);
             }
 
             playerHand.AddRange(retain);
             temp.ForEach(obj => obj.transform.SetParent(playerHandObject.transform));
+            cardsToTransform.Clear();
         }
         player.energize = 0;
         Destroy(player.energizeIndicator);

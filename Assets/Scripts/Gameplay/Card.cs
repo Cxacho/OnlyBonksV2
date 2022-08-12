@@ -30,8 +30,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private Vector3 discDek;
     public GameObject exitButton;
     protected FollowMouse followMouse;
-
-    [HideInInspector] public TrailRenderer trail;
     [HideInInspector]public UiActive ui;
     [HideInInspector] public Player player;
 
@@ -165,7 +163,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         meshes.AddRange(GameObject.FindGameObjectsWithTag("Indicator"));
         player = GameObject.Find("Player").GetComponent<Player>();
         discDek = GameObject.Find("Discard_Deck_Button").transform.position;
-        trail = transform.GetComponent<TrailRenderer>();
         gameplayManager = GameObject.Find("GameplayManager").GetComponent<GameplayManager>();
         pos = this.transform.GetComponent<RectTransform>();
         followMouse = GameObject.Find("Cursor").GetComponent<FollowMouse>();
@@ -427,7 +424,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             if (gameplayManager.OnCardExhausted != null)
                 gameplayManager.OnCardExhausted(this, EventArgs.Empty);
             //play card
-            trail.enabled = true;
             //anim
             var go = this.gameObject;
             var nazwaObiektu = go.name.Remove(go.name.Length - 7);
@@ -445,7 +441,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             transform.DOScale(0.25f, 0.5f);
             transform.DORotate(new Vector3(0, 0, -150f), 1.5f).OnComplete(() =>
             {
-                trail.enabled = false;
                 this.transform.localScale = Vector3.one;
                 this.transform.rotation = newRot;
                 Destroy(this.gameObject);
@@ -461,7 +456,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 gameplayManager.OnCardPlayed(this, EventArgs.Empty);
             currentCardState = cardState.Elsewhere;
             //play card
-            trail.enabled = true;
             //anim
             var go = this.gameObject;
             var nazwaObiektu = go.name.Remove(go.name.Length - 7);
@@ -675,7 +669,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             //discard anim
             currentCardState = cardState.Elsewhere;
             //play card
-            trail.enabled = true;
             //anim
             var go = cardAlign.helpingGO;
             var nazwaObiektu = go.name.Remove(go.name.Length - 7);

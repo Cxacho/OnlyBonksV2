@@ -82,7 +82,6 @@ public class Backstab : Card
     private void OnDestroy()
     {
         // gameplayManager.OnEnemyKilled -= AddMeSomeMana;   
-        Debug.Log("destroyed" + this.gameObject);
     }
 
     IEnumerator ExecuteAfterTime(float time)
