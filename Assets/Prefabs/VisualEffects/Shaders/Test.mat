@@ -7,11 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Glow
-  m_Shader: {fileID: -6465566751694194690, guid: 4e71bd010b738314a9c1816331bb48a2, type: 3}
+  m_Name: Test
+  m_Shader: {fileID: -6465566751694194690, guid: 80d602c2762bda141a6a3e8aa1332e7c, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -20,10 +20,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_3d62d61c2f924012a845c7355bdfc85f:
-        m_Texture: {fileID: 4877850872723992217, guid: 841ea4e4d77571d4aad96aaf7b1a525a, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -38,11 +34,17 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _CuttofHeight: 5.43
+    - _GlowThickness: -0.06
+    - _NoiseScale: 80
+    - _NoiseStrength: 2.23
     - _QueueControl: 0
     - _QueueOffset: 0
-    m_Colors: []
+    m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _GlowColor: {r: 0.9716981, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &3396789850616954119
+--- !u!114 &6140295062015307235
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
