@@ -48,6 +48,7 @@ public class BottleThrow : Card
         }
 
     }
+
     async Task DoAnim(Enemy en)
     {
         var bottleObj = Instantiate(bottleVFX, gameplayManager.player.transform.position + offset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
@@ -59,15 +60,22 @@ public class BottleThrow : Card
         {
             Destroy(bottleObj,0.3f);
             if (enIndex == 0)
-                objToDestroy = Instantiate(shardsVFXRight, bottleObj.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
-            
-            else if (enIndex == _enemies.Count-1)
-                objToDestroy= Instantiate(shardsVFXLeft, bottleObj.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
-                    else
-                objToDestroy = Instantiate(shardsVFX, bottleObj.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+            {
+                var obj1 = Instantiate(shardsVFXRight, bottleObj.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+                Destroy(obj1, 3.5f);
+            }
+            else if (enIndex == _enemies.Count - 1)
+            {
+                var obj2 = Instantiate(shardsVFXLeft, bottleObj.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+                Destroy(obj2, 3.5f);
+            }
+            else
+            {
+                var obj3 = Instantiate(shardsVFX, bottleObj.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+                Destroy(obj3, 3.5f);
+            }
 
         });
-        Destroy(objToDestroy,3.5f);
 
     }
 }

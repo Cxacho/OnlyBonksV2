@@ -11838,6 +11838,7 @@ MonoBehaviour:
   goldRewardGameObject: {fileID: 313249706}
   enemyTurnTextPanel: {fileID: 1927864200}
   panelWin: {fileID: 1419745120}
+  characterCanvas: {fileID: 1491040655}
   vfxCanvas: {fileID: 468649824}
   canvas: {fileID: 352162577}
   cardHolder: {fileID: 1827321655}
@@ -16986,6 +16987,8 @@ MonoBehaviour:
   rect: []
   multipiler: 1.2
   spriteScale: []
+  trailVFX: {fileID: 2639128073271604650, guid: d79342b19a1d0604eb799b4718ea4e98, type: 3}
+  centerTrailVFX: {fileID: 2639128073271604650, guid: b0f583ee6ba8a364aabd4b22e832f75d, type: 3}
   damping: 0
   crd: {fileID: 0}
 --- !u!224 &1245949850

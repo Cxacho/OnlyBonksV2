@@ -49,6 +49,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject goldRewardGameObject;
     public GameObject enemyTurnTextPanel;
     public GameObject panelWin;
+    public GameObject characterCanvas;
     public GameObject vfxCanvas;
     public GameObject canvas;
     public GameObject cardHolder;
@@ -521,13 +522,6 @@ public class GameplayManager : MonoBehaviour
     {
         state = BattleState.DRAWING;
         playerDrawAmount = amount;
-        /*
-        if (delay == 0)
-        {
-            //gowniany fix, ale jednak fix
-            delay = ((playerDrawAmount + playerHand.Count) * 0.5f) + Time.time;
-        }
-        */
         drawAmount++;
         if (playerDrawAmount >= drawAmount)
         {

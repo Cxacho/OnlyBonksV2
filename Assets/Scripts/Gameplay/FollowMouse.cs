@@ -14,6 +14,8 @@ public class FollowMouse : MonoBehaviour
     public List<RectTransform> rect = new List<RectTransform>();
     [SerializeField] float multipiler;
     public List<Vector3> spriteScale = new List<Vector3>();
+    public GameObject trailVFX;
+    public GameObject centerTrailVFX;
     public float damping;
     public Card crd;
     bool onStart;

@@ -32,7 +32,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     protected FollowMouse followMouse;
     [HideInInspector]public UiActive ui;
     [HideInInspector] public Player player;
-
+    List<RectTransform> trails = new List<RectTransform>();
 
     private Quaternion oldRot;
     private Quaternion newRot;
@@ -44,7 +44,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private GameObject par;
     TextMeshProUGUI manaCostTxt;
     [SerializeField] bool interactible;
-
+    [SerializeField] private Vector2 trailOffset= new Vector2(110,170);
 
     //private float clickDelay;
     public  List<GameObject> meshes = new List<GameObject>();
@@ -57,7 +57,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] private bool exhaustable;
     [SerializeField] bool isNeutral;
     public bool retainable;
-    UnityEngine.Object pPrefab;
 
 
     [HideInInspector] public string desc;
@@ -154,6 +153,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void Awake()
     {
+        trailOffset=new Vector2(110, 170);
         ui = GameObject.FindObjectOfType<UiActive>();
         manaCostTxt = transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>();
         manaCostTxt.text = baseCost.ToString();
@@ -284,6 +284,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     void ReturnToHand()
     {
+        foreach(RectTransform obj in trails)
+            Destroy(obj.gameObject);
         followMouse.rect[0].anchoredPosition = new Vector3(0, -400, 0);
         this.transform.localScale = Vector3.one;
         currentCardState = cardState.InHand;
@@ -348,7 +350,15 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         if (Input.GetButton("Fire1"))
         {
+            trails.Clear();
+            for (int i = 0; i < 2; i++)
+            {
+                var Vfx = Instantiate(followMouse.trailVFX, followMouse.rectPos.anchoredPosition, Quaternion.identity, gameplayManager.vfxCanvas.transform);
 
+                trails.Add(Vfx.GetComponent<RectTransform>());
+            }
+            var centerTrail = Instantiate(followMouse.centerTrailVFX, followMouse.rectPos.anchoredPosition, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+            trails.Add(centerTrail.GetComponent<RectTransform>());
             oldRot = this.transform.rotation;
             currentCardState = cardState.OnCursor;
             this.transform.rotation = newRot;
@@ -358,6 +368,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     void Move()
     {
+        trails[0].anchoredPosition = followMouse.rectPos.anchoredPosition+new Vector2(-trailOffset.x,-trailOffset.y);
+        trails[1].anchoredPosition = followMouse.rectPos.anchoredPosition + new Vector2(trailOffset.x, -trailOffset.y);
+        trails[2].anchoredPosition = followMouse.rectPos.anchoredPosition;
         pos.anchoredPosition = followMouse.rectPos.anchoredPosition;
         if (Input.GetButton("Fire2"))
         {
@@ -385,6 +398,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public virtual void OnDrop()
     {
+        foreach (RectTransform obj in trails)
+            Destroy(obj.gameObject);
         if (cType == cardType.Attack)
         {
             gameplayManager.cardsPlayed++;

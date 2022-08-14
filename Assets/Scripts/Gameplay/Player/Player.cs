@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 public class Player : MonoBehaviour
 {
     public GameObject fillArmor;
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI dmgPopOutTMP;
     public GameplayManager gameplayManager;
     public float velocity;
+    [HideInInspector]public int tempStrength,tempDexterity,tempInteligence;
     public int strenght = 0;
     public int dexterity = 0;
     public int inteligence = 0;
@@ -43,6 +45,7 @@ public class Player : MonoBehaviour
         armor = 0;
         mana = 3;
         myOriginalPosition = GetComponent<RectTransform>().anchoredPosition3D;
+        gameplayManager.OnTurnEnd += UpdateValues;
     }
 
     void Start()
@@ -127,6 +130,7 @@ public class Player : MonoBehaviour
                 buffValue2.text = poison.ToString();
                 break;
             case Player.playerStatusses.strengthBuff:
+                strenght += tempStrength;
                 strenght += value;
                 if (strengthBuffIndicator == null)
                 {
@@ -153,6 +157,7 @@ public class Player : MonoBehaviour
             case Player.playerStatusses.pierce:
                 if (pierceIndicator == null)
                 {
+
                     pierceIndicator = Instantiate(buffIndicator, buffsAndDebuffs.transform);
                     //onturnend destroy indicator/effect
                 }
@@ -354,7 +359,7 @@ public class Player : MonoBehaviour
         }
 
     }
-    enum playerStatusses
+    public enum playerStatusses
     {
         frail=0,
         vurneable=1,
@@ -406,4 +411,11 @@ public class Player : MonoBehaviour
         rect.DOAnchorPos3D(destination,0.4f); 
         //na dotarciu przerwac rotacje
     }
+    void UpdateValues(object sender, EventArgs e)
+    {
+        tempStrength = 0;
+        setStatusIndicator(0, 3, buffIndicators[3]);
+        //dodac
+    }
+
 }

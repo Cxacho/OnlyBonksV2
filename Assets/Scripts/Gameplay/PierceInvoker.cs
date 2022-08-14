@@ -35,6 +35,7 @@ public class PierceInvoker : MonoBehaviour
         {
             ens[i].OnDamageRecieved -= ApplyEffect;
         }
+        gm.OnTurnEnd -= DestroySelf;
     }
     void DestroySelf(object sender, EventArgs e)
     {

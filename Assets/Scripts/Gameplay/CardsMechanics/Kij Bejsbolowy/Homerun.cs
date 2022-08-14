@@ -15,6 +15,7 @@ public class Homerun :  Card
     [SerializeField] GameObject hitBlast;
     RectTransform ballRect;
     [SerializeField]Vector3 playerPos;
+    [SerializeField] float jumppower;
     private void Start()
     {
         var get03procent = defaultattack * 0.3f;
@@ -62,8 +63,7 @@ public class Homerun :  Card
                 ballRect.DOAnchorPos3D(firstEnemy.transform.parent.GetComponent<RectTransform>().anchoredPosition3D + offset, 0.7f).SetEase(anCurve).OnComplete(() =>
                 {
                     //play vfx uderzenia
-                    var blast = Instantiate(hitBlast, firstEnemy.transform.parent.GetComponent<RectTransform>().anchoredPosition3D, Quaternion.identity);
-                    blast.transform.SetParent(gameplayManager.vfxCanvas.transform);
+                    var blast = Instantiate(hitBlast, ballRect.transform.position, Quaternion.identity,gameplayManager.vfxCanvas.transform);
                     Destroy(blast, 0.3f);
                     firstEnemy.RecieveDamage(attack, this);
                     firstEnemy.targeted = false;
@@ -74,16 +74,16 @@ public class Homerun :  Card
                     }
                     else
                     {
-                        var mean =Mathf.Abs(secondEnemy.transform.parent.GetComponent<RectTransform>().anchoredPosition.x - firstEnemy.transform.parent.GetComponent<RectTransform>().anchoredPosition.x);
                         Baseball.transform.DORotate(new Vector3(0, 0, 360), 0.6f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
-                        ballRect.DOAnchorPos3D(new Vector3(mean,offset.y*4, secondEnemy.transform.parent.GetComponent<RectTransform>().anchoredPosition3D.z), 1.2f).SetEase(Ease.Linear).OnComplete(() =>
+                        var getRect = gameplayManager.characterCanvas.transform.GetChild(1).GetComponent<RectTransform>().anchoredPosition;
+                        // ballRect.DOAnchorPos3D(new Vector3(mean, offset.y * 4, secondEnemy.transform.parent.GetComponent<RectTransform>().anchoredPosition3D.z), 1.2f).SetEase(Ease.Linear).OnComplete(() =>
+                        ballRect.DOJumpAnchorPos(new Vector3(getRect.x,offset.y*6),jumppower,1, 0.8f).SetEase(Ease.Linear).OnComplete(() =>
                         {
                             ballRect.DOAnchorPos(secondEnemy.transform.parent.GetComponent<RectTransform>().anchoredPosition3D + offset, 0.7f).SetEase(anCurve).OnComplete(() =>
                             {
                                 //play vfx uderzenia
 
-                                var blast2 = Instantiate(hitBlast, ballRect.anchoredPosition, Quaternion.identity);
-                                blast2.transform.SetParent(gameplayManager.canvas.transform);
+                                var blast2 = Instantiate(hitBlast, ballRect.transform.position, Quaternion.identity,gameplayManager.vfxCanvas.transform);
                                 Destroy(blast2, 0.3f);
                                 secondEnemy.RecieveDamage(Mathf.RoundToInt((attack) * 0.3f), this); // do zmiany po demie
                                 secondEnemy.targeted = false;

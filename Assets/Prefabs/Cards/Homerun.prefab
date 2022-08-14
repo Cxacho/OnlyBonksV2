@@ -551,6 +551,7 @@ MonoBehaviour:
   cardAlign: {fileID: 0}
   gameplayManager: {fileID: 0}
   interactible: 0
+  trailOffset: {x: 0, y: 0}
   meshes: []
   _enemies: []
   exhaustable: 0
@@ -642,7 +643,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  offset: {x: 0, y: 3, z: 0}
+  offset: {x: 0, y: 25, z: 0}
   hitBlast: {fileID: 2611757255047955684, guid: 15e3ba2b88af35e4a81ca670206d1070, type: 3}
   playerPos: {x: 0, y: 0, z: 0}
 --- !u!1 &8585756771313445467

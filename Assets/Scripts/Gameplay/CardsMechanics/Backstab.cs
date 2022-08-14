@@ -14,14 +14,23 @@ public class Backstab : Card
     GameObject smokeHolder;
     GameObject bleedHolder;
     [SerializeField] private float vfxScale;
+    List<Transform> characters = new List<Transform>();
 
     private void Start()
     {
         desc = $"Deal <color=white>{attack.ToString()}</color> damage, if enemy has their back exposed, deal double damage";
 
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
-    }
 
+
+    }
+    private void OnEnable()
+    {
+        foreach (Transform obj in gameplayManager.characterCanvas.transform)
+        {
+            characters.Add(obj);
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -52,8 +61,17 @@ public class Backstab : Card
                 {
                     //gameplayManager.OnEnemyKilled += AddMeSomeMana;
                     //dociagnonc mechanike "back exposed " np gdy zabijemy przeciwnika na srodku, zrobic to porprzz sprawdzenie czy istnieje nastepny enemy spawner pos, i czy ma dzieci
-                    if (en.gameObject == gameplayManager.enemies[gameplayManager.enemies.Count - 1])
+                    var getEnemyIndex = en.transform.parent.GetSiblingIndex();
+                    /*
+                if (en.gameObject == gameplayManager.enemies[gameplayManager.enemies.Count - 1])
+                {
+                    await DoAnim(en);
+                    en.RecieveDamage(attack * 2, this);
+                }
+                */
+                    if (characters[getEnemyIndex + 1].gameObject == gameplayManager.player.gameObject || characters[getEnemyIndex + 1].childCount == 0)
                     {
+
                         await DoAnim(en);
                         en.RecieveDamage(attack * 2, this);
                     }
@@ -117,6 +135,8 @@ public class Backstab : Card
         Destroy(smokeVFX,1);
         Destroy(smokeVFX2, 1);
         Destroy(smokeVFX3, 1);
+        //characters[getEnemyIndex+1].gameObject!=gameplayManager.player.gameplayManager
+        Debug.Log(characters.Count);
     }
 
 
