@@ -201,6 +201,7 @@ MonoBehaviour:
   cardAlign: {fileID: 0}
   gameplayManager: {fileID: 0}
   interactible: 0
+  trailOffset: {x: 110, y: 170}
   meshes: []
   _enemies: []
   exhaustable: 1

@@ -196,12 +196,13 @@ MonoBehaviour:
   secondaryScalingType: 0
   cardDamageType: 0
   exitButton: {fileID: 1019920095713079653, guid: 999738602cea97c4882ce11df42f5f38, type: 3}
-  trail: {fileID: 0}
   ui: {fileID: 0}
   player: {fileID: 0}
   cardAlign: {fileID: 0}
   gameplayManager: {fileID: 0}
   interactible: 0
+  trailOffset: {x: 110, y: 170}
+  meshes: []
   _enemies: []
   exhaustable: 0
   isNeutral: 0

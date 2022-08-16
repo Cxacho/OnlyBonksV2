@@ -176,7 +176,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2858555165568228111}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 130f213b15207034eb2b632f6dadae20, type: 3}
   m_Name: 
@@ -201,6 +201,8 @@ MonoBehaviour:
   cardAlign: {fileID: 0}
   gameplayManager: {fileID: 0}
   interactible: 0
+  trailOffset: {x: 110, y: 170}
+  meshes: []
   _enemies: []
   exhaustable: 1
   isNeutral: 0

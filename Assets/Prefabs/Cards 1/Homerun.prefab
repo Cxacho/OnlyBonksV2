@@ -526,7 +526,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7546190796451804516}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28e27e0abe6ad38499a5950dcf1de238, type: 3}
   m_Name: 
@@ -551,6 +551,8 @@ MonoBehaviour:
   cardAlign: {fileID: 0}
   gameplayManager: {fileID: 0}
   interactible: 0
+  trailOffset: {x: 110, y: 170}
+  meshes: []
   _enemies: []
   exhaustable: 0
   isNeutral: 0
@@ -643,6 +645,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   offset: {x: 0, y: 3, z: 0}
   hitBlast: {fileID: 2611757255047955684, guid: 15e3ba2b88af35e4a81ca670206d1070, type: 3}
+  playerPos: {x: 0, y: 0, z: 0}
+  jumppower: 0
 --- !u!1 &8585756771313445467
 GameObject:
   m_ObjectHideFlags: 0
