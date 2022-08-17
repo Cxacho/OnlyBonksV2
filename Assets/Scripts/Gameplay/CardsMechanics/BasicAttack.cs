@@ -4,12 +4,14 @@ using UnityEngine;
 using DG.Tweening;
 using TMPro;
 using System;
+using System.Threading.Tasks;
 public class BasicAttack : Card
 {
-    
-    public GameObject bonk;
-
-    
+    [SerializeField] private GameObject bonkComicVFX;
+    [SerializeField] private GameObject batVFX;
+    [SerializeField] private Vector3 spawnOffset, hitOffset,spriteSpawnOffset;
+    [SerializeField] private Vector3 rot;
+    [SerializeField] private AnimationCurve anCurve;
     private TextMeshPro textMeshPro;
 
     private void Start()
@@ -42,12 +44,12 @@ public class BasicAttack : Card
         {
             base.OnDrop();
 
-            Instantiate(bonk, new Vector3(0, -10, 0), Quaternion.identity, GameObject.Find("Player").transform);
             StartCoroutine(ExecuteAfterTime(1f));
             foreach (Enemy en in _enemies)
             {
                 if (en.targeted == true)
                 {
+                    DoAnim(en);
                     //gameplayManager.OnEnemyKilled += AddMeSomeMana;
                     en.RecieveDamage(attack,this);
                     
@@ -79,6 +81,21 @@ public class BasicAttack : Card
         player.manaText.text = player.mana.ToString();
 
     }
-
+    async Task DoAnim(Enemy en)
+    {
+        var bat=Instantiate(batVFX, en.transform.parent.transform.position+spawnOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+        bat.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 25));
+        var getRect=bat.GetComponent<RectTransform>();
+        getRect.DOAnchorPos3D(hitOffset+en.transform.parent.GetComponent<RectTransform>().anchoredPosition3D, 0.4f).SetEase(anCurve);
+        Task.Delay(300);
+        getRect.DORotate(rot, 0.3f).SetEase(anCurve);
+        Task.Delay(600);
+        var comicSprite = Instantiate(bonkComicVFX, getRect.transform.position+spriteSpawnOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+        comicSprite.transform.DOScale(new Vector3(comicSprite.transform.localScale.x * 1.25f, comicSprite.transform.localScale.y * 1.25f, comicSprite.transform.localScale.z * 1.25f),0.3f);
+        Task.Delay(300);
+        comicSprite.transform.DOScale(Vector3.zero, 0.6f);
+        Destroy(bat, 1);
+        Destroy(comicSprite,1);
+    }
 
 }

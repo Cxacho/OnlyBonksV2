@@ -79,7 +79,7 @@ MonoBehaviour:
   index: 0
   baseNumOfTargets: 1
   attack: 5
-  defaultattack: 0
+  defaultattack: 3
   getPanel: 0
   myWeaponType: 0
   cType: 0
@@ -96,11 +96,40 @@ MonoBehaviour:
   trailOffset: {x: 110, y: 170}
   meshes: []
   _enemies: []
-  exhaustable: 1
+  exhaustable: 0
   isNeutral: 0
   retainable: 0
   desc: 
-  bonk: {fileID: 3356155904159209368, guid: 86afabfc67905044dbfa62c0b45cf989, type: 3}
+  bonkComicVFX: {fileID: 6759721781727752394, guid: 0382242273ae13e4887b737dea65abed, type: 3}
+  batVFX: {fileID: 7018250619379937311, guid: 156f4f836a1edae45abbeb827a6a9153, type: 3}
+  spawnOffset: {x: -20, y: 35, z: 0}
+  hitOffset: {x: -70, y: 80, z: 0}
+  spriteSpawnOffset: {x: 22, y: -27, z: 0}
+  rot: {x: 0, y: 0, z: -110}
+  anCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!96 &5312942933889475619
 TrailRenderer:
   serializedVersion: 2
