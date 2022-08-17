@@ -4,20 +4,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using System.Threading.Tasks;
 public class StackingBlades : Card
 {
-
-    public GameObject bonk;
-
-
+    [SerializeField]int cardsDrawn = 0;
     private TextMeshPro textMeshPro;
+    int defAttack;
+    [SerializeField] private GameObject hit;
+    [SerializeField] private GameObject blade;
+    [SerializeField] private Vector3 offset;
+    [SerializeField] private float animTime;
+    [SerializeField] AnimationCurve anCurve;
 
     private void Start()
     {
         desc = $"Deal <color=white>{attack.ToString()}</color> damage";
-
+        defAttack = Mathf.RoundToInt(defaultattack);
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
         gameplayManager.OnDraw += ApplyOnDraw;
+        gameplayManager.OnTurnEnd += ResetValues;
     }
 
 
@@ -36,7 +41,7 @@ public class StackingBlades : Card
     }
 
 
-    public override void OnDrop()
+    public override async void OnDrop()
     {
         gameplayManager.checkPlayerMana(cost);
         if (gameplayManager.canPlayCards == true)
@@ -47,7 +52,7 @@ public class StackingBlades : Card
             {
                 if (en.targeted == true)
                 {
-                    en.RecieveDamage(attack, this);
+                    await Doanim(en);
 
                     en.targeted = false;
                 }
@@ -61,8 +66,14 @@ public class StackingBlades : Card
         }
 
     }
+    void ResetValues(object sender, EventArgs e)
+    {
+        cardsDrawn = 0;
+        this.defaultattack = defAttack;
+    }
     void ApplyOnDraw(object sender,EventArgs e)
     {
+        cardsDrawn++;
         this.defaultattack += 3;
     }
 
@@ -75,8 +86,28 @@ public class StackingBlades : Card
     }
     private void OnDestroy()
     {
+        gameplayManager.OnTurnEnd -= ResetValues;
         gameplayManager.OnDraw -= ApplyOnDraw;
     }
+    async Task Doanim(Enemy en)
+    {
+        
+        for (int i = 0; i < cardsDrawn; i++)
+        {
+            //random.range dla wysoko?ci rzutu
+            var knif = Instantiate(blade, gameplayManager.player.transform.position + offset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+            knif.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -25));
+            var getRect = knif.GetComponent<RectTransform>();
+            getRect.DOAnchorPos(en.transform.parent.GetComponent<RectTransform>().anchoredPosition, animTime / cardsDrawn).SetEase(anCurve);
+            var calc = Mathf.RoundToInt(animTime / cardsDrawn*1000);
+            await Task.Delay(calc);
+            var hitBlast = Instantiate(hit, knif.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+            //jakis efekt uderzenia przeciwnika
+            //dodac damage
+            Destroy(knif);
+            Destroy(hitBlast, 0.4f);
 
+        }
+    }
 
 }
