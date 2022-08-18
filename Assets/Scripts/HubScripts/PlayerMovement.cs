@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
             //gameObject.layer 
             mousePos = hitData.point;
         }
-        if(Input.GetButtonUp("Fire1") && state == PlayerState.wandering)
+        if(Input.GetButtonUp("Fire2") && state == PlayerState.wandering)
         {
             if (hitData.collider.gameObject.layer == 5)
                 return;

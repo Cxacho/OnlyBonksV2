@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4154305017897078799}
   - component: {fileID: 4195082560769264694}
   - component: {fileID: 7294342442977043959}
+  - component: {fileID: 3005104086431354755}
   m_Layer: 5
   m_Name: PowerUpCollection
   m_TagString: Card
@@ -81,6 +82,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3005104086431354755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2858555165568228111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b9a29ab988e5d04495d5e54a241e1f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardCollectionWeapon: 6
 --- !u!1 &3868653325569000508
 GameObject:
   m_ObjectHideFlags: 0
