@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4195082560769264694}
   - component: {fileID: -6022969762265394306}
   - component: {fileID: -6351299408824284749}
-  - component: {fileID: -2269003046922661388}
+  - component: {fileID: 6421730092854253792}
   m_Layer: 7
-  m_Name: StackingBlades
+  m_Name: FanOfKnives
   m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,7 +169,7 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &-2269003046922661388
+--- !u!114 &6421730092854253792
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,16 +178,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2858555165568228111}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf9ad4e30387d174ea8beabada8d0aab, type: 3}
+  m_Script: {fileID: 11500000, guid: 7876c87401c19ac498fc0474979482aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   baseCost: 1
-  cost: 0
+  cost: 1
   scaleCardValues: 0
   index: 0
   baseNumOfTargets: 1
   attack: 3
-  defaultattack: 0
+  defaultattack: 3
   getPanel: 0
   myWeaponType: 5
   cType: 0
@@ -206,39 +206,37 @@ MonoBehaviour:
   _enemies: []
   exhaustable: 0
   isNeutral: 0
-  retainable: 1
+  retainable: 0
   desc: 
-  cardsDrawn: 0
   hit: {fileID: 2599677666185548645, guid: 4009cb5bd10560b409e7cef0fb9d83cf, type: 3}
   blade: {fileID: 1537427467938295514, guid: 552d5ccf29a56db4688d1fc66012f67c, type: 3}
-  offset: {x: 10, y: 5, z: 0}
-  animTime: 1.2
+  spawnOffset: {x: 10, y: 5, z: 0}
   anCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0.13980412
-      outSlope: 0.13980412
+      inSlope: 0.17937437
+      outSlope: 0.17937437
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.8433392
-      value: 0.1179023
-      inSlope: 0.33397216
-      outSlope: 0.33397216
+      time: 0.8273588
+      value: 0.14840695
+      inSlope: 0.6329343
+      outSlope: 0.6329343
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.13390158
+      inWeight: 0.10324819
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 5.630622
-      outSlope: 5.630622
+      inSlope: 4.932733
+      outSlope: 4.932733
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -246,7 +244,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  randomizeHeight: {x: -100, y: 100}
+  height: -100
 --- !u!1 &3868653325569000508
 GameObject:
   m_ObjectHideFlags: 0

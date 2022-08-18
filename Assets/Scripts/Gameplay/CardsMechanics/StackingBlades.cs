@@ -7,7 +7,7 @@ using TMPro;
 using System.Threading.Tasks;
 public class StackingBlades : Card
 {
-    [SerializeField]int cardsDrawn = 0;
+    [SerializeField]int cardsDrawn = 1;
     private TextMeshPro textMeshPro;
     int defAttack;
     [SerializeField] private GameObject hit;
@@ -15,14 +15,16 @@ public class StackingBlades : Card
     [SerializeField] private Vector3 offset;
     [SerializeField] private float animTime;
     [SerializeField] AnimationCurve anCurve;
+    [SerializeField] Vector2 randomizeHeight;
 
     private void Start()
     {
-        desc = $"Deal <color=white>{attack.ToString()}</color> damage";
+        desc = $"For each card drawn deal <color=white>{attack.ToString()}</color> to enemy. Current :"+(cardsDrawn +1);
         defAttack = Mathf.RoundToInt(defaultattack);
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
-        gameplayManager.OnDraw += ApplyOnDraw;
+
         gameplayManager.OnTurnEnd += ResetValues;
+        gameplayManager.OnDraw += ApplyOnDraw;
     }
 
 
@@ -32,11 +34,11 @@ public class StackingBlades : Card
         calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
 
         if (attack == defaultattack)
-            desc = $"Deal <color=white>{attack.ToString()}</color> damage";
+            desc = $"For each card drawn deal <color=white>{attack.ToString()}</color> to enemy. Current :" + cardsDrawn;
         else if (attack < defaultattack)
-            desc = $"Deal <color=red>{attack.ToString()}</color> damage";
+            desc = $"For each card drawn deal <color=red>{attack.ToString()}</color> to enemy. Current :" + cardsDrawn;
         else
-            desc = $"Deal <color=green>{attack.ToString()}</color> damage";
+            desc = $"For each card drawn deal <color=green>{attack.ToString()}</color> to enemy. Current :" + cardsDrawn ;
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
 
@@ -68,13 +70,12 @@ public class StackingBlades : Card
     }
     void ResetValues(object sender, EventArgs e)
     {
-        cardsDrawn = 0;
+        cardsDrawn = 1;
         this.defaultattack = defAttack;
     }
     void ApplyOnDraw(object sender,EventArgs e)
     {
         cardsDrawn++;
-        this.defaultattack += 3;
     }
 
     IEnumerator ExecuteAfterTime(float time)
@@ -94,16 +95,28 @@ public class StackingBlades : Card
         
         for (int i = 0; i < cardsDrawn; i++)
         {
+            if (en == null)
+                return;
             //random.range dla wysoko?ci rzutu
+            var randomHeight=UnityEngine.Random.Range(randomizeHeight.x, randomizeHeight.y);
             var knif = Instantiate(blade, gameplayManager.player.transform.position + offset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
             knif.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -25));
             var getRect = knif.GetComponent<RectTransform>();
-            getRect.DOAnchorPos(en.transform.parent.GetComponent<RectTransform>().anchoredPosition, animTime / cardsDrawn).SetEase(anCurve);
+            var enPos = en.transform.parent.GetComponent<RectTransform>().anchoredPosition;
+            getRect.DOAnchorPos(new Vector3(enPos.x,enPos.y+randomHeight,1), animTime / cardsDrawn).SetEase(anCurve);
             var calc = Mathf.RoundToInt(animTime / cardsDrawn*1000);
             await Task.Delay(calc);
             var hitBlast = Instantiate(hit, knif.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
-            //jakis efekt uderzenia przeciwnika
+            if (en != null)
+                en.RecieveDamage(attack, this);
+            else
+            {
+                Destroy(knif);
+                return;
+            }
+            
             //dodac damage
+            
             Destroy(knif);
             Destroy(hitBlast, 0.4f);
 
