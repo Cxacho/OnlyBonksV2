@@ -37,7 +37,7 @@ public class BasicAttack : Card
     }
 
 
-    public override void OnDrop()
+    public override async void OnDrop()
     {
         gameplayManager.checkPlayerMana(cost);
         if (gameplayManager.canPlayCards == true)
@@ -49,7 +49,7 @@ public class BasicAttack : Card
             {
                 if (en.targeted == true)
                 {
-                    DoAnim(en);
+                    await DoAnim(en);
                     //gameplayManager.OnEnemyKilled += AddMeSomeMana;
                     en.RecieveDamage(attack,this);
                     
@@ -86,16 +86,19 @@ public class BasicAttack : Card
         var bat=Instantiate(batVFX, en.transform.parent.transform.position+spawnOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         bat.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 25));
         var getRect=bat.GetComponent<RectTransform>();
-        getRect.DOAnchorPos3D(hitOffset+en.transform.parent.GetComponent<RectTransform>().anchoredPosition3D, 0.4f).SetEase(anCurve);
-        Task.Delay(300);
-        getRect.DORotate(rot, 0.3f).SetEase(anCurve);
-        Task.Delay(600);
+        getRect.DOAnchorPos3D(hitOffset+en.transform.parent.GetComponent<RectTransform>().anchoredPosition3D, 0.25f).SetEase(anCurve);
+        await Task.Delay(150);
+        getRect.DORotate(rot, 0.2f).SetEase(anCurve);
+        await Task.Delay(100);
         var comicSprite = Instantiate(bonkComicVFX, getRect.transform.position+spriteSpawnOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         comicSprite.transform.DOScale(new Vector3(comicSprite.transform.localScale.x * 1.25f, comicSprite.transform.localScale.y * 1.25f, comicSprite.transform.localScale.z * 1.25f),0.3f);
-        Task.Delay(300);
-        comicSprite.transform.DOScale(Vector3.zero, 0.6f);
-        Destroy(bat, 1);
-        Destroy(comicSprite,1);
+        await Task.Delay(300);
+        comicSprite.transform.DOScale(Vector3.zero, 0.6f).OnComplete(() =>
+        {
+            Destroy(bat);
+            Destroy(comicSprite);
+        });
+
     }
 
 }

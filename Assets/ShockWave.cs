@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System.Threading.Tasks;
+using System;
 
 public class ShockWave : MonoBehaviour
 {
@@ -13,12 +14,13 @@ public class ShockWave : MonoBehaviour
     [SerializeField] float multiplyScale, range;
     [SerializeField] Vector3 vfxTargetScale;
     [SerializeField] float heightOffset;
-    private void Awake()
+    private async void Awake()
     {
         gm = GameObject.Find("GameplayManager").GetComponent<GameplayManager>();
         DoAnimateRight();
         DoAnimateLeft();
     }
+
     /*
     IEnumerator SpawnWave()
     {

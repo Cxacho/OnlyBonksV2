@@ -12,7 +12,7 @@ public class Envenom : Card
     [SerializeField] private float strength,despawnHeight;
     List<GameObject> vfxses = new List<GameObject>();
 
-    public override async void OnDrop()
+    public override void OnDrop()
     {
         gameplayManager.checkPlayerMana(cost);
         if (gameplayManager.canPlayCards == true)
@@ -24,7 +24,7 @@ public class Envenom : Card
             player.manaText.text = player.mana.ToString();
 
             base.OnDrop();
-            await Doanim();
+            DoAnim();
             gameplayManager.DrawCards(2);
         }
         else
@@ -35,7 +35,7 @@ public class Envenom : Card
     }
 
 
-    async Task Doanim()
+    void DoAnim()
     {
         var sword = Instantiate(swordVFX, gameplayManager.player.transform.position + spawnOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         sword.transform.rotation = Quaternion.Euler(swordRot);

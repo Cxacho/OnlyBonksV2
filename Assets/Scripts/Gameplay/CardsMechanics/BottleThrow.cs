@@ -14,7 +14,7 @@ public class BottleThrow : Card
     GameObject objToDestroy;
 
 
-    public override async void OnDrop()
+    public override void OnDrop()
     {
         
         gameplayManager.checkPlayerMana(cost);
@@ -35,7 +35,7 @@ public class BottleThrow : Card
                 {
 
                     en.RecieveDamage(attack, this);
-                    await DoAnim(en);
+                    DoAnim(en);
                 }
                 en.setStatusIndicator(3, 2, gameplayManager.enemiesIndicators[2]);
                 en.targeted = false;
@@ -49,7 +49,7 @@ public class BottleThrow : Card
 
     }
 
-    async Task DoAnim(Enemy en)
+    void DoAnim(Enemy en)
     {
         var bottleObj = Instantiate(bottleVFX, gameplayManager.player.transform.position + offset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         var getRect= bottleObj.GetComponent<RectTransform>();

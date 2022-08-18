@@ -208,7 +208,7 @@ MonoBehaviour:
   isNeutral: 0
   retainable: 1
   desc: 
-  cardsDrawn: 0
+  cardsDrawn: 1
   hit: {fileID: 2599677666185548645, guid: 4009cb5bd10560b409e7cef0fb9d83cf, type: 3}
   blade: {fileID: 1537427467938295514, guid: 552d5ccf29a56db4688d1fc66012f67c, type: 3}
   offset: {x: 10, y: 5, z: 0}
