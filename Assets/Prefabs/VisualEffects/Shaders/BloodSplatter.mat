@@ -39,8 +39,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _AddValue: 0.27
-    - _RotStrength: 1
+    - _RotStrength: 0.51
     - _TexStrength: 1.53
+    - _multiplyPower: 1
     m_Colors:
     - _Color: {r: 0.4056604, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
