@@ -57,7 +57,7 @@ public class CardCollectionManager1 : MonoBehaviour
 
                 }
                 
-                SortByMana();
+                
                 
                 for (int i = 0; i < cardCollectionTemp.Count; i++)
                 {
@@ -88,7 +88,7 @@ public class CardCollectionManager1 : MonoBehaviour
 
                 }
 
-                SortByMana();
+                
 
                 for (int i = 0; i < cardCollectionTemp.Count; i++)
                 {
@@ -119,7 +119,7 @@ public class CardCollectionManager1 : MonoBehaviour
 
                 }
 
-                SortByMana();
+                
 
                 for (int i = 0; i < cardCollectionTemp.Count; i++)
                 {
@@ -150,7 +150,7 @@ public class CardCollectionManager1 : MonoBehaviour
 
                 }
 
-                SortByMana();
+                
 
                 for (int i = 0; i < cardCollectionTemp.Count; i++)
                 {
@@ -181,7 +181,7 @@ public class CardCollectionManager1 : MonoBehaviour
 
                 }
 
-                SortByMana();
+                
 
                 for (int i = 0; i < cardCollectionTemp.Count; i++)
                 {
@@ -212,7 +212,7 @@ public class CardCollectionManager1 : MonoBehaviour
 
                 }
 
-                SortByMana();
+                
 
                 for (int i = 0; i < cardCollectionTemp.Count; i++)
                 {
@@ -243,7 +243,7 @@ public class CardCollectionManager1 : MonoBehaviour
 
                 }
 
-                SortByMana();
+                
 
                 for (int i = 0; i < cardCollectionTemp.Count; i++)
                 {
@@ -263,7 +263,7 @@ public class CardCollectionManager1 : MonoBehaviour
                 cardCollectionTemp.RemoveRange(0, cardCollectionTemp.Count);
 
                 cardCollectionTemp = cardCollection;
-                SortByMana();
+                
 
                 for (int i = 0; i < cardCollectionTemp.Count; i++)
                 {
@@ -280,8 +280,52 @@ public class CardCollectionManager1 : MonoBehaviour
 
     public void SortByMana()
     {
+        for (int i = 0; i < cardCollectionTemp.Count; i++)
+        {
+
+            Destroy(contentPanel.transform.GetChild(i).gameObject);
+
+        }
         cardCollectionTemp = cardCollectionTemp.OrderBy(t => t.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text).ThenBy(t => t.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text).ToList();
-        
+        for (int i = 0; i < cardCollectionTemp.Count; i++)
+        {
+
+            Instantiate(cardCollectionTemp[i], contentPanel.transform);
+
+        }
+    }
+
+    public void SortByName()
+    {
+        for (int i = 0; i < cardCollectionTemp.Count; i++)
+        {
+
+            Destroy(contentPanel.transform.GetChild(i).gameObject);
+
+        }
+        cardCollectionTemp = cardCollectionTemp.OrderBy(t => t.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text).ThenBy(t => t.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text).ToList();
+        for (int i = 0; i < cardCollectionTemp.Count; i++)
+        {
+
+            Instantiate(cardCollectionTemp[i], contentPanel.transform);
+
+        }
+    }
+    public void SortByType()
+    {
+        for (int i = 0; i < cardCollectionTemp.Count; i++)
+        {
+
+            Destroy(contentPanel.transform.GetChild(i).gameObject);
+
+        }
+        cardCollectionTemp = cardCollectionTemp.OrderBy(t => t.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text).ThenBy(t => t.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text).ThenBy(t => t.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text).ToList();
+        for (int i = 0; i < cardCollectionTemp.Count; i++)
+        {
+
+            Instantiate(cardCollectionTemp[i], contentPanel.transform);
+
+        }
     }
 
     public void OpenWeaponPanel()
