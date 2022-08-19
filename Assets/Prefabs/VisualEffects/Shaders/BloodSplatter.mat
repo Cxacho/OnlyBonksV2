@@ -43,5 +43,5 @@ Material:
     - _TexStrength: 1.53
     - _multiplyPower: 1
     m_Colors:
-    - _Color: {r: 0.4056604, g: 0, b: 0, a: 0}
+    - _Color: {r: 0.26415092, g: 0.031149868, b: 0.031149868, a: 1}
   m_BuildTextureStacks: []

@@ -90,11 +90,14 @@ public class DeepCut : Card
         getKatRect.DOJumpAnchorPos(en.transform.parent.GetComponent<RectTransform>().anchoredPosition, jumpPower,1,animTime).SetEase(anCurve);
         getKatRect.DORotate(rot, animTime);
         await Task.Delay(Mathf.RoundToInt(animTime*1000));
+
         var burst = Instantiate(bloodBurst, kat.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         var shader = Instantiate(shaderBlood, kat.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+        var getRenderer = shader.GetComponent<SpriteRenderer>();
+        getRenderer.DOFade(0, 2.2f);
         Destroy(kat,0.7f);
         Destroy(burst,1.5f);
-        Destroy(shader,1.5f);
+        Destroy(shader,2.2f);
     }
 
 }
