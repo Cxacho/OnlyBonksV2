@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 
 public class plus1 : Card
 {
-    public override void OnDrop()
+    [SerializeField]  private Vector3 spawnOffset;
+    [SerializeField] private GameObject plusOneVFX;
+    [SerializeField] float delay;
+    public override async void OnDrop()
     {
         gameplayManager.checkPlayerMana(cost);
         if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
+            await DoAnim();
             StartCoroutine(ExecuteAfterTime(1f));
             gameplayManager.DrawCards(1);
         }
@@ -44,4 +49,13 @@ public class plus1 : Card
 
     }
 
+    async Task DoAnim()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            var obj = Instantiate(plusOneVFX, player.transform.position + spawnOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+            Destroy(obj, 3);
+            await Task.Delay(Mathf.RoundToInt(1000*delay));
+        }
+    }
 }
