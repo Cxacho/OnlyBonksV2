@@ -14,7 +14,7 @@ public class plus1 : Card
         if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
-            await DoAnim();
+            DoAnim();
             StartCoroutine(ExecuteAfterTime(1f));
             gameplayManager.DrawCards(1);
         }

@@ -11930,6 +11930,8 @@ MonoBehaviour:
   - {fileID: 2858555165568228111, guid: 8bf4249c7094154418694fdfb69cbbe8, type: 3}
   - {fileID: 2858555165568228111, guid: ddae669d7076ee64581e854f476c8036, type: 3}
   - {fileID: 1150438450449328782, guid: 0dba074f75b46b944816abe5b8c9f4e1, type: 3}
+  - {fileID: 6681184060049790405, guid: dfce06d0a722528479c792ed68b84095, type: 3}
+  - {fileID: 2858555165568228111, guid: f272d9b5ea94d6f4aa5152a52ede1d7f, type: 3}
   exhaustedDeck: []
   drawDeck: []
   enemiesIndicators:
@@ -26123,7 +26125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 528799627349874891, guid: 34df9c7ef1f722b40ba0640c431ac4a1, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 528799627349874891, guid: 34df9c7ef1f722b40ba0640c431ac4a1, type: 3}
       propertyPath: m_AnchorMax.x
