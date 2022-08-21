@@ -75,21 +75,17 @@ public class DeadliestCultery : Card
         player.manaText.text = player.mana.ToString();
 
     }
-    private async void OnEnable()
-    {
-       await Doanim(null);
-    }
+
 
     async Task Doanim(Enemy en)
     {
-        en = gameplayManager.enemies[0].GetComponent<Enemy>();
         var noz = Instantiate(blade, player.transform.position + spawnOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         var getRect = noz.GetComponent<RectTransform>();
         getRect.DOJumpAnchorPos(en.transform.parent.GetComponent<RectTransform>().anchoredPosition, knifeJumpPower, 1, animTime).SetEase(anCurve);
         getRect.DORotate(new Vector3(0, 0, -360), animTime, RotateMode.FastBeyond360);
         await Task.Delay(Mathf.RoundToInt(animTime * 1000));
         var hitAnim=Instantiate(hit, noz.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
-        Destroy(noz.transform.GetChild(0));
+        Destroy(noz.transform.GetChild(0).gameObject);
         getRect.DOJumpAnchorPos(getRect.anchoredPosition + retreatOffset,fallingPower, 1, animTime2);
         getRect.DORotate(new Vector3(0, 0, -360), animTime2, RotateMode.FastBeyond360);
         noz.GetComponent<SpriteRenderer>().material.DOFade(0, animTime2);

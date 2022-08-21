@@ -11847,7 +11847,7 @@ MonoBehaviour:
   goldTxtTopUI: {fileID: 1690326925}
   cardToCreateInt: 0
   numOfList: 0
-  currentFloor: 9
+  currentFloor: 1
   basePlayerDrawAmount: 5
   gold: 100
   currentXP: 0
@@ -11924,13 +11924,7 @@ MonoBehaviour:
   - {fileID: 2858555165568228111, guid: 91863920655f72f47a456fa5c34d3c77, type: 3}
   - {fileID: 2858555165568228111, guid: ed26e6c8b2bace54baa2f6266f118824, type: 3}
   - {fileID: 2858555165568228111, guid: 1745783852f0dc64eae7f6904a84049a, type: 3}
-  - {fileID: 2858555165568228111, guid: 9bb7c3696aa8e04459134b6e82518036, type: 3}
-  - {fileID: 2858555165568228111, guid: c9576a262891df54997066a36c703ac5, type: 3}
-  - {fileID: 2858555165568228111, guid: d2efe1ec23b5c7743834d96b20a37f2e, type: 3}
-  - {fileID: 2858555165568228111, guid: 8bf4249c7094154418694fdfb69cbbe8, type: 3}
-  - {fileID: 2858555165568228111, guid: ddae669d7076ee64581e854f476c8036, type: 3}
-  - {fileID: 1150438450449328782, guid: 0dba074f75b46b944816abe5b8c9f4e1, type: 3}
-  - {fileID: 6681184060049790405, guid: dfce06d0a722528479c792ed68b84095, type: 3}
+  - {fileID: 7947560193341729093, guid: 98bf63d30bacf054abdf878967c09d2c, type: 3}
   - {fileID: 2858555165568228111, guid: f272d9b5ea94d6f4aa5152a52ede1d7f, type: 3}
   exhaustedDeck: []
   drawDeck: []
