@@ -567,9 +567,9 @@ MonoBehaviour:
   hitOffset: {x: 0, y: 0, z: 0}
   jumpPower: 40
   animTime: 1
-  returnTime: 2
+  returnTime: 1
   fallingPower: 50
-  supTime: 3
+  supTime: 1
   anCurve:
     serializedVersion: 2
     m_Curve:

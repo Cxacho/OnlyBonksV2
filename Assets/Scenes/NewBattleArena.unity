@@ -11847,7 +11847,7 @@ MonoBehaviour:
   goldTxtTopUI: {fileID: 1690326925}
   cardToCreateInt: 0
   numOfList: 0
-  currentFloor: 1
+  currentFloor: 9
   basePlayerDrawAmount: 5
   gold: 100
   currentXP: 0
@@ -11926,6 +11926,8 @@ MonoBehaviour:
   - {fileID: 2858555165568228111, guid: 1745783852f0dc64eae7f6904a84049a, type: 3}
   - {fileID: 7947560193341729093, guid: 98bf63d30bacf054abdf878967c09d2c, type: 3}
   - {fileID: 2858555165568228111, guid: f272d9b5ea94d6f4aa5152a52ede1d7f, type: 3}
+  - {fileID: 2858555165568228111, guid: e2077e862f3de714ca3507008853780c, type: 3}
+  - {fileID: 1150438450449328782, guid: fa64679fe0f33cb4e83dfa582dcde9e9, type: 3}
   exhaustedDeck: []
   drawDeck: []
   enemiesIndicators:
@@ -26119,7 +26121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 528799627349874891, guid: 34df9c7ef1f722b40ba0640c431ac4a1, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 528799627349874891, guid: 34df9c7ef1f722b40ba0640c431ac4a1, type: 3}
       propertyPath: m_AnchorMax.x
