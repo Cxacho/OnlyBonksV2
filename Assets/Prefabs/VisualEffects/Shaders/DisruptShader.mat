@@ -34,15 +34,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CutOfHeight2: -2.86
+    - _CutOfHeight2: -0.22
     - _CuttofHeight: 2.52
-    - _Cuttofheight3: 1.63
-    - _Cuttofheight4: -2.08
+    - _Cuttofheight3: 8.22
+    - _Cuttofheight4: -31.1
     - _GlowThickness: 0
     - _NoiseScale: 24.07
     - _NoiseStrength: 0.62
     - _SineStrength: 0.07
     m_Colors:
-    - _BaseColor: {r: 0.92502797, g: 1, b: 0, a: 0}
+    - _BaseColor: {r: 0.9052659, g: 0.9433962, b: 0.43164828, a: 0}
     - _GlowColor: {r: 0.9716981, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

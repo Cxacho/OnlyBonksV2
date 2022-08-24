@@ -100,6 +100,8 @@ public class Spit : Card
         await Task.Delay(1000);
         var spit1 = Instantiate(spitBurstVFX, en.transform.parent.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         var splash = Instantiate(splashVFX, en.transform.parent.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+        Destroy(spit1,2);
+        Destroy(splash,2);
     }
 
 }

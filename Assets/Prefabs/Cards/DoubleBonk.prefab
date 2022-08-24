@@ -804,10 +804,10 @@ MonoBehaviour:
   baseCost: 1
   cost: 1
   scaleCardValues: 0
-  index: 0
+  index: 2
   baseNumOfTargets: 1
   attack: 5
-  defaultattack: 0
+  defaultattack: 5
   getPanel: 0
   myWeaponType: 0
   cType: 0
@@ -827,5 +827,51 @@ MonoBehaviour:
   exhaustable: 0
   isNeutral: 0
   retainable: 0
-  desc: 
-  bonk: {fileID: 0}
+  desc: Deal <color=white>5</color> damage twice
+  batVFX: {fileID: 1725998246106582395, guid: 925d76ef37d54ae45966af5ec5e49fdf, type: 3}
+  hitblastVFX: {fileID: 2597479301335708794, guid: 143bb2a5834548d41b5f377b7e635148, type: 3}
+  smokeVFX: {fileID: 7791242092390382466, guid: 48ce4fb84d0c6f648a8e6e69eff54975, type: 3}
+  rot1: {x: 0, y: 0, z: 235}
+  rot2: {x: 0, y: 0, z: -270}
+  batSpawn1: {x: -15, y: 30, z: 0}
+  batSpawn2: {x: 30, y: -15, z: 0}
+  move1: {x: -20, y: -30, z: 0}
+  move2: {x: -100, y: -150, z: 0}
+  startRot1: {x: 0, y: 0, z: 15}
+  startRot2: {x: 0, y: 0, z: 15}
+  anCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.18319273
+      outSlope: 0.18319273
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.7504102
+      value: 0.1374697
+      inSlope: 0.27356037
+      outSlope: 0.27356037
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.35159162
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 3.4557915
+      outSlope: 3.4557915
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animTime: 1
+  moveTime: 1
+  select: 2

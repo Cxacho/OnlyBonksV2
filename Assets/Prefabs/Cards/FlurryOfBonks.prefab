@@ -184,9 +184,9 @@ MonoBehaviour:
   baseCost: 2
   cost: 2
   scaleCardValues: 0
-  index: 0
+  index: 3
   baseNumOfTargets: 1
-  attack: 4
+  attack: 0
   defaultattack: 0
   getPanel: 0
   myWeaponType: 0
@@ -207,8 +207,58 @@ MonoBehaviour:
   exhaustable: 0
   isNeutral: 0
   retainable: 0
-  desc: 
-  bonk: {fileID: 0}
+  desc: Unleash flurry of attacks dealing <color=white>0</color> damage three times.
+  batVFX: {fileID: 1725998246106582395, guid: 925d76ef37d54ae45966af5ec5e49fdf, type: 3}
+  hitblastVFX: {fileID: 2597479301335708794, guid: 143bb2a5834548d41b5f377b7e635148, type: 3}
+  rot1: {x: 0, y: 0, z: -115}
+  rot2: {x: 0, y: 0, z: 115}
+  rot3: {x: 0, y: 0, z: 180}
+  batSpawn1: {x: -25, y: 25, z: 0}
+  batSpawn2: {x: 25, y: 25, z: 0}
+  batSpawn3: {x: 0, y: 60, z: 0}
+  move1: {x: -10, y: 10, z: 0}
+  move2: {x: 10, y: 10, z: 0}
+  move3: {x: 0, y: -50, z: 0}
+  startRot1: {x: 0, y: 0, z: 15}
+  startRot2: {x: 0, y: 0, z: -15}
+  startRot3: {x: 0, y: 0, z: 180}
+  anCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.15626752
+      outSlope: 0.15626752
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.8555056
+      value: 0.13368773
+      inSlope: 0.43898824
+      outSlope: 0.43898824
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 1
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 5.9954724
+      outSlope: 5.9954724
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animTime: 0.75
+  moveTime: 0.75
+  spawnDelay: 200
+  moveDelay: 300
 --- !u!1 &3560683576752954982
 GameObject:
   m_ObjectHideFlags: 0
