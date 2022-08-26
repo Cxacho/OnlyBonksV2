@@ -11930,6 +11930,8 @@ MonoBehaviour:
   - {fileID: 1150438450449328782, guid: fa64679fe0f33cb4e83dfa582dcde9e9, type: 3}
   - {fileID: 9216945231615369283, guid: 5ed75648b13d06948b6b5101820cb497, type: 3}
   - {fileID: 3383854915774529881, guid: bdf64af54e6e0804ca6cc76cd5ac0d99, type: 3}
+  - {fileID: 6681184060049790405, guid: de1124ed68280fc4f86fe3947957def8, type: 3}
+  - {fileID: 2858555165568228111, guid: 7c6fea9e1e663794a87f8ad9907ec118, type: 3}
   exhaustedDeck: []
   drawDeck: []
   enemiesIndicators:
@@ -17874,6 +17876,8 @@ MonoBehaviour:
   pointerHandler: 100
   selectedHeight: 130
   moveHorizontalyDistance: 10
+  cardMoveTime: 0.1
+  cardRealignTime: 0.1
 --- !u!1 &1317001643
 GameObject:
   m_ObjectHideFlags: 0

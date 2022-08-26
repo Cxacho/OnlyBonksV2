@@ -96,21 +96,22 @@ public class DoubleBonk : Card
     async  Task  Doanim(Enemy en)
     {
        var enemyRect  =en.transform.parent.gameObject.GetComponent<RectTransform>().anchoredPosition3D;
-        var smoke1=Instantiate(smokeVFX, en.transform.parent.transform.position + batSpawn1,Quaternion.identity, gameplayManager.vfxCanvas.transform);
+        var enPos= en.transform.parent.transform.position;
+        var smoke1=Instantiate(smokeVFX,enPos + batSpawn1,Quaternion.identity, gameplayManager.vfxCanvas.transform);
         await Task.Delay(200);
-        var bat1 = Instantiate(batVFX, en.transform.parent.transform.position+batSpawn1, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+        var bat1 = Instantiate(batVFX, enPos + batSpawn1, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         bat1.transform.rotation = Quaternion.Euler(startRot1);
         var getRect1 = bat1.GetComponent<RectTransform>();
         bat1.transform.DORotate(rot1, animTime,RotateMode.Fast).SetEase(anCurve);
         getRect1.DOAnchorPos(move1+enemyRect, animTime).SetEase(anCurve);
         await Task.Delay(Mathf.RoundToInt(animTime * 1000));
         en.RecieveDamage(attack, this);
-        var hit1 = Instantiate(hitblastVFX, en.transform.parent.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+        var hit1 = Instantiate(hitblastVFX, enPos, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         bat1.GetComponent<SpriteRenderer>().material.DOFade(0, 1);
         //zrobic warunek dla zabicia przeciwnika
         await Task.Delay(200);
-            var smoke2 = Instantiate(smokeVFX, en.transform.parent.transform.position + batSpawn2, Quaternion.identity, gameplayManager.vfxCanvas.transform);
-            var bat2 = Instantiate(batVFX, en.transform.parent.transform.position + batSpawn2, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+            var smoke2 = Instantiate(smokeVFX, enPos + batSpawn2, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+            var bat2 = Instantiate(batVFX, enPos + batSpawn2, Quaternion.identity, gameplayManager.vfxCanvas.transform);
             bat2.transform.rotation = Quaternion.Euler(startRot2);
             var getRect2 = bat2.GetComponent<RectTransform>();
             bat2.transform.DORotate(rot2, moveTime, RotateMode.Fast).SetEase(anCurve);
@@ -118,9 +119,10 @@ public class DoubleBonk : Card
             await Task.Delay(Mathf.RoundToInt(moveTime * 0.7f * 1000));
             en.transform.DORotate(new Vector3(0, 0, -360), moveTime, RotateMode.FastBeyond360);
             await Task.Delay(Mathf.RoundToInt(moveTime * 0.3f * 1000));
+        if (en != null) 
             en.RecieveDamage(attack, this);
             bat2.GetComponent<SpriteRenderer>().material.DOFade(0, 1);
-            var hit2 = Instantiate(hitblastVFX, en.transform.parent.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+            var hit2 = Instantiate(hitblastVFX, enPos, Quaternion.identity, gameplayManager.vfxCanvas.transform);
             //recieve damage
             Destroy(bat1, 1f);
             Destroy(bat2, 1f);

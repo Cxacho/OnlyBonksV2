@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4154305017897078799}
   - component: {fileID: 4195082560769264694}
   - component: {fileID: -6022969762265394306}
-  - component: {fileID: -3353096608851954633}
   - component: {fileID: -6351299408824284749}
+  - component: {fileID: 6067248810364992188}
   m_Layer: 7
   m_Name: Slash
   m_TagString: Card
@@ -61,46 +61,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &-3353096608851954633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2858555165568228111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f52490be9f3528c479aad215175e0bb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseCost: 1
-  cost: 1
-  scaleCardValues: 0
-  index: 0
-  baseNumOfTargets: 1
-  attack: 5
-  defaultattack: 3
-  getPanel: 0
-  myWeaponType: 0
-  cType: 0
-  currentCardState: 3
-  cardScalingtype: 1
-  secondaryScalingType: 0
-  cardDamageType: 0
-  exitButton: {fileID: 1019920095713079653, guid: 999738602cea97c4882ce11df42f5f38, type: 3}
-  ui: {fileID: 0}
-  player: {fileID: 0}
-  cardAlign: {fileID: 0}
-  gameplayManager: {fileID: 0}
-  interactible: 0
-  trailOffset: {x: 110, y: 170}
-  meshes: []
-  _enemies: []
-  exhaustable: 0
-  isNeutral: 0
-  retainable: 0
-  desc: 
-  bonk: {fileID: 3356155904159209368, guid: 86afabfc67905044dbfa62c0b45cf989, type: 3}
 --- !u!96 &-6351299408824284749
 TrailRenderer:
   serializedVersion: 2
@@ -209,6 +169,88 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &6067248810364992188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2858555165568228111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e6b92a13cd9354c918055df250f1a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseCost: 1
+  cost: 1
+  scaleCardValues: 0
+  index: 2
+  baseNumOfTargets: 1
+  attack: 4
+  defaultattack: 6
+  getPanel: 0
+  myWeaponType: 5
+  cType: 0
+  currentCardState: 0
+  cardScalingtype: 2
+  secondaryScalingType: 0
+  cardDamageType: 0
+  exitButton: {fileID: 1019920095713079653, guid: 999738602cea97c4882ce11df42f5f38, type: 3}
+  ui: {fileID: 0}
+  player: {fileID: 0}
+  cardAlign: {fileID: 0}
+  gameplayManager: {fileID: 0}
+  interactible: 0
+  trailOffset: {x: 110, y: 170}
+  meshes: []
+  _enemies: []
+  exhaustable: 0
+  isNeutral: 0
+  retainable: 0
+  desc: Deal <color=red>4</color> damage
+  cutVFX: {fileID: 3364164323820436324, guid: b264236a9f6027941a383d49f280ed9e, type: 3}
+  katVFX: {fileID: 6596759004679605484, guid: 84b293d712b5c224bbec4d97dad6db0b, type: 3}
+  woundVFX: {fileID: 2597479301335708794, guid: 143bb2a5834548d41b5f377b7e635148, type: 3}
+  spawnOffset: {x: -20, y: 35, z: 0}
+  hitOffset: {x: -70, y: 60, z: 0}
+  spriteSpawnOffset: {x: 0, y: 0, z: 0}
+  rot: {x: 0, y: 0, z: -15}
+  startingRot: {x: 0, y: 0, z: 90}
+  anCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.18181689
+      outSlope: 0.18181689
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.8530222
+      value: 0.15509385
+      inSlope: 0.35864165
+      outSlope: 0.35864165
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.80764425
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 5.74853
+      outSlope: 5.74853
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animTime: 0.4
+  animMultiplier: 0.5
 --- !u!1 &3868653325569000508
 GameObject:
   m_ObjectHideFlags: 0

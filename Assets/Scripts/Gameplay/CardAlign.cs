@@ -26,6 +26,7 @@ public class CardAlign : MonoBehaviour
     public int pointerHandler;
     public float selectedHeight;
     public float moveHorizontalyDistance;
+    [SerializeField] float cardMoveTime, cardRealignTime;
 
     void Update()
     {
@@ -232,14 +233,14 @@ public class CardAlign : MonoBehaviour
         GameObject card = children[children.Count-1].gameObject;
         card.transform.DOScale(Vector3.one, 0.2f).OnComplete(() =>
         {
-            card.transform.DOMove(positions[card.transform.GetSiblingIndex()], 0.2f).OnComplete(() =>
+            card.transform.DOMove(positions[card.transform.GetSiblingIndex()], cardMoveTime).OnComplete(() =>
             {
 
                 for (int i = 0; i < this.transform.childCount; i++)
                 {
                     
-                    children[i].transform.DORotate(rotations[i], 0.2f);
-                    children[i].transform.DOMove(positions[i], 0.2f);
+                    children[i].transform.DORotate(rotations[i], cardRealignTime);
+                    children[i].transform.DOMove(positions[i], cardRealignTime);
                 }
                 //wywolanie draw'u kolejnych kart
                 if (gameplayManager.drawAmount == gameplayManager.playerDrawAmount)

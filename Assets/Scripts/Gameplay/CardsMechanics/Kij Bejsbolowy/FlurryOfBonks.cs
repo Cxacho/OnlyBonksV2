@@ -72,7 +72,6 @@ public class FlurryOfBonks : Card
 
     async Task DoAnim(Enemy en)
     {
-        en = gameplayManager.enemies[0].GetComponent<Enemy>();
         var enemyRect = en.transform.parent.gameObject.GetComponent<RectTransform>().anchoredPosition3D;
         //1
         
@@ -97,11 +96,11 @@ public class FlurryOfBonks : Card
         var getRect1 = bat1.GetComponent<RectTransform>();
         bat1.transform.DORotate(rot1, animTime, RotateMode.Fast).SetEase(anCurve);
         getRect1.DOAnchorPos(move1 + enemyRect, animTime).SetEase(anCurve);
-
+        var enPos = en.transform.parent.transform.position;
 
         await Task.Delay((int)moveDelay);
         en.RecieveDamage(attack, this);
-        var hit1 = Instantiate(hitblastVFX, en.transform.parent.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+        var hit1 = Instantiate(hitblastVFX, enPos, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         //move2
         var getRect2 = bat2.GetComponent<RectTransform>();
         bat2.transform.DORotate(rot2, moveTime, RotateMode.Fast).SetEase(anCurve);
@@ -109,16 +108,18 @@ public class FlurryOfBonks : Card
 
 
         await Task.Delay((int)moveDelay);
-        en.RecieveDamage(attack, this);
-        var hit2 = Instantiate(hitblastVFX, en.transform.parent.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+        if (en != null)
+            en.RecieveDamage(attack, this);
+        var hit2 = Instantiate(hitblastVFX, enPos, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         //move3
         var getRect3 = bat3.GetComponent<RectTransform>();
         bat3.transform.DORotate(rot3, moveTime, RotateMode.Fast).SetEase(anCurve);
         getRect3.DOAnchorPos(move3 + enemyRect, moveTime).SetEase(anCurve);
 
         await Task.Delay(400);
+        if (en != null)
         en.RecieveDamage(attack, this);
-        var hit3 = Instantiate(hitblastVFX, en.transform.parent.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+        var hit3 = Instantiate(hitblastVFX, enPos, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         bat3.GetComponent<SpriteRenderer>().material.DOFade(0, 1);
         bat1.GetComponent<SpriteRenderer>().material.DOFade(0, 1);
         bat2.GetComponent<SpriteRenderer>().material.DOFade(0, 1);

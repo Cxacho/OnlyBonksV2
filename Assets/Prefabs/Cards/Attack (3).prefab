@@ -79,7 +79,7 @@ MonoBehaviour:
   index: 0
   baseNumOfTargets: 1
   attack: 5
-  defaultattack: 3
+  defaultattack: 5
   getPanel: 0
   myWeaponType: 0
   cType: 0
@@ -99,12 +99,12 @@ MonoBehaviour:
   exhaustable: 0
   isNeutral: 0
   retainable: 0
-  desc: 
+  desc: Deal <color=white>5</color> damage
   bonkComicVFX: {fileID: 6759721781727752394, guid: 0382242273ae13e4887b737dea65abed, type: 3}
   batVFX: {fileID: 7018250619379937311, guid: 156f4f836a1edae45abbeb827a6a9153, type: 3}
   spawnOffset: {x: -20, y: 35, z: 0}
-  hitOffset: {x: -70, y: 80, z: 0}
-  spriteSpawnOffset: {x: 10, y: -7, z: 0}
+  hitOffset: {x: -70, y: 60, z: 0}
+  spriteSpawnOffset: {x: 20, y: -30, z: 0}
   rot: {x: 0, y: 0, z: -110}
   anCurve:
     serializedVersion: 2
@@ -112,24 +112,35 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
+      inSlope: 0.17642452
+      outSlope: 0.17642452
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.8491316
+      value: 0.14980763
+      inSlope: 0.49390477
+      outSlope: 0.49390477
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.118938036
+      outWeight: 0.483761
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
+      inSlope: 5.6353235
+      outSlope: 5.6353235
       tangentMode: 34
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  animTime: 0.4
+  animMultiplier: 0.5
 --- !u!96 &-6074655248661619215
 TrailRenderer:
   serializedVersion: 2

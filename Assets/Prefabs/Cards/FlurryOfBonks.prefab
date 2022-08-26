@@ -186,8 +186,8 @@ MonoBehaviour:
   scaleCardValues: 0
   index: 3
   baseNumOfTargets: 1
-  attack: 0
-  defaultattack: 0
+  attack: 4
+  defaultattack: 4
   getPanel: 0
   myWeaponType: 0
   cType: 0
