@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4195082560769264694}
   - component: {fileID: -6022969762265394306}
   - component: {fileID: -6351299408824284749}
-  - component: {fileID: -6658897165955588903}
+  - component: {fileID: 7208247737727974828}
   m_Layer: 7
-  m_Name: Backstab
+  m_Name: StabWounds
   m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,7 +169,7 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &-6658897165955588903
+--- !u!114 &7208247737727974828
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,16 +178,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2858555165568228111}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6140bef9f04cc74f9da37e8e43e8820, type: 3}
+  m_Script: {fileID: 11500000, guid: d63483c793a09b942be2e5944d93972a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   baseCost: 1
   cost: 1
   scaleCardValues: 0
-  index: 4
+  index: 3
   baseNumOfTargets: 1
-  attack: 6
-  defaultattack: 6
+  attack: 21
+  defaultattack: 21
   getPanel: 0
   myWeaponType: 5
   cType: 0
@@ -207,44 +207,48 @@ MonoBehaviour:
   exhaustable: 0
   isNeutral: 0
   retainable: 0
-  desc: Deal <color=white>6</color> damage, if enemy has their back exposed, deal
+  desc: Deal <color=white>21</color> damage, if enemy has their back exposed, deal
     double damage
-  offset: {x: 30, y: -4, z: 0}
-  startRot: {x: 0, y: 0, z: 130}
-  knifSpawnOffset: {x: -10, y: 0, z: 0}
-  smoke: {fileID: 7854329054949145575, guid: 0d7fe0292abbbc64d82ec43a73dbfb14, type: 3}
-  bleed: {fileID: 0}
-  knifVFX: {fileID: 590757298138515737, guid: 96af335cf3f3eeb4f9b09546fc3bda4a, type: 3}
-  woundVFX: {fileID: 1689737463242956726, guid: d620745fbd5642649bd2b11b921f3f8f, type: 3}
-  returnTime: 1
-  knifMoveTime: 1
-  moveOffset: {x: -200, y: 0}
+  secondRot: {x: 0, y: 0, z: -20}
+  startRot: {x: 0, y: 0, z: -90}
+  knifSpawnOffset: {x: -20, y: 40, z: 0}
+  moveOffset: {x: -200, y: -50, z: 0}
+  stabOffset: {x: 200, y: 0, z: 0}
+  firstStop: {x: -200, y: 200, z: 0}
+  vfxSpawnOffset: {x: 20, y: -9, z: 0}
+  knifVFX: {fileID: 2884622811107452772, guid: 9f730490e40f56243b771a317acca93a, type: 3}
+  woundVFX: {fileID: 3977458636460644882, guid: 844b8716644c08546a9a5400a95307de, type: 3}
+  stabTime: 0.05
+  moveTime: 2.5
+  rotTime: 0.7
+  travelTime: 0.5
+  secondMovePos: {x: 0, y: 0, z: 0}
   anCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0.16913527
-      outSlope: 0.16913527
+      inSlope: 1.9784192
+      outSlope: 1.9784192
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.88188815
-      value: 0.14915839
-      inSlope: 0.5634014
-      outSlope: 0.5634014
-      tangentMode: 0
+      time: 0.28044134
+      value: 0.55483055
+      inSlope: 1.2985446
+      outSlope: 1.2985446
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.38746506
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 7.2036943
-      outSlope: 7.2036943
+      inSlope: 0.6186701
+      outSlope: 0.6186701
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -588,7 +592,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Backstab
+  m_text: Get Bonked Scrub
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -615,7 +619,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.55
+  m_fontSize: 14.45
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1

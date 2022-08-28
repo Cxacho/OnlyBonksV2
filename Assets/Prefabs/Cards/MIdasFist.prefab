@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 4154305017897078799}
   - component: {fileID: 4195082560769264694}
   - component: {fileID: -6022969762265394306}
-  - component: {fileID: -6351299408824284749}
-  - component: {fileID: -6658897165955588903}
+  - component: {fileID: 9115252423795947093}
+  - component: {fileID: -5778623056055145778}
   m_Layer: 7
-  m_Name: Backstab
+  m_Name: MIdasFist
   m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +61,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!96 &-6351299408824284749
+--- !u!96 &9115252423795947093
 TrailRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
@@ -106,12 +106,12 @@ TrailRenderer:
   m_Time: 2
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 4.7119555
+    widthMultiplier: 4.802426
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.011173248
+        time: 0
         value: 1
         inSlope: 0
         outSlope: 0
@@ -119,38 +119,29 @@ TrailRenderer:
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.46362606, g: 0.079832695, b: 0.735849, a: 1}
-      key1: {r: 1, g: 0, b: 0, a: 1}
-      key2: {r: 1, g: 0, b: 0, a: 0}
+      key0: {r: 0.13830544, g: 0.51434755, b: 0.7924528, a: 1}
+      key1: {r: 0.13830544, g: 0.51434755, b: 0.7924528, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 64957
+      ctime0: 0
       ctime1: 65535
-      ctime2: 65535
+      ctime2: 0
       ctime3: 0
       ctime4: 0
       ctime5: 0
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 54356
+      atime1: 65535
       atime2: 0
       atime3: 0
       atime4: 0
@@ -169,7 +160,7 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &-6658897165955588903
+--- !u!114 &-5778623056055145778
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,21 +169,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 2858555165568228111}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6140bef9f04cc74f9da37e8e43e8820, type: 3}
+  m_Script: {fileID: 11500000, guid: 41144699b6609ac48aa6f1cbbd4113e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   baseCost: 1
   cost: 1
   scaleCardValues: 0
-  index: 4
+  index: 3
   baseNumOfTargets: 1
-  attack: 6
-  defaultattack: 6
+  attack: 0
+  defaultattack: 0
   getPanel: 0
-  myWeaponType: 5
+  myWeaponType: 6
   cType: 0
   currentCardState: 3
-  cardScalingtype: 2
+  cardScalingtype: 0
   secondaryScalingType: 0
   cardDamageType: 0
   exitButton: {fileID: 1019920095713079653, guid: 999738602cea97c4882ce11df42f5f38, type: 3}
@@ -207,44 +198,42 @@ MonoBehaviour:
   exhaustable: 0
   isNeutral: 0
   retainable: 0
-  desc: Deal <color=white>6</color> damage, if enemy has their back exposed, deal
-    double damage
-  offset: {x: 30, y: -4, z: 0}
-  startRot: {x: 0, y: 0, z: 130}
-  knifSpawnOffset: {x: -10, y: 0, z: 0}
-  smoke: {fileID: 7854329054949145575, guid: 0d7fe0292abbbc64d82ec43a73dbfb14, type: 3}
-  bleed: {fileID: 0}
-  knifVFX: {fileID: 590757298138515737, guid: 96af335cf3f3eeb4f9b09546fc3bda4a, type: 3}
-  woundVFX: {fileID: 1689737463242956726, guid: d620745fbd5642649bd2b11b921f3f8f, type: 3}
-  returnTime: 1
-  knifMoveTime: 1
-  moveOffset: {x: -200, y: 0}
+  desc: 
+  armor: 0
+  fistVFX: {fileID: 5987491914703383352, guid: e316d57b2002fda49aa561b623207f27, type: 3}
+  hitVFX: {fileID: 8014447497401317446, guid: 699b6fdc226ddb2449cd79d5421b5d31, type: 3}
+  spawnOffset: {x: -50, y: 20, z: 0}
+  startRot: {x: 0, y: 0, z: -120}
+  rot: {x: 0, y: 0, z: -90}
+  vfxOffset: {x: 8, y: 1, z: 0}
+  movePos: {x: -120, y: -20}
+  animTime: 1
   anCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0.16913527
-      outSlope: 0.16913527
+      inSlope: 0.19702516
+      outSlope: 0.19702516
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.88188815
-      value: 0.14915839
-      inSlope: 0.5634014
-      outSlope: 0.5634014
+      time: 0.8520291
+      value: 0.16787118
+      inSlope: 0.6164108
+      outSlope: 0.6164108
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.38746506
+      outWeight: 0.2638556
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 7.2036943
-      outSlope: 7.2036943
+      inSlope: 5.623597
+      outSlope: 5.623597
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -252,6 +241,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  goldMat: {fileID: 2100000, guid: 7a961e85e1815d341ad5f180fbf0a492, type: 2}
 --- !u!1 &3868653325569000508
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,10 +275,10 @@ RectTransform:
   m_Father: {fileID: 6378627393820948997}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.87100005}
-  m_AnchorMax: {x: 0.16754524, y: 1}
-  m_AnchoredPosition: {x: 1.3125, y: -0.5631714}
-  m_SizeDelta: {x: 2.6327972, y: 1.1262817}
+  m_AnchorMin: {x: 0.018000001, y: 0.869}
+  m_AnchorMax: {x: 0.17745477, y: 0.9911764}
+  m_AnchoredPosition: {x: 1.4687042, y: 0.43969727}
+  m_SizeDelta: {x: 0.97379994, y: 1.132}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6682002869044894971
 CanvasRenderer:
@@ -318,10 +308,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 2
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
+  m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -345,13 +335,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40.25
+  m_fontSize: 35.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 2
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -420,10 +410,10 @@ RectTransform:
   m_Father: {fileID: 6378627393820948997}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.416, y: 0.42700002}
-  m_AnchorMax: {x: 0.583, y: 0.462}
-  m_AnchoredPosition: {x: 0.453125, y: 0.37799072}
-  m_SizeDelta: {x: 1.4297028, y: 0.75579834}
+  m_AnchorMin: {x: 0.43554527, y: 0.43}
+  m_AnchorMax: {x: 0.588, y: 0.46470574}
+  m_AnchoredPosition: {x: 0.0777998, y: 0.6000004}
+  m_SizeDelta: {x: -0.1557002, y: 0.7558}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2949104907133444256
 CanvasRenderer:
@@ -453,10 +443,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Attack
+  m_text: Defend
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
+  m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -480,7 +470,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.3
+  m_fontSize: 8.9
   m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -555,10 +545,10 @@ RectTransform:
   m_Father: {fileID: 6378627393820948997}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.19936195, y: 0.87100005}
-  m_AnchorMax: {x: 0.80600005, y: 0.92300004}
-  m_AnchoredPosition: {x: -0.046875, y: 0.41000366}
-  m_SizeDelta: {x: 0.42190552, y: 3.0635986}
+  m_AnchorMin: {x: 0.19554526, y: 0.869}
+  m_AnchorMax: {x: 0.8045453, y: 0.929}
+  m_AnchoredPosition: {x: 0.453125, y: -0.08999634}
+  m_SizeDelta: {x: -0.5780945, y: 0.06359863}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4016098877173305660
 CanvasRenderer:
@@ -588,10 +578,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Backstab
+  m_text: Testudo
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
+  m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -615,7 +605,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.55
+  m_fontSize: 17.2
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -670,7 +660,7 @@ GameObject:
   - component: {fileID: 7730832594669413878}
   m_Layer: 7
   m_Name: Image
-  m_TagString: CardImage
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -727,7 +717,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c188dd51f16a15a47be5b649bbee1b50, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 163354b17cfdfc8428d8b7860595958a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -749,7 +739,7 @@ GameObject:
   - component: {fileID: 8735146951531586623}
   - component: {fileID: 8479757207039664003}
   m_Layer: 7
-  m_Name: Desc
+  m_Name: DESC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -770,10 +760,10 @@ RectTransform:
   m_Father: {fileID: 6378627393820948997}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.104, y: 0.040235296}
-  m_AnchorMax: {x: 0.883, y: 0.42700002}
-  m_AnchoredPosition: {x: -0.57499695, y: 1.0866089}
-  m_SizeDelta: {x: 1.15, y: -0.8529997}
+  m_AnchorMin: {x: 0.105000004, y: 0.046000004}
+  m_AnchorMax: {x: 0.896, y: 0.41811767}
+  m_AnchoredPosition: {x: 1.3615036, y: 0.31762695}
+  m_SizeDelta: {x: -5.2292, y: 2.0919}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8735146951531586623
 CanvasRenderer:
@@ -803,7 +793,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Deal 3 damage
+  m_text: 'Gain 10 armor
+
+    Draw 2 cards'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -830,8 +822,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 23
+  m_fontSizeBase: 23
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 2
@@ -866,7 +858,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 10, y: 0, z: 10, w: 0}
+  m_margin: {x: -0.1373291, y: 0, z: 0.42590332, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

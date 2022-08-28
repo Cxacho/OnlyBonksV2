@@ -5,16 +5,15 @@ using DG.Tweening;
 using TMPro;
 using System;
 using System.Threading.Tasks;
-public class Backstab : Card
+public class StabWounds : Card
 {
     private TextMeshPro textMeshPro;
-    [SerializeField] private Vector3 offset,startRot,knifSpawnOffset;
-    [SerializeField] private GameObject smoke;
-    [SerializeField] private GameObject bleed,knifVFX,woundVFX;
-    [SerializeField] private float returnTime,knifMoveTime;
-    [SerializeField] private Vector2 moveOffset;
+    [SerializeField] private Vector3 secondRot, startRot, knifSpawnOffset, moveOffset, stabOffset, firstStop,vfxSpawnOffset;
+    [SerializeField] private GameObject knifVFX, woundVFX;
+    [SerializeField] private float stabTime,moveTime,rotTime,travelTime;
+    [SerializeField] private Vector3  secondMovePos;
     [SerializeField] private AnimationCurve anCurve;
-    List<Transform> characters = new List<Transform>();
+    List<GameObject> objs = new List<GameObject>(); 
 
     private void Start()
     {
@@ -63,16 +62,9 @@ public class Backstab : Card
                     en.RecieveDamage(attack * 2, this);
                 }
                 */
-                    if (characters[getEnemyIndex + 1].gameObject == gameplayManager.player.gameObject || characters[getEnemyIndex + 1].childCount == 0)
-                    {
-                        await DoAnim(en);
-                        en.RecieveDamage(attack * 2, this);
-                    }
-                    else
-                    {
+
                         await DoAnim(en);
                         en.RecieveDamage(attack, this);
-                    }
 
                     en.targeted = false;
                 }
@@ -90,10 +82,7 @@ public class Backstab : Card
     {
         player.mana += 4;
     }
-    private void OnDestroy()
-    {
-        // gameplayManager.OnEnemyKilled -= AddMeSomeMana;   
-    }
+
 
     IEnumerator ExecuteAfterTime(float time)
     {
@@ -102,44 +91,40 @@ public class Backstab : Card
         player.manaText.text = player.mana.ToString();
 
     }
-    private void OnEnable()
-    {
-        foreach (Transform obj in gameplayManager.characterCanvas.transform)
-        {
-            characters.Add(obj);
-        }
-    }
+
 
     async Task DoAnim(Enemy _enemy)
     {
-        var smokeVFX = Instantiate(smoke, gameplayManager.player.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
-        await Task.Delay(1000);
-        var smokeVFX2 = Instantiate(smoke, gameplayManager.player.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
-        await Task.Delay(100);
-        var oldPos = gameplayManager.player.transform.position;
-        gameplayManager.player.transform.position = _enemy.transform.position + offset;
-        var rect = gameplayManager.player.GetComponent<RectTransform>();
-        var oldRot = rect.rotation.eulerAngles;
-        rect.DORotate(Vector3.zero, 0.1f, RotateMode.Fast);
-        var knif = Instantiate(knifVFX, player.gameObject.transform.position+knifSpawnOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+        var enPos=_enemy.transform.parent.GetComponent<RectTransform>().anchoredPosition3D;
+        var knif = Instantiate(knifVFX, _enemy.transform.position + knifSpawnOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         knif.transform.rotation = Quaternion.Euler(startRot);
-        knif.GetComponent<SpriteRenderer>().material.color = new Color(1, 1, 1, 0);
-        knif.GetComponent<SpriteRenderer>().material.DOFade(1, 0.5f);
-        knif.GetComponent<RectTransform>().DOAnchorPos(player.gameObject.GetComponent<RectTransform>().anchoredPosition + moveOffset, knifMoveTime).SetEase(anCurve);
-        await Task.Delay(Mathf.RoundToInt(knifMoveTime * 1000));
-        var wound = Instantiate(woundVFX, knif.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
-        
-        await Task.Delay(Mathf.RoundToInt(returnTime * 1000));
-        knif.GetComponent<SpriteRenderer>().material.DOFade(0, 0.7f);
-        gameplayManager.player.transform.position = oldPos;
-        rect.DORotate(oldRot, 0.2f, RotateMode.Fast);
-        Destroy(smokeVFX,1);
-        Destroy(smokeVFX2, 1);
-        Destroy(wound,1);
-        Destroy(knif,1);
+        var stabRect=knif.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+        var knifRect = knif.gameObject.GetComponent<RectTransform>();
+        knifRect.DOAnchorPos(firstStop+enPos, travelTime).SetEase(Ease.Linear);
+        await Task.Delay(Mathf.RoundToInt(travelTime * 1000));
+        knif.transform.DORotate(secondRot, rotTime);
+        await Task.Delay(Mathf.RoundToInt(rotTime * 1000));
+        var tween=stabRect.DOAnchorPos(stabOffset, stabTime).SetLoops(-1,LoopType.Yoyo).SetEase(anCurve);
+        knifRect.DOAnchorPos(moveOffset + enPos, moveTime).SetEase(Ease.Linear);
+        AnimHelper(knif);
+        await Task.Delay(Mathf.RoundToInt(moveTime * 1000));
+        tween.Kill();
+        knif.transform.GetChild(0).GetComponent<SpriteRenderer>().DOFade(0, 1).OnComplete(()=>
+        {
+            foreach (GameObject obj in objs)
+                Destroy(obj);
+            Destroy(knif);
+        });
+        //kill tween
 
     }
-
-
+    async Task AnimHelper(GameObject knif)
+    {
+        for(int i =0;i<28;i++)
+        {
+            objs.Add(Instantiate(woundVFX, knif.transform.position + vfxSpawnOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform));
+            await Task.Delay(Mathf.RoundToInt(stabTime * 1000*2));
+        }
+    }
 
 }

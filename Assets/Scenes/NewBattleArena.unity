@@ -11915,15 +11915,8 @@ MonoBehaviour:
   - {fileID: 2858555165568228111, guid: 6bb15ada756cc684b99cb2e08259ad30, type: 3}
   - {fileID: 2858555165568228111, guid: 34a283a1e53d55b44a66535c8cdff77a, type: 3}
   startingDeck:
-  - {fileID: 2858555165568228111, guid: 18f9c84fc6de7634895b5c16eab423b3, type: 3}
-  - {fileID: 2858555165568228111, guid: dadfaf24267f0274bbbed0cbbe3434ad, type: 3}
   - {fileID: 2858555165568228111, guid: 77f03727ae969454bb2565421c2d2487, type: 3}
-  - {fileID: 6681184060049790405, guid: 0931425ebc7f3cf46938a1d72571df3f, type: 3}
-  - {fileID: 7546190796451804516, guid: 88857b4396b9d284e9464ca71d8ab3ff, type: 3}
-  - {fileID: 2858555165568228111, guid: bc6f0096eb3e4614caf373cb9b6a75c5, type: 3}
   - {fileID: 2858555165568228111, guid: 91863920655f72f47a456fa5c34d3c77, type: 3}
-  - {fileID: 2858555165568228111, guid: ed26e6c8b2bace54baa2f6266f118824, type: 3}
-  - {fileID: 2858555165568228111, guid: 1745783852f0dc64eae7f6904a84049a, type: 3}
   - {fileID: 7947560193341729093, guid: 98bf63d30bacf054abdf878967c09d2c, type: 3}
   - {fileID: 2858555165568228111, guid: f272d9b5ea94d6f4aa5152a52ede1d7f, type: 3}
   - {fileID: 2858555165568228111, guid: e2077e862f3de714ca3507008853780c, type: 3}
@@ -11932,6 +11925,8 @@ MonoBehaviour:
   - {fileID: 3383854915774529881, guid: bdf64af54e6e0804ca6cc76cd5ac0d99, type: 3}
   - {fileID: 6681184060049790405, guid: de1124ed68280fc4f86fe3947957def8, type: 3}
   - {fileID: 2858555165568228111, guid: 7c6fea9e1e663794a87f8ad9907ec118, type: 3}
+  - {fileID: 2858555165568228111, guid: e1e947d308f5837468d6363a634504f8, type: 3}
+  - {fileID: 2858555165568228111, guid: f964e8b397750a24abe759bd489b3cf3, type: 3}
   exhaustedDeck: []
   drawDeck: []
   enemiesIndicators:

@@ -539,8 +539,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
                     {
                         //warunek dla 3 przeciwnikow
-                        if (_enemies.Count == 3)
+                        if (_enemies.Count == 2 &&baseNumOfTargets == 3)
                         {
+                            //to sie chyba nigdy nie wywo
                             if (numOfTargets == baseNumOfTargets - 1)
                                 followMouse.en.isFirstTarget = true;
                             else if (numOfTargets == baseNumOfTargets - 2)

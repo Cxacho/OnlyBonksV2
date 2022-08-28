@@ -34,10 +34,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CutOfHeight2: -0.22
-    - _CuttofHeight: 2.52
-    - _Cuttofheight3: 8.22
-    - _Cuttofheight4: -31.1
+    - _CutOfHeight2: -2.57
+    - _CuttofHeight: 2.2
+    - _Cuttofheight3: 1.98
+    - _Cuttofheight4: -2.59
     - _GlowThickness: 0
     - _NoiseScale: 24.07
     - _NoiseStrength: 0.62
