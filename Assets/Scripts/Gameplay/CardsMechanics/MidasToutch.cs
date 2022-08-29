@@ -4,12 +4,13 @@ using UnityEngine;
 using DG.Tweening;
 using System.Threading.Tasks;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class MidasToutch : Card
 {
     public int armor;
-    [SerializeField] private GameObject fistVFX,hitVFX;
-    [SerializeField] private Vector3 spawnOffset,startRot,rot,vfxOffset;
+    [SerializeField] private GameObject handVFX,hitVFX,particlesVFX;
+    [SerializeField] private Vector3 spawnOffset,startRot,rot,vfxOffset,particlesOffset,hitRot;
     [SerializeField] private Vector2 movePos;
     [SerializeField] private float animTime; 
     [SerializeField] private AnimationCurve anCurve;
@@ -28,6 +29,7 @@ public class MidasToutch : Card
 
                     await DoAnim(en);
                     en.RecieveDamage(gameplayManager.gold*0.1f, this);
+                    //gdy zabije dodaj golda
                     //metoda pod lose gold
                     
                     en.targeted = false;
@@ -44,24 +46,32 @@ public class MidasToutch : Card
     async Task DoAnim(Enemy en)
     {
         var enPos = en.transform.parent.GetComponent<RectTransform>().anchoredPosition3D;
-        var fist = Instantiate(fistVFX, en.transform.parent.position +spawnOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
-
+        var fist = Instantiate(handVFX, en.transform.parent.position +spawnOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+        var par = Instantiate(particlesVFX, fist.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+        par.transform.SetParent(fist.transform);
         fist.transform.rotation = Quaternion.Euler(startRot);
         fist.GetComponent<SpriteRenderer>().material.color = new Color(1, 1, 1, 0);
         fist.GetComponent<SpriteRenderer>().material.DOFade(1, 0.5f);
         await Task.Delay(500);
         var getRect=fist.GetComponent<RectTransform>();
         getRect.DOAnchorPos(movePos+new Vector2(enPos.x,enPos.y), animTime).SetEase(anCurve);
-        var oldMat=en.GetComponent<Image>().material;
-        en.GetComponent<Image>().material = goldMat;
+        //var oldMat=en.GetComponent<Image>().material;
+        //en.GetComponent<Image>().material = goldMat;
         fist.transform.DORotate(rot, animTime, RotateMode.Fast).SetEase(anCurve);
         await Task.Delay(Mathf.RoundToInt(animTime * 1000));
+        var par1 = Instantiate(particlesVFX, en.transform.parent.transform.position + particlesOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         var hit = Instantiate(hitVFX, fist.transform.position+vfxOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
-        fist.GetComponent<SpriteRenderer>().material.DOFade(0, 1.5f);
-        en.GetComponent<Image>().material = oldMat;
-        Destroy(fist, 1.5f);
-        Destroy(hit, 1.5f);
+        hit.transform.rotation = Quaternion.Euler(hitRot);
 
+
+        
+        await Task.Delay(500);
+        fist.GetComponent<SpriteRenderer>().material.DOFade(0, 1.5f);
+        await Task.Delay(1500);
+        Destroy(fist, 1f);
+        Destroy(hit, 1f);
+        Destroy(par, 2f);
+        Destroy(par1, 3f);
 
     }
 }

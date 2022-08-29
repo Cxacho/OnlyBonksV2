@@ -11927,6 +11927,8 @@ MonoBehaviour:
   - {fileID: 2858555165568228111, guid: 7c6fea9e1e663794a87f8ad9907ec118, type: 3}
   - {fileID: 2858555165568228111, guid: e1e947d308f5837468d6363a634504f8, type: 3}
   - {fileID: 2858555165568228111, guid: f964e8b397750a24abe759bd489b3cf3, type: 3}
+  - {fileID: 2858555165568228111, guid: a108c5163f6a8334fbef2bfc47e50803, type: 3}
+  - {fileID: 6681184060049790405, guid: 0931425ebc7f3cf46938a1d72571df3f, type: 3}
   exhaustedDeck: []
   drawDeck: []
   enemiesIndicators:

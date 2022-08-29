@@ -863,3 +863,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   trail: {fileID: 5105018118489598477, guid: 2a577e8604c89c545a1fdf0952fc5973, type: 3}
   sanicRings: {fileID: 3409254526250721755, guid: a88af9b82c6a67242af4ed8d3f48475a, type: 3}
+  sparksVFX: {fileID: 1894684332853201883, guid: 1cdc1b8eeac2a9647927b1b035093ef1, type: 3}
+  sparksSpawnOffset: {x: -1, y: -3, z: 0}
+  sparksOffset: {x: -10, y: -50, z: 0}

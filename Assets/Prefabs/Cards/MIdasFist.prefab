@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4195082560769264694}
   - component: {fileID: -6022969762265394306}
   - component: {fileID: 9115252423795947093}
-  - component: {fileID: -5778623056055145778}
+  - component: {fileID: 3142279677926068388}
   m_Layer: 7
   m_Name: MIdasFist
   m_TagString: Card
@@ -160,7 +160,7 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &-5778623056055145778
+--- !u!114 &3142279677926068388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,13 +169,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2858555165568228111}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41144699b6609ac48aa6f1cbbd4113e6, type: 3}
+  m_Script: {fileID: 11500000, guid: aea698d37c5d8254688240f680c4721c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   baseCost: 1
   cost: 1
   scaleCardValues: 0
-  index: 3
+  index: 0
   baseNumOfTargets: 1
   attack: 0
   defaultattack: 0
@@ -202,11 +202,12 @@ MonoBehaviour:
   armor: 0
   fistVFX: {fileID: 5987491914703383352, guid: e316d57b2002fda49aa561b623207f27, type: 3}
   hitVFX: {fileID: 8014447497401317446, guid: 699b6fdc226ddb2449cd79d5421b5d31, type: 3}
+  particlesVFX: {fileID: 3910887190935212368, guid: 258e10fa08690324da75fa654b42c52c, type: 3}
   spawnOffset: {x: -50, y: 20, z: 0}
   startRot: {x: 0, y: 0, z: -120}
   rot: {x: 0, y: 0, z: -90}
   vfxOffset: {x: 8, y: 1, z: 0}
-  movePos: {x: -120, y: -20}
+  movePos: {x: -120, y: 20}
   animTime: 1
   anCurve:
     serializedVersion: 2
@@ -214,26 +215,26 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0.19702516
-      outSlope: 0.19702516
+      inSlope: 0.15632784
+      outSlope: 0.15632784
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.8520291
-      value: 0.16787118
-      inSlope: 0.6164108
-      outSlope: 0.6164108
+      time: 0.83344734
+      value: 0.13029103
+      inSlope: 0.57899487
+      outSlope: 0.57899487
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.2638556
+      inWeight: 0.09124458
+      outWeight: 0.3209475
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 5.623597
-      outSlope: 5.623597
+      inSlope: 5.2218256
+      outSlope: 5.2218256
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -241,7 +242,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  goldMat: {fileID: 2100000, guid: 7a961e85e1815d341ad5f180fbf0a492, type: 2}
 --- !u!1 &3868653325569000508
 GameObject:
   m_ObjectHideFlags: 0

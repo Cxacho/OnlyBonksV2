@@ -27,7 +27,6 @@ public class Player : MonoBehaviour
     public GameObject dmgPopOutBlock;
     public TextMeshProUGUI dmgPopOutTMP;
     public GameplayManager gameplayManager;
-    public float velocity;
     [HideInInspector]public int tempStrength,tempDexterity,tempInteligence;
     public int strenght = 0;
     public int dexterity = 0;
@@ -395,20 +394,14 @@ public class Player : MonoBehaviour
     public void Walk(Vector3 destination)
     {
         //check jak daleka jest odleglosc poprzez lerp
-        velocity = 34;
-
-        float distance = Mathf.Abs(destination.x - this.transform.position.x);
-        var time = distance / velocity;
         //ruch wylancznie sprajtem, bez paska i innych dupereli
-        transform.DORotate(new Vector3(0, 180, -40), 0.4f).OnComplete(() =>
-        {
-            transform.DORotate(new Vector3(0, 180, 40), 0.4f, RotateMode.Fast).SetLoops(3, LoopType.Yoyo).OnComplete(() =>
-           {
-               transform.DORotate(new Vector3(0, 180, 0), 0.4f);
-           });
-        });
+        transform.DORotate(new Vector3(0, 180, -40), 0.4f);
+
         RectTransform rect = GetComponent<RectTransform>();
-        rect.DOAnchorPos3D(destination,0.4f); 
+        rect.DOAnchorPos3D(destination,0.4f).OnComplete(()=>
+        {
+            transform.DORotate(new Vector3(0, 180, 0), 0.2f);
+        }); 
         //na dotarciu przerwac rotacje
     }
     void UpdateValues(object sender, EventArgs e)

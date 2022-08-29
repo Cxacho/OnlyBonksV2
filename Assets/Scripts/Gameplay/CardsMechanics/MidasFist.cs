@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System.Threading.Tasks;
+using UnityEngine.VFX;
 
 public class MidasFist : Card
 {
     public int armor;
-    [SerializeField] private GameObject fistVFX, hitVFX;
+    [SerializeField] private GameObject fistVFX, hitVFX,particlesVFX;
     [SerializeField] private Vector3 spawnOffset, startRot, rot, vfxOffset;
     [SerializeField] private Vector2 movePos;
     [SerializeField] private float animTime;
@@ -43,7 +44,8 @@ public class MidasFist : Card
     {
         var enPos = en.transform.parent.GetComponent<RectTransform>().anchoredPosition3D;
         var fist = Instantiate(fistVFX, en.transform.parent.position + spawnOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
-
+        var par = Instantiate(particlesVFX, fist.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+        par.transform.SetParent(fist.transform);
         fist.transform.rotation = Quaternion.Euler(startRot);
         fist.GetComponent<SpriteRenderer>().material.color = new Color(1, 1, 1, 0);
         fist.GetComponent<SpriteRenderer>().material.DOFade(1, 0.5f);
@@ -54,6 +56,7 @@ public class MidasFist : Card
         await Task.Delay(Mathf.RoundToInt(animTime * 1000));
         var hit = Instantiate(hitVFX, fist.transform.position + vfxOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         fist.GetComponent<SpriteRenderer>().material.DOFade(0, 1.5f);
+        par.GetComponent<VisualEffect>().SetFloat("Count", 0);
         Destroy(fist, 1.5f);
         Destroy(hit, 1.5f);
 
