@@ -398,7 +398,7 @@ public class Player : MonoBehaviour
         transform.DORotate(new Vector3(0, 180, -40), 0.4f);
 
         RectTransform rect = GetComponent<RectTransform>();
-        rect.DOAnchorPos3D(destination,0.4f).OnComplete(()=>
+        rect.DOAnchorPos3D(destination,1f).OnComplete(()=>
         {
             transform.DORotate(new Vector3(0, 180, 0), 0.2f);
         }); 

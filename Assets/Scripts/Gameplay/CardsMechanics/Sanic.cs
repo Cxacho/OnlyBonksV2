@@ -60,7 +60,7 @@ public class Sanic : Card
             //enable trail
             var sanTrail = Instantiate(trail, player.transform.position, Quaternion.identity);
             sanTrail.transform.SetParent(player.transform);
-            player.transform.DOMove(new Vector3(90, player.transform.position.y, player.transform.position.z), 0.4f).SetEase(anCurve).OnComplete(() =>
+            player.transform.DOMove(new Vector3(110, player.transform.position.y, player.transform.position.z), 0.4f).SetEase(anCurve).OnComplete(() =>
            {
                foreach (Enemy en in _enemies)
                {
@@ -70,13 +70,13 @@ public class Sanic : Card
                var sparks = Instantiate(sparksVFX, player.transform.position+sparksSpawnOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
                var getRect=sparks.GetComponent<RectTransform>();
                
-               player.transform.position = new Vector3(-90, player.transform.position.y, player.transform.position.z);
+               player.transform.position = new Vector3(-100, player.transform.position.y, player.transform.position.z);
                getRect.anchoredPosition3D = player.gameObject.GetComponent<RectTransform>().anchoredPosition3D+sparksOffset;
                player.Walk(player.myOriginalPosition);
-               getRect.DOAnchorPos(player.myOriginalPosition+sparksOffset, 0.4f);
+               getRect.DOAnchorPos(player.myOriginalPosition+sparksOffset, 1f);
                sanTrail.transform.SetParent(gameplayManager.canvas.transform);
                Destroy(sanTrail,1f);
-               Destroy(sparks, 0.8f);
+               Destroy(sparks, 1.4f);
                //disbaletrail
            });
 
