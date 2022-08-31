@@ -34,10 +34,6 @@ public class ThinkingAhead : Card
 
     }
 
-    private void OnEnable()
-    {
-        Doanim();
-    }
     async Task Doanim()
     {
         var dogeSpriteVFX = Instantiate(dogeVFX,dogeSpawnOffset , Quaternion.identity, gameplayManager.vfxCanvas.transform);
@@ -56,7 +52,7 @@ public class ThinkingAhead : Card
         dogeSpriteVFX.GetComponent<SpriteRenderer>().material.DOFade(0, 1f);
         Destroy(dogeSpriteVFX,3);
         Destroy(handSpriteVFX,3);
-        Destroy(lightBulb,3);
+        Destroy(lightBulb,2);
 
 
 
