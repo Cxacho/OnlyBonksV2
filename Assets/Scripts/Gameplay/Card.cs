@@ -433,7 +433,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
         if (exhaustable)
         {
-
+            if (gameplayManager.OnCardPlayedDetail != null)
+                gameplayManager.OnCardPlayedDetail(this, attack, cost);
             currentCardState = cardState.Elsewhere;
             gameplayManager.OnCardExhausted += gameplayManager.UpdateSomeValues;
             if (gameplayManager.OnCardExhausted != null)
@@ -466,6 +467,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
         else
         {
+            if(gameplayManager.OnCardPlayedDetail!=null)
+            gameplayManager.OnCardPlayedDetail(this, attack, cost);
             gameplayManager.OnCardPlayed += gameplayManager.UpdateSomeValues;
             if (gameplayManager.OnCardPlayed != null)
                 gameplayManager.OnCardPlayed(this, EventArgs.Empty);

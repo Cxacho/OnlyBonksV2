@@ -43,9 +43,9 @@ public class Slide : Card
         {
             base.OnDrop();
             await DoAnim();
-            StartCoroutine(ExecuteAfterTime(1f));
             gameplayManager.DrawCards(gameplayManager.enemies.Count);
             player.GetArmor(gameplayManager.enemies.Count * armorValue);
+
             resetTargetting();
         }
 

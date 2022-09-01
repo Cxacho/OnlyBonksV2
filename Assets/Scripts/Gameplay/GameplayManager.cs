@@ -30,6 +30,7 @@ public class GameplayManager : MonoBehaviour
     public EventHandler OnCardExhausted;
     public EventHandler OnEnemyKilled;
     public EventHandler OnDamageTaken;
+    public Action<Card, float, int> OnCardPlayedDetail;
     #endregion
 
     #region GameObjectsHidden
