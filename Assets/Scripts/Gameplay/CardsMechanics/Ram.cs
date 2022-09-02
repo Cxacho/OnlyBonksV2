@@ -13,7 +13,7 @@ public class Ram : Card
     [SerializeField] private AnimationCurve anCurve,secAnCurve;
     [SerializeField] private float animTime, knockBackTime, returnTime, jumpPower;
     [SerializeField] private int numOfJumps; 
-    [SerializeField]Vector2 moveOffset;
+    [SerializeField]Vector2 moveOffset,ramOffset;
     public override async void OnDrop()
     {
         gameplayManager.checkPlayerMana(cost);
@@ -26,10 +26,10 @@ public class Ram : Card
             {
                 en.RecieveDamage(Mathf.RoundToInt(attack), this);
                 attack *= multiplier;
-                Debug.Log(attack);
+
             }
-            StartCoroutine(ExecuteAfterTime(1f));
-            gameplayManager.DrawCards(1);
+
+            //StartCoroutine(ExecuteAfterTime(1f));
         }
         else
         {
@@ -75,9 +75,14 @@ public class Ram : Card
             enPositions.Add(obj.transform.parent.GetComponent<RectTransform>().anchoredPosition);
         }
         var getPlayerRect = player.gameObject.GetComponent<RectTransform>();
-        //instantiate ram vfx
+        var ram=Instantiate(chargeVFX, chargeVFX.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+        var getRamRect=ram.GetComponent<RectTransform>();
         var smoke = Instantiate(smokeVFX, player.transform.position + smokeSpawnOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         getPlayerRect.DOAnchorPos(enRects[0].anchoredPosition-moveOffset,animTime).SetEase(anCurve);
+        getRamRect.DOAnchorPos(enRects[0].anchoredPosition +ramOffset, animTime).SetEase(anCurve).OnComplete(()=>
+        {
+            Destroy(ram);
+        });
         await Task.Delay(Mathf.RoundToInt(animTime * 1000));
         for (int i = 1; i < enRects.Count+1; i++)
         {
@@ -100,6 +105,7 @@ public class Ram : Card
         getPlayerRect.DOJumpAnchorPos(player.myOriginalPosition, jumpPower, numOfJumps, returnTime);
         //getPlayerRect.DOAnchorPos(, returnTime);
         Destroy(smoke);
+        
 
     }
 }

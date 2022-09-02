@@ -831,7 +831,7 @@ MonoBehaviour:
   smokeSpawnOffset: {x: 0, y: 0, z: 0}
   woundSpawnOffset: {x: 0, y: 0, z: 0}
   smokeVFX: {fileID: 7150517896729165063, guid: 345b88fed83b7ce42a7080e25f488342, type: 3}
-  chargeVFX: {fileID: 0}
+  chargeVFX: {fileID: 3703189054123488583, guid: 6e65b2d49da4360459b978517e44eba4, type: 3}
   woundVFX: {fileID: 148814076365296654, guid: dffb51afe99cfc54ab03be2ee7a51442, type: 3}
   anCurve:
     serializedVersion: 2
@@ -896,3 +896,4 @@ MonoBehaviour:
   jumpPower: 50
   numOfJumps: 5
   moveOffset: {x: 0, y: 50}
+  ramOffset: {x: 450, y: 200}

@@ -381,7 +381,7 @@ MonoBehaviour:
       slotIndex: 0
   m_OutputFlowSlot:
   - link: []
-  blendMode: 3
+  blendMode: 1
   useAlphaClipping: 0
   generateMotionVector: 0
   excludeFromTAA: 0
@@ -4830,7 +4830,8 @@ MonoBehaviour:
       m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
   m_Direction: 0
-  m_LinkedSlots: []
+  m_LinkedSlots:
+  - {fileID: 8926484042661614740}
 --- !u!114 &8926484042661614738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4904,7 +4905,9 @@ MonoBehaviour:
   m_Tooltip: 
   m_Nodes:
   - m_Id: 0
-    linkedSlots: []
+    linkedSlots:
+    - outputSlot: {fileID: 8926484042661614740}
+      inputSlot: {fileID: 8926484042661614737}
     position: {x: 628.50006, y: -527.15}
     expandedSlots: []
     expanded: 0
@@ -4941,4 +4944,5 @@ MonoBehaviour:
       m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
   m_Direction: 1
-  m_LinkedSlots: []
+  m_LinkedSlots:
+  - {fileID: 8926484042661614737}

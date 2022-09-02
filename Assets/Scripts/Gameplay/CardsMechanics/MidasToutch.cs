@@ -35,6 +35,7 @@ public class MidasToutch : Card
                     en.targeted = false;
                 }
             }
+            resetTargetting();
         }
         else
         {

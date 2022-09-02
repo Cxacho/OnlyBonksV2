@@ -81,7 +81,6 @@ public class CrackingSkull : Card
     void InvokeEvent(Card card,float dam,Enemy en)
     {
         player.mana += 4;
-        player.Heal(6);
     }
 
     IEnumerator ExecuteAfterTime(float time)
@@ -107,14 +106,12 @@ public class CrackingSkull : Card
         
         var particles = Instantiate(particleVFX, en.transform.parent.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         var skull = Instantiate(bonkComicVFX, getRect.transform.position + spriteSpawnOffset, Quaternion.Euler(new Vector3(0,0,25)), gameplayManager.vfxCanvas.transform);
-        var crack = Instantiate(crackVFX, skull.transform.position + crackSpawnOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         skull.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 25));
         await Task.Delay(1000);
         bat.GetComponent<SpriteRenderer>().material.DOFade(0, 1.5f);
         skull.GetComponent<SpriteRenderer>().material.DOFade(0, 1.5f);
         Destroy(bat,2);
         Destroy(skull,2);
-        Destroy(crack, 2);
         Destroy(particles, 3);
 
 

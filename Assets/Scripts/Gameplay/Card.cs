@@ -33,7 +33,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [HideInInspector]public UiActive ui;
     [HideInInspector] public Player player;
     List<RectTransform> trails = new List<RectTransform>();
-
+    GameObject playArea;
     private Quaternion oldRot;
     private Quaternion newRot;
     private Quaternion hoverRotation = new Quaternion(0, 0, 0, 0);
@@ -153,6 +153,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void Awake()
     {
+        playArea = GameObject.FindGameObjectWithTag("PlayArea");
         trailOffset=new Vector2(110, 170);
         ui = GameObject.FindObjectOfType<UiActive>();
         manaCostTxt = transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>();
@@ -284,6 +285,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     void ReturnToHand()
     {
+        playArea.GetComponent<playAreaAnimator>().killTweens();
         foreach(RectTransform obj in trails)
             Destroy(obj.gameObject);
         followMouse.rect[0].anchoredPosition = new Vector3(0, -400, 0);
@@ -350,6 +352,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         if (Input.GetButton("Fire1"))
         {
+            playArea.GetComponent<playAreaAnimator>().doUnfade();
             trails.Clear();
             for (int i = 0; i < 2; i++)
             {
@@ -398,6 +401,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public virtual void OnDrop()
     {
+        playArea.GetComponent<playAreaAnimator>().killTweens();
         foreach (RectTransform obj in trails)
             Destroy(obj.gameObject);
         if (cType == cardType.Attack)

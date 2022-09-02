@@ -32,6 +32,7 @@ public class MidasFist : Card
                     en.targeted = false;
                 }
             }
+            resetTargetting();
         }
         else
         {

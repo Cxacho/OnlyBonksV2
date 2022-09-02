@@ -24,6 +24,7 @@ TagManager:
   - enPermStatus
   - Inventory
   - NPCDialogue
+  - PlayArea
   layers:
   - Default
   - TransparentFX
