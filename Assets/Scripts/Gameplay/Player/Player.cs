@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     public int armor;
     public int armorAndHp;
     public int mana;
-    public GameObject armorImage,buffsAndDebuffs;
+    public GameObject armorImage,buffsAndDebuffs,testStatusIndicator;
     public TMP_Text manaText;
     public TMP_Text healthText,topHp;
     public TMP_Text armorText;
@@ -409,6 +409,41 @@ public class Player : MonoBehaviour
         tempStrength = 0;
         setStatusIndicator(0, 3, buffIndicators[3]);
         //dodac
-    }
 
+    }
+    public void setStatus(playerStatusses ps,int value)
+    {
+        currentBuff = ps;
+        switch (currentBuff)
+        {
+            case playerStatusses.brak:
+
+                //instantiate obiekt, ten obiekt na spawnie bedzie sprawdzal czy juz jest obiekt tego typu, gdy jest, dodaj lub odejmij value, je?li go nie ma, dodaj obiekt
+                break;
+            case playerStatusses.energize:
+                var statusGO = Instantiate(buffIndicators[3], buffsAndDebuffs.transform);
+                statusGO.GetComponent<Indicator>().checkIfIExist(ps, value);
+                break;
+            case playerStatusses.frail:
+                var statusGO1 = Instantiate(buffIndicators[0], buffsAndDebuffs.transform);
+                statusGO1.GetComponent<Indicator>().checkIfIExist(ps, value);
+                break;
+            case playerStatusses.pierce:
+
+                break;
+            case playerStatusses.poision:
+                var statusGO2 = Instantiate(buffIndicators[2], buffsAndDebuffs.transform);
+                statusGO2.GetComponent<Indicator>().checkIfIExist(ps, value);
+                break;
+            case playerStatusses.strengthBuff:
+                var statusGO3 = Instantiate(buffIndicators[3], buffsAndDebuffs.transform);
+                statusGO3.GetComponent<Indicator>().checkIfIExist(ps, value);
+                break;
+            case playerStatusses.vurneable:
+                var statusGO4 = Instantiate(buffIndicators[1], buffsAndDebuffs.transform);
+                statusGO4.GetComponent<Indicator>().checkIfIExist(ps, value);
+                break;
+        }
+    }
+    
 }

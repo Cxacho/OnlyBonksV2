@@ -25351,6 +25351,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 926630957}
     - target: {fileID: 7250239850451499556, guid: 29fcb356a0a4b95478b18586d4dde005, type: 3}
+      propertyPath: testStatusIndicator
+      value: 
+      objectReference: {fileID: 7978667222925122100, guid: ed1f186bc1ee8ce48b4e57aba2398910, type: 3}
+    - target: {fileID: 7250239850451499556, guid: 29fcb356a0a4b95478b18586d4dde005, type: 3}
       propertyPath: buffIndicators.Array.size
       value: 5
       objectReference: {fileID: 0}
