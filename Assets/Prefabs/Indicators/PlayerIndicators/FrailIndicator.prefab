@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 4927439184143726038}
   - component: {fileID: 5812019311779577469}
   - component: {fileID: -5994819861583412917}
-  - component: {fileID: 4901766858907625100}
+  - component: {fileID: 8633062961634010793}
   m_Layer: 0
   m_Name: FrailIndicator
   m_TagString: BuffIndicator
@@ -256,7 +256,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7978667222925122100}
   m_CullTransparentMesh: 1
---- !u!114 &4901766858907625100
+--- !u!114 &8633062961634010793
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -265,12 +265,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7978667222925122100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3384d7aa60b8d94d9c2e561239d67f3, type: 3}
+  m_Script: {fileID: 11500000, guid: e234596dfbfe830439364eb13302f320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gm: {fileID: 0}
   player: {fileID: 0}
-  myPlayerStatus: 4
+  myPlayerStatus: 0
   myIndicatorType: 2
   enemies: []
   statusValue: 0

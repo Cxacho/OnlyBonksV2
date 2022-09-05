@@ -72,6 +72,7 @@ public class Slide : Card
 
     }
 
+
     async Task DoAnim()
     {
         List<GameObject> temp = new List<GameObject>();

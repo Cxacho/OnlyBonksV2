@@ -311,41 +311,8 @@ public class Player : MonoBehaviour
             card.index = card.gameObject.transform.GetSiblingIndex();
         }
         
-        if(strenght>0 ) strenght--;
-        if(dexterity>0 ) dexterity--;
-        if(inteligence>0) inteligence--;
-        if (frail > 0) frail--;
-        if (vurneable > 0) vurneable--;
-        if (poison > 0)
-        {
-            TakeDamage(poison);
-            if (currentHealth == 0)
-            {
-                gameplayManager.state = BattleState.LOST;
-                StartCoroutine(gameplayManager.OnBattleLost());
-            }
-            poison--;
-        }
-        //usuniecie indicatora
-        
 
-        foreach(GameObject obj in GameObject.FindGameObjectsWithTag("BuffIndicator"))
-        {
-             var some = obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-            int statusAmount;
-            int.TryParse(some.text.ToString(),out statusAmount);
-            statusAmount -= 1;
-            if (statusAmount > 0)
-            {
-                some.text = statusAmount.ToString();
 
-            }
-            else
-            {
-                Destroy(obj);
-
-             }
-        }
         //dowymiany
         foreach(Enemy en in FindObjectsOfType<Enemy>())
         {
@@ -421,7 +388,7 @@ public class Player : MonoBehaviour
                 //instantiate obiekt, ten obiekt na spawnie bedzie sprawdzal czy juz jest obiekt tego typu, gdy jest, dodaj lub odejmij value, je?li go nie ma, dodaj obiekt
                 break;
             case playerStatusses.energize:
-                var statusGO = Instantiate(buffIndicators[3], buffsAndDebuffs.transform);
+                var statusGO = Instantiate(buffIndicators[5], buffsAndDebuffs.transform);
                 statusGO.GetComponent<Indicator>().checkIfIExist(ps, value);
                 break;
             case playerStatusses.frail:
@@ -429,19 +396,20 @@ public class Player : MonoBehaviour
                 statusGO1.GetComponent<Indicator>().checkIfIExist(ps, value);
                 break;
             case playerStatusses.pierce:
-
-                break;
-            case playerStatusses.poision:
-                var statusGO2 = Instantiate(buffIndicators[2], buffsAndDebuffs.transform);
+                var statusGO2 = Instantiate(buffIndicators[4],buffsAndDebuffs.transform);
                 statusGO2.GetComponent<Indicator>().checkIfIExist(ps, value);
                 break;
-            case playerStatusses.strengthBuff:
-                var statusGO3 = Instantiate(buffIndicators[3], buffsAndDebuffs.transform);
+            case playerStatusses.poision:
+                var statusGO3 = Instantiate(buffIndicators[2], buffsAndDebuffs.transform);
                 statusGO3.GetComponent<Indicator>().checkIfIExist(ps, value);
                 break;
-            case playerStatusses.vurneable:
-                var statusGO4 = Instantiate(buffIndicators[1], buffsAndDebuffs.transform);
+            case playerStatusses.strengthBuff:
+                var statusGO4 = Instantiate(buffIndicators[3], buffsAndDebuffs.transform);
                 statusGO4.GetComponent<Indicator>().checkIfIExist(ps, value);
+                break;
+            case playerStatusses.vurneable:
+                var statusGO5 = Instantiate(buffIndicators[1], buffsAndDebuffs.transform);
+                statusGO5.GetComponent<Indicator>().checkIfIExist(ps, value);
                 break;
         }
     }

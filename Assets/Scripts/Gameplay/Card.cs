@@ -424,17 +424,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             gameplayManager.lastCardPlayed = GameplayManager.cardPlayed.power;
         }
         //mechanika energize
-        if (player.energize > 0)
-        {
-            player.energize -= 1;
-            player.energizeIndicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = player.energize.ToString();
-            if (player.energize == 0)
-            {
-                Destroy(player.energizeIndicator);
-                foreach (Card obj in FindObjectsOfType<Card>())
-                    obj.cost = obj.baseCost;
-            }
-        }
+
         if (exhaustable)
         {
             if (gameplayManager.OnCardPlayedDetail != null)

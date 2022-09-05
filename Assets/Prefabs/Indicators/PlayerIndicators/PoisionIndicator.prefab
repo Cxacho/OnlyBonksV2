@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 5148444284694925553}
   - component: {fileID: 9220595427545421478}
   - component: {fileID: -3212999182758105532}
-  - component: {fileID: 3714251483333687855}
+  - component: {fileID: 393157329063058957}
   m_Layer: 0
   m_Name: PoisionIndicator
   m_TagString: BuffIndicator
@@ -256,7 +256,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2290332738957504818}
   m_CullTransparentMesh: 1
---- !u!114 &3714251483333687855
+--- !u!114 &393157329063058957
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -265,12 +265,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2290332738957504818}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3384d7aa60b8d94d9c2e561239d67f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 39fd764db8de609408aef68e9845df79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gm: {fileID: 0}
   player: {fileID: 0}
   myPlayerStatus: 2
-  myIndicatorType: 2
+  myIndicatorType: 0
   enemies: []
   statusValue: 0

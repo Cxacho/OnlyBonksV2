@@ -11,7 +11,7 @@ public class Indicator : MonoBehaviour
     public indiType myIndicatorType;
     public List<Enemy> enemies = new List<Enemy>();
     public int statusValue;
-    private void Awake()
+    public virtual void  Awake()
     {
         gm = FindObjectOfType<GameplayManager>();
         player = gm.player;
@@ -27,7 +27,7 @@ public class Indicator : MonoBehaviour
         noValue
     }
 
-    public void checkIfIExist(Player.playerStatusses ps,int val)
+    public virtual void  checkIfIExist(Player.playerStatusses ps,int val)
     {
         //przypadek dla obiektow bez wartosci
         foreach (Transform obj in transform.parent)
@@ -48,7 +48,7 @@ public class Indicator : MonoBehaviour
 
 
     }
-    void UpdateNum(int val)
+    public void UpdateNum(int val)
     {
         if(myIndicatorType!=indiType.noValue)
         transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = val.ToString();

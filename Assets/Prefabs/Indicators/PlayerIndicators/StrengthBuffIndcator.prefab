@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 5148444284694925553}
   - component: {fileID: 9220595427545421478}
   - component: {fileID: -3212999182758105532}
-  - component: {fileID: -6079973363448717195}
+  - component: {fileID: 1355696520041628866}
   m_Layer: 0
   m_Name: StrengthBuffIndcator
   m_TagString: BuffIndicator
@@ -256,7 +256,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2290332738957504818}
   m_CullTransparentMesh: 1
---- !u!114 &-6079973363448717195
+--- !u!114 &1355696520041628866
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -265,7 +265,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2290332738957504818}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3384d7aa60b8d94d9c2e561239d67f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 0659501c29773cb48a703ea6fee03708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gm: {fileID: 0}

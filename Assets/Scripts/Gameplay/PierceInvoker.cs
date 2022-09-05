@@ -4,15 +4,14 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System;
 
-public class PierceInvoker : MonoBehaviour
+public class PierceInvoker : Indicator
 {
-    GameplayManager gm;
     List<Enemy> ens = new List<Enemy>();
 
 
-    private void Awake()
+    public override void Awake()
     {
-        gm = FindObjectOfType<GameplayManager>();
+        base.Awake();
         foreach (GameObject en in gm.enemies)
         {
             ens.Add(en.GetComponent<Enemy>());
