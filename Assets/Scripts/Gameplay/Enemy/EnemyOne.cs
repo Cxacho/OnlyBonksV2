@@ -35,7 +35,7 @@ public class EnemyOne : Enemy, ITakeTurn
             case 1:
                 ChangeIndicatorTexts("atak");
                 //naklada indicator vurneable, o wartosci 3 
-                player.setStatusIndicator(3, 1, player.buffIndicators[1]);
+                player.setStatus(Player.playerStatusses.vurneable, 2);
                 armor = 10;
                 
                 SetIndicator();

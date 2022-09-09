@@ -8,7 +8,7 @@ public class ThinkingAhead : Card
 {
     public int armor;
     [SerializeField] private GameObject dogeVFX, lightBulbVFX, handVFX;
-    [SerializeField] private Vector3 dogeSpawnOffset, handSpawnOffset,moveTo;
+    [SerializeField] private Vector3 dogeSpawnOffset, handSpawnOffset,moveTo,particleSpawnOffset;
     List<GameObject> vfxses = new List<GameObject>();
 
     public override async void OnDrop()
@@ -42,7 +42,7 @@ public class ThinkingAhead : Card
         var handSpriteVFX = Instantiate(handVFX, handSpawnOffset+dogeSpriteVFX.transform.position, handVFX.transform.rotation, gameplayManager.vfxCanvas.transform);
         handSpriteVFX.GetComponent<SpriteRenderer>().material.color = new Color(1, 1, 1, 0);
         handSpriteVFX.GetComponent<SpriteRenderer>().material.DOFade(1, 0.5f);
-        var lightBulb= Instantiate(lightBulbVFX, dogeSpriteVFX.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
+        var lightBulb= Instantiate(lightBulbVFX, dogeSpriteVFX.transform.position+particleSpawnOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         await Task.Delay(1000);
         handSpriteVFX.GetComponent<RectTransform>().DOAnchorPos(moveTo, 0.5f).SetLoops(-1, LoopType.Yoyo);
         handSpriteVFX.GetComponent<RectTransform>().DORotate(new Vector3(0,0,15), 0.5f).SetLoops(-1, LoopType.Yoyo);

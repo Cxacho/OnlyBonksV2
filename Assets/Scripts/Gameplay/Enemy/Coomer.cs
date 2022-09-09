@@ -33,9 +33,7 @@ public class Coomer : Enemy, ITakeTurn
         {
             case 0:
                 //Disgusting tendencies
-                player.setStatusIndicator(3, 2, player.buffIndicators[2]);
-                player.setStatusIndicator(2, 1, player.buffIndicators[1]);
-                player.setStatusIndicator(2, 0, player.buffIndicators[0]);
+                player.setStatus(Player.playerStatusses.frail, 5);
                 NextCaseAttack(1);
                 break;
             case 1:

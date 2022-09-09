@@ -33,7 +33,7 @@ public class JulkaZTwitera : Enemy, ITakeTurn
         {
             case 0:
                 //leftist take
-                player.setStatusIndicator(3, 0, player.buffIndicators[0]);
+                player.setStatus(Player.playerStatusses.frail, 2);
                 NextCaseAttack(1);
                 break;
             case 1:

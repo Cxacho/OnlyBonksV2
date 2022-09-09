@@ -34,7 +34,8 @@ public class Wartownik : Enemy, ITakeTurn
             case 0:
                 //Impale
                 //po demie dodac tu zadawanie obrazen typu pierce zamiast take damage, take health damage
-                player.TakeDamage(damage * numberOfAttacks);
+                //inna ikonka, na przebicie
+                player.TakeHealthDamage(damage * numberOfAttacks);
                 NextCaseOther("");
                 break;
             case 1:

@@ -369,7 +369,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
         */
     }
-    enum statuses
+    public enum statuses
     {
         strengthBuff =0,
         vurneable =1,
@@ -382,5 +382,26 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         fillArmor.SetActive(false);
         textArmor.enabled = false;
         textArmor.text = armor.ToString();
+    }
+    public void setStatus(statuses myStatus, int value,Enemy enemy)
+    {
+        currentStatus = myStatus;
+        switch (currentStatus)
+        {
+
+
+            case statuses.bleeding:
+               var statusGO = Instantiate(gm.enemiesIndicators[0], statusEffectsTransform.transform);
+               statusGO.GetComponent<EnemyIndicator>().checkIfIExist(myStatus, value,enemy);
+                break;
+            case statuses.strengthBuff:
+                var statusGO1 = Instantiate(gm.enemiesIndicators[1], statusEffectsTransform.transform);
+                statusGO1.GetComponent<EnemyIndicator>().checkIfIExist(myStatus, value,enemy);
+                break;
+            case  statuses.vurneable:
+                var statusGO2 = Instantiate(gm.enemiesIndicators[2], statusEffectsTransform.transform);
+               statusGO2.GetComponent<EnemyIndicator>().checkIfIExist(myStatus, value,enemy);
+                break;
+        }
     }
 }

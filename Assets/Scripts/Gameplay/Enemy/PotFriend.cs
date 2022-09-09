@@ -34,7 +34,7 @@ public class PotFriend : Enemy, ITakeTurn
             case 0:
                 //corrosive spit
                 //naklada indicator poision , o wartosci 4
-                player.setStatusIndicator(4, 2, player.buffIndicators[2]);
+                player.setStatus(Player.playerStatusses.poision, 3);
                 NextCaseAttack(1);
                 break;
             case 1:
