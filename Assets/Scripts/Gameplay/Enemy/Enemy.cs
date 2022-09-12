@@ -300,7 +300,7 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         ChangeIndicatorTexts("inny");
         otherIndicatortxt.text = value;
     }
-    
+    /*
     public void setStatusIndicator(int value,int select,GameObject statusIndicator)
     {
         //'///' + "1 = bleed ";
@@ -330,19 +330,13 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
                 statusValue2.text = bleed.ToString();
                 break;
         }
+
         //strength
     }
+    */
     public void OnEndTurn()
     {
-        if(bleed >0)
-        RecieveDamage(bleed,null);
-        if (vurneable > 0) vurneable--;
-        if (bleed > 0) bleed--;
-        List<GameObject> temp = new List<GameObject>();
-        temp.Clear();
-        for (int i = 0; i < statusEffectsTransform.transform.childCount; i++)
-            temp.Add(statusEffectsTransform.transform.GetChild(i).gameObject);
-
+        /*
         foreach (GameObject ind in temp)
         {
            var statusText = ind.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
@@ -373,7 +367,8 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     {
         strengthBuff =0,
         vurneable =1,
-        bleeding = 2
+        bleeding = 2,
+            crush=3
     }
 
     public void ResetImg()
@@ -401,6 +396,10 @@ public class Enemy : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
             case  statuses.vurneable:
                 var statusGO2 = Instantiate(gm.enemiesIndicators[2], statusEffectsTransform.transform);
                statusGO2.GetComponent<EnemyIndicator>().checkIfIExist(myStatus, value,enemy);
+                break;
+            case statuses.crush:
+                var statusGO3 = Instantiate(gm.enemiesIndicators[3], statusEffectsTransform.transform);
+                statusGO3.GetComponent<EnemyIndicator>().checkIfIExist(myStatus, value, enemy);
                 break;
         }
     }

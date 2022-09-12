@@ -54,7 +54,7 @@ public class PocketKnifeCard : Card
                         var vfxToDestroy=Instantiate(bleedVfx, en.transform.parent.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
                         //rescale ??
                         en.RecieveDamage(attack, this);
-                        en.setStatusIndicator(3, 2, gameplayManager.enemiesIndicators[2]);
+                        en.setStatus(Enemy.statuses.bleeding, 2, en);
                         en.targeted = false;
                         Destroy(knifeObj,0.2f);
                         Destroy(vfxToDestroy,1.5f);

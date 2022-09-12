@@ -32,6 +32,7 @@ public class Wartownik : Enemy, ITakeTurn
         switch (actionsInt)
         {
             case 0:
+                setStatus(statuses.strengthBuff, 1, this);
                 //Impale
                 //po demie dodac tu zadawanie obrazen typu pierce zamiast take damage, take health damage
                 //inna ikonka, na przebicie
@@ -42,7 +43,7 @@ public class Wartownik : Enemy, ITakeTurn
                 //For the queen <3
                 foreach (Enemy enemy in gm.enemyType)
                 {
-                    enemy.setStatusIndicator(4, 0, gm.enemiesIndicators[0]);
+                    enemy.setStatus(statuses.strengthBuff, 3, enemy);
                     enemy.baseDamage += 4;
                 }
                 NextCaseAttack(1.5f);
@@ -54,7 +55,7 @@ public class Wartownik : Enemy, ITakeTurn
                 break;
             case 3:
                 //Raise The Banner!
-                setStatusIndicator(2, 0, gm.enemiesIndicators[0]);
+                setStatus(statuses.strengthBuff, 2, this);
                 baseDamage += 2;
                 GetArmor(8);
                 NextCaseAttack(1);

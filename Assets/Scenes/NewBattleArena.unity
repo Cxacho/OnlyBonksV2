@@ -11928,13 +11928,15 @@ MonoBehaviour:
   - {fileID: 6681184060049790405, guid: ad40a229608a35d468f893c36b395020, type: 3}
   - {fileID: 2858555165568228111, guid: d2efe1ec23b5c7743834d96b20a37f2e, type: 3}
   - {fileID: 9009665565481257416, guid: 50e59b3640cc64c4ba7c5173b97b9c2f, type: 3}
-  - {fileID: 6681184060049790405, guid: dfce06d0a722528479c792ed68b84095, type: 3}
+  - {fileID: 2858555165568228111, guid: bd949b9cacf4dbb408fc479bc5658854, type: 3}
+  - {fileID: 2858555165568228111, guid: b0b92a91f18e8f74fabe3b6072287e77, type: 3}
   exhaustedDeck: []
   drawDeck: []
   enemiesIndicators:
   - {fileID: 2290332738957504818, guid: 84b6ffd17db26774fbff86f492f93604, type: 3}
   - {fileID: 2290332738957504818, guid: 5a69425672a0e974c8a95838ccd01513, type: 3}
   - {fileID: 2290332738957504818, guid: add82ace8bbcb014bb64b87ddccf4f62, type: 3}
+  - {fileID: 2290332738957504818, guid: 865953125470136499f02c02466f09c8, type: 3}
   relicsList: []
   playerHand: []
   retain: []

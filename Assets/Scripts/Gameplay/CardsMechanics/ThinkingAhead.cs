@@ -52,7 +52,7 @@ public class ThinkingAhead : Card
         dogeSpriteVFX.GetComponent<SpriteRenderer>().material.DOFade(0, 1f);
         Destroy(dogeSpriteVFX,3);
         Destroy(handSpriteVFX,3);
-        Destroy(lightBulb,2);
+        Destroy(lightBulb,1);
 
 
 

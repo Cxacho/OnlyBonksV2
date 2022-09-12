@@ -25,8 +25,7 @@ public class PierceInvoker : Indicator
     void ApplyEffect (Card card,float dam,Enemy en)
     {
         Debug.Log("I applied "+dam+" to " + en.gameObject.name);
-        en.setStatusIndicator((int)dam, 2, gm.enemiesIndicators[2]);
-
+        en.setStatus(Enemy.statuses.bleeding, Mathf.RoundToInt(dam), en);
     }
     private void OnDestroy()
     {

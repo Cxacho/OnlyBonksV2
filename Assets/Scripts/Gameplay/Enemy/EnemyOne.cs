@@ -24,7 +24,8 @@ public class EnemyOne : Enemy, ITakeTurn
     {
         switch (actionsInt)
         {
-            case 0:              
+            case 0:
+                setStatus(statuses.crush, 1, this);
                 player.TakeDamage(Mathf.RoundToInt(damage * numberOfAttacks));
                 //naklada indicator frail, o wartosci 2 
                 SetIndicator();

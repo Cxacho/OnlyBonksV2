@@ -21,9 +21,11 @@ public class EnBleedIndi : EnemyIndicator
     }
     void onTurnEnd(object sender, EventArgs e)
     {
-        myEnemyScript.bleed += -1;
+
+
         //wymiana na healthdamage
         myEnemyScript.RecieveDamage(myEnemyScript.bleed, null);
+        myEnemyScript.bleed += -1;
         statusValue = myEnemyScript.bleed;
         UpdateNum(statusValue);
         if (myEnemyScript.bleed <= 0)

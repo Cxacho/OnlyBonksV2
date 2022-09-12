@@ -21,11 +21,7 @@ public class BottleThrow : Card
         if (gameplayManager.canPlayCards == true)
         {
 
-            if (player.armor < 4)
-                player.GetArmor(9);
-            else
-                player.GetArmor(6);
-
+            //naloz bleed, dodaj armor???
             player.manaText.text = player.mana.ToString();
 
             base.OnDrop();
@@ -37,7 +33,7 @@ public class BottleThrow : Card
                     en.RecieveDamage(attack, this);
                     DoAnim(en);
                 }
-                en.setStatusIndicator(3, 2, gameplayManager.enemiesIndicators[2]);
+                en.setStatus(Enemy.statuses.bleeding, 3,en);
                 en.targeted = false;
             }
             resetTargetting();
