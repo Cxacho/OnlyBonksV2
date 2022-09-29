@@ -36,10 +36,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 220, y: 340}
+  m_AnchorMin: {x: 0.4444792, y: 0.33900002}
+  m_AnchorMax: {x: 0.5554792, y: 0.661}
+  m_AnchoredPosition: {x: 0, y: 0.5}
+  m_SizeDelta: {x: 0, y: -1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4195082560769264694
 CanvasRenderer:
@@ -282,10 +282,10 @@ RectTransform:
   m_Father: {fileID: 6378627393820948997}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.87100005}
-  m_AnchorMax: {x: 0.16754524, y: 1}
-  m_AnchoredPosition: {x: 1.3125, y: -0.5631714}
-  m_SizeDelta: {x: 2.6327972, y: 1.1262817}
+  m_AnchorMin: {x: 0.004545248, y: 0.87100005}
+  m_AnchorMax: {x: 0.16754524, y: 0.994}
+  m_AnchoredPosition: {x: 0.4537964, y: -0.5198059}
+  m_SizeDelta: {x: 0.7627, y: 1.213}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6682002869044894971
 CanvasRenderer:
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -342,7 +342,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40.25
+  m_fontSize: 39.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -417,10 +417,10 @@ RectTransform:
   m_Father: {fileID: 6378627393820948997}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.416, y: 0.42700002}
-  m_AnchorMax: {x: 0.583, y: 0.462}
-  m_AnchoredPosition: {x: 0.453125, y: 0.37799072}
-  m_SizeDelta: {x: 1.4297028, y: 0.75579834}
+  m_AnchorMin: {x: 0.42538393, y: 0.42700002}
+  m_AnchorMax: {x: 0.57830805, y: 0.46488386}
+  m_AnchoredPosition: {x: -0.32500076, y: 0.31554985}
+  m_SizeDelta: {x: 0.31719995, y: -0.68909}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2949104907133444256
 CanvasRenderer:
@@ -477,7 +477,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.3
+  m_fontSize: 10.45
   m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -552,10 +552,10 @@ RectTransform:
   m_Father: {fileID: 6378627393820948997}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.19936195, y: 0.87100005}
+  m_AnchorMin: {x: 0.19936195, y: 0.86200005}
   m_AnchorMax: {x: 0.80600005, y: 0.92300004}
-  m_AnchoredPosition: {x: -0.046875, y: 0.41000366}
-  m_SizeDelta: {x: 0.42190552, y: 3.0635986}
+  m_AnchoredPosition: {x: 0.2109375, y: -0.031799316}
+  m_SizeDelta: {x: 0.42190552, y: 0.06359863}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4016098877173305660
 CanvasRenderer:
@@ -585,7 +585,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Get Bonked Scrub
+  m_text: Bootle Throw
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -612,7 +612,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14.45
+  m_fontSize: 18.95
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -724,7 +724,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c188dd51f16a15a47be5b649bbee1b50, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3050d580565ec244da3161d968b6002f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -800,7 +800,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Deal 3 damage
+  m_text: Deal 7 damage and apply 3 bleed
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -827,10 +827,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
+  m_fontSize: 27.55
   m_fontSizeBase: 30
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 2
   m_fontSizeMax: 72
   m_fontStyle: 1

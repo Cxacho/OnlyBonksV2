@@ -17,7 +17,7 @@ public class BrokenWeapon : Card
 
     private void Start()
     {
-        desc = $"Deal <color=white>{attack.ToString()}</color> damage";
+        desc = $"Deal <color=white>{attack.ToString()}</color> damage and swap weapon";
 
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
@@ -29,11 +29,11 @@ public class BrokenWeapon : Card
         calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
 
         if (attack == defaultattack)
-            desc = $"Deal <color=white>{attack.ToString()}</color> damage";
+            desc = $"Deal <color=white>{attack.ToString()}</color> damage and swap weapon";
         else if (attack < defaultattack)
-            desc = $"Deal <color=red>{attack.ToString()}</color> damage";
+            desc = $"Deal <color=red>{attack.ToString()}</color> damage and swap weapon";
         else
-            desc = $"Deal <color=green>{attack.ToString()}</color> damage";
+            desc = $"Deal <color=green>{attack.ToString()}</color> damage and swap weapon";
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
 

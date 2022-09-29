@@ -13,6 +13,22 @@ public class BottleThrow : Card
     [SerializeField] AnimationCurve anCurve;
     GameObject objToDestroy;
 
+    private void Start()
+    {
+        desc = $"Deal <color=white>{attack.ToString()}</color>damage and apply 3 bleed";
+    }
+
+    private void FixedUpdate()
+    {
+
+        calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
+        if (attack == defaultattack)
+            desc = $"Deal <color=white>{attack.ToString()}</color>damage and apply 3 bleed";
+        else if (attack < defaultattack)
+            desc = $"Deal <color=red>{attack.ToString()}</color>damage and apply 3 bleed";
+        else
+            desc = $"Deal <color=green>{attack.ToString()}</color>damage and apply 3 bleed";
+    }
 
     public override void OnDrop()
     {

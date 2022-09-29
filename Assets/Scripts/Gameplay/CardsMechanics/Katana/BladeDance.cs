@@ -15,7 +15,7 @@ public class BladeDance : Card
     List<GameObject> stations = new List<GameObject>();
     private void Start()
     {
-        desc = $"Deal <color=white>{attack.ToString()}</color> damage to first enemy";
+        desc = $"Deal <color=white>{attack.ToString()}</color>, <color=white>{Mathf.RoundToInt(attack * 0.7f).ToString()}</color>, <color=white>{Mathf.RoundToInt(attack * 0.4f).ToString()}</color> damage in sequence up to 3 enemies. Reduce cost by 1 if there are 3 enemies selected";
     }
 
 
@@ -23,13 +23,14 @@ public class BladeDance : Card
     {
 
         calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
-        var secondAttack = Mathf.RoundToInt(attack * 0.3f);
+        var secondAttack = Mathf.RoundToInt(attack * 0.7f);
+        var thirdAttack = Mathf.RoundToInt(attack * 0.4f);
         if (attack == defaultattack)
-            desc = $"Deal <color=white>{attack.ToString()}</color> and apply 2 energize";
+            desc = $"Deal <color=white>{attack.ToString()}</color>, <color=white>{secondAttack.ToString()}</color>, <color=white>{thirdAttack.ToString()}</color> damage in sequence up to 3 enemies. Reduce cost by 1 if there are 3 enemies selected";
         else if (attack < defaultattack)
-            desc = $"Deal <color=red>{attack.ToString()}</color> and apply 2 energize";
+            desc = $"Deal <color=red>{attack.ToString()}</color>, <color=white>{secondAttack.ToString()}</color>, <color=white>{thirdAttack.ToString()}</color> damage in sequence up to 3 enemies. Reduce cost by 1 if there are 3 enemies selected";
         else
-            desc = $"Deal <color=green>{attack.ToString()}</color> and apply 2 energize";
+            desc = $"Deal <color=green>{attack.ToString()}</color>, <color=white>{secondAttack.ToString()}</color>, <color=white>{thirdAttack.ToString()}</color> damage in sequence up to 3 enemies. Reduce cost by 1 if there are 3 enemies selected";
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
 
     }
