@@ -30,7 +30,7 @@ public class MidasToutch : Card
                     await DoAnim(en);
                     en.RecieveDamage(gameplayManager.gold*0.1f, this);
                     //gdy zabije dodaj golda
-                    //metoda pod lose gold
+                    
                     
                     en.targeted = false;
                 }

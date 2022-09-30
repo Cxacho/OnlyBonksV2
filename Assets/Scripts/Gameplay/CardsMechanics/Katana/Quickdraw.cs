@@ -8,7 +8,7 @@ public class Quickdraw : Card
     [SerializeField]GameObject cutVfx;
     private void Start()
     {
-        desc = $"Deal <color=white>{attack.ToString()}</color> damage to first enemy";
+        desc = $"Deal <color=white>{attack.ToString()}</color> damage and apply 2 energize";
     }
 
 
@@ -18,11 +18,11 @@ public class Quickdraw : Card
         calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
         var secondAttack = Mathf.RoundToInt(attack * 0.3f);
         if (attack == defaultattack)
-            desc = $"Deal <color=white>{attack.ToString()}</color> and apply 2 energize";
+            desc = $"Deal <color=white>{attack.ToString()}</color> damage and apply 2 energize";
         else if (attack < defaultattack)
-            desc = $"Deal <color=red>{attack.ToString()}</color> and apply 2 energize";
+            desc = $"Deal <color=red>{attack.ToString()}</color> damage and apply 2 energize";
         else
-            desc = $"Deal <color=green>{attack.ToString()}</color> and apply 2 energize";
+            desc = $"Deal <color=green>{attack.ToString()}</color> damage and apply 2 energize";
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
 

@@ -16,7 +16,7 @@ public class DeepCut : Card
 
     private void Start()
     {
-        desc = $"Deal <color=white>{attack.ToString()}</color> damage";
+        desc = $"Deal <color=white>{attack.ToString()}</color> damage and apply 2 bleed";
 
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
@@ -28,11 +28,11 @@ public class DeepCut : Card
         calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
 
         if (attack == defaultattack)
-            desc = $"Deal <color=white>{attack.ToString()}</color> damage";
+            desc = $"Deal <color=white>{attack.ToString()}</color> damage and apply 2 bleed";
         else if (attack < defaultattack)
-            desc = $"Deal <color=red>{attack.ToString()}</color> damage";
+            desc = $"Deal <color=red>{attack.ToString()}</color> damag and apply 2 bleede";
         else
-            desc = $"Deal <color=green>{attack.ToString()}</color> damage";
+            desc = $"Deal <color=green>{attack.ToString()}</color> damage and apply 2 bleed";
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
 

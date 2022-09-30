@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -51,7 +51,9 @@ public class DeathFromAbove : Card
                 if (en.targeted == true)
                 {
                     {
+                        gameplayManager.state = BattleState.INANIM;
                         await DoAnim(en);
+                        gameplayManager.state = BattleState.PLAYERTURN;
                         en.targeted = false;
                     }
 

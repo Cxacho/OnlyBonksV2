@@ -17,7 +17,7 @@ public class Envenom : Card
         gameplayManager.checkPlayerMana(cost);
         if (gameplayManager.canPlayCards == true)
         {
-            player.GetArmor(armor);
+            //player.GetArmor(armor);
 
 
 
@@ -25,7 +25,7 @@ public class Envenom : Card
 
             base.OnDrop();
             DoAnim();
-            gameplayManager.DrawCards(2);
+            //gameplayManager.DrawCards(2);
         }
         else
         {

@@ -17,7 +17,7 @@ public class FanOfKnives : Card
 
     private void Start()
     {
-        desc = $"For each card drawn deal <color=white>{attack.ToString()}</color> to enemy. Current :";
+        desc = $"DealDeal <color=white>{attack.ToString()}</color> to enemy three times";
         defAttack = Mathf.RoundToInt(defaultattack);
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }

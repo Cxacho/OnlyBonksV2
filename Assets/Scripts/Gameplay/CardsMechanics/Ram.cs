@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading.Tasks;
 using DG.Tweening;
+using TMPro;
 
 public class Ram : Card
-{
+{   //Deal 15 damage to first enemy, then deal damage to rest of enemies. Each consecutive attack is halved
     [SerializeField] private Vector3 smokeSpawnOffset,woundSpawnOffset;
     [SerializeField] private GameObject smokeVFX,chargeVFX,woundVFX;
     List<RectTransform> enRects = new List<RectTransform>();
@@ -14,6 +15,25 @@ public class Ram : Card
     [SerializeField] private float animTime, knockBackTime, returnTime, jumpPower;
     [SerializeField] private int numOfJumps; 
     [SerializeField]Vector2 moveOffset,ramOffset;
+
+    private void Start()
+    {
+        desc = $"Deal <color=white>{attack.ToString()}</color> damage to first enemy, then deal damage to rest of enemies. Each consecutive attack will be halved";
+    }
+
+    private void FixedUpdate()
+    {
+
+        
+        if (attack == defaultattack)
+            desc = $"Deal <color=white>{attack.ToString()}</color> damage to first enemy, then deal damage to rest of enemies. Each consecutive attack will be halved";
+        else if (attack < defaultattack)
+            desc = $"Deal <color=red>{attack.ToString()}</color> damage to first enemy, then deal damage to rest of enemies. Each consecutive attack will be halved";
+        else
+            desc = $"Deal <color=green>{attack.ToString()}</color> damage to first enemy, then deal damage to rest of enemies. Each consecutive attack will be halved";
+        this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
+    }
+
     public override async void OnDrop()
     {
         gameplayManager.checkPlayerMana(cost);
