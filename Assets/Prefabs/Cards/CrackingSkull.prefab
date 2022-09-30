@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Savagery
+  m_text: Cracking Skull
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17.45
+  m_fontSize: 17.35
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -205,7 +205,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a2ef9e2376ca9be43b49d6cba20a8ca2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3050d580565ec244da3161d968b6002f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -250,8 +250,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.12200001, y: 0.05}
   m_AnchorMax: {x: 0.89645475, y: 0.43}
-  m_AnchoredPosition: {x: -0.036102295, y: -0.038879395}
-  m_SizeDelta: {x: 1.0978999, y: -1.9218}
+  m_AnchoredPosition: {x: -3.1192, y: 0}
+  m_SizeDelta: {x: -1.0802, y: -1.9218}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3520054571013903989
 CanvasRenderer:
@@ -281,9 +281,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Take 2 HP,
-
-    Give 1 mana and draw 1 card'
+  m_text: Deal 6 damage, on completely destroying enemy's armor gain 4 mana
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -310,10 +308,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
+  m_fontSize: 20.6
   m_fontSizeBase: 20
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 2
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -390,8 +388,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 220, y: 340}
+  m_AnchoredPosition: {x: -1, y: 1}
+  m_SizeDelta: {x: 214, y: 348}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8347187131851013756
 CanvasRenderer:
@@ -639,7 +637,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.42954525, y: 0.43}
   m_AnchorMax: {x: 0.601, y: 0.46800002}
-  m_AnchoredPosition: {x: -0.50379944, y: -0.124700546}
+  m_AnchoredPosition: {x: -3.3600998, y: -0.000005722046}
   m_SizeDelta: {x: -0.06890011, y: 0.7530999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6993408996252750570
@@ -670,7 +668,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Skill
+  m_text: Attack
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -697,7 +695,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.5
+  m_fontSize: 11.6
   m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -772,10 +770,10 @@ RectTransform:
   m_Father: {fileID: 1253593845520894031}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.02254525, y: 0.86800003}
-  m_AnchorMax: {x: 0.18554525, y: 1}
-  m_AnchoredPosition: {x: -0.20300293, y: -0.06317139}
-  m_SizeDelta: {x: -0.097800255, y: 0.12629998}
+  m_AnchorMin: {x: 0.009000001, y: 0.86800003}
+  m_AnchorMax: {x: 0.16745476, y: 0.994}
+  m_AnchoredPosition: {x: -0.039901733, y: -0.18659973}
+  m_SizeDelta: {x: 1.0751, y: -0.120599985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1539097547747471025
 CanvasRenderer:
@@ -805,7 +803,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -832,7 +830,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.85
+  m_fontSize: 36.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

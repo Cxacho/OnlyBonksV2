@@ -18,7 +18,7 @@ public class CrackingSkull : Card
 
     private void Start()
     {
-        desc = $"Deal <color=white>{attack.ToString()}</color> damage";
+        desc = $"Deal <color=white>{attack.ToString()}</color> damage, on completely destroying enemy's armor gain 4 mana";
 
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
@@ -30,11 +30,11 @@ public class CrackingSkull : Card
         calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
 
         if (attack == defaultattack)
-            desc = $"Deal <color=white>{attack.ToString()}</color> damage";
+            desc = $"Deal <color=white>{attack.ToString()}</color> damage, on completely destroying enemy's armor gain 4 mana";
         else if (attack < defaultattack)
-            desc = $"Deal <color=red>{attack.ToString()}</color> damage";
+            desc = $"Deal <color=red>{attack.ToString()}</color> damage, on completely destroying enemy's armor gain 4 mana";
         else
-            desc = $"Deal <color=green>{attack.ToString()}</color> damage";
+            desc = $"Deal <color=green>{attack.ToString()}</color> damage, on completely destroying enemy's armor gain 4 mana";
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
 

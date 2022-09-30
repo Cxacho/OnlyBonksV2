@@ -18,7 +18,7 @@ public class DeadlyPull : Card
 
     private void Start()
     {
-        desc = $"Deal <color=white>{attack.ToString()}</color> damage";
+        desc = $"Pull up to you 2 enemies and deal <color=white>{attack.ToString()}</color> damage to them";
 
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
 
@@ -31,11 +31,11 @@ public class DeadlyPull : Card
         calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
 
         if (attack == defaultattack)
-            desc = $"Deal <color=white>{attack.ToString()}</color> damage";
+            desc = $"Pull up to you 2 enemies and deal <color=white>{attack.ToString()}</color> damage to them";
         else if (attack < defaultattack)
-            desc = $"Deal <color=red>{attack.ToString()}</color> damage";
+            desc = $"Pull up to you 2 enemies and deal <color=red>{attack.ToString()}</color> damage to them";
         else
-            desc = $"Deal <color=green>{attack.ToString()}</color> damage";
+            desc = $"Pull up to you 2 enemies and deal <color=green>{attack.ToString()}</color> damage to them";
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
         if(firstEnemy!=null&& gameplayManager.enemies.Count > 1)
         trail1.anchoredPosition = firstEnemy.transform.parent.GetComponent<RectTransform>().anchoredPosition;

@@ -19,7 +19,7 @@ public class DeadliestCultery : Card
 
     private void Start()
     {
-        desc = $"For each card drawn deal <color=white>{attack.ToString()}</color> to enemy. Current :";
+        desc = $"Deal <color=white>{attack.ToString()}</color> damage and draw a card";
         defAttack = Mathf.RoundToInt(defaultattack);
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
@@ -31,11 +31,11 @@ public class DeadliestCultery : Card
         calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
 
         if (attack == defaultattack)
-            desc = $"Deal <color=white>{attack.ToString()}</color> to enemy three times";
+            desc = $"Deal <color=white>{attack.ToString()}</color> damage and draw a card";
         else if (attack < defaultattack)
-            desc = $"Deal <color=red>{attack.ToString()}</color> to enemy three times";
+            desc = $"Deal <color=red>{attack.ToString()}</color> damage and draw a card";
         else
-            desc = $"Deal <color=green>{attack.ToString()}</color> to enemy three times";
+            desc = $"Deal <color=green>{attack.ToString()}</color> damage and draw a card";
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
 

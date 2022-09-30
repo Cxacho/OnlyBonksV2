@@ -14,7 +14,10 @@ public class plus1 : Card
         if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
+            gameplayManager.state = BattleState.INANIM;
+            
             DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
             StartCoroutine(ExecuteAfterTime(1f));
             gameplayManager.DrawCards(1);
         }

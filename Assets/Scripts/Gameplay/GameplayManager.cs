@@ -10,7 +10,7 @@ using DG.Tweening;
 using System;
 using System.Linq;
 
-public enum BattleState { NODE ,START, PLAYERTURN, ENEMYTURN, WON, LOST, VictoryScreen,DRAWING,INANIMATION,CREATING}
+public enum BattleState { NODE ,START, PLAYERTURN, ENEMYTURN, WON, LOST, VictoryScreen,DRAWING,INANIMATION,CREATING,INANIM}
 
 [RequireComponent(typeof(AudioListener))]
 [RequireComponent(typeof(AudioSource))]
