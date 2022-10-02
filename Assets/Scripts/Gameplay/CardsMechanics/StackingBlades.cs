@@ -19,7 +19,7 @@ public class StackingBlades : Card
 
     private void Start()
     {
-        desc = $"For each card drawn deal <color=white>{attack.ToString()}</color> to enemy. Current :"+(cardsDrawn +1);
+        desc = $"For each card drawn deal <color=white>{attack.ToString()}</color> damage to enemy. Current :"+(cardsDrawn +1);
         defAttack = Mathf.RoundToInt(defaultattack);
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
 
@@ -34,11 +34,11 @@ public class StackingBlades : Card
         calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
 
         if (attack == defaultattack)
-            desc = $"For each card drawn deal <color=white>{attack.ToString()}</color> to enemy. Current :" + cardsDrawn;
+            desc = $"For each card drawn deal <color=white>{attack.ToString()}</color> damage to enemy. Current cards drawn :" + cardsDrawn;
         else if (attack < defaultattack)
-            desc = $"For each card drawn deal <color=red>{attack.ToString()}</color> to enemy. Current :" + cardsDrawn;
+            desc = $"For each card drawn deal <color=red>{attack.ToString()}</color> damage to enemy. Current cards drawn :" + cardsDrawn;
         else
-            desc = $"For each card drawn deal <color=green>{attack.ToString()}</color> to enemy. Current :" + cardsDrawn ;
+            desc = $"For each card drawn deal <color=green>{attack.ToString()}</color> damage to enemy. Current cards drawn :" + cardsDrawn ;
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
 

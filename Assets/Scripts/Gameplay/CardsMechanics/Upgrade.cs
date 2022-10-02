@@ -19,15 +19,12 @@ public class Upgrade : Card
         gameplayManager.checkPlayerMana(cost);
         if (gameplayManager.canPlayCards == true)
         {
-            player.GetArmor(armor);
-
-
 
             player.manaText.text = player.mana.ToString();
 
             base.OnDrop();
             await Doanim();
-            gameplayManager.DrawCards(2);
+            
         }
         else
         {

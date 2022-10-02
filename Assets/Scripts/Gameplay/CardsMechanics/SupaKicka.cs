@@ -18,7 +18,7 @@ public class SupaKicka : Card
 
     private void Start()
     {
-        desc = $"Deal <color=white>{attack.ToString()}</color> damage";
+        desc = $"Deal <color=white>{attack.ToString()}</color> damage 3 times to the same enemy";
 
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
         playerRect = player.gameObject.GetComponent<RectTransform>();
@@ -31,11 +31,11 @@ public class SupaKicka : Card
         calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
 
         if (attack == defaultattack)
-            desc = $"Deal <color=white>{attack.ToString()}</color> damage";
+            desc = $"Deal <color=white>{attack.ToString()}</color> damage 3 times to the same enemy";
         else if (attack < defaultattack)
-            desc = $"Deal <color=red>{attack.ToString()}</color> damage";
+            desc = $"Deal <color=red>{attack.ToString()}</color> damage 3 times to the same enemy";
         else
-            desc = $"Deal <color=green>{attack.ToString()}</color> damage";
+            desc = $"Deal <color=green>{attack.ToString()}</color> damage 3 times to the same enemy";
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
         if (trailGORect != null)
             trailGORect.anchoredPosition = playerRect.anchoredPosition;

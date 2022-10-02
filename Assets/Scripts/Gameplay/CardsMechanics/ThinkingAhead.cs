@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 public class ThinkingAhead : Card
 {
-    public int armor;
+    
     [SerializeField] private GameObject dogeVFX, lightBulbVFX, handVFX;
     [SerializeField] private Vector3 dogeSpawnOffset, handSpawnOffset,moveTo,particleSpawnOffset;
     List<GameObject> vfxses = new List<GameObject>();
@@ -16,10 +16,7 @@ public class ThinkingAhead : Card
         gameplayManager.checkPlayerMana(cost);
         if (gameplayManager.canPlayCards == true)
         {
-            player.GetArmor(armor);
-
-
-
+            
             player.manaText.text = player.mana.ToString();
 
             base.OnDrop();

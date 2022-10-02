@@ -11,9 +11,9 @@ public class Slide : Card
     [SerializeField] private Vector3 startRot;
     [SerializeField] private AnimationCurve anCurve;
     [SerializeField] private float animTime, swayMoveTime,rotTime,jumpPower,jumpTime,returnTime,jumpPower2;
-    [SerializeField] private int armorValue=3;
+    [SerializeField] private int armorValue;
 
-    private void Start()
+   /* private void Start()
     {
         desc = $"Deal <color=white>{attack.ToString()}</color> damage";
 
@@ -34,7 +34,7 @@ public class Slide : Card
             desc = $"Deal <color=green>{attack.ToString()}</color> damage";
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
-
+   */
 
     public override async void OnDrop()
     {
