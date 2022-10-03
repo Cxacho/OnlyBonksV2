@@ -22,7 +22,9 @@ public class Testudo : Card
             player.manaText.text = player.mana.ToString();
 
             base.OnDrop();
-            await Doanim();
+            gameplayManager.state = BattleState.INANIM;
+            await DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
             gameplayManager.DrawCards(2);
         }
         else
@@ -32,7 +34,7 @@ public class Testudo : Card
 
     }
 
-    async Task Doanim()
+    async Task DoAnim()
     {
         var shieldOne = Instantiate(shieldGO, gameplayManager.player.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         shieldOne.transform.localScale = new Vector3(8, 8, 1);

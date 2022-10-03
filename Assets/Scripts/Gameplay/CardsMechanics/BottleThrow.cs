@@ -30,7 +30,7 @@ public class BottleThrow : Card
             desc = $"Deal <color=green>{attack.ToString()}</color>damage and apply 3 bleed";
     }
 
-    public override void OnDrop()
+    public override async void OnDrop()
     {
         
         gameplayManager.checkPlayerMana(cost);
@@ -47,7 +47,9 @@ public class BottleThrow : Card
                 {
 
                     en.RecieveDamage(attack, this);
-                    DoAnim(en);
+                    gameplayManager.state = BattleState.INANIM;
+                    await DoAnim(en);
+                    gameplayManager.state = BattleState.PLAYERTURN;
                 }
                 en.setStatus(Enemy.statuses.bleeding, 3,en);
                 en.targeted = false;
@@ -61,7 +63,7 @@ public class BottleThrow : Card
 
     }
 
-    void DoAnim(Enemy en)
+    async Task DoAnim(Enemy en)
     {
         var bottleObj = Instantiate(bottleVFX, gameplayManager.player.transform.position + offset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         var getRect= bottleObj.GetComponent<RectTransform>();

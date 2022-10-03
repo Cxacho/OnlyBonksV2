@@ -23,7 +23,11 @@ public class Anger : Card
             player.manaText.text = player.mana.ToString();
 
             base.OnDrop();
-            await Doanim();
+
+            gameplayManager.state = BattleState.INANIM;
+            await DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
+
             gameplayManager.DrawCards(2);
         }
         else
@@ -34,7 +38,7 @@ public class Anger : Card
     }
 
 
-    async Task Doanim()
+    async Task DoAnim()
     {
         var dogeSpriteVFX=Instantiate(angerVFX, offset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         vfxses.Add(dogeSpriteVFX);

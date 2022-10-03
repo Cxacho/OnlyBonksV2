@@ -63,8 +63,10 @@ public class StabWounds : Card
                 }
                 */
 
-                        await DoAnim(en);
-                        en.RecieveDamage(attack, this);
+                    gameplayManager.state = BattleState.INANIM;
+                    await DoAnim(en);
+                    gameplayManager.state = BattleState.PLAYERTURN;
+                    en.RecieveDamage(attack, this);
 
                     en.targeted = false;
                 }

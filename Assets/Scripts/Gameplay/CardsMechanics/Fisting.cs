@@ -18,6 +18,13 @@ public class Fisting : Card
         {
             base.OnDrop();
 
+            /*
+            gameplayManager.state = BattleState.INANIM;
+
+            await DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
+            */
+
             player.GetComponentInChildren<Animator>().SetTrigger("GetSwoleTrigger");
             player.setStatusIndicator(3, 3, player.buffIndicators[3]);
             gameplayManager.DrawCards(3);

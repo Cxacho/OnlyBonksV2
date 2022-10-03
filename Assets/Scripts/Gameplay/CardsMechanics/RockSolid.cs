@@ -18,6 +18,12 @@ public class RockSolid : Card
 
             base.OnDrop();
 
+            /*
+            gameplayManager.state = BattleState.INANIM;
+
+            await DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
+            */
         }
         else
         {

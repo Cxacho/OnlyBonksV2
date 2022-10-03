@@ -12,7 +12,13 @@ public class Cringe : Card
         {
             base.OnDrop();
 
-            
+            /*
+            gameplayManager.state = BattleState.INANIM;
+
+            await DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
+            */
+
             StartCoroutine(ExecuteAfterTime(1f));
 
             player.frail = 0;

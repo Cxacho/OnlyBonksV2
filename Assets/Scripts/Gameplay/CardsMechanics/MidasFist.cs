@@ -25,7 +25,12 @@ public class MidasFist : Card
                 if (en.targeted == true)
                 {
 
+                    StartCoroutine(ExecuteAfterTime(1f));
+
+                    gameplayManager.state = BattleState.INANIM;
                     await DoAnim(en);
+                    gameplayManager.state = BattleState.PLAYERTURN;
+
                     en.RecieveDamage(gameplayManager.gold * 0.1f, this);
                     //metoda pod lose gold
 
@@ -38,6 +43,18 @@ public class MidasFist : Card
         {
             Debug.Log("fajnie dzia³a");
         }
+
+    }
+    IEnumerator ExecuteAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+
+        //enemy.ReceiveDamage(attack * pl.strenght);
+
+
+        player.manaText.text = player.mana.ToString();
+
 
     }
 

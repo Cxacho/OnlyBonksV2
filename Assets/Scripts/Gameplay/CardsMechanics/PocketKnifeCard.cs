@@ -37,6 +37,14 @@ public class PocketKnifeCard : Card
         if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
+
+            /*
+            gameplayManager.state = BattleState.INANIM;
+
+            await DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
+            */
+
             var knifeObj = Instantiate(knifeAnimPrefab, gameplayManager.player.transform.position + offset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
             knifeObj.transform.localScale = new Vector3(45, 45, 1);
             var getRect = knifeObj.GetComponent<RectTransform>();

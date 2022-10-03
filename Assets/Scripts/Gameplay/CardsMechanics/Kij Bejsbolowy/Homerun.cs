@@ -48,6 +48,14 @@ public class Homerun :  Card
         if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
+
+            /*
+            gameplayManager.state = BattleState.INANIM;
+
+            await DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
+            */
+
             Baseball = Instantiate(ball, playerPos, Quaternion.identity, gameplayManager.vfxCanvas.transform);
             Debug.Log(player.GetComponent<RectTransform>().anchoredPosition);
             ballRect = Baseball.GetComponent<RectTransform>();

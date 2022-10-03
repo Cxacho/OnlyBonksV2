@@ -31,6 +31,12 @@ public class BloodShed : Card
         if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
+            /*
+            gameplayManager.state = BattleState.INANIM;
+
+            await DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
+            */
             StartCoroutine(ExecuteAfterTime(1f));
             player.setStatusIndicator(0, 5, player.buffIndicators[4]);
             resetTargetting();

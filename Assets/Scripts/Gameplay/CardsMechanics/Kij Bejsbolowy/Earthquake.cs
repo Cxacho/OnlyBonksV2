@@ -41,9 +41,13 @@ public class Earthquake : Card
         if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
-            
-            StartCoroutine(ExecuteAfterTime(1f));
+
+            gameplayManager.state = BattleState.INANIM;
             await DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
+
+            StartCoroutine(ExecuteAfterTime(1f));
+            
             foreach (Enemy en in _enemies)
             {
                 en.RecieveDamage(attack, this);

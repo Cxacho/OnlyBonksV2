@@ -34,7 +34,12 @@ public class BasicDefend : Card
             }
             */
             //gameplayManager.CreateCard(0);
+            /*
+            gameplayManager.state = BattleState.INANIM;
 
+            DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
+            */
         }
         else
         {

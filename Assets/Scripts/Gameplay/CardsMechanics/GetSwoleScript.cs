@@ -15,6 +15,13 @@ public class GetSwoleScript : Card
         {
             base.OnDrop();
 
+            /*
+            gameplayManager.state = BattleState.INANIM;
+
+            await DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
+            */
+
             player.GetComponentInChildren<Animator>().SetTrigger("GetSwoleTrigger");
             player.setStatusIndicator(5, 3, player.buffIndicators[3]);
             player.GetArmor(10);

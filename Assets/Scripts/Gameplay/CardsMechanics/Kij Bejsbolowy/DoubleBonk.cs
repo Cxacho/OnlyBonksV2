@@ -48,7 +48,9 @@ public class DoubleBonk : Card
             foreach (Enemy en in _enemies)
             {
                 if(en.targeted)
-                 await Doanim(en);
+                gameplayManager.state = BattleState.INANIM;
+                await DoAnim(en);
+                gameplayManager.state = BattleState.PLAYERTURN;
             }
             resetTargetting();
         }
@@ -90,10 +92,10 @@ public class DoubleBonk : Card
     }
     private void OnEnable()
     {
-        Doanim(null);
+        DoAnim(null);
     }
 
-    async  Task  Doanim(Enemy en)
+    async Task DoAnim(Enemy en)
     {
        var enemyRect  =en.transform.parent.gameObject.GetComponent<RectTransform>().anchoredPosition3D;
         var enPos= en.transform.parent.transform.position;

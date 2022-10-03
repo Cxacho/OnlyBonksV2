@@ -56,7 +56,9 @@ public class WideStrike : Card
             {
                 if (en.targeted == true)
                 {
+                    gameplayManager.state = BattleState.INANIM;
                     await DoAnim(en);
+                    gameplayManager.state = BattleState.PLAYERTURN;
                     //gameplayManager.OnEnemyKilled += AddMeSomeMana;
 
                     en.targeted = false;

@@ -49,7 +49,9 @@ public class DeepCut : Card
             {
                 if (en.targeted == true)
                 {
+                    gameplayManager.state = BattleState.INANIM;
                     await DoAnim(en);
+                    gameplayManager.state = BattleState.PLAYERTURN;
                     en.RecieveDamage(attack, this);
                     en.setStatus(Enemy.statuses.bleeding, 2, en);
                     //gameplayManager.OnEnemyKilled += AddMeSomeMana;

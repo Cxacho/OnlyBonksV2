@@ -67,7 +67,9 @@ public class DeadlyPull : Card
 
                 }
             }
+            gameplayManager.state = BattleState.INANIM;
             await DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
             resetTargetting();
         }
 

@@ -56,6 +56,14 @@ public class Sanic : Card
         if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
+
+            /*
+            gameplayManager.state = BattleState.INANIM;
+
+            await DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
+            */
+
             StartCoroutine(ExecuteAfterTime());
             //enable trail
             var sanTrail = Instantiate(trail, player.transform.position, Quaternion.identity);

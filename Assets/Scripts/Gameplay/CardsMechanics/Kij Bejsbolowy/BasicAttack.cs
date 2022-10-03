@@ -50,7 +50,9 @@ public class BasicAttack : Card
             {
                 if (en.targeted == true)
                 {
+                    gameplayManager.state = BattleState.INANIM;
                     await DoAnim(en);
+                    gameplayManager.state = BattleState.PLAYERTURN;
                     //gameplayManager.OnEnemyKilled += AddMeSomeMana;
                     en.RecieveDamage(attack,this);
                     

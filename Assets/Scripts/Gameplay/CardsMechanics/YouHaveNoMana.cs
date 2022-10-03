@@ -13,6 +13,13 @@ public class YouHaveNoMana : Card
         {
             base.OnDrop();
 
+            /*
+            gameplayManager.state = BattleState.INANIM;
+
+            await DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
+            */
+
             player.mana += 1;
             StartCoroutine(ExecuteAfterTime(1f));
             

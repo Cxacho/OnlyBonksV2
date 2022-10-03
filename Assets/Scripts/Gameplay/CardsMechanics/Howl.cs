@@ -10,18 +10,17 @@ public class Howl : Card
     [SerializeField] private Vector3 offset;
 
 
-    public override  void OnDrop()
+    public override async void OnDrop()
     {
         gameplayManager.checkPlayerMana(cost);
         if (gameplayManager.canPlayCards == true)
         {
 
-
-
-            player.manaText.text = player.mana.ToString();
-
             base.OnDrop();
-            Doanim();
+            StartCoroutine(ExecuteAfterTime(1f));
+            gameplayManager.state = BattleState.INANIM;
+            await DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
             player.setStatusIndicator(4, 3, player.buffIndicators[3]);
         }
         else
@@ -31,7 +30,20 @@ public class Howl : Card
 
     }
 
-    void  Doanim()
+    IEnumerator ExecuteAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+
+        //enemy.ReceiveDamage(attack * pl.strenght);
+
+
+        player.manaText.text = player.mana.ToString();
+
+
+    }
+
+    async Task DoAnim()
     {
         var prefab = Instantiate(howlVFX, player.gameObject.transform.position+offset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         Destroy(prefab, 5);

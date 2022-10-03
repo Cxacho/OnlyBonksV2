@@ -51,7 +51,9 @@ public class CrackingSkull : Card
             {
                 if (en.targeted == true)
                 {
+                    gameplayManager.state = BattleState.INANIM;
                     await DoAnim(en);
+                    gameplayManager.state = BattleState.PLAYERTURN;
                     bool isInvoked = false;
                     if (en.armor < attack && en.armor > 0)
                     {

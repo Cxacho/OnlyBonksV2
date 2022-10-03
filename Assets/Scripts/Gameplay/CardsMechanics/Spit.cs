@@ -49,7 +49,9 @@ public class Spit : Card
             {
                 if (en.targeted == true)
                 {
+                    gameplayManager.state = BattleState.INANIM;
                     await DoAnim(en);
+                    gameplayManager.state = BattleState.PLAYERTURN;
                     //gameplayManager.OnEnemyKilled += AddMeSomeMana;
                     //set debuff??
                     en.targeted = false;

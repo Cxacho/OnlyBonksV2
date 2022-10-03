@@ -37,6 +37,13 @@ public class ExecutiveFireball : Card
         {
             base.OnDrop();
 
+            /*
+            gameplayManager.state = BattleState.INANIM;
+
+            await DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
+            */
+
             StartCoroutine(ExecuteAfterTime(1f));
             foreach (Enemy en in _enemies)
             {

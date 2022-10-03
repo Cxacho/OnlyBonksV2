@@ -40,7 +40,10 @@ public class Ram : Card
         if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
+            StartCoroutine(ExecuteAfterTime(1f));
+            gameplayManager.state = BattleState.INANIM;
             await DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
             var multiplier = 0.5f;
             foreach (Enemy en in _enemies)
             {
@@ -49,7 +52,7 @@ public class Ram : Card
 
             }
 
-            //StartCoroutine(ExecuteAfterTime(1f));
+            
         }
         else
         {

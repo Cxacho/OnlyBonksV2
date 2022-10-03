@@ -65,12 +65,16 @@ public class Backstab : Card
                 */
                     if (characters[getEnemyIndex + 1].gameObject == gameplayManager.player.gameObject || characters[getEnemyIndex + 1].childCount == 0)
                     {
+                        gameplayManager.state = BattleState.INANIM;
                         await DoAnim(en);
+                        gameplayManager.state = BattleState.PLAYERTURN;
                         en.RecieveDamage(attack * 2, this);
                     }
                     else
                     {
+                        gameplayManager.state = BattleState.INANIM;
                         await DoAnim(en);
+                        gameplayManager.state = BattleState.PLAYERTURN;
                         en.RecieveDamage(attack, this);
                     }
 

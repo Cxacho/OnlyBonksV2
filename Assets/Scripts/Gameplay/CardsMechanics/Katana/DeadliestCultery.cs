@@ -51,7 +51,9 @@ public class DeadliestCultery : Card
             {
                 if (en.targeted == true)
                 {
-                    await Doanim(en);
+                    gameplayManager.state = BattleState.INANIM;
+                    await DoAnim(en);
+                    gameplayManager.state = BattleState.PLAYERTURN;
                     en.RecieveDamage(attack, this);
                     gameplayManager.DrawCards(1);
                     en.targeted = false;
@@ -77,7 +79,7 @@ public class DeadliestCultery : Card
     }
 
 
-    async Task Doanim(Enemy en)
+    async Task DoAnim(Enemy en)
     {
         var noz = Instantiate(blade, player.transform.position + spawnOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         var getRect = noz.GetComponent<RectTransform>();

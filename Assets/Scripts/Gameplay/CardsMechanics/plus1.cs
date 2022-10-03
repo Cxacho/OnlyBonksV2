@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading.Tasks;
 
+
 public class plus1 : Card
 {
     [SerializeField]  private Vector3 spawnOffset;
@@ -14,11 +15,14 @@ public class plus1 : Card
         if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
+
+            StartCoroutine(ExecuteAfterTime(1f));
+
             gameplayManager.state = BattleState.INANIM;
             
-            DoAnim();
+            await DoAnim();
             gameplayManager.state = BattleState.PLAYERTURN;
-            StartCoroutine(ExecuteAfterTime(1f));
+            
             gameplayManager.DrawCards(1);
         }
         else

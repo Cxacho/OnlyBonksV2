@@ -50,7 +50,10 @@ public class FlurryOfBonks : Card
                 {
 
                     //InvokeRepeating(en.ReceiveDamage(attack + pl.strenght), 0.1f, 0.3f);
+                    gameplayManager.state = BattleState.INANIM;
                     await DoAnim(en);
+                    gameplayManager.state = BattleState.PLAYERTURN;
+
                     en.targeted = false;
                     en.isFirstTarget = false;
                 }

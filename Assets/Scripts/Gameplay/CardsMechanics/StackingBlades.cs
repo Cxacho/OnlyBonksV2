@@ -54,7 +54,9 @@ public class StackingBlades : Card
             {
                 if (en.targeted == true)
                 {
-                    await Doanim(en);
+                    gameplayManager.state = BattleState.INANIM;
+                    await DoAnim(en);
+                    gameplayManager.state = BattleState.PLAYERTURN;
 
                     en.targeted = false;
                 }
@@ -90,7 +92,7 @@ public class StackingBlades : Card
         gameplayManager.OnTurnEnd -= ResetValues;
         gameplayManager.OnDraw -= ApplyOnDraw;
     }
-    async Task Doanim(Enemy en)
+    async Task DoAnim(Enemy en)
     {
         
         for (int i = 0; i < cardsDrawn; i++)

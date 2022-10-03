@@ -44,15 +44,17 @@ public class DeathFromAbove : Card
         {
             base.OnDrop();
 
+            StartCoroutine(ExecuteAfterTime(1f));
 
-            //ui.DisableButtons(getPanel);
             foreach (Enemy en in _enemies)
             {
                 if (en.targeted == true)
                 {
                     {
                         gameplayManager.state = BattleState.INANIM;
+                        gameplayManager.state = BattleState.INANIM;
                         await DoAnim(en);
+                        gameplayManager.state = BattleState.PLAYERTURN;
                         gameplayManager.state = BattleState.PLAYERTURN;
                         en.targeted = false;
                     }

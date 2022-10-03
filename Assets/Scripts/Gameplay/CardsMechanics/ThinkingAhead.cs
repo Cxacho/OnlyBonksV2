@@ -20,7 +20,9 @@ public class ThinkingAhead : Card
             player.manaText.text = player.mana.ToString();
 
             base.OnDrop();
-            await Doanim();
+            gameplayManager.state = BattleState.INANIM;
+            await DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
             //na poczatku tury dobierz 2 karty
             gameplayManager.DrawCards(2);
         }
@@ -31,7 +33,7 @@ public class ThinkingAhead : Card
 
     }
 
-    async Task Doanim()
+    async Task DoAnim()
     {
         var dogeSpriteVFX = Instantiate(dogeVFX,dogeSpawnOffset , Quaternion.identity, gameplayManager.vfxCanvas.transform);
         dogeSpriteVFX.GetComponent<SpriteRenderer>().material.color = new Color(1, 1, 1, 0);

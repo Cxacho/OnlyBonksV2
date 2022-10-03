@@ -23,8 +23,10 @@ public class Upgrade : Card
             player.manaText.text = player.mana.ToString();
 
             base.OnDrop();
-            await Doanim();
-            
+            gameplayManager.state = BattleState.INANIM;
+            await DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
+
         }
         else
         {
@@ -33,7 +35,7 @@ public class Upgrade : Card
 
     }
 
-    async Task Doanim()
+    async Task DoAnim()
     {
         var hammerObj=Instantiate(hammerVFX, gameplayManager.player.transform.position +hammerOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform);
         var batObj = Instantiate(batVFX, gameplayManager.player.transform.position + batOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform);

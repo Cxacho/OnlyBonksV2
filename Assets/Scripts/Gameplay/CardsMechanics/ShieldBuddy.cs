@@ -26,7 +26,7 @@ public class ShieldBuddy : Card
             player.manaText.text = player.mana.ToString();
                 gameplayManager.OnCardPlayedDetail -= applyEffect;
             base.OnDrop();
-            await onPlayAnim();
+            await OnPlayAnim();
         }
         else
         {
@@ -36,10 +36,10 @@ public class ShieldBuddy : Card
     }
     private void OnEnable()
     {
-        Doanim();
+        DoAnim();
         gameplayManager.OnCardPlayedDetail += applyEffect;
     }
-    async Task onPlayAnim()
+    async Task OnPlayAnim()
     {
         var getRect=buddy.GetComponent<RectTransform>();
         getRect.DOAnchorPos(player.myOriginalPosition, 0.7f).OnComplete(()=>
@@ -47,7 +47,7 @@ public class ShieldBuddy : Card
             player.GetArmor(armor);
         });
     }
-    async Task Doanim()
+    async Task DoAnim()
     {
         buddy = Instantiate(shieldBuddyVFX, this.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform).gameObject;
         var buddyRect=buddy.GetComponent<RectTransform>();

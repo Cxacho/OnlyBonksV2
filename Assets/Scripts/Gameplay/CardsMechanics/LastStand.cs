@@ -24,7 +24,9 @@ public class LastStand : Card
             player.manaText.text = player.mana.ToString();
 
             base.OnDrop();
+            gameplayManager.state = BattleState.INANIM;
             await DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
         }
         else
         {

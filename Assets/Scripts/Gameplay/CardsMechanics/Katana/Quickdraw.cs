@@ -32,6 +32,16 @@ public class Quickdraw : Card
         if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
+
+            StartCoroutine(ExecuteAfterTime(1f));
+
+            /*
+            gameplayManager.state = BattleState.INANIM;
+
+            await DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
+            */
+
             player.setStatusIndicator(2, 4, player.buffIndicators[0]);
 
             //ui.DisableButtons(getPanel);

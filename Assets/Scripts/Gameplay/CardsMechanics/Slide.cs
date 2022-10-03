@@ -42,7 +42,12 @@ public class Slide : Card
         if (gameplayManager.canPlayCards == true)
         {
             base.OnDrop();
+
+            StartCoroutine(ExecuteAfterTime(1f));
+
+            gameplayManager.state = BattleState.INANIM;
             await DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
             gameplayManager.DrawCards(gameplayManager.enemies.Count);
             player.GetArmor(gameplayManager.enemies.Count * armorValue);
 

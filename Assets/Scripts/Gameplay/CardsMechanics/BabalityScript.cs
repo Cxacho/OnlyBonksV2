@@ -28,6 +28,13 @@ public class BabalityScript : Card
                     */
                     //foreach (Animator an in anim)
                         //an.SetTrigger("BabalityTrigger");
+
+                    /*
+                      gameplayManager.state = BattleState.INANIM;
+            
+                      DoAnim();
+                      gameplayManager.state = BattleState.PLAYERTURN;
+                    */
                     en.damage-=3;
                     en.targeted = false;
                 }

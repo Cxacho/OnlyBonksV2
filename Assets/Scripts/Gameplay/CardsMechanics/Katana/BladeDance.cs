@@ -42,9 +42,11 @@ public class BladeDance : Card
         {
             base.OnDrop();
 
+            StartCoroutine(ExecuteAfterTime(1f));
 
-            //ui.DisableButtons(getPanel);
+            gameplayManager.state = BattleState.INANIM;
             await DoAnim();
+            gameplayManager.state = BattleState.PLAYERTURN;
             foreach (Enemy en in _enemies)
             {
                 if (en.isFirstTarget == true)

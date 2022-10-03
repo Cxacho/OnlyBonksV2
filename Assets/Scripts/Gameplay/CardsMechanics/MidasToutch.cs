@@ -27,7 +27,12 @@ public class MidasToutch : Card
                 if (en.targeted == true)
                 {
 
+                    StartCoroutine(ExecuteAfterTime(1f));
+
+                    gameplayManager.state = BattleState.INANIM;
                     await DoAnim(en);
+                    gameplayManager.state = BattleState.PLAYERTURN;
+
                     en.RecieveDamage(gameplayManager.gold*0.1f, this);
                     //gdy zabije dodaj golda
                     
@@ -41,6 +46,18 @@ public class MidasToutch : Card
         {
             Debug.Log("fajnie dzia³a");
         }
+
+    }
+    IEnumerator ExecuteAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+
+        //enemy.ReceiveDamage(attack * pl.strenght);
+
+
+        player.manaText.text = player.mana.ToString();
+
 
     }
 
