@@ -9,16 +9,11 @@ using DG.Tweening;
 public class MenuController : MonoBehaviour
 {
 
-
-    [SerializeField] public GameObject newGamePanel;
-    [SerializeField] public GameObject settingsChoosePanel;
-    [SerializeField] public GameObject buttonsGroup;
-    [SerializeField] public GameObject collectionsChoosePanel;
-    [SerializeField] public TextMeshProUGUI newGameTxt;
-    RectTransform buttonsGroupRect;
-    private float buttonsGroupStartPozX;
-    private float buttonsGroupStartPozY;
-    Tweener yoyo;
+    [SerializeField] private GameObject contentPanel;
+    [SerializeField] private GameObject audioPanel;
+    [SerializeField] private GameObject graphicsPanel;
+    [SerializeField] private GameObject mainButtons;
+    [SerializeField] private GameObject settingsButtons;
 
     [Header("Volume Settings")]
 
@@ -41,97 +36,17 @@ public class MenuController : MonoBehaviour
     [Header("Resolution Dropdown")]
 
     public TMP_Dropdown resoultionDropdown;
-    private Resolution[] resultions;
+    [SerializeField] private Resolution[] resultions;
 
     [Space(10)]
     [SerializeField] private TMP_Dropdown qualityDropdown;
     [SerializeField] private Toggle fullScreenToggle;
 
-    public void NewGamePanelOpen()
-    {
-        Sequence newGamePanelSeq = DOTween.Sequence()
-        .Append
-         (
-            buttonsGroupRect.DOAnchorPos(new Vector2(buttonsGroupStartPozX - 570f, buttonsGroupStartPozY), 0.5f)
-         )
-        .OnComplete(() =>
-        {
-            buttonsGroup.SetActive(false);
-            newGamePanel.SetActive(true);
-            
-            yoyo.Play();
-        }
-        );
 
-        
-    }
-
-    public void NewGamePanelClose()
-    {
-        yoyo.Pause();
-        newGameTxt.color = new Color32(255, 255, 255, 255);       
-        newGamePanel.SetActive(false);
-        buttonsGroup.SetActive(true);
-        buttonsGroupRect.DOAnchorPos(new Vector2(buttonsGroupStartPozX, buttonsGroupStartPozY), 0.5f);
-            
-
-    }
-
-    public void CollectionsChoosePanelOpen()
-    {
-        Sequence collectionsChoosePanelSeq = DOTween.Sequence()
-        .Append
-         (
-            buttonsGroupRect.DOAnchorPos(new Vector2(buttonsGroupStartPozX - 570f, buttonsGroupStartPozY), 0.5f)
-         )
-        .OnComplete(() =>
-        {
-            buttonsGroup.SetActive(false);
-            collectionsChoosePanel.SetActive(true);
-        }
-        );
-    }
-
-    public void CollectionsChoosePanelClose()
-    {
-        collectionsChoosePanel.SetActive(false);
-        buttonsGroup.SetActive(true);
-        buttonsGroupRect.DOAnchorPos(new Vector2(buttonsGroupStartPozX, buttonsGroupStartPozY), 0.5f);
-    }
-
-    public void SettingsChoosePanelOpen()
-    {
-        Sequence optionsChoosePanelSeq = DOTween.Sequence()
-        .Append
-         (
-            buttonsGroupRect.DOAnchorPos(new Vector2(buttonsGroupStartPozX - 570f, buttonsGroupStartPozY), 0.5f)
-         )
-        .OnComplete(() =>
-        {
-            buttonsGroup.SetActive(false);
-            settingsChoosePanel.SetActive(true);
-            
-        }
-        );
-    }
-
-    public void SettingsChoosePanelClose()
-    {
-
-        settingsChoosePanel.SetActive(false);
-        buttonsGroup.SetActive(true);
-        buttonsGroupRect.DOAnchorPos(new Vector2(buttonsGroupStartPozX, buttonsGroupStartPozY), 0.5f);
-
-    }
 
     private void Start()
     {
-        if (PlayerPrefs.HasKey("Map")) continueButton.SetActive(true);
-        buttonsGroupRect = buttonsGroup.GetComponent<RectTransform>();
-        buttonsGroupStartPozX = buttonsGroupRect.anchoredPosition.x;
-        buttonsGroupStartPozY = buttonsGroupRect.anchoredPosition.y;
-
-        yoyo = newGameTxt.DOFade(0f, 2f).SetLoops(-1, LoopType.Yoyo);
+        //if (PlayerPrefs.HasKey("Map")) continueButton.SetActive(true);
 
         resultions = Screen.resolutions;
         resoultionDropdown.ClearOptions();
@@ -153,6 +68,50 @@ public class MenuController : MonoBehaviour
         resoultionDropdown.AddOptions(options);
         resoultionDropdown.value = currentResolutionIndex;
         resoultionDropdown.RefreshShownValue();
+
+    }
+
+    public void audioSettings()
+    {
+
+        contentPanel.SetActive(true);
+        audioPanel.SetActive(true);
+        contentPanel.GetComponent<Image>().DOFade(1f, 0.3f);
+        audioPanel.GetComponent<Image>().DOFade(1f, 0.3f);
+
+    }
+
+    public void GraphicsSettings()
+    {
+
+        contentPanel.SetActive(true);
+        graphicsPanel.SetActive(true);
+        contentPanel.GetComponent<Image>().DOFade(1f, 0.3f);
+        graphicsPanel.GetComponent<Image>().DOFade(1f, 0.3f);
+
+    }
+
+    public void ExitPanel()
+    {
+        if (contentPanel.activeSelf == true)
+        {
+            contentPanel.GetComponent<Image>().DOFade(0f, 0.3f).OnComplete(PanelCallback);
+            audioPanel.GetComponent<Image>().DOFade(0f, 0.3f);
+            graphicsPanel.GetComponent<Image>().DOFade(0f, 0.3f);
+        }
+        else
+        {
+            settingsButtons.SetActive(false);
+            mainButtons.SetActive(true);
+        }
+    }
+
+    public void PanelCallback()
+    {
+        audioPanel.SetActive(false);
+        graphicsPanel.SetActive(false);
+        contentPanel.SetActive(false);
+        
 
     }
 
@@ -190,7 +149,7 @@ public class MenuController : MonoBehaviour
         }
     }
      
-    public void ExitButton()
+    public void ExitGame()
     {
         Application.Quit();
     }
@@ -199,13 +158,13 @@ public class MenuController : MonoBehaviour
     public void SetVolume(float volume)
     {
         AudioListener.volume = volume;
-        volumeTextValue.text = volume.ToString("0");
+        volumeTextValue.text = volumeSlider.GetComponent<Slider>().value.ToString();
     }
 
     public void VolumeApply()
     {
         PlayerPrefs.SetFloat("masterVolume", AudioListener.volume);
-
+        Debug.Log("AudioListener volume : " + AudioListener.volume);
     }
 
     public void ResetButton(string MenuType)
@@ -214,7 +173,7 @@ public class MenuController : MonoBehaviour
         {
             AudioListener.volume = defaultVolume;
             volumeSlider.value = defaultVolume;
-            volumeTextValue.text = defaultVolume.ToString("0");
+            volumeTextValue.text = defaultVolume.ToString();
             VolumeApply();
         }
     }
