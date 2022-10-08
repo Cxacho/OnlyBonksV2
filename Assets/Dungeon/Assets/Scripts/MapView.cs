@@ -98,9 +98,10 @@ namespace Map
 
             SetLineColors();
             mapParent.transform.localScale = new Vector2(6, 6);
+            mapParent.transform.localPosition.Set(-100, -50, 0);
             CreateMapBackground(m);
 
-            
+            GameObject.Find("Map_Panel").transform.position.Set(-100, -10, 0);
         }
 
         private void CreateMapBackground(Map m)
@@ -118,7 +119,7 @@ namespace Map
             sr.color = backgroundColor;
             sr.drawMode = SpriteDrawMode.Sliced;
             sr.sprite = background;
-            sr.size = new Vector2(xSize, span + yOffset);
+            sr.size = new Vector2(xSize + 15f, span + yOffset * 16f);
             sr.sortingOrder = 1;
         }
 

@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     GameObject frailIndicator, vurneableIndicator, poisonIndicator, strengthBuffIndicator,pierceIndicator;
     [HideInInspector]public GameObject energizeIndicator;
     TextMeshProUGUI value;
-    public int maxHealth = 70;
+    public int maxHealth;
     public int currentHealth;
     public int armor;
     public int armorAndHp;
