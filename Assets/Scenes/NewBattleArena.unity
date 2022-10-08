@@ -8457,7 +8457,7 @@ GameObject:
   - component: {fileID: 662012198}
   m_Layer: 5
   m_Name: Text
-  m_TagString: cardHolder
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25344,6 +25344,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1695051792}
     - target: {fileID: 7250239850451499556, guid: 29fcb356a0a4b95478b18586d4dde005, type: 3}
+      propertyPath: strenght
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250239850451499556, guid: 29fcb356a0a4b95478b18586d4dde005, type: 3}
       propertyPath: velocity
       value: 1000
       objectReference: {fileID: 0}
@@ -25717,8 +25721,8 @@ GameObject:
   - component: {fileID: 1827321656}
   - component: {fileID: 1827321657}
   m_Layer: 5
-  m_Name: CardHolder
-  m_TagString: Untagged
+  m_Name: cardHolder
+  m_TagString: cardHolder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

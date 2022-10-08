@@ -54,9 +54,9 @@ public class BuyCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             gameplayManager.startingDeck.Add(cardPrefabClone);
             gameplayManager.drawDeck.Add(cardPrefabClone);
             
-            for (int i = 0; i < GameObject.Find("CardHolder").transform.childCount; i++)
+            for (int i = 0; i < GameObject.Find("cardHolder").transform.childCount; i++)
             {
-                Destroy(GameObject.Find("CardHolder").transform.GetChild(i).gameObject);
+                Destroy(GameObject.Find("cardHolder").transform.GetChild(i).gameObject);
             }
             
         }
