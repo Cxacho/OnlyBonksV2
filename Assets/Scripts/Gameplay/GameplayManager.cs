@@ -260,7 +260,7 @@ public class GameplayManager : MonoBehaviour
         {
             numOfList = UnityEngine.Random.Range(6, 10);
         }
-
+        Debug.Log("Num of list : " + numOfList);
         SpawnEnemies(enemiesSpawner.floorOneEnemies[numOfList]);
         enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
         foreach (GameObject enemy in enemies)

@@ -129,7 +129,7 @@ public class Player : MonoBehaviour
                 buffValue2.text = poison.ToString();
                 break;
             case Player.playerStatusses.strengthBuff:
-                strenght += tempStrength;
+                //strenght += tempStrength;
                 strenght += value;
                 if (strengthBuffIndicator == null)
                 {
@@ -310,11 +310,11 @@ public class Player : MonoBehaviour
         {
             card.index = card.gameObject.transform.GetSiblingIndex();
         }
-        
 
-
+        //if (strenght != 0)
+            //strenght--;
         //dowymiany
-        foreach(Enemy en in FindObjectsOfType<Enemy>())
+        foreach (Enemy en in FindObjectsOfType<Enemy>())
         {
             en.OnEndTurn();
             //zadziala poprawnie, wypierdoli sie gdy dostaniemy itemek lub karte ktora cleansuje debuffy
@@ -373,11 +373,12 @@ public class Player : MonoBehaviour
     }
     void UpdateValues(object sender, EventArgs e)
     {
-        tempStrength = 0;
-        setStatusIndicator(0, 3, buffIndicators[3]);
+        //tempStrength = 0;
+        //setStatusIndicator(0, 3, buffIndicators[3]);
         //dodac
 
     }
+   
     public void setStatus(playerStatusses ps,int value)
     {
         currentBuff = ps;

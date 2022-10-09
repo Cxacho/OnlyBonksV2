@@ -16,7 +16,7 @@ public class Anger : Card
         gameplayManager.checkPlayerMana(cost);
         if (gameplayManager.canPlayCards == true)
         {
-            player.GetArmor(armor);
+            
 
 
 
@@ -28,7 +28,7 @@ public class Anger : Card
             await DoAnim();
             gameplayManager.state = BattleState.PLAYERTURN;
 
-            gameplayManager.DrawCards(2);
+            player.setStatusIndicator(3, 3, player.buffIndicators[3]);
         }
         else
         {

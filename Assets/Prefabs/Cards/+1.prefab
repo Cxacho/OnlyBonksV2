@@ -189,7 +189,7 @@ MonoBehaviour:
   attack: 0
   defaultattack: 0
   getPanel: 0
-  myWeaponType: 0
+  myWeaponType: 6
   cType: 1
   currentCardState: 3
   cardScalingtype: 0

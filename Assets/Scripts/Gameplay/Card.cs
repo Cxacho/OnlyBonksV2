@@ -124,13 +124,13 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             cardAlign.pointerHandler = eventData.pointerEnter.transform.parent.GetSiblingIndex();
         else
             cardAlign.pointerHandler = eventData.pointerEnter.transform.parent.transform.parent.GetSiblingIndex();
-        if (currentCardState == cardState.Elsewhere)
+        /*if (currentCardState == cardState.Elsewhere)
         {
             canCreate = true;
             gameplayManager.cardToCreateInt = transform.GetSiblingIndex();
             currentCardState = cardState.Creatable;
             gameplayManager.cardToCreate = this.gameObject;
-        }
+        }*/
     }
 
     public void resetTargetting()
