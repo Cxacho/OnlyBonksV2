@@ -22,8 +22,8 @@ public class PocketKnife : Relic, IPointerEnterHandler,IPointerExitHandler
         temp.Clear();
         temp.AddRange(gm.drawDeck);
         temp.AddRange(gm.discardDeck);
-        if (temp.Contains(gm.allCards[0]) == false)
-        gm.CreateCard(gm.allCards[0], -1, 66);
+        if (temp.Contains(gm.allCardsCreatable[0]) == false)
+        gm.CreateCard(gm.allCardsCreatable[0], -1, 66);
     }
     private void OnDestroy()
     {
@@ -34,7 +34,7 @@ public class PocketKnife : Relic, IPointerEnterHandler,IPointerExitHandler
     {
         if (cardToCreate == null)
         {
-            cardToCreate = Instantiate(gm.allCards[0], gm.canvas.transform);
+            cardToCreate = Instantiate(gm.allCardsCreatable[0], gm.canvas.transform);
             cardToCreate.GetComponent<Card>().enabled = false;
         }
     }

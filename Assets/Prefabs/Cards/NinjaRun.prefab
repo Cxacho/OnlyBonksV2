@@ -180,7 +180,7 @@ MonoBehaviour:
   attack: 0
   defaultattack: 0
   getPanel: 0
-  myWeaponType: 0
+  myWeaponType: 5
   cType: 1
   currentCardState: 0
   cardScalingtype: 0

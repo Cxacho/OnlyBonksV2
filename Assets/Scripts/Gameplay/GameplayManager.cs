@@ -132,7 +132,7 @@ public class GameplayManager : MonoBehaviour
     public List<GameObject> ItemsInInventory = new List<GameObject>();
     public List<GameObject> allRelicsList = new List<GameObject>();
 
-    public List<GameObject> allCards = new List<GameObject>();
+    public List<GameObject> allCardsCreatable = new List<GameObject>();
 
     //lista wszystkich kart w grze, wa¿ne ¿eby dodawaæ je po kolei 
     public List<GameObject> allCardsSHOP = new List<GameObject>();
