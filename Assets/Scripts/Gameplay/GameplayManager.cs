@@ -638,7 +638,7 @@ public class GameplayManager : MonoBehaviour
             darkSoulsText.transform.DOScale(1f, 0);
             enemyTurnTextPanel.SetActive(false);
         });
-        await Task.Delay(2000);
+        await Task.Delay(3500);
 
 
 
