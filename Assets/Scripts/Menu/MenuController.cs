@@ -76,6 +76,7 @@ public class MenuController : MonoBehaviour
 
         contentPanel.SetActive(true);
         audioPanel.SetActive(true);
+        graphicsPanel.SetActive(false);
         contentPanel.GetComponent<Image>().DOFade(1f, 0.3f);
         audioPanel.GetComponent<Image>().DOFade(1f, 0.3f);
 
@@ -86,6 +87,7 @@ public class MenuController : MonoBehaviour
 
         contentPanel.SetActive(true);
         graphicsPanel.SetActive(true);
+        audioPanel.SetActive(false);
         contentPanel.GetComponent<Image>().DOFade(1f, 0.3f);
         graphicsPanel.GetComponent<Image>().DOFade(1f, 0.3f);
 
