@@ -325,16 +325,7 @@ public class Player : MonoBehaviour
         }
 
     }
-    public enum playerStatusses
-    {
-        frail=0,
-        vurneable=1,
-        poision =2,
-        strengthBuff=3,
-        energize=4,
-        pierce = 5,
-        brak = 10
-    }
+    
     public void OnBattleSetup()
     {
         armor = 0;
@@ -378,7 +369,16 @@ public class Player : MonoBehaviour
         //dodac
 
     }
-   
+    public enum playerStatusses
+    {
+        frail = 0,
+        vurneable = 1,
+        poision = 2,
+        strengthBuff = 3,
+        energize = 4,
+        pierce = 5,
+        brak = 10
+    }
     public void setStatus(playerStatusses ps,int value)
     {
         currentBuff = ps;
