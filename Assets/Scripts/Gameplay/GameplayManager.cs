@@ -16,12 +16,13 @@ public enum BattleState { NODE ,START, PLAYERTURN, ENEMYTURN, WON, LOST, Victory
 [RequireComponent(typeof(AudioSource))]
 public class GameplayManager : MonoBehaviour
 {
-    public static GameplayManager instance;
+    private GameplayManager() { }
+    private static GameplayManager instance;
     //Card 
     public BattleState state;
     public Weapon primaryWeapon;
     public Weapon secondaryWeapon;
-    public Weapon currentWeapon;
+
     #region Events
     public event EventHandler OnDraw;
     public event EventHandler OnTurnStart;
@@ -33,12 +34,16 @@ public class GameplayManager : MonoBehaviour
     public Action<Card, float, int> OnCardPlayedDetail;
     #endregion
 
-    #region GameObjectsHidden
-    public GameObject drawPile, playersHand;
+    #region GameObjects
+    [Header("GameObjects")]
+    public GameObject drawPile; 
+    public GameObject playersHand;
     public GameObject discardPile;
     public GameObject discardDeckButton;
     public GameObject playerHandObject;
-    public GameObject treasurePanel, restSitePanel, mysteryPanel;
+    public GameObject treasurePanel;
+    public GameObject restSitePanel;
+    public GameObject mysteryPanel;
     public GameObject treasurePanelButton;
     public GameObject panelLose;
     public GameObject shopPanel;
@@ -62,6 +67,7 @@ public class GameplayManager : MonoBehaviour
     #endregion
 
     #region Ints
+    [Header("Integers")]
     public int numOfList;
     public int currentFloor;
     public int basePlayerDrawAmount;
@@ -74,19 +80,20 @@ public class GameplayManager : MonoBehaviour
     public int skillCardsPlayed;
     public int powerCardsPlayed;
     public int maxCardDraw = 12;
-    [HideInInspector] public int playerDrawAmount;
-    [HideInInspector] public int drawAmount;
-    [HideInInspector] public int discardAmount;
+    public int playerDrawAmount;
+    public int drawAmount;
     #endregion
 
     #region Bools
+    [Header("Bools")]
     public bool canPlayCards = true;
     public bool firstRound = true;
     private bool isAnyoneTargeted;
-    [HideInInspector] public bool canEndTurn;
+    public bool canEndTurn;
     #endregion
 
     #region Buttons
+    [Header("Buttons")]
     private Button coinButton;
     private Button healButton;
     public Button endTurn;
@@ -94,17 +101,21 @@ public class GameplayManager : MonoBehaviour
     #endregion
 
     #region TMP
-
+    [Header("TMPro")]
+    public TextMeshProUGUI cardAmount;
     public TextMeshProUGUI darkSoulsText;
     #endregion
 
     #region Enemy
-    private EnemiesSpawner enemiesSpawner;
+    [Header("Enemy")]
     public Transform[] enemyBattleStation = new Transform[3];
     public Sprite[] indicatorImages;
+    private EnemiesSpawner enemiesSpawner;
+    
     #endregion
 
     #region Player
+    [Header("Player")]
     public LevelProgress levelProgress;
     public Player player;
     #endregion
@@ -115,7 +126,7 @@ public class GameplayManager : MonoBehaviour
     #endregion
 
     #region Ui
-
+    [Header("UI")]
     public UiActive ui;
 
     #endregion
@@ -125,11 +136,13 @@ public class GameplayManager : MonoBehaviour
     #endregion
 
     #region Map
+    [Header("Map")]
     public Map.MapPlayerTracker map;
     public Map.ScrollNonUI scroll;
     #endregion
 
     #region Lists
+    [Header("Lists")]
     public List<GameObject> ItemsInInventory = new List<GameObject>();
     public List<GameObject> allRelicsList = new List<GameObject>();
 
@@ -140,8 +153,6 @@ public class GameplayManager : MonoBehaviour
 
     //lista kart ktore posiada gracz na poczatku
     public List<GameObject> startingDeck = new List<GameObject>();
-    public List<GameObject> startingDeckKatana = new List<GameObject>();
-    public List<GameObject> startingDeckBaseball = new List<GameObject>();
     //lista kart ktore usuwamy z gryw trakcie pojedynku
     public List<GameObject> exhaustedDeck = new List<GameObject>();
     //lista kart ktore mozemy dobrac do reki
@@ -186,73 +197,12 @@ public class GameplayManager : MonoBehaviour
     public List<Enemy> enemyType = new List<Enemy>();
     #endregion
 
-    public void SwitchWeapon()
-    {
-        if (state == BattleState.ENEMYTURN)
-            return;
-        if (currentWeapon == Weapon.Palka)
-        {
-            currentWeapon = Weapon.Katana;
-            //OnClick();
-
-            drawDeck.Clear();
-
-            startingDeck[0] = startingDeckKatana[0];
-            startingDeck[1] = startingDeckKatana[1];
-            startingDeck[2] = startingDeckKatana[2];
-            startingDeck[3] = startingDeckKatana[3];
-            startingDeck[4] = startingDeckKatana[4];
-            startingDeck[5] = startingDeckKatana[5];
-            startingDeck[6] = startingDeckKatana[6];
-            startingDeck[7] = startingDeckKatana[7];
-
-            var hand = GameObject.Find("PlayerHand");
-            for (int i = 0; i < playerHand.Count; i++)
-            {
-                Destroy(hand.transform.GetChild(i).gameObject);
-            }
-
-            playerHand.Clear();
-
-            drawDeck.Clear();
-            discardDeck.Clear();
-            drawDeck.AddRange(startingDeck);
-            OnClick();
-        }
-        else if(currentWeapon == Weapon.Katana)
-        {
-            currentWeapon = Weapon.Palka;
-            
-            drawDeck.Clear();
-
-            startingDeck[0] = startingDeckBaseball[0];
-            startingDeck[1] = startingDeckBaseball[1];
-            startingDeck[2] = startingDeckBaseball[2];
-            startingDeck[3] = startingDeckBaseball[3];
-            startingDeck[4] = startingDeckBaseball[4];
-            startingDeck[5] = startingDeckBaseball[5];
-            startingDeck[6] = startingDeckBaseball[6];
-            startingDeck[7] = startingDeckBaseball[7];
-
-            var hand = GameObject.Find("PlayerHand");
-            for (int i = 0; i < playerHand.Count; i++)
-            {
-                Destroy(hand.transform.GetChild(i).gameObject);
-            }
-
-            playerHand.Clear();
-
-            drawDeck.Clear();
-            discardDeck.Clear();
-            drawDeck.AddRange(startingDeck);
-            OnClick();
-        }
-
-    }
-
     private void Awake()
     {
-        instance = this;
+
+        GetInstance();
+
+
         Debug.Log(playerHandObject.GetComponent<RectTransform>().anchoredPosition);
 
         primaryWeapon = Weapon.Brak;
@@ -269,6 +219,15 @@ public class GameplayManager : MonoBehaviour
 
 
     }
+
+    public static GameplayManager GetInstance()
+    {
+        if (instance == null)
+        {
+            instance = new GameplayManager();
+        }
+        return instance;
+    }
     private void Update()
     {
         foreach (Enemy enemy in enemyType)
@@ -282,7 +241,7 @@ public class GameplayManager : MonoBehaviour
         }
         else endTurn.interactable = false;
 
-
+        cardAmount.text = startingDeck.Count.ToString();
         goldTxtTopUI.GetComponent<TextMeshProUGUI>().text = gold.ToString();
     }
     IEnumerator ChooseNode()
@@ -554,7 +513,6 @@ public class GameplayManager : MonoBehaviour
 
 
             playerHand.ForEach(item => discardDeck.Add(item));
-            playerHand.ForEach(item => discardAmount++);
             playerHand.Clear();
             for (var i =phCount -1;i>=0;i--)
             {
@@ -655,10 +613,8 @@ public class GameplayManager : MonoBehaviour
     {
         discardDeck.ForEach(item => drawDeck.Add(item));
         discardDeck.Clear();
-        discardAmount = 0;
-        discardDeckButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = discardAmount.ToString();
-        
-        
+        var updateText = discardDeckButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
+        updateText = discardDeck.Count.ToString();
     }
     private void resetDeck()
     {

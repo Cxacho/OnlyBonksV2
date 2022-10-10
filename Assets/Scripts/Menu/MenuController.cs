@@ -135,7 +135,7 @@ public class MenuController : MonoBehaviour
             volumeSlider.value = PlayerPrefs.GetFloat("masterVolume");
             volumeTextValue.text = volumeSlider.value.ToString();
         }
-
+        
     }
 
     public void StartNewGame()
