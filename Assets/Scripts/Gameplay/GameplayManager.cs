@@ -16,7 +16,8 @@ public enum BattleState { NODE ,START, PLAYERTURN, ENEMYTURN, WON, LOST, Victory
 [RequireComponent(typeof(AudioSource))]
 public class GameplayManager : MonoBehaviour
 {
-    public static GameplayManager instance;
+    private GameplayManager() { }
+    private static GameplayManager instance;
     //Card 
     public BattleState state;
     public Weapon primaryWeapon;
@@ -33,12 +34,16 @@ public class GameplayManager : MonoBehaviour
     public Action<Card, float, int> OnCardPlayedDetail;
     #endregion
 
-    #region GameObjectsHidden
-    public GameObject drawPile, playersHand;
+    #region GameObjects
+    [Header("GameObjects")]
+    public GameObject drawPile; 
+    public GameObject playersHand;
     public GameObject discardPile;
     public GameObject discardDeckButton;
     public GameObject playerHandObject;
-    public GameObject treasurePanel, restSitePanel, mysteryPanel;
+    public GameObject treasurePanel;
+    public GameObject restSitePanel;
+    public GameObject mysteryPanel;
     public GameObject treasurePanelButton;
     public GameObject panelLose;
     public GameObject shopPanel;
@@ -62,6 +67,7 @@ public class GameplayManager : MonoBehaviour
     #endregion
 
     #region Ints
+    [Header("Integers")]
     public int numOfList;
     public int currentFloor;
     public int basePlayerDrawAmount;
@@ -74,18 +80,20 @@ public class GameplayManager : MonoBehaviour
     public int skillCardsPlayed;
     public int powerCardsPlayed;
     public int maxCardDraw = 12;
-    [HideInInspector] public int playerDrawAmount;
-    [HideInInspector] public int drawAmount;
+    public int playerDrawAmount;
+    public int drawAmount;
     #endregion
 
     #region Bools
+    [Header("Bools")]
     public bool canPlayCards = true;
     public bool firstRound = true;
     private bool isAnyoneTargeted;
-    [HideInInspector] public bool canEndTurn;
+    public bool canEndTurn;
     #endregion
 
     #region Buttons
+    [Header("Buttons")]
     private Button coinButton;
     private Button healButton;
     public Button endTurn;
@@ -93,17 +101,21 @@ public class GameplayManager : MonoBehaviour
     #endregion
 
     #region TMP
-
+    [Header("TMPro")]
+    public TextMeshProUGUI cardAmount;
     public TextMeshProUGUI darkSoulsText;
     #endregion
 
     #region Enemy
-    private EnemiesSpawner enemiesSpawner;
+    [Header("Enemy")]
     public Transform[] enemyBattleStation = new Transform[3];
     public Sprite[] indicatorImages;
+    private EnemiesSpawner enemiesSpawner;
+    
     #endregion
 
     #region Player
+    [Header("Player")]
     public LevelProgress levelProgress;
     public Player player;
     #endregion
@@ -114,7 +126,7 @@ public class GameplayManager : MonoBehaviour
     #endregion
 
     #region Ui
-
+    [Header("UI")]
     public UiActive ui;
 
     #endregion
@@ -124,11 +136,13 @@ public class GameplayManager : MonoBehaviour
     #endregion
 
     #region Map
+    [Header("Map")]
     public Map.MapPlayerTracker map;
     public Map.ScrollNonUI scroll;
     #endregion
 
     #region Lists
+    [Header("Lists")]
     public List<GameObject> ItemsInInventory = new List<GameObject>();
     public List<GameObject> allRelicsList = new List<GameObject>();
 
@@ -185,7 +199,10 @@ public class GameplayManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+
+        GetInstance();
+
+
         Debug.Log(playerHandObject.GetComponent<RectTransform>().anchoredPosition);
 
         primaryWeapon = Weapon.Brak;
@@ -202,6 +219,15 @@ public class GameplayManager : MonoBehaviour
 
 
     }
+
+    public static GameplayManager GetInstance()
+    {
+        if (instance == null)
+        {
+            instance = new GameplayManager();
+        }
+        return instance;
+    }
     private void Update()
     {
         foreach (Enemy enemy in enemyType)
@@ -215,7 +241,7 @@ public class GameplayManager : MonoBehaviour
         }
         else endTurn.interactable = false;
 
-
+        cardAmount.text = startingDeck.Count.ToString();
         goldTxtTopUI.GetComponent<TextMeshProUGUI>().text = gold.ToString();
     }
     IEnumerator ChooseNode()
