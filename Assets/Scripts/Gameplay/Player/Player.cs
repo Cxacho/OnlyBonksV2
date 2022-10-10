@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public GameObject textHealth;
     public GameObject textArmor;
     public GameObject shield;
-    GameObject frailIndicator, vurneableIndicator, poisonIndicator, strengthBuffIndicator,pierceIndicator;
+    GameObject frailIndicator, vurneableIndicator, poisonIndicator, strengthBuffIndicator,pierceIndicator,dexterityIndicator;
     [HideInInspector]public GameObject energizeIndicator;
     TextMeshProUGUI value;
     public int maxHealth;
@@ -95,6 +95,7 @@ public class Player : MonoBehaviour
     public void setStatusIndicator(int value,int select,GameObject buffIndicator)
     {
         currentBuff = (playerStatusses)select;
+        Debug.Log("Case numer : " + currentBuff);
         switch(currentBuff)
         {
             case Player.playerStatusses.frail:
@@ -131,6 +132,7 @@ public class Player : MonoBehaviour
             case Player.playerStatusses.strengthBuff:
                 //strenght += tempStrength;
                 strenght += value;
+                Debug.Log("Str value" + value);
                 if (strengthBuffIndicator == null)
                 {
                     strengthBuffIndicator = Instantiate(buffIndicator, buffsAndDebuffs.transform);
@@ -141,16 +143,30 @@ public class Player : MonoBehaviour
                 break;
             case Player.playerStatusses.energize:
                 energize += value;
-                if (strengthBuffIndicator == null)
+                if (energizeIndicator == null)
                 {
                     energizeIndicator = Instantiate(buffIndicator, buffsAndDebuffs.transform);
-
+                    Debug.Log("COS");
                 }
-                foreach (Card obj in FindObjectsOfType<Card>())
+                /*foreach (Card obj in FindObjectsOfType<Card>())
                     if(obj.cost >0)
-                    obj.cost -= 1; 
+                    obj.cost -= 1;
+                */
                 var buffValue4 = energizeIndicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                 buffValue4.text = energize.ToString();
+                
+                break;
+            case Player.playerStatusses.dexterity:
+                //strenght += tempStrength;
+                dexterity += value;
+                Debug.Log("Dex value" + value);
+                if (dexterityIndicator == null)
+                {
+                    dexterityIndicator = Instantiate(buffIndicator, buffsAndDebuffs.transform);
+
+                }
+                var buffValue5 = dexterityIndicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+                buffValue5.text = dexterity.ToString();
                 break;
 
             case Player.playerStatusses.pierce:
@@ -332,7 +348,8 @@ public class Player : MonoBehaviour
         poision =2,
         strengthBuff=3,
         energize=4,
-        pierce = 5,
+        pierce = 6,
+        dexterity = 5,
         brak = 10
     }
     public void OnBattleSetup()
@@ -411,6 +428,10 @@ public class Player : MonoBehaviour
             case playerStatusses.vurneable:
                 var statusGO5 = Instantiate(buffIndicators[1], buffsAndDebuffs.transform);
                 statusGO5.GetComponent<Indicator>().checkIfIExist(ps, value);
+                break;
+            case playerStatusses.dexterity:
+                var statusGO6 = Instantiate(buffIndicators[6], buffsAndDebuffs.transform);
+                statusGO6.GetComponent<Indicator>().checkIfIExist(ps, value);
                 break;
         }
     }

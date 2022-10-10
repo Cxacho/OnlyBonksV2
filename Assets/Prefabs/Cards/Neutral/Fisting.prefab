@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 4154305017897078799}
   - component: {fileID: 4195082560769264694}
   - component: {fileID: -6022969762265394306}
-  - component: {fileID: 9115252423795947093}
-  - component: {fileID: 3532431814366106555}
+  - component: {fileID: -5798420545736491646}
+  - component: {fileID: -7607302733769820416}
   m_Layer: 5
-  m_Name: GetSwole
+  m_Name: Fisting
   m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +61,46 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!96 &9115252423795947093
+--- !u!114 &-5798420545736491646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2858555165568228111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ac76613649b7bd439dbe2dbcdc56fd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseCost: 2
+  cost: 2
+  scaleCardValues: 0
+  index: 0
+  baseNumOfTargets: 0
+  attack: 0
+  defaultattack: 0
+  getPanel: 0
+  myWeaponType: 6
+  cType: 1
+  currentCardState: 3
+  cardScalingtype: 0
+  secondaryScalingType: 0
+  cardDamageType: 0
+  exitButton: {fileID: 1019920095713079653, guid: 999738602cea97c4882ce11df42f5f38, type: 3}
+  ui: {fileID: 0}
+  player: {fileID: 0}
+  cardAlign: {fileID: 0}
+  gameplayManager: {fileID: 0}
+  interactible: 0
+  trailOffset: {x: 110, y: 170}
+  meshes: []
+  _enemies: []
+  exhaustable: 0
+  isNeutral: 0
+  retainable: 0
+  desc: 
+--- !u!96 &-7607302733769820416
 TrailRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
@@ -82,7 +121,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -103,10 +142,10 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 2
+  m_Time: 5
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 4.802426
+    widthMultiplier: 1
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -124,8 +163,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.13830544, g: 0.51434755, b: 0.7924528, a: 1}
-      key1: {r: 0.13830544, g: 0.51434755, b: 0.7924528, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -160,45 +199,6 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &3532431814366106555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2858555165568228111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fa062d6a6276774da7a60084112864f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseCost: 2
-  cost: 2
-  scaleCardValues: 0
-  index: 0
-  baseNumOfTargets: 0
-  attack: 0
-  defaultattack: 0
-  getPanel: 0
-  myWeaponType: 0
-  cType: 2
-  currentCardState: 3
-  cardScalingtype: 0
-  secondaryScalingType: 0
-  cardDamageType: 0
-  exitButton: {fileID: 1019920095713079653, guid: 999738602cea97c4882ce11df42f5f38, type: 3}
-  ui: {fileID: 0}
-  player: {fileID: 0}
-  cardAlign: {fileID: 0}
-  gameplayManager: {fileID: 0}
-  interactible: 0
-  trailOffset: {x: 110, y: 170}
-  meshes: []
-  _enemies: []
-  exhaustable: 0
-  isNeutral: 0
-  retainable: 0
-  desc: 
 --- !u!1 &3868653325569000508
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,10 +232,10 @@ RectTransform:
   m_Father: {fileID: 6378627393820948997}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.030315446, y: 0.86017644}
-  m_AnchorMax: {x: 0.19554526, y: 0.98529404}
-  m_AnchoredPosition: {x: -0.38220215, y: 0}
-  m_SizeDelta: {x: 2.6327972, y: 2.1262817}
+  m_AnchorMin: {x: 0, y: 0.8678824}
+  m_AnchorMax: {x: 0.16900001, y: 1}
+  m_AnchoredPosition: {x: 0.8125, y: -0.06317139}
+  m_SizeDelta: {x: 1.6327972, y: 0.12628174}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6682002869044894971
 CanvasRenderer:
@@ -292,7 +292,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.55
+  m_fontSize: 37.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -367,10 +367,10 @@ RectTransform:
   m_Father: {fileID: 6378627393820948997}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.43431544, y: 0.42400002}
-  m_AnchorMax: {x: 0.60531545, y: 0.45882335}
-  m_AnchoredPosition: {x: -0.10000038, y: 0.6220703}
-  m_SizeDelta: {x: 0.42970276, y: 0.75579834}
+  m_AnchorMin: {x: 0.42200002, y: 0.43100002}
+  m_AnchorMax: {x: 0.5925453, y: 0.46764693}
+  m_AnchoredPosition: {x: -0.546875, y: -1.1220093}
+  m_SizeDelta: {x: 1.4297028, y: -0.24420166}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2949104907133444256
 CanvasRenderer:
@@ -427,7 +427,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10.6
+  m_fontSize: 10.25
   m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -502,10 +502,10 @@ RectTransform:
   m_Father: {fileID: 6378627393820948997}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.23, y: 0.86017644}
-  m_AnchorMax: {x: 0.84645474, y: 0.91700006}
-  m_AnchoredPosition: {x: -1.2999992, y: -0.53131104}
-  m_SizeDelta: {x: -2.5780945, y: 1.0635986}
+  m_AnchorMin: {x: 0.20500001, y: 0.8678824}
+  m_AnchorMax: {x: 0.7955453, y: 0.92600006}
+  m_AnchoredPosition: {x: 0.453125, y: 0.41000366}
+  m_SizeDelta: {x: 3.4219055, y: 1.0635986}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4016098877173305660
 CanvasRenderer:
@@ -535,7 +535,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Get Swole
+  m_text: Fisting
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -562,8 +562,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17.15
-  m_fontSizeBase: 14
+  m_fontSize: 17.5
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 2
@@ -634,7 +634,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5258035033271910340}
+  - {fileID: 7378655392135895017}
   - {fileID: 3953153988903459137}
   - {fileID: 6146576696045900088}
   - {fileID: 7657327688177141488}
@@ -643,8 +643,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000015258789, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_SizeDelta: {x: 0.009994507, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4834897393361186918
 CanvasRenderer:
@@ -674,7 +674,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 066724f56e1191e4397e6149ee193548, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6ebab6f939343064a978d80848d3a761, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -684,7 +684,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &8349713930422013707
+--- !u!1 &8181098645186160727
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -692,9 +692,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5258035033271910340}
-  - component: {fileID: 6092661124000309646}
-  - component: {fileID: 1906149469558036802}
+  - component: {fileID: 7378655392135895017}
+  - component: {fileID: 8735146951531586623}
+  - component: {fileID: 8479757207039664003}
   m_Layer: 5
   m_Name: DESC
   m_TagString: Untagged
@@ -702,13 +702,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &5258035033271910340
+--- !u!224 &7378655392135895017
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8349713930422013707}
+  m_GameObject: {fileID: 8181098645186160727}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -717,26 +717,26 @@ RectTransform:
   m_Father: {fileID: 6378627393820948997}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.13654545, y: 0.05}
-  m_AnchorMax: {x: 0.8915453, y: 0.42400002}
-  m_AnchoredPosition: {x: -0.95890045, y: 0.28799438}
-  m_SizeDelta: {x: 1.9178, y: 0.7519989}
+  m_AnchorMin: {x: 0.115, y: 0.045}
+  m_AnchorMax: {x: 0.887, y: 0.42000002}
+  m_AnchoredPosition: {x: -0.328125, y: 0.10308838}
+  m_SizeDelta: {x: 2.1499996, y: -0.18009949}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &6092661124000309646
+--- !u!222 &8735146951531586623
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8349713930422013707}
+  m_GameObject: {fileID: 8181098645186160727}
   m_CullTransparentMesh: 1
---- !u!114 &1906149469558036802
+--- !u!114 &8479757207039664003
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8349713930422013707}
+  m_GameObject: {fileID: 8181098645186160727}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -750,9 +750,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Give 5 strength
+  m_text: 'Gain 2 strenght
 
-    Give 10 armor'
+    Draw 3 cards'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -774,7 +774,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 93368250
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -815,7 +815,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -0.14129639, y: 0, z: -0.14135742, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

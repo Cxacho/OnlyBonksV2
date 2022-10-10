@@ -477,6 +477,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 {
                     temp.Add(gameplayManager.playerHand[i]);
                     gameplayManager.discardDeck.Add(temp[0]);
+                    gameplayManager.discardAmount++;
+                    gameplayManager.discardDeckButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = gameplayManager.discardAmount.ToString();
                     gameplayManager.playerHand.RemoveAt(i);
                     temp.RemoveAt(0);
                 }

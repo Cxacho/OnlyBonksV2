@@ -25,34 +25,42 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             switch (this.gameObject.name)
             {
                 case "Shop_icon" :
-                    tooltip_RectTransoform.anchoredPosition = new Vector2(-960f, 376.5f);
+                    tooltip_RectTransoform.anchoredPosition = new Vector2(-710f, 418);
                     break;
                 case "hp_icon" :
-                    tooltip_RectTransoform.anchoredPosition = new Vector2(-621f, 389f);
+                    tooltip_RectTransoform.anchoredPosition = new Vector2(-470.0f, 431f);
                     break;
-                case "room_count_icon":
-                    tooltip_RectTransoform.anchoredPosition = new Vector2(-434.4f, 389f);
+                case "roomCount":
+                    tooltip_RectTransoform.anchoredPosition = new Vector2(-226, 430);
+                    break;
+                case "roomImage":
+                    tooltip_RectTransoform.anchoredPosition = new Vector2(-226, 430);
                     break;
                 case "EndTurnButton":
-                    tooltip_RectTransoform.anchoredPosition = new Vector2(-72.3f, 389f);
+                    tooltip_RectTransoform.anchoredPosition = new Vector2(495, -467);
                     break;
                 case "Deck_icon":
-                    tooltip_RectTransoform.anchoredPosition = new Vector2(529f, 389f);
+                    tooltip_RectTransoform.anchoredPosition = new Vector2(681.6f, 431f);
                     break;
                 case "Map_icon":
-                    tooltip_RectTransoform.anchoredPosition = new Vector2(699f, 389f);
+                    tooltip_RectTransoform.anchoredPosition = new Vector2(791, 431f);
                     break;
                 case "Settings_icon":
-                    tooltip_RectTransoform.anchoredPosition = new Vector2(809.8f, 400.2998f);
+                    tooltip_RectTransoform.anchoredPosition = new Vector2(851.68f, 431f);
+                    break;case "settingsImage":
+                    tooltip_RectTransoform.anchoredPosition = new Vector2(851.68f, 431f);
                     break;
                 case "Mana_icon":
                     tooltip_RectTransoform.anchoredPosition = new Vector2(-876f, -119f);
                     break;
-                case "DiscardDeckButton":
-                    tooltip_RectTransoform.anchoredPosition = new Vector2(725.7f, -334.9f);
+                case "Discard_Deck_Button":
+                    tooltip_RectTransoform.anchoredPosition = new Vector2(495, -467);
                     break;
-                case "DrewDeckButton":
-                    tooltip_RectTransoform.anchoredPosition = new Vector2(-960, -334.9f);
+                case "Draw_Deck_Button":
+                    tooltip_RectTransoform.anchoredPosition = new Vector2(-482, -468);
+                    break;
+                case "Swap_Weapon_Button":
+                    tooltip_RectTransoform.anchoredPosition = new Vector2(-482, -468);
                     break;
                 default:
                     Debug.Log("error");

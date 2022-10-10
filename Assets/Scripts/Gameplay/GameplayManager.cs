@@ -21,7 +21,7 @@ public class GameplayManager : MonoBehaviour
     public BattleState state;
     public Weapon primaryWeapon;
     public Weapon secondaryWeapon;
-
+    public Weapon currentWeapon;
     #region Events
     public event EventHandler OnDraw;
     public event EventHandler OnTurnStart;
@@ -76,6 +76,7 @@ public class GameplayManager : MonoBehaviour
     public int maxCardDraw = 12;
     [HideInInspector] public int playerDrawAmount;
     [HideInInspector] public int drawAmount;
+    [HideInInspector] public int discardAmount;
     #endregion
 
     #region Bools
@@ -139,6 +140,8 @@ public class GameplayManager : MonoBehaviour
 
     //lista kart ktore posiada gracz na poczatku
     public List<GameObject> startingDeck = new List<GameObject>();
+    public List<GameObject> startingDeckKatana = new List<GameObject>();
+    public List<GameObject> startingDeckBaseball = new List<GameObject>();
     //lista kart ktore usuwamy z gryw trakcie pojedynku
     public List<GameObject> exhaustedDeck = new List<GameObject>();
     //lista kart ktore mozemy dobrac do reki
@@ -182,6 +185,70 @@ public class GameplayManager : MonoBehaviour
 
     public List<Enemy> enemyType = new List<Enemy>();
     #endregion
+
+    public void SwitchWeapon()
+    {
+        if (state == BattleState.ENEMYTURN)
+            return;
+        if (currentWeapon == Weapon.Palka)
+        {
+            currentWeapon = Weapon.Katana;
+            //OnClick();
+
+            drawDeck.Clear();
+
+            startingDeck[0] = startingDeckKatana[0];
+            startingDeck[1] = startingDeckKatana[1];
+            startingDeck[2] = startingDeckKatana[2];
+            startingDeck[3] = startingDeckKatana[3];
+            startingDeck[4] = startingDeckKatana[4];
+            startingDeck[5] = startingDeckKatana[5];
+            startingDeck[6] = startingDeckKatana[6];
+            startingDeck[7] = startingDeckKatana[7];
+
+            var hand = GameObject.Find("PlayerHand");
+            for (int i = 0; i < playerHand.Count; i++)
+            {
+                Destroy(hand.transform.GetChild(i).gameObject);
+            }
+
+            playerHand.Clear();
+
+            drawDeck.Clear();
+            discardDeck.Clear();
+            drawDeck.AddRange(startingDeck);
+            OnClick();
+        }
+        else if(currentWeapon == Weapon.Katana)
+        {
+            currentWeapon = Weapon.Palka;
+            
+            drawDeck.Clear();
+
+            startingDeck[0] = startingDeckBaseball[0];
+            startingDeck[1] = startingDeckBaseball[1];
+            startingDeck[2] = startingDeckBaseball[2];
+            startingDeck[3] = startingDeckBaseball[3];
+            startingDeck[4] = startingDeckBaseball[4];
+            startingDeck[5] = startingDeckBaseball[5];
+            startingDeck[6] = startingDeckBaseball[6];
+            startingDeck[7] = startingDeckBaseball[7];
+
+            var hand = GameObject.Find("PlayerHand");
+            for (int i = 0; i < playerHand.Count; i++)
+            {
+                Destroy(hand.transform.GetChild(i).gameObject);
+            }
+
+            playerHand.Clear();
+
+            drawDeck.Clear();
+            discardDeck.Clear();
+            drawDeck.AddRange(startingDeck);
+            OnClick();
+        }
+
+    }
 
     private void Awake()
     {
@@ -487,6 +554,7 @@ public class GameplayManager : MonoBehaviour
 
 
             playerHand.ForEach(item => discardDeck.Add(item));
+            playerHand.ForEach(item => discardAmount++);
             playerHand.Clear();
             for (var i =phCount -1;i>=0;i--)
             {
@@ -587,8 +655,10 @@ public class GameplayManager : MonoBehaviour
     {
         discardDeck.ForEach(item => drawDeck.Add(item));
         discardDeck.Clear();
-        var updateText = discardDeckButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
-        updateText = discardDeck.Count.ToString();
+        discardAmount = 0;
+        discardDeckButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = discardAmount.ToString();
+        
+        
     }
     private void resetDeck()
     {

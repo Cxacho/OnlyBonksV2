@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 4154305017897078799}
   - component: {fileID: 4195082560769264694}
   - component: {fileID: -6022969762265394306}
-  - component: {fileID: -3353096608851954633}
-  - component: {fileID: 8862119783022328835}
+  - component: {fileID: 9115252423795947093}
+  - component: {fileID: 1753902683232363406}
   m_Layer: 7
-  m_Name: Attack (4)
+  m_Name: LastStand
   m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,87 +61,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &-3353096608851954633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2858555165568228111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f52490be9f3528c479aad215175e0bb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseCost: 1
-  cost: 1
-  scaleCardValues: 0
-  index: 0
-  baseNumOfTargets: 1
-  attack: 5
-  defaultattack: 5
-  getPanel: 0
-  myWeaponType: 0
-  cType: 0
-  currentCardState: 3
-  cardScalingtype: 1
-  secondaryScalingType: 0
-  cardDamageType: 0
-  exitButton: {fileID: 1019920095713079653, guid: 999738602cea97c4882ce11df42f5f38, type: 3}
-  ui: {fileID: 0}
-  player: {fileID: 0}
-  cardAlign: {fileID: 0}
-  gameplayManager: {fileID: 0}
-  interactible: 0
-  trailOffset: {x: 110, y: 170}
-  meshes: []
-  _enemies: []
-  exhaustable: 0
-  isNeutral: 0
-  retainable: 0
-  desc: Deal <color=white>5</color> damage
-  bonkComicVFX: {fileID: 6759721781727752394, guid: 0382242273ae13e4887b737dea65abed, type: 3}
-  batVFX: {fileID: 7018250619379937311, guid: 156f4f836a1edae45abbeb827a6a9153, type: 3}
-  spawnOffset: {x: -20, y: 35, z: 0}
-  hitOffset: {x: -70, y: 60, z: 0}
-  spriteSpawnOffset: {x: 20, y: -30, z: 0}
-  rot: {x: 0, y: 0, z: -110}
-  anCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.17642452
-      outSlope: 0.17642452
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.8491316
-      value: 0.14980763
-      inSlope: 0.49390477
-      outSlope: 0.49390477
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.118938036
-      outWeight: 0.483761
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 5.6353235
-      outSlope: 5.6353235
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  animTime: 0.4
-  animMultiplier: 0.5
---- !u!96 &8862119783022328835
+--- !u!96 &9115252423795947093
 TrailRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
@@ -186,12 +106,12 @@ TrailRenderer:
   m_Time: 2
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 4.7119555
+    widthMultiplier: 4.802426
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.011173248
+        time: 0
         value: 1
         inSlope: 0
         outSlope: 0
@@ -199,38 +119,29 @@ TrailRenderer:
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.46362606, g: 0.079832695, b: 0.735849, a: 1}
-      key1: {r: 1, g: 0, b: 0, a: 1}
-      key2: {r: 1, g: 0, b: 0, a: 0}
+      key0: {r: 0.13830544, g: 0.51434755, b: 0.7924528, a: 1}
+      key1: {r: 0.13830544, g: 0.51434755, b: 0.7924528, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 64957
+      ctime0: 0
       ctime1: 65535
-      ctime2: 65535
+      ctime2: 0
       ctime3: 0
       ctime4: 0
       ctime5: 0
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 54356
+      atime1: 65535
       atime2: 0
       atime3: 0
       atime4: 0
@@ -249,6 +160,50 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &1753902683232363406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2858555165568228111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 992e636984eabed40b467964bae3ddd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseCost: 1
+  cost: 1
+  scaleCardValues: 0
+  index: 0
+  baseNumOfTargets: 0
+  attack: 0
+  defaultattack: 0
+  getPanel: 0
+  myWeaponType: 6
+  cType: 1
+  currentCardState: 3
+  cardScalingtype: 0
+  secondaryScalingType: 0
+  cardDamageType: 0
+  exitButton: {fileID: 1019920095713079653, guid: 999738602cea97c4882ce11df42f5f38, type: 3}
+  ui: {fileID: 0}
+  player: {fileID: 0}
+  cardAlign: {fileID: 0}
+  gameplayManager: {fileID: 0}
+  interactible: 0
+  trailOffset: {x: 110, y: 170}
+  meshes: []
+  _enemies: []
+  exhaustable: 0
+  isNeutral: 0
+  retainable: 0
+  desc: 
+  shieldVFX: {fileID: 3012403007239066207, guid: ed4cc8b0547090a4284f9554f057f0a7, type: 3}
+  smokeVFX: {fileID: 2551491812487652311, guid: 3b12db6bc6164c64b87cdcd5929d263d, type: 3}
+  offset: {x: 35, y: 0, z: 0}
+  anim: {x: 0, y: 10, z: 0}
+  smokOffset: {x: 0, y: -8, z: 0}
 --- !u!1 &3868653325569000508
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,10 +237,10 @@ RectTransform:
   m_Father: {fileID: 6378627393820948997}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.869}
-  m_AnchorMax: {x: 0.17500001, y: 1}
-  m_AnchoredPosition: {x: 0.3125, y: -0.06317139}
-  m_SizeDelta: {x: 0.63279724, y: 0.12628174}
+  m_AnchorMin: {x: 0.018000001, y: 0.869}
+  m_AnchorMax: {x: 0.17745477, y: 0.9911764}
+  m_AnchoredPosition: {x: 1.4687042, y: 0.43969727}
+  m_SizeDelta: {x: 0.97379994, y: 1.132}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6682002869044894971
 CanvasRenderer:
@@ -317,8 +272,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
+  m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -342,13 +297,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 39.95
+  m_fontSize: 35.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 2
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -417,10 +372,10 @@ RectTransform:
   m_Father: {fileID: 6378627393820948997}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.41045478, y: 0.4262943}
-  m_AnchorMax: {x: 0.587, y: 0.46176454}
-  m_AnchoredPosition: {x: 0.453125, y: 0.37799072}
-  m_SizeDelta: {x: -0.57029724, y: 0.75579834}
+  m_AnchorMin: {x: 0.43554527, y: 0.43}
+  m_AnchorMax: {x: 0.588, y: 0.46470574}
+  m_AnchoredPosition: {x: 0.0777998, y: 0.6000004}
+  m_SizeDelta: {x: -0.1557002, y: 0.7558}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2949104907133444256
 CanvasRenderer:
@@ -450,10 +405,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Attack
+  m_text: Defend
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
+  m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -477,7 +432,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.45
+  m_fontSize: 8.9
   m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -552,10 +507,10 @@ RectTransform:
   m_Father: {fileID: 6378627393820948997}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.19745477, y: 0.869}
-  m_AnchorMax: {x: 0.80054533, y: 0.92600006}
-  m_AnchoredPosition: {x: 0.453125, y: 0.41000366}
-  m_SizeDelta: {x: 1.4219055, y: 1.0635986}
+  m_AnchorMin: {x: 0.19554526, y: 0.869}
+  m_AnchorMax: {x: 0.8495453, y: 0.929}
+  m_AnchoredPosition: {x: 0.53479767, y: -0.08999634}
+  m_SizeDelta: {x: -0.4147997, y: 0.0636}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4016098877173305660
 CanvasRenderer:
@@ -585,10 +540,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Get Bonked Scrub
+  m_text: Last Stand
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
+  m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -612,7 +567,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14.5
+  m_fontSize: 17.2
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -724,7 +679,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c188dd51f16a15a47be5b649bbee1b50, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 843179ea05443a9459d3abfa971a9eb9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -746,7 +701,7 @@ GameObject:
   - component: {fileID: 8735146951531586623}
   - component: {fileID: 8479757207039664003}
   m_Layer: 7
-  m_Name: Desc
+  m_Name: DESC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -767,10 +722,10 @@ RectTransform:
   m_Father: {fileID: 6378627393820948997}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.11345476, y: 0.041}
-  m_AnchorMax: {x: 0.896, y: 0.4262943}
-  m_AnchoredPosition: {x: -1.328125, y: -0.089523315}
-  m_SizeDelta: {x: 0.14999962, y: 0.13929749}
+  m_AnchorMin: {x: 0.105000004, y: 0.046000004}
+  m_AnchorMax: {x: 0.896, y: 0.41811767}
+  m_AnchoredPosition: {x: 1.3615036, y: 0.31762695}
+  m_SizeDelta: {x: -5.2292, y: 2.0919}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8735146951531586623
 CanvasRenderer:
@@ -800,7 +755,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Deal 3 damage
+  m_text: If you have less than 4 armor gain 9 armor, else gain 6 armor
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -827,8 +782,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 2
@@ -863,7 +818,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 10, y: 0, z: 10, w: 0}
+  m_margin: {x: -0.1373291, y: 0, z: 0.42590332, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
