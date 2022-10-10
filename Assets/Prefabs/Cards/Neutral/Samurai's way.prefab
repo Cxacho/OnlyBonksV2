@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 4154305017897078799}
   - component: {fileID: 4195082560769264694}
   - component: {fileID: -6022969762265394306}
-  - component: {fileID: -3622308024875926358}
   - component: {fileID: -3669021694705321634}
+  - component: {fileID: 666733459244339730}
   m_Layer: 5
-  m_Name: Fisting1
+  m_Name: Samurai's way
   m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,45 +61,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &-3622308024875926358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2858555165568228111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac76613649b7bd439dbe2dbcdc56fd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseCost: 2
-  cost: 2
-  scaleCardValues: 0
-  index: 0
-  baseNumOfTargets: 0
-  attack: 0
-  defaultattack: 0
-  getPanel: 0
-  myWeaponType: 0
-  cType: 1
-  currentCardState: 3
-  cardScalingtype: 0
-  secondaryScalingType: 0
-  cardDamageType: 0
-  exitButton: {fileID: 1019920095713079653, guid: 999738602cea97c4882ce11df42f5f38, type: 3}
-  ui: {fileID: 0}
-  player: {fileID: 0}
-  cardAlign: {fileID: 0}
-  gameplayManager: {fileID: 0}
-  interactible: 0
-  trailOffset: {x: 110, y: 170}
-  meshes: []
-  _enemies: []
-  exhaustable: 0
-  isNeutral: 0
-  retainable: 0
-  desc: 
 --- !u!96 &-3669021694705321634
 TrailRenderer:
   serializedVersion: 2
@@ -199,6 +160,45 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &666733459244339730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2858555165568228111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca997a7f30142ad48b9fff5da4d5cbd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseCost: 2
+  cost: 2
+  scaleCardValues: 0
+  index: 0
+  baseNumOfTargets: 0
+  attack: 0
+  defaultattack: 0
+  getPanel: 0
+  myWeaponType: 6
+  cType: 1
+  currentCardState: 0
+  cardScalingtype: 0
+  secondaryScalingType: 0
+  cardDamageType: 0
+  exitButton: {fileID: 0}
+  ui: {fileID: 0}
+  player: {fileID: 0}
+  cardAlign: {fileID: 0}
+  gameplayManager: {fileID: 0}
+  interactible: 0
+  trailOffset: {x: 110, y: 170}
+  meshes: []
+  _enemies: []
+  exhaustable: 0
+  isNeutral: 0
+  retainable: 0
+  desc: 
 --- !u!1 &3868653325569000508
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,7 +535,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Fisting
+  m_text: 'Samurai''s way
 
 '
   m_isRightToLeft: 0
@@ -752,9 +752,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Gain 2 strenght
-
-    Draw 3 cards'
+  m_text: Gain 3 dexterity and draw 2 cards
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -781,10 +779,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21
+  m_fontSize: 26.55
   m_fontSizeBase: 21
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 2
   m_fontSizeMax: 72
   m_fontStyle: 1

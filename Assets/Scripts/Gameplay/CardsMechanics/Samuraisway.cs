@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fisting : Card
+public class Samuraisway: Card
 {
     
     void Start()
@@ -25,9 +25,9 @@ public class Fisting : Card
             gameplayManager.state = BattleState.PLAYERTURN;
             */
 
-            player.GetComponentInChildren<Animator>().SetTrigger("GetSwoleTrigger");
-            player.setStatusIndicator(2, 3, player.buffIndicators[3]);
-            gameplayManager.DrawCards(3);
+            //player.GetComponentInChildren<Animator>().SetTrigger("GetSwoleTrigger");
+            player.setStatusIndicator(3, 5, player.buffIndicators[6]);
+            gameplayManager.DrawCards(2);
             player.manaText.text = player.mana.ToString();
         }
         else
@@ -35,9 +35,5 @@ public class Fisting : Card
             Debug.Log("fajnie dzia³a");
         }
     }
-    public void GainStr()
-    {
-        player.strenght += 2;
 
-    }
 }

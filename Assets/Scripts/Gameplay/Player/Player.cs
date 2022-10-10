@@ -348,8 +348,8 @@ public class Player : MonoBehaviour
         poision =2,
         strengthBuff=3,
         energize=4,
-        pierce = 6,
         dexterity = 5,
+        pierce = 6,
         brak = 10
     }
     public void OnBattleSetup()

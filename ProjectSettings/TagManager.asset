@@ -25,6 +25,7 @@ TagManager:
   - Inventory
   - NPCDialogue
   - PlayArea
+  - ToolTip
   layers:
   - Default
   - TransparentFX

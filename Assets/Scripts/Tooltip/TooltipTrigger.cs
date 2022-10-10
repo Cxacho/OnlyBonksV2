@@ -14,6 +14,7 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     void Awake()
     {
+        Tooltip = GameObject.FindGameObjectWithTag("ToolTip");
         tooltip_RectTransoform = Tooltip.GetComponent<RectTransform>();
     }
 
@@ -36,7 +37,9 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
                 case "roomImage":
                     tooltip_RectTransoform.anchoredPosition = new Vector2(-226, 430);
                     break;
-                case "EndTurnButton":
+                case "EndTurn_Button":
+                    tooltip_RectTransoform.anchoredPosition = new Vector2(495, -467);
+                    break;case "endImage":
                     tooltip_RectTransoform.anchoredPosition = new Vector2(495, -467);
                     break;
                 case "Deck_icon":
@@ -47,11 +50,12 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
                     break;
                 case "Settings_icon":
                     tooltip_RectTransoform.anchoredPosition = new Vector2(851.68f, 431f);
-                    break;case "settingsImage":
+                    break;
+                case "settingsImage":
                     tooltip_RectTransoform.anchoredPosition = new Vector2(851.68f, 431f);
                     break;
-                case "Mana_icon":
-                    tooltip_RectTransoform.anchoredPosition = new Vector2(-876f, -119f);
+                case "Mana":
+                    tooltip_RectTransoform.anchoredPosition = new Vector2(-804, -177);
                     break;
                 case "Discard_Deck_Button":
                     tooltip_RectTransoform.anchoredPosition = new Vector2(495, -467);
@@ -61,6 +65,12 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
                     break;
                 case "Swap_Weapon_Button":
                     tooltip_RectTransoform.anchoredPosition = new Vector2(-482, -468);
+                    break;
+                case "StrengthBuffIndcator(Clone)":
+                    tooltip_RectTransoform.anchoredPosition = new Vector2(-527, -25);
+                    break;
+                case "DexterityIndicator(Clone)":
+                    tooltip_RectTransoform.anchoredPosition = new Vector2(-527, -25);
                     break;
                 default:
                     Debug.Log("error");

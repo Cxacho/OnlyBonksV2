@@ -26,11 +26,11 @@ public class Tooltip : MonoBehaviour
     {
         if (string.IsNullOrEmpty(header))
         {
-            headerField.gameObject.SetActive(false);
+            //headerField.gameObject.SetActive(false);
         }
         else
         {
-            headerField.gameObject.SetActive(true);
+            //headerField.gameObject.SetActive(true);
             headerField.text = header;
         }
 
