@@ -21,7 +21,7 @@ public class Howl : Card
             gameplayManager.state = BattleState.INANIM;
             await DoAnim();
             gameplayManager.state = BattleState.PLAYERTURN;
-            player.setStatusIndicator(4, 3, player.buffIndicators[3]);
+            player.setStatusIndicator(4, 5, player.buffIndicators[6]);
         }
         else
         {

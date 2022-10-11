@@ -14,7 +14,7 @@ public class MassiveBonk : Card
     [SerializeField] Vector2  fallingOffset;
     private void Start()
     {
-        desc = $"Summon a huge bat dealing <color=white>{attack.ToString()}</color> damage to targetted enemy";
+        desc = $"Summon a huge bat dealing <color=white>{attack.ToString()}</color> damage to the enemy";
 
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
@@ -26,11 +26,11 @@ public class MassiveBonk : Card
         calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
 
         if (attack == defaultattack)
-            desc = $"Summon a huge bat dealing <color=white>{attack.ToString()}</color> damage to targetted enemy";
+            desc = $"Summon a huge bat dealing <color=white>{attack.ToString()}</color> damage to the enemy";
         else if (attack < defaultattack)
-            desc = $"Summon a huge bat dealing <color=red>{attack.ToString()}</color> damage to targetted enemy";
+            desc = $"Summon a huge bat dealing <color=red>{attack.ToString()}</color> damage to the enemy";
         else
-            desc = $"Summon a huge bat dealing <color=green>{attack.ToString()}</color> damage to targetted enemy";
+            desc = $"Summon a huge bat dealing <color=green>{attack.ToString()}</color> damage to the enemy";
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
 

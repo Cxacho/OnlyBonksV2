@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System.Threading.Tasks;
+using TMPro;
 
 public class Envenom : Card
 {
@@ -11,6 +12,27 @@ public class Envenom : Card
     [SerializeField] private Vector3 flaskOffset, spawnOffset, swordRot,moveOffset;
     [SerializeField] private float strength,despawnHeight;
     List<GameObject> vfxses = new List<GameObject>();
+
+    private void Start()
+    {
+        desc = $"Enchant your bat dealing <color=white>{attack.ToString()}</color> damage and applying 3 bleed. Then double the bleed of enemy";
+
+        this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
+    }
+
+
+    private void FixedUpdate()
+    {
+
+        calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
+        if (attack == defaultattack)
+            desc = $"Enchant your bat dealing <color=white>{attack.ToString()}</color> damage and applying 3 bleed. Then double the bleed of enemy";
+        else if (attack < defaultattack)
+            desc = $"Enchant your bat dealing <color=red>{attack.ToString()}</color> damage and applying 3 bleed. Then double the bleed of enemy";
+        else
+            desc = $"Enchant your bat dealing <color=green>{attack.ToString()}</color> damage and applying 3 bleed. Then double the bleed of enemy";
+        this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
+    }
 
     public override async void OnDrop()
     {
@@ -27,7 +49,21 @@ public class Envenom : Card
             gameplayManager.state = BattleState.INANIM;
             await DoAnim();
             gameplayManager.state = BattleState.PLAYERTURN;
-            //gameplayManager.DrawCards(2);
+
+            foreach (Enemy en in _enemies)
+            {
+                if (en.targeted == true)
+                {
+                    await Task.Delay(2000);
+                    en.RecieveDamage(attack, this);
+                    en.setStatus(Enemy.statuses.bleeding, 3, en);
+                    en.setStatus(Enemy.statuses.bleeding, (en.bleed), en);
+                    
+
+                }
+                en.targeted = false;
+            }
+            resetTargetting();
         }
         else
         {

@@ -83,6 +83,7 @@ public class CrackingSkull : Card
     void InvokeEvent(Card card,float dam,Enemy en)
     {
         player.mana += 4;
+        player.manaText.text = player.mana.ToString();
     }
 
     IEnumerator ExecuteAfterTime(float time)

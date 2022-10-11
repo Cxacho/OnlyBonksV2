@@ -55,7 +55,7 @@ public class BrokenWeapon : Card
                     gameplayManager.state = BattleState.PLAYERTURN;
                     //gameplayManager.OnEnemyKilled += AddMeSomeMana;
                     en.RecieveDamage(attack, this);
-                    //switchWeapon
+                    gameplayManager.SwitchWeapon();
                     en.targeted = false;
                 }
             }

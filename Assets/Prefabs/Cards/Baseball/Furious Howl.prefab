@@ -172,8 +172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0f8b169f4fc27d4bb6f7ca3c02b4032, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseCost: 1
-  cost: 1
+  baseCost: 2
+  cost: 2
   scaleCardValues: 0
   index: 0
   baseNumOfTargets: 0
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}

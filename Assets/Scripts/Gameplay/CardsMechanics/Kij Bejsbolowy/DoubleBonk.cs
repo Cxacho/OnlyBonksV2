@@ -16,7 +16,7 @@ public class DoubleBonk : Card
 
     private void Start()
     {
-        desc = $"Deal <color=white>{attack.ToString()}</color> damage";
+        desc = $"Deal <color=white>{attack.ToString()}</color> damage twice to each enemy";
 
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
@@ -28,11 +28,11 @@ public class DoubleBonk : Card
         calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
 
         if (attack == defaultattack)
-            desc = $"Deal <color=white>{attack.ToString()}</color> damage twice";
+            desc = $"Deal <color=white>{attack.ToString()}</color> damage twice to each enemy";
         else if (attack < defaultattack)
-            desc = $"Deal <color=red>{attack.ToString()}</color> damage twice";
+            desc = $"Deal <color=red>{attack.ToString()}</color> damage twice to each enemy";
         else
-            desc = $"Deal <color=green>{attack.ToString()}</color> damage twice";
+            desc = $"Deal <color=green>{attack.ToString()}</color> damage twice to each enemy";
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
 

@@ -537,7 +537,7 @@ MonoBehaviour:
   index: 1
   baseNumOfTargets: 1
   attack: 6
-  defaultattack: 8
+  defaultattack: 6
   getPanel: 0
   myWeaponType: 0
   cType: 0

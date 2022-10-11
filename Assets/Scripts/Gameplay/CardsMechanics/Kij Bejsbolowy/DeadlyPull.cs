@@ -153,7 +153,7 @@ public class DeadlyPull : Card
             firstEnemy.gameObject.transform.DORotate(oldRot, 0.2f, RotateMode.Fast).SetEase(riseCurve);
             Destroy(hit, 1f);
             Destroy(trailSup.gameObject, 1f);
-            firstEnemy.RecieveDamage(attack * 2, this);
+            firstEnemy.RecieveDamage(attack, this);
         }
     }
 

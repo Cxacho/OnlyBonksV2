@@ -6,11 +6,10 @@ using DG.Tweening;
 using TMPro;
 public class BloodShed : Card
 {
-    private TextMeshPro textMeshPro;
 
     private void Start()
     {
-        desc = $"For each damage dealt this turn, apply bleed equal to damage dealt";
+        desc = $"Deal <color=white>{attack.ToString()}</color> damage and apply 3 bleed to all enemies";
 
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
@@ -19,8 +18,13 @@ public class BloodShed : Card
     private void FixedUpdate()
     {
 
-
-        desc = $"For each damage dealt this turn, apply bleed equal to damage dealt";
+        calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
+        if (attack == defaultattack)
+            desc = $"Deal <color=white>{attack.ToString()}</color> damage and apply 3 bleed to all enemies";
+        else if (attack < defaultattack)
+            desc = $"Deal <color=red>{attack.ToString()}</color> damage and apply 3 bleed to all enemies";
+        else
+            desc = $"Deal <color=green>{attack.ToString()}</color> damage and apply 3 bleed to all enemies";
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
 
@@ -38,7 +42,15 @@ public class BloodShed : Card
             gameplayManager.state = BattleState.PLAYERTURN;
             */
             StartCoroutine(ExecuteAfterTime(1f));
-            player.setStatusIndicator(0, 5, player.buffIndicators[4]);
+            
+            foreach(Enemy en in _enemies)
+            {
+
+                en.RecieveDamage(attack, this);
+                en.setStatus(Enemy.statuses.bleeding, 3, en);
+
+            }
+
             resetTargetting();
         }
 
