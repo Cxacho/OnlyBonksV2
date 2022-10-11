@@ -793,7 +793,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Deal damage equal to 10% of your current gold. Lose this amount of gold
+  m_text: Deal damage equal to 10% of your current gold. Lose half of the  amount
+    from your gold pocket
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -820,7 +821,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.85
+  m_fontSize: 17.7
   m_fontSizeBase: 23
   m_fontWeight: 400
   m_enableAutoSizing: 1

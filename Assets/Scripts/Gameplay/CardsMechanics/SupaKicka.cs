@@ -59,6 +59,10 @@ public class SupaKicka : Card
                     gameplayManager.state = BattleState.PLAYERTURN;
                     //gameplayManager.OnEnemyKilled += AddMeSomeMana;
                     en.RecieveDamage(attack, this);
+                    await Task.Delay(300);
+                    en.RecieveDamage(attack, this);
+                    await Task.Delay(300);
+                    en.RecieveDamage(attack, this);
 
                     en.targeted = false;
                 }

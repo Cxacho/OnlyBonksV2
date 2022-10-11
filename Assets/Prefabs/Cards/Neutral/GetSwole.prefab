@@ -172,8 +172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa062d6a6276774da7a60084112864f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseCost: 2
-  cost: 2
+  baseCost: 3
+  cost: 3
   scaleCardValues: 0
   index: 0
   baseNumOfTargets: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
   defaultattack: 0
   getPanel: 0
   myWeaponType: 6
-  cType: 2
+  cType: 1
   currentCardState: 3
   cardScalingtype: 0
   secondaryScalingType: 0
@@ -232,10 +232,10 @@ RectTransform:
   m_Father: {fileID: 6378627393820948997}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.030315446, y: 0.86017644}
-  m_AnchorMax: {x: 0.19554526, y: 0.98529404}
-  m_AnchoredPosition: {x: -0.38220215, y: 0}
-  m_SizeDelta: {x: 2.6327972, y: 2.1262817}
+  m_AnchorMin: {x: 0.0075881747, y: 0.86600006}
+  m_AnchorMax: {x: 0.16845456, y: 0.9911764}
+  m_AnchoredPosition: {x: -0.1611023, y: 0.50061035}
+  m_SizeDelta: {x: 1.4096003, y: 0.45889997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6682002869044894971
 CanvasRenderer:
@@ -265,7 +265,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2
+  m_text: 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -292,7 +292,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.55
+  m_fontSize: 36.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -367,10 +367,10 @@ RectTransform:
   m_Father: {fileID: 6378627393820948997}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.43431544, y: 0.42400002}
-  m_AnchorMax: {x: 0.60531545, y: 0.45882335}
-  m_AnchoredPosition: {x: -0.10000038, y: 0.6220703}
-  m_SizeDelta: {x: 0.42970276, y: 0.75579834}
+  m_AnchorMin: {x: 0.41613364, y: 0.42400002}
+  m_AnchorMax: {x: 0.60531545, y: 0.46470574}
+  m_AnchoredPosition: {x: -2.3593998, y: 0.6221409}
+  m_SizeDelta: {x: -4.5097, y: -1.2442}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2949104907133444256
 CanvasRenderer:
@@ -503,9 +503,9 @@ RectTransform:
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.23, y: 0.86017644}
-  m_AnchorMax: {x: 0.84645474, y: 0.91700006}
-  m_AnchoredPosition: {x: -1.2999992, y: -0.53131104}
-  m_SizeDelta: {x: -2.5780945, y: 1.0635986}
+  m_AnchorMax: {x: 0.82400006, y: 0.92}
+  m_AnchoredPosition: {x: -1.2999992, y: 0.031799316}
+  m_SizeDelta: {x: 2.4219055, y: 0.06359863}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4016098877173305660
 CanvasRenderer:
@@ -674,7 +674,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 066724f56e1191e4397e6149ee193548, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0c398826a678fcc4daffb52c7a83b47e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -717,10 +717,10 @@ RectTransform:
   m_Father: {fileID: 6378627393820948997}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.13654545, y: 0.05}
+  m_AnchorMin: {x: 0.105000004, y: 0.053000003}
   m_AnchorMax: {x: 0.8915453, y: 0.42400002}
-  m_AnchoredPosition: {x: -0.95890045, y: 0.28799438}
-  m_SizeDelta: {x: 1.9178, y: 0.7519989}
+  m_AnchoredPosition: {x: -1.2533035, y: -0.42190552}
+  m_SizeDelta: {x: -2.1127, y: 1.3322}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6092661124000309646
 CanvasRenderer:
@@ -750,9 +750,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Give 5 strength
-
-    Give 10 armor'
+  m_text: Give 5 strength, 5 dexterity and 10 armor
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -779,10 +777,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21
+  m_fontSize: 27.95
   m_fontSizeBase: 21
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 2
   m_fontSizeMax: 72
   m_fontStyle: 1

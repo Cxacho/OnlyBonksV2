@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using System.Threading.Tasks;
 using UnityEngine.VFX;
+using TMPro;
 
 public class MidasFist : Card
 {
@@ -32,7 +33,8 @@ public class MidasFist : Card
                     gameplayManager.state = BattleState.PLAYERTURN;
 
                     en.RecieveDamage(gameplayManager.gold * 0.1f, this);
-                    //metoda pod lose gold
+                    gameplayManager.gold = gameplayManager.gold - Mathf.RoundToInt(gameplayManager.gold * 0.05f);
+                    gameplayManager.goldTxtTopUI.GetComponent<TextMeshProUGUI>().text = (gameplayManager.gold * 0.05f).ToString();
 
                     en.targeted = false;
                 }

@@ -24,6 +24,7 @@ public class GetSwoleScript : Card
 
             player.GetComponentInChildren<Animator>().SetTrigger("GetSwoleTrigger");
             player.setStatusIndicator(5, 3, player.buffIndicators[3]);
+            player.setStatusIndicator(5, 5, player.buffIndicators[6]);
             player.GetArmor(10);
             player.manaText.text = player.mana.ToString();
         }

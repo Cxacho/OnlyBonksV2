@@ -21,34 +21,17 @@ public class Cringe : Card
 
             StartCoroutine(ExecuteAfterTime(1f));
 
-            player.frail = 0;
-            player.vurneable = 0;
-            player.poison = 0;
-
-            foreach (GameObject obj in GameObject.FindGameObjectsWithTag("BuffIndicator"))
+            if(gameplayManager.currentWeapon == GameplayManager.Weapon.Palka)
             {
-                if (obj.name!= "StrengthBuffIndcator(Clone)") {
-                    var some = obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-                    int statusAmount;
-                    int.TryParse(some.text.ToString(), out statusAmount);
-                    statusAmount = 0;
-                    if (statusAmount > 0)
-                    {
-                        some.text = statusAmount.ToString();
-
-                    }
-                    else
-                    {
-                        Destroy(obj);
-
-                    } 
-                }
+                player.setStatusIndicator(2, 3, player.buffIndicators[3]);
             }
+            else
+            {
+                player.setStatusIndicator(2, 5, player.buffIndicators[6]);
+            }
+
         }
-        else
-        {
-            Debug.Log("fajnie dzia³a");
-        }
+         
     }
 
     IEnumerator ExecuteAfterTime(float time)

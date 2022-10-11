@@ -250,8 +250,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000038146973, y: -89.647736}
-  m_SizeDelta: {x: 167.9999, y: 129.6555}
+  m_AnchoredPosition: {x: -1.5211, y: -89.2207}
+  m_SizeDelta: {x: 171.042, y: 128.8014}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2565391527391622904
 CanvasRenderer:
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Draw 2 cards next turn
+  m_text: Draw 2 cards
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -308,7 +308,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.5
+  m_fontSize: 47.8
   m_fontSizeBase: 23
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -344,7 +344,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -3.1809692, y: 0, z: 0.96813965, w: 8.361908}
+  m_margin: {x: 0.2354126, y: 0, z: 0.96813965, w: 1.1022339}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
