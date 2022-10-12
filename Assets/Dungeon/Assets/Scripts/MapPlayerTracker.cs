@@ -98,7 +98,7 @@ namespace Map
                     ui.OnMapClick();
                     gameplay.currentFloor++;
                     roomCountText.text = gameplay.currentFloor.ToString();
-                    StartCoroutine(gameplay.SetupTreasure());
+                    StartCoroutine(gameplay.SetupMistery());
                     Locked = true;
                     break;
                 case NodeType.Store:

@@ -172,6 +172,14 @@ public class GameplayManager : MonoBehaviour
 
     public List<GameObject> cardsAcquiredDeckNeutral = new List<GameObject>();
 
+
+    public List<GameObject> katanaCards = new List<GameObject>();
+    public List<GameObject> baseballCards = new List<GameObject>();
+    public List<GameObject> neutralCards = new List<GameObject>();
+
+
+
+
     //lista kart ktore usuwamy z gryw trakcie pojedynku
     public List<GameObject> exhaustedDeck = new List<GameObject>();
     //lista kart ktore mozemy dobrac do reki
@@ -285,6 +293,12 @@ public class GameplayManager : MonoBehaviour
 
     private void Awake()
     {
+        katanaCards = Resources.LoadAll<GameObject>("Katana").ToList();
+
+        baseballCards = Resources.LoadAll<GameObject>("Baseball").ToList();
+
+        neutralCards = Resources.LoadAll<GameObject>("Neutral").ToList();
+
 
         GetInstance();
 
@@ -640,12 +654,13 @@ public class GameplayManager : MonoBehaviour
         goldRewardGameObject.gameObject.SetActive(true);
         GameObject.Find("GoldReward").transform.GetComponentInChildren<TextMeshProUGUI>().text = goldReward.ToString();
 
-        for (int i = 0; i < 2; i++)
-        {
-            random = UnityEngine.Random.Range(0, allCardsSHOP.Count);
-            Instantiate(cards[random], GameObject.FindGameObjectWithTag("cardHolder").transform);
-        }
-
+    
+        random = UnityEngine.Random.Range(0, katanaCards.Count);
+        Instantiate(katanaCards[random], GameObject.FindGameObjectWithTag("cardHolder").transform);
+        random = UnityEngine.Random.Range(0, baseballCards.Count);
+        Instantiate(baseballCards[random], GameObject.FindGameObjectWithTag("cardHolder").transform);
+        random = UnityEngine.Random.Range(0, neutralCards.Count);
+        Instantiate(neutralCards[random], GameObject.FindGameObjectWithTag("cardHolder").transform);
     }
     IEnumerator LoseScreen()
     {

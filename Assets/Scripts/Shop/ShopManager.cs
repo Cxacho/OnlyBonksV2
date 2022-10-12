@@ -41,12 +41,29 @@ public class ShopManager : MonoBehaviour
     public void SpawnShuffledCards()
     {
         fiveCardsArea.GetComponent<GridLayoutGroup>().enabled = true;
-        Shuffle(cards);
+        //Shuffle(cards);
 
-        for (int i = 0; i < 5; i++)
+        /*for (int i = 0; i < 5; i++)
         {
             Instantiate(cards[i], fiveCardsArea.transform);
+        }*/
+        for (int i = 0; i < 2; i++)
+        {
+            var random = UnityEngine.Random.Range(0, gameplayManager.katanaCards.Count);
+            Instantiate(gameplayManager.katanaCards[random], fiveCardsArea.transform);
+
         }
+        for (int i = 0; i < 2; i++)
+        {
+            var random = UnityEngine.Random.Range(0, gameplayManager.baseballCards.Count);
+            Instantiate(gameplayManager.baseballCards[random], fiveCardsArea.transform);
+        }
+        for (int i = 0; i < 2; i++)
+        {
+            var random = UnityEngine.Random.Range(0, gameplayManager.neutralCards.Count);
+            Instantiate(gameplayManager.neutralCards[random], fiveCardsArea.transform);
+        }
+        
         Invoke("GridGroupDisable", 0.5f);
     }
 
