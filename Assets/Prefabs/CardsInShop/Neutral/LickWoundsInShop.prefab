@@ -278,7 +278,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 45
+  m_text: 35
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -555,7 +555,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9b9e753d3e5aa3e44aa2f519a13823ae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5b2a5f7c50ed5de46857e318645557b3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -577,7 +577,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6994d6bbee4a74b458c26a3c72828b23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardCost: 40
+  weaponType: 2
+  cardCost: 35
   ID: 8
 --- !u!114 &-7892406856808740199
 MonoBehaviour:

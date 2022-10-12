@@ -762,8 +762,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.105000004, y: 0.046000004}
   m_AnchorMax: {x: 0.896, y: 0.41811767}
-  m_AnchoredPosition: {x: -2.6146011, y: 1.0460052}
-  m_SizeDelta: {x: -5.2292, y: 2.0919}
+  m_AnchoredPosition: {x: -0.08969879, y: 1.0460052}
+  m_SizeDelta: {x: -6.3514, y: 2.0919}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8735146951531586623
 CanvasRenderer:
@@ -793,8 +793,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Deal damage equal to 10% of your current gold. Lose half of the  amount
-    from your gold pocket
+  m_text: Deal damage equal to 10% of your current gold. Lose 5% gold from your pocket
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}

@@ -160,6 +160,14 @@ public class GameplayManager : MonoBehaviour
 
     public List<GameObject> startingDeckBaseball = new List<GameObject>();
 
+    public List<GameObject> startingDeckNeutral = new List<GameObject>();
+
+    public List<GameObject> cardsAcquiredDeckBaseball = new List<GameObject>();
+
+    public List<GameObject> cardsAcquiredDeckKatana = new List<GameObject>();
+
+    public List<GameObject> cardsAcquiredDeckNeutral = new List<GameObject>();
+
     //lista kart ktore usuwamy z gryw trakcie pojedynku
     public List<GameObject> exhaustedDeck = new List<GameObject>();
     //lista kart ktore mozemy dobrac do reki
@@ -242,7 +250,7 @@ public class GameplayManager : MonoBehaviour
             currentWeapon = Weapon.Palka;
 
             drawDeck.Clear();
-
+            /*
             startingDeck[0] = startingDeckBaseball[0];
             startingDeck[1] = startingDeckBaseball[1];
             startingDeck[2] = startingDeckBaseball[2];
@@ -251,13 +259,13 @@ public class GameplayManager : MonoBehaviour
             startingDeck[5] = startingDeckBaseball[5];
             startingDeck[6] = startingDeckBaseball[6];
             startingDeck[7] = startingDeckBaseball[7];
-
+            */
             var hand = GameObject.Find("PlayerHand");
             for (int i = 0; i < playerHand.Count; i++)
             {
                 Destroy(hand.transform.GetChild(i).gameObject);
             }
-
+            
             playerHand.Clear();
 
             drawDeck.Clear();
@@ -315,6 +323,41 @@ public class GameplayManager : MonoBehaviour
 
         cardAmount.text = startingDeck.Count.ToString();
         goldTxtTopUI.GetComponent<TextMeshProUGUI>().text = gold.ToString();
+
+        if(currentWeapon == Weapon.Palka)
+        {
+
+            startingDeck[0] = startingDeckBaseball[0];
+            startingDeck[1] = startingDeckBaseball[1];
+            startingDeck[2] = startingDeckBaseball[2];
+            startingDeck[3] = startingDeckBaseball[3];
+            startingDeck[4] = startingDeckBaseball[4];
+            startingDeck[5] = startingDeckBaseball[5];
+            startingDeck[6] = startingDeckBaseball[6];
+            startingDeck[7] = startingDeckBaseball[7];
+            startingDeck[8] = startingDeckNeutral[0];
+            startingDeck[9] = startingDeckNeutral[1];
+            startingDeck[10] = startingDeckNeutral[2];
+            startingDeck[11] = startingDeckNeutral[3];
+            startingDeck[12] = startingDeckNeutral[4];
+            startingDeck[13] = startingDeckNeutral[5];
+
+            for (int i = 14; i < (i + cardsAcquiredDeckBaseball.Count); i++)
+            {
+                
+                var j = 0;
+                startingDeck.Add(cardsAcquiredDeckBaseball[j]);
+                j++;
+            }
+
+        }
+        else if(currentWeapon == Weapon.Katana)
+        {
+
+
+
+        }
+
     }
     IEnumerator ChooseNode()
     {

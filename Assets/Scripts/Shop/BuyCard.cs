@@ -8,7 +8,10 @@ using DG.Tweening;
 public class BuyCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private GameplayManager gameplayManager;
-    
+
+    public enum WeaponType {Baseball, Katana, Neutral };
+
+    public WeaponType weaponType;
     public int cardCost;
     private bool rewardcard = false;
     [SerializeField]
@@ -51,6 +54,14 @@ public class BuyCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             cardPrefabClone.transform.SetParent(gameplayManager.canvas.transform);
             cardPrefabClone.transform.localScale = Vector3.one;
             cardPrefabClone.transform.position = new Vector2(-1000, 0);
+
+            if (this.weaponType == WeaponType.Baseball)
+                gameplayManager.cardsAcquiredDeckBaseball.Add(cardPrefabClone);
+            else if(this.weaponType == WeaponType.Katana)
+                gameplayManager.cardsAcquiredDeckKatana.Add(cardPrefabClone);
+            else if (this.weaponType == WeaponType.Neutral)
+                gameplayManager.cardsAcquiredDeckNeutral.Add(cardPrefabClone);
+
             gameplayManager.startingDeck.Add(cardPrefabClone);
             gameplayManager.drawDeck.Add(cardPrefabClone);
             
