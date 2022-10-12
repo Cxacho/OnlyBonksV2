@@ -13,7 +13,8 @@ public class StabWounds : Card
     [SerializeField] private float stabTime,moveTime,rotTime,travelTime;
     [SerializeField] private Vector3  secondMovePos;
     [SerializeField] private AnimationCurve anCurve;
-    List<GameObject> objs = new List<GameObject>(); 
+    List<GameObject> objs = new List<GameObject>();
+    List<Transform> characters = new List<Transform>();
 
     private void Start()
     {
@@ -63,10 +64,20 @@ public class StabWounds : Card
                 }
                 */
 
-                    gameplayManager.state = BattleState.INANIM;
-                    await DoAnim(en);
-                    gameplayManager.state = BattleState.PLAYERTURN;
-                    en.RecieveDamage(attack, this);
+                    if (characters[getEnemyIndex + 1].gameObject == gameplayManager.player.gameObject || characters[getEnemyIndex + 1].childCount == 0)
+                    {
+                        gameplayManager.state = BattleState.INANIM;
+                        await DoAnim(en);
+                        gameplayManager.state = BattleState.PLAYERTURN;
+                        en.RecieveDamage(attack * 2, this);
+                    }
+                    else
+                    {
+                        gameplayManager.state = BattleState.INANIM;
+                        await DoAnim(en);
+                        gameplayManager.state = BattleState.PLAYERTURN;
+                        en.RecieveDamage(attack, this);
+                    }
 
                     en.targeted = false;
                 }
@@ -94,6 +105,13 @@ public class StabWounds : Card
 
     }
 
+    private void OnEnable()
+    {
+        foreach (Transform obj in gameplayManager.characterCanvas.transform)
+        {
+            characters.Add(obj);
+        }
+    }
 
     async Task DoAnim(Enemy _enemy)
     {

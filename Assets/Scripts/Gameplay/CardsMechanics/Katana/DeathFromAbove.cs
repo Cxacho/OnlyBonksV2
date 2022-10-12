@@ -16,7 +16,7 @@ public class DeathFromAbove : Card
     [SerializeField]private AnimationCurve anCurve,secondaryCurve;
         private void Start()
     {
-        desc = $"Deal <color=white>{attack.ToString()}</color> damage to first enemy";
+        desc = $"Deal <color=white>{attack.ToString()}</color> damage and add 2 dexterity";
     }
 
 
@@ -26,11 +26,11 @@ public class DeathFromAbove : Card
         calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
         var secondAttack = Mathf.RoundToInt(attack * 0.3f);
         if (attack == defaultattack)
-            desc = $"Deal <color=white>{attack.ToString()}</color> and apply 2 energize";
+            desc = $"Deal <color=white>{attack.ToString()}</color> damage and add 2 dexterity";
         else if (attack < defaultattack)
-            desc = $"Deal <color=red>{attack.ToString()}</color> and apply 2 energize";
+            desc = $"Deal <color=red>{attack.ToString()}</color> damage and add 2 dexterity";
         else
-            desc = $"Deal <color=green>{attack.ToString()}</color> and apply 2 energize";
+            desc = $"Deal <color=green>{attack.ToString()}</color> damage and add 2 dexterity";
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
         if (trailVFX != null)
             trailGO.transform.position = player.gameObject.transform.position;
@@ -52,9 +52,9 @@ public class DeathFromAbove : Card
                 {
                     {
                         gameplayManager.state = BattleState.INANIM;
-                        gameplayManager.state = BattleState.INANIM;
+
                         await DoAnim(en);
-                        gameplayManager.state = BattleState.PLAYERTURN;
+
                         gameplayManager.state = BattleState.PLAYERTURN;
                         en.targeted = false;
                     }
@@ -100,7 +100,11 @@ public class DeathFromAbove : Card
         getRect.DOJumpAnchorPos(en.transform.parent.GetComponent<RectTransform>().anchoredPosition+swordOffset, jumpPower, 1, animTime).SetEase(anCurve);
         getPlayerRect.DOJumpAnchorPos(en.transform.parent.GetComponent<RectTransform>().anchoredPosition+landOffset, jumpPower, 1, animTime).SetEase(anCurve);
         await Task.Delay(Mathf.RoundToInt(animTime * 1000));
+
+
         en.RecieveDamage(attack, this);
+        player.setStatusIndicator(2, 5, player.buffIndicators[6]);
+
         getRect.DOShakeAnchorPos(1, shakeStrength);
         getRect.DOShakeRotation(1, shakeStrength);
         var crack = Instantiate(crackVFX, kat.transform.position+crackSpawnOffset, Quaternion.identity, gameplayManager.vfxCanvas.transform);

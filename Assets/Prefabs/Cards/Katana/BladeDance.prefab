@@ -181,13 +181,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bbf2fb7689dacc49bb8a1003aa09f0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseCost: 3
-  cost: 3
+  baseCost: 2
+  cost: 2
   scaleCardValues: 0
   index: 2
   baseNumOfTargets: 3
   attack: 8
-  defaultattack: 10
+  defaultattack: 8
   getPanel: 0
   myWeaponType: 5
   cType: 0
@@ -416,7 +416,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3
+  m_text: 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -929,7 +929,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15.85
+  m_fontSize: 16.75
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -965,7 +965,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 6.569641, y: 0, z: 5.19751, w: 0}
+  m_margin: {x: 2.2634277, y: 0, z: 0.8913574, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

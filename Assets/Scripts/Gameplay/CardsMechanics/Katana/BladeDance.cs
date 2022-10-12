@@ -28,9 +28,9 @@ public class BladeDance : Card
         if (attack == defaultattack)
             desc = $"Deal <color=white>{attack.ToString()}</color>, <color=white>{secondAttack.ToString()}</color>, <color=white>{thirdAttack.ToString()}</color> damage in sequence up to 3 enemies. Reduce cost by 1 if there are 3 enemies selected";
         else if (attack < defaultattack)
-            desc = $"Deal <color=red>{attack.ToString()}</color>, <color=white>{secondAttack.ToString()}</color>, <color=white>{thirdAttack.ToString()}</color> damage in sequence up to 3 enemies. Reduce cost by 1 if there are 3 enemies selected";
+            desc = $"Deal <color=red>{attack.ToString()}</color>, <color=red>{secondAttack.ToString()}</color>, <color=red>{thirdAttack.ToString()}</color> damage in sequence up to 3 enemies. Reduce cost by 1 if there are 3 enemies selected";
         else
-            desc = $"Deal <color=green>{attack.ToString()}</color>, <color=white>{secondAttack.ToString()}</color>, <color=white>{thirdAttack.ToString()}</color> damage in sequence up to 3 enemies. Reduce cost by 1 if there are 3 enemies selected";
+            desc = $"Deal <color=green>{attack.ToString()}</color>, <color=green>{secondAttack.ToString()}</color>, <color=green>{thirdAttack.ToString()}</color> damage in sequence up to 3 enemies. Reduce cost by 1 if there are 3 enemies selected";
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
 
     }

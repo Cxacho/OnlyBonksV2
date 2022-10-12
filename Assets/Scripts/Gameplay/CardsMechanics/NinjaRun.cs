@@ -18,16 +18,16 @@ public class NinjaRun : Card
 
     private void Start()
     {
-        desc = $"Deal <color=white>{attack.ToString()}</color> damage";
+        //desc = $"Draw <color=white>{attack.ToString()}</color> damage";
 
-        this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
+        //this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
 
 
     private void FixedUpdate()
     {
 
-        calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
+       /* calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
 
         if (attack == defaultattack)
             desc = $"Deal <color=white>{attack.ToString()}</color> damage";
@@ -36,6 +36,7 @@ public class NinjaRun : Card
         else
             desc = $"Deal <color=green>{attack.ToString()}</color> damage";
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
+       */
         if (trailToFollow != null)
             trailToFollow.transform.position = player.transform.position;
     }

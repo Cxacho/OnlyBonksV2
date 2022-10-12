@@ -181,13 +181,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9ad4e30387d174ea8beabada8d0aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseCost: 0
-  cost: 0
+  baseCost: 2
+  cost: 2
   scaleCardValues: 0
   index: 0
   baseNumOfTargets: 1
-  attack: 3
-  defaultattack: 0
+  attack: 2
+  defaultattack: 2
   getPanel: 0
   myWeaponType: 5
   cType: 0

@@ -19,7 +19,9 @@ public class StackingBlades : Card
 
     private void Start()
     {
-        desc = $"For each card drawn deal <color=white>{attack.ToString()}</color> damage to enemy. Current :"+(cardsDrawn +1);
+        Debug.Log("Stacking blades attack : " + attack);
+
+        desc = $"Deal <color=white>{attack.ToString()}</color>, <color=white>{(attack*2).ToString()}</color>, <color=white>{(attack * 4).ToString()}</color> damage to the same enemy";
         defAttack = Mathf.RoundToInt(defaultattack);
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
 
@@ -33,12 +35,17 @@ public class StackingBlades : Card
 
         calc(Mathf.RoundToInt(attack), cardScalingtype, secondaryScalingType);
 
+        var secondAttack = Mathf.RoundToInt(attack * 2);
+        var thirdAttack = Mathf.RoundToInt(attack * 4);
+
+        Debug.Log("Stacking blades attack : " + attack);
+
         if (attack == defaultattack)
-            desc = $"For each card drawn deal <color=white>{attack.ToString()}</color> damage to enemy. Current cards drawn :" + cardsDrawn;
+            desc = $"Deal <color=white>{attack.ToString()}</color>, <color=white>{secondAttack.ToString()}</color>, <color=white>{thirdAttack.ToString()}</color> damage to the same enemy";
         else if (attack < defaultattack)
-            desc = $"For each card drawn deal <color=red>{attack.ToString()}</color> damage to enemy. Current cards drawn :" + cardsDrawn;
+            desc = $"Deal <color=red>{attack.ToString()}</color>, <color=red>{secondAttack.ToString()}</color>, <color=red>{thirdAttack.ToString()}</color> damage to the same enemy";
         else
-            desc = $"For each card drawn deal <color=green>{attack.ToString()}</color> damage to enemy. Current cards drawn :" + cardsDrawn ;
+            desc = $"Deal <color=green>{attack.ToString()}</color>, <color=green>{secondAttack.ToString()}</color>, <color=green>{thirdAttack.ToString()}</color> damage to the same enemy";
         this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = desc;
     }
 
@@ -57,7 +64,7 @@ public class StackingBlades : Card
                     gameplayManager.state = BattleState.INANIM;
                     await DoAnim(en);
                     gameplayManager.state = BattleState.PLAYERTURN;
-
+                    attack = 2; // Workaround, przywraca attack do poczatkowej wartosci
                     en.targeted = false;
                 }
             }
@@ -95,7 +102,7 @@ public class StackingBlades : Card
     async Task DoAnim(Enemy en)
     {
         
-        for (int i = 0; i < cardsDrawn; i++)
+        for (int i = 0; i < 3; i++)
         {
             if (en == null)
                 return;
@@ -110,7 +117,10 @@ public class StackingBlades : Card
             await Task.Delay(calc);
             var hitBlast = Instantiate(hit, knif.transform.position, Quaternion.identity, gameplayManager.vfxCanvas.transform);
             if (en != null)
+            {
                 en.RecieveDamage(attack, this);
+                attack *= 2;
+            }
             else
             {
                 Destroy(knif);

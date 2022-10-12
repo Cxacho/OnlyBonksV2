@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4195082560769264694}
   - component: {fileID: -6022969762265394306}
   - component: {fileID: -6351299408824284749}
-  - component: {fileID: 6247951108837887766}
+  - component: {fileID: 110617242605454552}
   m_Layer: 7
-  m_Name: BrokenWeapon
+  m_Name: ChippedKatana
   m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,7 +169,7 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &6247951108837887766
+--- !u!114 &110617242605454552
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,24 +178,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 2858555165568228111}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e26c10f8c9e02934faf97d096d502620, type: 3}
+  m_Script: {fileID: 11500000, guid: fb4287bf64c3f884a96f40df83316cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   baseCost: 1
   cost: 1
   scaleCardValues: 0
-  index: 2
+  index: 0
   baseNumOfTargets: 1
-  attack: 5
-  defaultattack: 5
+  attack: 4
+  defaultattack: 4
   getPanel: 0
-  myWeaponType: 0
+  myWeaponType: 5
   cType: 0
   currentCardState: 0
-  cardScalingtype: 1
+  cardScalingtype: 2
   secondaryScalingType: 0
   cardDamageType: 0
-  exitButton: {fileID: 1019920095713079653, guid: 999738602cea97c4882ce11df42f5f38, type: 3}
+  exitButton: {fileID: 0}
   ui: {fileID: 0}
   player: {fileID: 0}
   cardAlign: {fileID: 0}
@@ -207,58 +207,7 @@ MonoBehaviour:
   exhaustable: 0
   isNeutral: 0
   retainable: 0
-  desc: Deal <color=white>5</color> damage
-  crackVFX: {fileID: 3598976960167459014, guid: 5b1958e7a204fb241b76b0291e82a520, type: 3}
-  batVFX: {fileID: 7018250619379937311, guid: 156f4f836a1edae45abbeb827a6a9153, type: 3}
-  batHandle: {fileID: 7584843190722398528, guid: 4bc1486c19f87834faeaebe931e3db18, type: 3}
-  batRest: {fileID: 1907592565455973945, guid: 3c275dbb839679647b1a968174008879, type: 3}
-  spawnOffset: {x: -20, y: 35, z: 0}
-  crackOffset: {x: 3.5, y: -4, z: 0}
-  restSpawnOffset: {x: 2, y: 1, z: 0}
-  handleSpawnOffset: {x: -2, y: -1, z: 0}
-  rot: {x: 0, y: 0, z: -110}
-  restRot: {x: 0, y: 0, z: -75}
-  handleRot: {x: 0, y: 0, z: -25}
-  moveTo: {x: -30, y: 20}
-  handleMoveTo: {x: -50, y: -200}
-  restMoveTo: {x: 200, y: -100}
-  anCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.28730264
-      outSlope: 0.28730264
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.79517967
-      value: 0.22845723
-      inSlope: 1.1310093
-      outSlope: 1.1310093
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.34752315
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 3.7669249
-      outSlope: 3.7669249
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  animTime: 1
-  jumpPower: 100
-  returnTime: 1
-  rotTime: 1
+  desc: 
 --- !u!1 &3868653325569000508
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,7 +544,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Broken Weapon
+  m_text: Chipped Katana
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -622,7 +571,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16.25
+  m_fontSize: 16.2
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -734,7 +683,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7cc49c9663998384a85d6299539b3e65, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ce035c93173337a4ca60ee3b85ffbfe8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -810,7 +759,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Deal 5 damage and swap weapon
+  m_text: Deal 4 damage and swap weapon
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
   m_sharedMaterial: {fileID: 6683255289147975907, guid: c443756e610f17c4eae262e5fbe19d80, type: 2}
@@ -873,7 +822,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 10, y: 0, z: 10, w: 0}
+  m_margin: {x: 0.12438965, y: 0, z: -0.30493164, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
