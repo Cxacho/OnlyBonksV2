@@ -16098,7 +16098,7 @@ MonoBehaviour:
   goldTxtTopUI: {fileID: 1690326925}
   cardToCreateInt: 0
   numOfList: 0
-  currentFloor: 5
+  currentFloor: 0
   basePlayerDrawAmount: 5
   gold: 100
   currentXP: 0
@@ -16234,9 +16234,18 @@ MonoBehaviour:
   - {fileID: 8375890335322642537, guid: d0e0311802861924b9ae71e6d10dd032, type: 3}
   - {fileID: 2858555165568228111, guid: 2f9a5ea12e7b61a4999d1b1938e6572a, type: 3}
   - {fileID: 6681184060049790405, guid: 0931425ebc7f3cf46938a1d72571df3f, type: 3}
-  cardsAcquiredDeckBaseball: []
-  cardsAcquiredDeckKatana: []
-  cardsAcquiredDeckNeutral: []
+  cardsAcquiredDeckBaseball:
+  - {fileID: 2858555165568228111, guid: 6c52cf6a48ddfa34796d6ed7415be1b1, type: 3}
+  - {fileID: 7947560193341729093, guid: c36ea20e1eb8c364997898650e0208da, type: 3}
+  - {fileID: 7947560193341729093, guid: 98bf63d30bacf054abdf878967c09d2c, type: 3}
+  cardsAcquiredDeckKatana:
+  - {fileID: 2858555165568228111, guid: 77f03727ae969454bb2565421c2d2487, type: 3}
+  - {fileID: 2858555165568228111, guid: e2077e862f3de714ca3507008853780c, type: 3}
+  - {fileID: 2858555165568228111, guid: eef1c6145721d5449b090065cd8a72df, type: 3}
+  cardsAcquiredDeckNeutral:
+  - {fileID: 1150438450449328782, guid: 0dba074f75b46b944816abe5b8c9f4e1, type: 3}
+  - {fileID: 2858555165568228111, guid: 2d1125c2371a69541bf5264558b09929, type: 3}
+  - {fileID: 2858555165568228111, guid: 18f9c84fc6de7634895b5c16eab423b3, type: 3}
   exhaustedDeck: []
   drawDeck: []
   enemiesIndicators:

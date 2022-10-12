@@ -62,8 +62,8 @@ public class BuyCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             else if (this.weaponType == WeaponType.Neutral)
                 gameplayManager.cardsAcquiredDeckNeutral.Add(cardPrefabClone);
 
-            gameplayManager.startingDeck.Add(cardPrefabClone);
-            gameplayManager.drawDeck.Add(cardPrefabClone);
+            //gameplayManager.startingDeck.Add(cardPrefabClone);
+            //gameplayManager.drawDeck.Add(cardPrefabClone);
             
             for (int i = 0; i < GameObject.Find("cardHolder").transform.childCount; i++)
             {

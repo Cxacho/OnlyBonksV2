@@ -84,6 +84,10 @@ public class GameplayManager : MonoBehaviour
     public int playerDrawAmount;
     public int drawAmount;
     public int discardAmount;
+    private int tempI = 0;
+    private int tempJ = 0;
+    private int tempX = 0;
+    private int tempY = 0;
     #endregion
 
     #region Bools
@@ -223,6 +227,7 @@ public class GameplayManager : MonoBehaviour
 
             drawDeck.Clear();
 
+            /*
             startingDeck[0] = startingDeckKatana[0];
             startingDeck[1] = startingDeckKatana[1];
             startingDeck[2] = startingDeckKatana[2];
@@ -231,7 +236,7 @@ public class GameplayManager : MonoBehaviour
             startingDeck[5] = startingDeckKatana[5];
             startingDeck[6] = startingDeckKatana[6];
             startingDeck[7] = startingDeckKatana[7];
-
+            */
             var hand = GameObject.Find("PlayerHand");
             for (int i = 0; i < playerHand.Count; i++)
             {
@@ -244,6 +249,7 @@ public class GameplayManager : MonoBehaviour
             discardDeck.Clear();
             drawDeck.AddRange(startingDeck);
             OnClick();
+            //drawDeck.AddRange(startingDeck);
         }
         else if (currentWeapon == Weapon.Katana)
         {
@@ -310,21 +316,8 @@ public class GameplayManager : MonoBehaviour
     }
     private void Update()
     {
-        foreach (Enemy enemy in enemyType)
-        {
-            if (enemy.targeted == true || enemy.isFirstTarget == true || enemy.isSecondTarget == true || enemy.isThirdTarget == true) isAnyoneTargeted = true;
-            else isAnyoneTargeted = false;
-        }
-        if (state == BattleState.PLAYERTURN && isAnyoneTargeted == false && canEndTurn == true)
-        {
-            endTurn.interactable = true;
-        }
-        else endTurn.interactable = false;
 
-        cardAmount.text = startingDeck.Count.ToString();
-        goldTxtTopUI.GetComponent<TextMeshProUGUI>().text = gold.ToString();
-
-        if(currentWeapon == Weapon.Palka)
+        if (currentWeapon == Weapon.Palka)
         {
 
             startingDeck[0] = startingDeckBaseball[0];
@@ -342,21 +335,84 @@ public class GameplayManager : MonoBehaviour
             startingDeck[12] = startingDeckNeutral[4];
             startingDeck[13] = startingDeckNeutral[5];
 
-            for (int i = 14; i < (i + cardsAcquiredDeckBaseball.Count); i++)
+
+            while (tempI < cardsAcquiredDeckBaseball.Count)
             {
-                
-                var j = 0;
-                startingDeck.Add(cardsAcquiredDeckBaseball[j]);
-                j++;
+
+                Debug.Log("To jest i : " + tempI);
+                Debug.Log("To jest Count : " + cardsAcquiredDeckBaseball.Count);
+
+                startingDeck.Add(cardsAcquiredDeckBaseball[tempI]);
+                tempI++;
+            }
+
+            while (tempJ < cardsAcquiredDeckNeutral.Count)
+            {
+
+                Debug.Log("To jest J : " + tempJ);
+                Debug.Log("To jest Count : " + cardsAcquiredDeckNeutral.Count);
+
+                startingDeck.Add(cardsAcquiredDeckNeutral[tempJ]);
+                tempJ++;
             }
 
         }
-        else if(currentWeapon == Weapon.Katana)
+        else if (currentWeapon == Weapon.Katana)
         {
 
+            startingDeck[0] = startingDeckKatana[0];
+            startingDeck[1] = startingDeckKatana[1];
+            startingDeck[2] = startingDeckKatana[2];
+            startingDeck[3] = startingDeckKatana[3];
+            startingDeck[4] = startingDeckKatana[4];
+            startingDeck[5] = startingDeckKatana[5];
+            startingDeck[6] = startingDeckKatana[6];
+            startingDeck[7] = startingDeckKatana[7];
+            startingDeck[8] = startingDeckNeutral[0];
+            startingDeck[9] = startingDeckNeutral[1];
+            startingDeck[10] = startingDeckNeutral[2];
+            startingDeck[11] = startingDeckNeutral[3];
+            startingDeck[12] = startingDeckNeutral[4];
+            startingDeck[13] = startingDeckNeutral[5];
 
+
+            while (tempX < cardsAcquiredDeckKatana.Count)
+            {
+
+                Debug.Log("To jest i : " + tempX);
+                Debug.Log("To jest Count : " + cardsAcquiredDeckKatana.Count);
+
+                startingDeck.Add(cardsAcquiredDeckKatana[tempX]);
+                tempX++;
+            }
+
+            while (tempY < cardsAcquiredDeckNeutral.Count)
+            {
+
+                Debug.Log("To jest J : " + tempY);
+                Debug.Log("To jest Count : " + cardsAcquiredDeckNeutral.Count);
+
+                startingDeck.Add(cardsAcquiredDeckNeutral[tempY]);
+                tempY++;
+            }
 
         }
+
+        foreach (Enemy enemy in enemyType)
+        {
+            if (enemy.targeted == true || enemy.isFirstTarget == true || enemy.isSecondTarget == true || enemy.isThirdTarget == true) isAnyoneTargeted = true;
+            else isAnyoneTargeted = false;
+        }
+        if (state == BattleState.PLAYERTURN && isAnyoneTargeted == false && canEndTurn == true)
+        {
+            endTurn.interactable = true;
+        }
+        else endTurn.interactable = false;
+
+        cardAmount.text = startingDeck.Count.ToString();
+        goldTxtTopUI.GetComponent<TextMeshProUGUI>().text = gold.ToString();
+
+        
 
     }
     IEnumerator ChooseNode()
