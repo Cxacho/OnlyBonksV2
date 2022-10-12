@@ -72,6 +72,24 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
                 case "DexterityIndicator(Clone)":
                     tooltip_RectTransoform.anchoredPosition = new Vector2(-527, -25);
                     break;
+                case "FrailIndicator(Clone)":
+                    tooltip_RectTransoform.anchoredPosition = new Vector2(-527, -25);
+                    break;
+                case "PoisionIndicator(Clone)":
+                    tooltip_RectTransoform.anchoredPosition = new Vector2(-527, -25);
+                    break;
+                case "VurneableIndicator 1(Clone)":
+                    tooltip_RectTransoform.anchoredPosition = new Vector2(-527, -25);
+                    break;
+                case "BleedStatusIndicatorEnemy(Clone)":
+                    tooltip_RectTransoform.anchoredPosition = new Vector2(154, 38);
+                    break;
+                case "StrengthBuffIndicatorEnemy(Clone)":
+                    tooltip_RectTransoform.anchoredPosition = new Vector2(154, 38);
+                    break;
+                case "VurneableIndicatorEnemy(Clone)":
+                    tooltip_RectTransoform.anchoredPosition = new Vector2(154, 38);
+                    break;
                 default:
                     Debug.Log("error");
                     break;

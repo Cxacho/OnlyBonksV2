@@ -230,10 +230,12 @@ public class GameplayManager : MonoBehaviour
             return;
         if (currentWeapon == Weapon.Palka)
         {
+            drawDeck.Clear();
+            startingDeck.RemoveRange(14, (startingDeck.Count - 14));
+
             currentWeapon = Weapon.Katana;
             //OnClick();
 
-            drawDeck.Clear();
 
             /*
             startingDeck[0] = startingDeckKatana[0];
@@ -250,20 +252,23 @@ public class GameplayManager : MonoBehaviour
             {
                 Destroy(hand.transform.GetChild(i).gameObject);
             }
-
             playerHand.Clear();
 
             drawDeck.Clear();
             discardDeck.Clear();
+            CreateDeck();
             drawDeck.AddRange(startingDeck);
             OnClick();
+            
             //drawDeck.AddRange(startingDeck);
         }
         else if (currentWeapon == Weapon.Katana)
         {
+            startingDeck.RemoveRange(14, (startingDeck.Count - 14));
+            drawDeck.Clear();
+
             currentWeapon = Weapon.Palka;
 
-            drawDeck.Clear();
             /*
             startingDeck[0] = startingDeckBaseball[0];
             startingDeck[1] = startingDeckBaseball[1];
@@ -279,13 +284,14 @@ public class GameplayManager : MonoBehaviour
             {
                 Destroy(hand.transform.GetChild(i).gameObject);
             }
-            
             playerHand.Clear();
 
             drawDeck.Clear();
             discardDeck.Clear();
+            CreateDeck();
             drawDeck.AddRange(startingDeck);
             OnClick();
+            
         }
 
     }
@@ -329,6 +335,29 @@ public class GameplayManager : MonoBehaviour
         return instance;
     }
     private void Update()
+    {
+
+        CreateDeck();
+
+        foreach (Enemy enemy in enemyType)
+        {
+            if (enemy.targeted == true || enemy.isFirstTarget == true || enemy.isSecondTarget == true || enemy.isThirdTarget == true) isAnyoneTargeted = true;
+            else isAnyoneTargeted = false;
+        }
+        if (state == BattleState.PLAYERTURN && isAnyoneTargeted == false && canEndTurn == true)
+        {
+            endTurn.interactable = true;
+        }
+        else endTurn.interactable = false;
+
+        cardAmount.text = startingDeck.Count.ToString();
+        goldTxtTopUI.GetComponent<TextMeshProUGUI>().text = gold.ToString();
+
+        
+
+    }
+
+    private void CreateDeck()
     {
 
         if (currentWeapon == Weapon.Palka)
@@ -390,6 +419,9 @@ public class GameplayManager : MonoBehaviour
             startingDeck[13] = startingDeckNeutral[5];
 
 
+
+
+
             while (tempX < cardsAcquiredDeckKatana.Count)
             {
 
@@ -412,23 +444,8 @@ public class GameplayManager : MonoBehaviour
 
         }
 
-        foreach (Enemy enemy in enemyType)
-        {
-            if (enemy.targeted == true || enemy.isFirstTarget == true || enemy.isSecondTarget == true || enemy.isThirdTarget == true) isAnyoneTargeted = true;
-            else isAnyoneTargeted = false;
-        }
-        if (state == BattleState.PLAYERTURN && isAnyoneTargeted == false && canEndTurn == true)
-        {
-            endTurn.interactable = true;
-        }
-        else endTurn.interactable = false;
-
-        cardAmount.text = startingDeck.Count.ToString();
-        goldTxtTopUI.GetComponent<TextMeshProUGUI>().text = gold.ToString();
-
-        
-
     }
+
     IEnumerator ChooseNode()
     {
         if (playerHand.Count != 0)
@@ -461,15 +478,15 @@ public class GameplayManager : MonoBehaviour
 
         if (currentFloor < 4)
         {
-            numOfList = UnityEngine.Random.Range(0, 3);
+            numOfList = UnityEngine.Random.Range(0, 9);
         }
         else if (currentFloor < 7)
         {
-            numOfList = UnityEngine.Random.Range(3, 6);
+            numOfList = UnityEngine.Random.Range(9, 12);
         }
         else
         {
-            numOfList = UnityEngine.Random.Range(6, 10);
+            numOfList = UnityEngine.Random.Range(12, 16);
         }
         Debug.Log("Num of list : " + numOfList);
         SpawnEnemies(enemiesSpawner.floorOneEnemies[numOfList]);

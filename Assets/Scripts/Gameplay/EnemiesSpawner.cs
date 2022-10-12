@@ -8,6 +8,12 @@ public class EnemiesSpawner : MonoBehaviour
     public List<GameObject> listOne = new List<GameObject>();
     public List<GameObject> listTwo = new List<GameObject>();
     public List<GameObject> listThree = new List<GameObject>();
+    public List<GameObject> list1 = new List<GameObject>();
+    public List<GameObject> list2 = new List<GameObject>();
+    public List<GameObject> list3 = new List<GameObject>();
+    public List<GameObject> list4 = new List<GameObject>();
+    public List<GameObject> list5 = new List<GameObject>();
+    public List<GameObject> list6 = new List<GameObject>();
     public List<GameObject> listFour = new List<GameObject>();
     public List<GameObject> listFive = new List<GameObject>();
     public List<GameObject> listSix = new List<GameObject>();
@@ -23,7 +29,7 @@ public class EnemiesSpawner : MonoBehaviour
     void clueless()
     {
         floorOneEnemies = new List<List<GameObject>>
-        { listOne, listTwo, listThree, listFour, listFive,listSix,listSeven,listEight,listNine,listTen};
+        { listOne, listTwo, listThree, list1, list2, list3, list4, list5, list6, listFour, listFive,listSix,listSeven,listEight,listNine,listTen};
         floorOneElites = new List<List<GameObject>>
         {eliteListOne };
         floorOneBosses = new List<List<GameObject>>

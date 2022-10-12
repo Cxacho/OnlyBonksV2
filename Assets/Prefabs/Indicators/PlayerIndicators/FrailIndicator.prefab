@@ -148,6 +148,8 @@ GameObject:
   - component: {fileID: 5812019311779577469}
   - component: {fileID: -5994819861583412917}
   - component: {fileID: 8633062961634010793}
+  - component: {fileID: 8867707938424137478}
+  - component: {fileID: 458739198825318362}
   m_Layer: 0
   m_Name: FrailIndicator
   m_TagString: BuffIndicator
@@ -274,3 +276,44 @@ MonoBehaviour:
   myIndicatorType: 2
   enemies: []
   statusValue: 0
+--- !u!61 &8867707938424137478
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7978667222925122100}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 5}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5, y: 5}
+  m_EdgeRadius: 0
+--- !u!114 &458739198825318362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7978667222925122100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0e37bfd5de3b04395ac472ee4fb835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  content: Your attacks deal 25% less damage
+  header: Frail
+  Tooltip: {fileID: 0}
