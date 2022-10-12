@@ -256,6 +256,8 @@ public class GameplayManager : MonoBehaviour
 
             drawDeck.Clear();
             discardDeck.Clear();
+            discardAmount = 0;
+            discardDeckButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = discardAmount.ToString();
             CreateDeck();
             drawDeck.AddRange(startingDeck);
             OnClick();
@@ -288,6 +290,8 @@ public class GameplayManager : MonoBehaviour
 
             drawDeck.Clear();
             discardDeck.Clear();
+            discardAmount = 0;
+            discardDeckButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = discardAmount.ToString();
             CreateDeck();
             drawDeck.AddRange(startingDeck);
             OnClick();
