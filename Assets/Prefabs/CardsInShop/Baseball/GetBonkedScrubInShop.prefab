@@ -230,6 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6994d6bbee4a74b458c26a3c72828b23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponType: 0
   cardCost: 35
   ID: 0
 --- !u!114 &-8314812751816982356
@@ -863,10 +864,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35.7
-  m_fontSizeBase: 17
+  m_fontSize: 23
+  m_fontSizeBase: 23
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 2
   m_fontSizeMax: 72
   m_fontStyle: 0

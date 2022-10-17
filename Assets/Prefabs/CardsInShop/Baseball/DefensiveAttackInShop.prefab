@@ -112,8 +112,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.10700001, y: 0.044362925}
   m_AnchorMax: {x: 0.8880001, y: 0.41736293}
-  m_AnchoredPosition: {x: 1.552597, y: 0.7919159}
-  m_SizeDelta: {x: -0.1807, y: 0.7255}
+  m_AnchoredPosition: {x: 0.10449982, y: 0.7919159}
+  m_SizeDelta: {x: -3.0768, y: 0.7255}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1752637756295560603
 CanvasRenderer:
@@ -170,13 +170,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.45
+  m_fontSize: 22.65
   m_fontSizeBase: 17
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 2
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -577,6 +577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6994d6bbee4a74b458c26a3c72828b23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponType: 0
   cardCost: 45
   ID: 6
 --- !u!114 &-7892406856808740199

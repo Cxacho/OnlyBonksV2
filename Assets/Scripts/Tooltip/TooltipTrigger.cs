@@ -63,8 +63,8 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
                 case "Draw_Deck_Button":
                     tooltip_RectTransoform.anchoredPosition = new Vector2(-482, -468);
                     break;
-                case "Swap_Weapon_Button":
-                    tooltip_RectTransoform.anchoredPosition = new Vector2(-482, -468);
+                case "Swap":
+                    tooltip_RectTransoform.anchoredPosition = new Vector2(-515, 0);
                     break;
                 case "StrengthBuffIndcator(Clone)":
                     tooltip_RectTransoform.anchoredPosition = new Vector2(-527, -25);

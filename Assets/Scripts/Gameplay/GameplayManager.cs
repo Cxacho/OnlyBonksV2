@@ -102,7 +102,7 @@ public class GameplayManager : MonoBehaviour
     [Header("Buttons")]
     private Button coinButton;
     private Button healButton;
-    public Button endTurn;
+    public Button endTurnButton;
     public Button mapButton;
     #endregion
 
@@ -350,9 +350,9 @@ public class GameplayManager : MonoBehaviour
         }
         if (state == BattleState.PLAYERTURN && isAnyoneTargeted == false && canEndTurn == true)
         {
-            endTurn.interactable = true;
+            endTurnButton.interactable = true;
         }
-        else endTurn.interactable = false;
+        else endTurnButton.interactable = false;
 
         cardAmount.text = startingDeck.Count.ToString();
         goldTxtTopUI.GetComponent<TextMeshProUGUI>().text = gold.ToString();
@@ -603,7 +603,7 @@ public class GameplayManager : MonoBehaviour
         player.ResetImg();
         canPlayCards = true;
 
-
+        endTurnButton.enabled = true;
 
 
         List<GameObject> _indicators = new List<GameObject>();
@@ -694,6 +694,8 @@ public class GameplayManager : MonoBehaviour
     }
     public async void OnClick()
     {
+        endTurnButton.enabled = false;
+
         retain.Clear();
         if (playerHand.Count != 0)
         {
