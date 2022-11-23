@@ -50,12 +50,12 @@ public class DankMage : Enemy, ITakeTurn
                 SetIndicator();
                 actionsInt++;
                 ChangeIndicatorTexts("inny");
-                otherIndicatortxt.text = 7.ToString();
+                otherIndicatortxt.text = 4.ToString();
                 break;
             case 3:
                 //Dankness protect you !
                 foreach (Enemy en in FindObjectsOfType<Enemy>())
-                    en.GetArmor(7);
+                    en.GetArmor(4);
                 SetIndicator();
                 actionsInt++;
                 otherIndicatortxt.enabled = false;

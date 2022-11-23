@@ -39,7 +39,7 @@ public class Coonsomer : Enemy, ITakeTurn
             case 1:
                 //slam
                 player.TakeDamage(numberOfAttacks * damage);
-                NextCaseAttack(4);
+                NextCaseAttack(3f);
                 break;
             case 2:
                 //CON - SOOOOOOOM

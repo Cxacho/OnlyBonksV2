@@ -39,14 +39,14 @@ public class NPC1 : Enemy, ITakeTurn
                 //damage = 7
                 player.setStatus(Player.playerStatusses.frail, 2);
                 Debug.Log(Mathf.RoundToInt(damage * numberOfAttacks));
-                NextCaseOther("4");
+                NextCaseOther("2");
                 break;
             case 1:
                 //MassHysteria
                 //getarmor
                 foreach (Enemy enemy in gm.enemyType)
                 {
-                    enemy.GetArmor(4);
+                    enemy.GetArmor(2);
                 }
                 NextCaseAttack(1);
                 break;

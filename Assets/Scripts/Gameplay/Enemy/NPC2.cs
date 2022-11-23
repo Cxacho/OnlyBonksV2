@@ -38,14 +38,14 @@ public class NPC2 : Enemy, ITakeTurn
                 //naklada indicator poision , o wartosci 4
                 //damage = 7
                 player.TakeDamage(Mathf.RoundToInt(damage * numberOfAttacks));
-                NextCaseOther("4");
+                NextCaseOther("2");
                 break;
             case 1:
                 //MassHysteria
                 //getarmor
                 foreach (Enemy enemy in gm.enemyType)
                 {
-                    enemy.GetArmor(4);
+                    enemy.GetArmor(2);
                 }
                 NextCaseOther("");
                 break;

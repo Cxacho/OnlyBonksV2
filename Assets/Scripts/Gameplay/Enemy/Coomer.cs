@@ -39,11 +39,11 @@ public class Coomer : Enemy, ITakeTurn
             case 1:
                 //my right arm, is much stronger than left arm
                 player.TakeDamage(Mathf.RoundToInt(damage * numberOfAttacks));
-                NextCaseOther("8");
+                NextCaseOther("7");
                 break;
             case 2:
                 //white knighting
-                GetArmor(8);
+                GetArmor(7);
                 NextCaseAttack(1.4f);
                 break;
             case 3:

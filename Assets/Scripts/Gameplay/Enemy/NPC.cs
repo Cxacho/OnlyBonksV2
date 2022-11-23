@@ -46,7 +46,7 @@ public class NPC : Enemy, ITakeTurn
                 //getarmor
                 foreach(Enemy enemy in gm.enemyType)
                 {
-                    enemy.GetArmor(4);
+                    enemy.GetArmor(2);
                 }
                 NextCaseAttack(1);
                 break;

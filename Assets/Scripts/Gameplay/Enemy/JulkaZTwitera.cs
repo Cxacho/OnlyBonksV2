@@ -45,11 +45,11 @@ public class JulkaZTwitera : Enemy, ITakeTurn
                 //Love for all
                 foreach (Enemy enemy in gm.enemyType)
                     GetArmor(3);
-                NextCaseOther("10");
+                NextCaseOther("5");
                 break;
             case 3:
                 //Artistic screetch
-                GetArmor(10);
+                GetArmor(5);
                 NextCaseOther("");
                 actionsInt = 0;
                 break;

@@ -9,7 +9,7 @@ public class PotFriend : Enemy, ITakeTurn
     private void Start()
     {
         indicatorStringsBool.AddRange(new bool[] { true, true, true, false});
-        indicatorStrings.AddRange(new string[] { (damage).ToString(), "12", (damage * 1.5).ToString(), " "});
+        indicatorStrings.AddRange(new string[] { (damage).ToString(), "10", (damage * 1.5).ToString(), " "});
         numberOfAttacks = 1;
         //tutaj wpisujemy Indicator na start (czy jest true/false) i jaki ma napis
         attackIndicatortxt.enabled = false;
@@ -40,11 +40,11 @@ public class PotFriend : Enemy, ITakeTurn
             case 1:
                 //light Jab
                 player.TakeDamage(Mathf.RoundToInt(damage * numberOfAttacks));
-                NextCaseOther("12");
+                NextCaseOther("10");
                 break;
             case 2:
                 //harden
-                GetArmor(12);
+                GetArmor(10);
                 NextCaseAttack(1.5f);
                 break;
             case 3:
