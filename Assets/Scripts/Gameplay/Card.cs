@@ -175,6 +175,10 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         StateCheck();
         manaCostTxt.text = cost.ToString();
+        if (meshes.Count > 25)
+        {
+            meshes.RemoveRange(25, 25);
+        }
     }
 
     void StateCheck()
@@ -514,11 +518,16 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 currentCardState = cardState.Targetable;
                 gameplayManager.canEndTurn = false;
                 pos.anchoredPosition = new Vector3(0, -400, 0);
+                Debug.Log("Tutaj jestem Position");
             }
+            Debug.Log("en" + followMouse.en);
+            Debug.Log(followMouse);
             if (followMouse.en != null)
+                //Debug.Log("Tutaj jestem followMouse");
             {
                 if (Input.GetButtonUp("Fire1") && followMouse.en.targeted == false && numOfTargets > 0)
                 {
+                    Debug.Log("Tutaj jestem Fire1");
                     //wybor targetu, gdy liczba 
                     //dodatkowy warunek od enemies.count tak jak w lini 215
                     if (_enemies.Count >= 3)

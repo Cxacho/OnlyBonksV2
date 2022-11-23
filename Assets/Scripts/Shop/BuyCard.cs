@@ -50,10 +50,11 @@ public class BuyCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         if(rewardcard == true)
         {
-            var cardPrefabClone = Instantiate(gameplayManager.allCardsSHOP[ID]);
-            cardPrefabClone.transform.SetParent(gameplayManager.canvas.transform);
-            cardPrefabClone.transform.localScale = Vector3.one;
-            cardPrefabClone.transform.position = new Vector2(-1000, 0);
+            Debug.Log(gameplayManager.allCardsSHOP[ID]);
+            var cardPrefabClone = Instantiate(gameplayManager.allCardsSHOP[ID]) as GameObject;
+            //cardPrefabClone.transform.SetParent(gameplayManager.canvas.transform);
+            //cardPrefabClone.transform.localScale = Vector3.one;
+            //cardPrefabClone.transform.position = new Vector2(-1000, 0);
 
             if (this.weaponType == WeaponType.Baseball)
                 gameplayManager.cardsAcquiredDeckBaseball.Add(cardPrefabClone);
@@ -75,9 +76,9 @@ public class BuyCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             gameplayManager.gold -= cardCost;
             var cardPrefabClone = Instantiate(gameplayManager.allCardsSHOP[ID]);
-            cardPrefabClone.transform.SetParent(gameplayManager.canvas.transform);
-            cardPrefabClone.transform.localScale = Vector3.one;
-            cardPrefabClone.transform.position = new Vector2(-1000, 0);
+            //cardPrefabClone.transform.SetParent(gameplayManager.canvas.transform);
+            //cardPrefabClone.transform.localScale = Vector3.one;
+            //cardPrefabClone.transform.position = new Vector2(-1000, 0);
             gameplayManager.startingDeck.Add(cardPrefabClone);
             gameplayManager.drawDeck.Add(cardPrefabClone);
             

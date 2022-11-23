@@ -226,6 +226,10 @@ public class GameplayManager : MonoBehaviour
 
     public void SwitchWeapon()
     {
+        tempI = 0;
+        tempJ = 0;
+        tempY = 0;
+        tempX = 0;
         if (state == BattleState.ENEMYTURN)
             return;
         if (currentWeapon == Weapon.Palka)
@@ -392,7 +396,6 @@ public class GameplayManager : MonoBehaviour
                 startingDeck.Add(cardsAcquiredDeckBaseball[tempI]);
                 tempI++;
             }
-
             while (tempJ < cardsAcquiredDeckNeutral.Count)
             {
 
@@ -402,7 +405,6 @@ public class GameplayManager : MonoBehaviour
                 startingDeck.Add(cardsAcquiredDeckNeutral[tempJ]);
                 tempJ++;
             }
-
         }
         else if (currentWeapon == Weapon.Katana)
         {
@@ -435,7 +437,6 @@ public class GameplayManager : MonoBehaviour
                 startingDeck.Add(cardsAcquiredDeckKatana[tempX]);
                 tempX++;
             }
-
             while (tempY < cardsAcquiredDeckNeutral.Count)
             {
 
@@ -445,7 +446,6 @@ public class GameplayManager : MonoBehaviour
                 startingDeck.Add(cardsAcquiredDeckNeutral[tempY]);
                 tempY++;
             }
-
         }
 
     }
