@@ -15,17 +15,20 @@ public class playAreaAnimator : MonoBehaviour
     {
         sprite1 = transform.GetChild(0).GetComponent<SpriteRenderer>();
         sprite2 = transform.GetChild(1).GetComponent<SpriteRenderer>();
-        sprite1.color = new Color(sprite1.color.r, sprite1.color.g, sprite1.color.b, startValue);
-        sprite2.color = new Color(sprite1.color.r, sprite1.color.g, sprite1.color.b, startValue);
-        one=sprite1.DOColor(new Color(sprite1.color.r, sprite1.color.g, sprite1.color.b, endValue), time).SetLoops(-1, LoopType.Yoyo);
-        two=sprite2.DOColor(new Color(sprite2.color.r, sprite2.color.g, sprite2.color.b, endValue), time).SetLoops(-1, LoopType.Yoyo);
+        sprite1.color = new Color(sprite1.color.r, sprite1.color.g, sprite1.color.b, 0.5f);
+        sprite2.color = new Color(sprite1.color.r, sprite1.color.g, sprite1.color.b, 0.5f);
+        //one=sprite1.DOColor(new Color(sprite1.color.r, sprite1.color.g, sprite1.color.b, endValue), time).SetLoops(-1, LoopType.Yoyo);
+        //two=sprite2.DOColor(new Color(sprite2.color.r, sprite2.color.g, sprite2.color.b, endValue), time).SetLoops(-1, LoopType.Yoyo);
     }
     public void killTweens()
     {
+        /*
         one.Kill();
         two.Kill();
         sprite1.DOColor(new Color(sprite1.color.r, sprite1.color.g, sprite1.color.b, 0), 1);
         sprite2.DOColor(new Color(sprite2.color.r, sprite2.color.g, sprite2.color.b, 0), 1);
-
+        */
+        sprite1.color = new Color(sprite1.color.r, sprite1.color.g, sprite1.color.b, 0);
+        sprite2.color = new Color(sprite1.color.r, sprite1.color.g, sprite1.color.b, 0);
     }
 }

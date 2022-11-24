@@ -49,6 +49,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject panelLose;
     public GameObject shopPanel;
     public GameObject cardToCreate;
+    public GameObject tutorialPanel;
 
     #endregion
 
@@ -615,6 +616,15 @@ public class GameplayManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.5f);
+
+        if (PlayerPrefs.HasKey("tutorial")) 
+        tutorialPanel.SetActive(false);
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+            tutorialPanel.SetActive(true);
+            PlayerPrefs.SetInt("tutorial", 1);
+        }
 
     }
     private async void OnEnemiesTurn()
