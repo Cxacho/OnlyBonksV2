@@ -28,11 +28,8 @@ public class Anger : Card
             await DoAnim();
             gameplayManager.state = BattleState.PLAYERTURN;
 
+            //Dzia³anie karty
             player.setStatusIndicator(3, 3, player.buffIndicators[3]);
-        }
-        else
-        {
-            Debug.Log("fajnie dzia³a");
         }
 
     }

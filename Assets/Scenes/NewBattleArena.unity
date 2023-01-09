@@ -25716,7 +25716,7 @@ MonoBehaviour:
   cardIndex: 3
   mnoznik: 37.5
   pierwszyWyraz: 10.11
-  cardHeight: 25
+  cardHeight: 50
   anCurve:
     serializedVersion: 2
     m_Curve:
@@ -25751,7 +25751,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   pointerHandler: 100
-  selectedHeight: 170
+  selectedHeight: 200
   moveHorizontalyDistance: 10
   cardMoveTime: 0.1
   cardRealignTime: 0.1
@@ -30785,7 +30785,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1583178200
 RectTransform:
   m_ObjectHideFlags: 0

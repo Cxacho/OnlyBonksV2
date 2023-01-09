@@ -21,7 +21,7 @@ public class FrailIndicator : Indicator
     }
     void onTurnEnd(object sender, EventArgs e)
     {
-        player.frail += -1;
+        player.frail -= 1;
         statusValue = player.frail;
         UpdateNum(statusValue);
         if (player.frail == 0)

@@ -7,30 +7,30 @@ using DG.Tweening;
 using System;
 public class Player : MonoBehaviour
 {
-    public GameObject fillArmor;
-    public GameObject textHealth;
-    public GameObject textArmor;
-    public GameObject shield;
-    GameObject frailIndicator, vurneableIndicator, poisonIndicator, strengthBuffIndicator,pierceIndicator,dexterityIndicator;
+    [HideInInspector] public GameObject fillArmor;
+    [HideInInspector] public GameObject textHealth;
+    [HideInInspector] public GameObject textArmor;
+    [HideInInspector] public GameObject shield;
+    [HideInInspector] GameObject frailIndicator, vurneableIndicator, poisonIndicator, strengthBuffIndicator,pierceIndicator,dexterityIndicator;
     [HideInInspector]public GameObject energizeIndicator;
-    TextMeshProUGUI value;
+    [HideInInspector] TextMeshProUGUI value;
     public int maxHealth;
     public int currentHealth;
     public int armor;
-    public int armorAndHp;
+    [HideInInspector] public int armorAndHp;
     public int mana;
-    public GameObject armorImage,buffsAndDebuffs,testStatusIndicator;
-    public TMP_Text manaText;
-    public TMP_Text healthText,topHp;
-    public TMP_Text armorText;
-    public SliderHealth sdh;
-    public GameObject dmgPopOutBlock;
-    public TextMeshProUGUI dmgPopOutTMP;
-    public GameplayManager gameplayManager;
+    [HideInInspector] public GameObject armorImage,buffsAndDebuffs,testStatusIndicator;
+    [HideInInspector] public TMP_Text manaText;
+    [HideInInspector] public TMP_Text healthText,topHp;
+    [HideInInspector] public TMP_Text armorText;
+    [HideInInspector] public SliderHealth sdh;
+    [HideInInspector] public GameObject dmgPopOutBlock;
+    [HideInInspector] public TextMeshProUGUI dmgPopOutTMP;
+    [HideInInspector] public GameplayManager gameplayManager;
     [HideInInspector]public int tempStrength,tempDexterity,tempInteligence;
     public int strenght = 0;
     public int dexterity = 0;
-    public int inteligence = 0;
+    [HideInInspector] public int inteligence = 0;
     public int frail,vurneable,poison,energize;
     public List<GameObject> buffIndicators = new List<GameObject>();
     playerStatusses currentBuff;
@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
     public void setStatusIndicator(int value,int select,GameObject buffIndicator)
     {
         currentBuff = (playerStatusses)select;
-        Debug.Log("Case numer : " + currentBuff);
+        Debug.Log("Case number : " + currentBuff);
         switch(currentBuff)
         {
             case Player.playerStatusses.frail:
@@ -130,7 +130,7 @@ public class Player : MonoBehaviour
                 buffValue2.text = poison.ToString();
                 break;
             case Player.playerStatusses.strengthBuff:
-                //strenght += tempStrength;
+               
                 strenght += value;
                 Debug.Log("Str value" + value);
                 if (strengthBuffIndicator == null)
@@ -148,16 +148,13 @@ public class Player : MonoBehaviour
                     energizeIndicator = Instantiate(buffIndicator, buffsAndDebuffs.transform);
                     Debug.Log("COS");
                 }
-                /*foreach (Card obj in FindObjectsOfType<Card>())
-                    if(obj.cost >0)
-                    obj.cost -= 1;
-                */
+               
                 var buffValue4 = energizeIndicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                 buffValue4.text = energize.ToString();
                 
                 break;
             case Player.playerStatusses.dexterity:
-                //strenght += tempStrength;
+               
                 dexterity += value;
                 Debug.Log("Dex value" + value);
                 if (dexterityIndicator == null)
@@ -174,7 +171,7 @@ public class Player : MonoBehaviour
                 {
 
                     pierceIndicator = Instantiate(buffIndicator, buffsAndDebuffs.transform);
-                    //onturnend destroy indicator/effect
+                  
                 }
                 break;
         }

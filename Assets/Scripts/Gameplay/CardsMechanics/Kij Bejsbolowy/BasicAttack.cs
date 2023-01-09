@@ -46,37 +46,31 @@ public class BasicAttack : Card
             base.OnDrop();
 
             StartCoroutine(ExecuteAfterTime(1f));
+
+            //foreach stosowany, gdy dzia³anie karty ma interakcjê z jakimkolwiek przeciwnikiem
             foreach (Enemy en in _enemies)
             {
+                
                 if (en.targeted == true)
                 {
+                    
                     gameplayManager.state = BattleState.INANIM;
                     await DoAnim(en);
                     gameplayManager.state = BattleState.PLAYERTURN;
-                    //gameplayManager.OnEnemyKilled += AddMeSomeMana;
+
+                    //miejsce na dzia³anie karty
+
                     en.RecieveDamage(attack,this);
                     
+                    //
+
                     en.targeted = false;
                 }
             }
             resetTargetting();
         }
-        
-        else
-        {
-            Debug.Log("fajnie dzia³a");
-        }
 
     }
-    void AddMeSomeMana(object sender, EventArgs e)
-    {
-        player.mana += 4;
-    }
-    private void OnDestroy()
-    {
-       // gameplayManager.OnEnemyKilled -= AddMeSomeMana;   
-    }
-
     IEnumerator ExecuteAfterTime(float time)
     {
         yield return new WaitForSeconds(time);

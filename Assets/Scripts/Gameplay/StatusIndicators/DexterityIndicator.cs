@@ -20,7 +20,7 @@ public class DexterityIndicator : Indicator
     }
     void onTurnEnd(object sender, EventArgs e)
     {
-        player.dexterity += -1;
+        player.dexterity -= 1;
         statusValue = player.dexterity;
         UpdateNum(statusValue);
         if (player.dexterity == 0)

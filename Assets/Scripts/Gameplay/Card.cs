@@ -12,21 +12,21 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public int baseCost;
     public int cost;
-    public int scaleCardValues;
-    public int index;
+    [HideInInspector] public int scaleCardValues;
+    [HideInInspector] public int index;
     private int numOfTargets;
     public int baseNumOfTargets;
     bool canCreate;
     private float posY;
-    public float attack;
+    [HideInInspector] public float attack;
     public float defaultattack;
-    public int getPanel;
+    [HideInInspector] public int getPanel;
     public GameplayManager.Weapon myWeaponType;
     public cardType cType;
-    public cardState currentCardState;
+    [HideInInspector] public cardState currentCardState;
     public scalingType cardScalingtype;
     public scalingType secondaryScalingType;
-    public damageType cardDamageType;
+    [HideInInspector] public damageType cardDamageType;
     private Vector3 discDek;
     public GameObject exitButton;
     protected FollowMouse followMouse;

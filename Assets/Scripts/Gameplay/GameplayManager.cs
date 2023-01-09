@@ -621,7 +621,6 @@ public class GameplayManager : MonoBehaviour
         tutorialPanel.SetActive(false);
         else
         {
-            yield return new WaitForSeconds(0.5f);
             tutorialPanel.SetActive(true);
             PlayerPrefs.SetInt("tutorial", 1);
         }

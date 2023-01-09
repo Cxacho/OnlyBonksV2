@@ -12,14 +12,9 @@ public class Cringe : Card
         {
             base.OnDrop();
 
-            /*
-            gameplayManager.state = BattleState.INANIM;
-
-            await DoAnim();
-            gameplayManager.state = BattleState.PLAYERTURN;
-            */
-
             StartCoroutine(ExecuteAfterTime(1f));
+
+            //Dzia³anie karty
 
             if(gameplayManager.currentWeapon == GameplayManager.Weapon.Palka)
             {
@@ -29,7 +24,7 @@ public class Cringe : Card
             {
                 player.setStatusIndicator(2, 5, player.buffIndicators[6]);
             }
-
+            //
         }
          
     }

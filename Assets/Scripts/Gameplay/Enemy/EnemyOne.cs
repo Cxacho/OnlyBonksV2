@@ -8,16 +8,7 @@ public class EnemyOne : Enemy, ITakeTurn
 
     private void Start()
     {
-        //indicatorStrings.AddRange(new string[] {"10", (damage * 3).ToString(), " ", damage.ToString(), damage.ToString()});
-        indicatorStringsBool.AddRange(new bool[] {true,true,false,true,true});
         numberOfAttacks = 1;
-        //SetAttackString(1);
-        /*
-        if (pl.vurneable > 0)
-        {
-            damage = damage * 1.25f;
-        }
-        */
     }
 
     public void takeTurn(Player player)
