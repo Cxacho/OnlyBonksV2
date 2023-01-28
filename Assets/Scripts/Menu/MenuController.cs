@@ -140,6 +140,7 @@ public class MenuController : MonoBehaviour
 
     public void StartNewGame()
     {
+        PlayerPrefs.DeleteKey("tutorial")
         PlayerPrefs.DeleteKey("Map");
         SceneManager.LoadScene(_newGameLevel);
     }
